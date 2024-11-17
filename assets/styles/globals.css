@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.cdnfonts.com/css/helvetica-neue-5");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 16px;
+}
+
+@layer components {
+  .max-container {
+    max-width: 1720px;
+    width: calc(100% - 40px);
+    margin: 0 auto;
+  }
+  .blog-container {
+    max-width: 1140px;
+    width: calc(100% - 40px);
+    margin-inline: auto;
+  }
+}
+
+.hero-bg {
+  background-image: url(../images/hero-bg.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+}
+.hero-bg::before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background-color: rgb(0, 0, 0, 0.5);
+}
+.wrap-balance {
+  text-wrap: balance;
+}
+.about-us-table * {
+  font: inherit;
+  color: inherit;
+}
+.about-us-table p {
+  @apply text-[13px] md:text-[32px];
+}
+
+@layer utilities {
+  .section-title {
+    @apply text-center text-2xl font-bold leading-[110%] text-primary md:text-[64px] md:leading-[120%];
+  }
+  .section-title a {
+    font: inherit;
+  }
+}
+
+.login-input {
+  @apply block w-full rounded-[5px] border border-gray-dark p-3 text-[14px] leading-[24px] xl:p-3 xl:text-lg extraWide:p-[23px_20px] extraWide:text-xl;
+}
+.label-text {
+  @apply mb-[10px] text-[10px] font-light leading-[24px] text-gray-light lg:text-[14px];
+}
+
+/* profile menu */
+.menu-link {
+  @apply text-[14px] font-light leading-[110%] text-black no-underline;
+}
+.drop-menu-link {
+  @apply mb-[20px] text-base font-bold uppercase text-gray-dark hover:text-primary;
+}
+
+/* settings page */
+.settings-label {
+  @apply mb-[10px] text-[14px] font-bold leading-[24px] text-gray-dark;
+}
+.settings-input {
+  @apply rounded-[5px] border border-gray-dark px-[30px] py-[20px] text-gray-dark outline-none focus-visible:outline-primary;
+}
+
+/* create project form page */
+.form-label {
+  @apply mb-[10px] text-[14px] font-bold leading-[120%] text-gray-dark md:mb-0 md:text-nowrap md:text-[18px];
+}
+.form-input-box {
+  @apply min-h-[50px] flex-[0_1_850px] overflow-clip rounded-[5px] border border-gray-dark outline-none has-[:active]:outline-primary has-[:focus-visible]:outline-primary has-[:focus]:outline-primary;
+}
+.form-input {
+  @apply w-full border-none px-[20px] py-[20px] font-helvetica text-base font-light leading-[120%] text-gray-dark md:px-[30px];
+}
+.select-arrow {
+  border: 0;
+  vertical-align: middle;
+  background: transparent;
+  -webkit-appearance: none;
+  appearance: none;
+
+  background-image: url(../images/svg/dropdownArrow.svg);
+  background-repeat: no-repeat;
+  background-position-x: right 30px;
+  background-position-y: center;
+}
+.css-13cymwt-control {
+  @apply block w-full rounded-[5px] border border-gray-dark p-2 text-[14px] leading-[20px] xl:p-3 xl:text-lg extraWide:p-[23px_20px] extraWide:text-xl;
+}
+.react-tabs__tab-list,
+.react-tabs__tab--selected {
+  border: 0 !important;
+  outline: none;
+}
+.react-tabs__tab--selected {
+  color: #79a471 !important;
+}
+.react-tabs__tab-list {
+  display: flex;
+  gap: 20px;
+}
+.react-tabs__tab {
+  padding: 0 !important;
+}

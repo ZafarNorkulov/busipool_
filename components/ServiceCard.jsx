@@ -1,0 +1,14 @@
+const ServiceCard = ({ title, description }) => {
+  return (
+    <div className="group flex cursor-pointer flex-col items-center rounded-[10px] py-[15px] transition hover:bg-primary active:scale-[0.99] md:w-[680px] md:px-[120px] md:py-[60px]">
+      <h3 className="mb-[10px] w-max text-center text-[20px] font-bold leading-normal text-gray-dark group-hover:text-white md:text-[36px]">
+        {title}
+      </h3>
+      <p className="wrap-balance text-center text-base font-light leading-normal text-gray-light group-hover:text-white md:text-[24px]">
+        {description}
+      </p>
+    </div>
+  );
+};
+
+export default ServiceCard;
