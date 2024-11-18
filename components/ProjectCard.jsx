@@ -6,9 +6,24 @@ import { useRouter } from "next/navigation";
 const ProjectCard = ({ card, isGridItem }) => {
   const router = useRouter();
 
-  // console.log("card", card);
+  console.log("card", card);
+const perventage = Math.round((card?.total_investor_price * 100) / card?.financial_goal)
+const date = new Date(card?.project_completion_date);
+const day = String(date.getDate()).padStart(2, '0');  // Kunning 2 raqamli bo'lishini ta'minlash
+  const month = String(date.getMonth() + 1).padStart(2, '0');  // Oyning 2 raqamli bo'lishini ta'minlash
+  const year = date.getFullYear();  // Yilni olish
+  
+  // Yangi formatni yaratish: DD.MM.YYYY
+  const formattedDate = `${day}.${month}.${year}`;
 
-  if (isGridItem) {
+
+  const splitEvery3 = (num) => {
+    // Raqqa stringga aylantiramiz, keyin bo'sh joy bilan ajratamiz
+    return num
+      .toString()
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ' ');  // Har 3 raqamdan keyin bo'sh joy qo'yadi
+  };
+  if (!isGridItem) {
     return (
       <div className="h-full rounded-[5px] shadow md:rounded-[10px]">
         <Image
@@ -23,31 +38,36 @@ const ProjectCard = ({ card, isGridItem }) => {
         <div className="flex h-[65%] flex-col justify-between p-[12.35px] md:p-[30px]">
           <div>
             <h3 className="mb-[10px] text-[8px] font-bold leading-[110%] text-gray-dark md:mb-[20px] md:text-[18px]">
-              {card.name}
+              {card?.name}
             </h3>
             <p className="mb-[11px] text-[7px] font-light leading-[130%] text-gray-light md:mb-[30px] md:text-base">
-              {card.description}
+              {card?.description}
             </p>
-            <div className="mb-[4.5px] flex justify-between md:mb-[10px]">
-              <span className="text-[7px] font-bold leading-[130%] text-primary md:text-base">
-                {card?.budget?.percentage}
-              </span>
-              <span className="text-[7px] leading-[110%] text-gray-light md:text-base">
-                {card?.budget?.endDate}
-              </span>
-            </div>
 
+            <div className="mb-[4.5px] flex justify-between mt-4 md:mb-[10px]">
+              <span className="text-[7px] font-bold leading-[130%] text-primary md:text-base">{perventage}%</span>
+              <span className="text-[7px] md:text-base text-gray-light">до {formattedDate}</span>
+            </div>
             <div className="h-[2px] rounded-[4.5px] bg-gray-300 md:h-[5px] md:rounded-[10px]">
-              <div className="h-[2px] w-[59%] rounded-[4.5px] bg-primary md:h-[5px] md:rounded-[10px]"></div>
+              <div className={`h-[2px] w-[${perventage}%] rounded-[4.5px] bg-primary md:h-[5px] md:rounded-[10px]`}></div>
+            </div>
+            <div className="mb-[4.5px] flex justify-between mt-4 md:mb-[10px]">
+              <span className="text-sm font-bold leading-[130%] md:text-base">
+                {splitEvery3(card?.total_investor_price)} $
+              </span>
+              <span className="text-[6px] font-light lowercase leading-[110%] text-gray-light md:text-[14px]">
+                СОБРАНО ИЗ
+              </span>
+              <span className="text-sm leading-[110%] font-bold  md:text-base">
+                {splitEvery3(card?.financial_goal)} $
+              </span>
             </div>
 
             <div className="mb-[12.5px] mt-[10px] flex justify-between md:mb-[30px]">
               <span className="text-[6px] font-bold leading-[110%] text-gray-dark md:text-[14px]">
                 {card?.budget?.current}
               </span>
-              <span className="text-[6px] font-light lowercase leading-[110%] text-gray-light md:text-[14px]">
-                СОБРАНО ИЗ
-              </span>
+
               <span className="text-[6px] font-bold leading-[110%] text-gray-dark md:text-[14px]">
                 {card?.budget?.final}
               </span>

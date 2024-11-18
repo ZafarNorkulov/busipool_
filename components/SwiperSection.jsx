@@ -34,7 +34,6 @@ export default function SwiperSection() {
   useEffect(() => {
     fetchProjectsFromAPI();
   }, [loading]);
-
   return (
     <>
       {loading && <Spinner loading={loading} />}
