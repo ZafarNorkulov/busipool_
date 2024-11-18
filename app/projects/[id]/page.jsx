@@ -12,6 +12,8 @@ import Spinner from "../../../components/Spinner";
 import { getProject } from "../../api/projects/project";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
+import { socialMedia } from "@/constants";
+
 
 const ProjectPage = () => {
   const [toggleHeart, setToggleHeart] = useState(false);
@@ -46,12 +48,29 @@ const ProjectPage = () => {
     );
   }
 
+  const perventage = Math.round((project?.total_investor_price * 100) / project?.financial_goal)
+  const date = new Date(project?.project_completion_date);
+  const day = String(date.getDate()).padStart(2, '0');  // Kunning 2 raqamli bo'lishini ta'minlash
+  const month = String(date.getMonth() + 1).padStart(2, '0');  // Oyning 2 raqamli bo'lishini ta'minlash
+  const year = date.getFullYear();  // Yilni olish
+
+  // Yangi formatni yaratish: DD.MM.YYYY
+  const formattedDate = `${day}.${month}.${year}`;
+
+  console.log(project)
+  const splitEvery3 = (num) => {
+    // Raqqa stringga aylantiramiz, keyin bo'sh joy bilan ajratamiz
+    return num
+      .toString()
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ' ');  // Har 3 raqamdan keyin bo'sh joy qo'yadi
+  };
+
   return (
     <section>
       {loading && <Spinner loading={loading} />}
       {!loading && project && (
-        <div className="max-container mb-[60px] mt-[20px] flex flex-col gap-[30px] md:mt-[100px] lg:flex-row lg:items-start xl:mb-[150px] xl:gap-[100px]">
-          <div className="h-[100px] w-auto rounded-xl min-[425px]:h-[300px] lg:h-[450px] lg:w-[50%] xl:flex-1">
+        <div className="max-container mb-[60px] mt-[20px] flex lg:flex-row flex-col gap-[30px] md:mt-[100px] items-baseline xl:mb-[150px] xl:gap-[100px]">
+          <div className=" w-auto rounded-xl min-[425px]  lg:w-[50%] xl:flex-1">
             {project.image ? (
               <img
                 src={project.image}
@@ -68,10 +87,10 @@ const ProjectPage = () => {
           </div>
           <div className="max-w-[425px] flex-1 self-center md:max-w-[600px] lg:max-w-full">
             <h3 className="mb-[20px] text-[18px] font-bold leading-[110%] text-gray-dark lg:text-[24px] xl:text-[32px]">
-              {project?.title}
+              {project?.name}
             </h3>
             <p className="mb-[11px] text-[12px] font-light leading-[130%] text-gray-light md:text-base lg:mb-[60px] lg:text-base xl:text-[24px]">
-              {project.text}
+              {project.description}
             </p>
 
             {/* Contact author */}
@@ -114,28 +133,25 @@ const ProjectPage = () => {
               </div>
             </div>
 
-            <div className="mb-[4.5px] flex justify-between md:mb-[10px]">
-              <span className="text-[12px] font-light leading-[130%] text-primary md:text-base lg:text-base xl:text-[24px]">
-                {project?.budget?.percentage}
-              </span>
-              <span className="text-[12px] leading-[110%] text-gray-light md:text-base lg:text-base xl:text-[24px]">
-                {project?.budget?.endDate}
-              </span>
-            </div>
 
-            <div className="h-[3px] rounded-[4.5px] bg-gray-300 md:h-[5px] md:rounded-[15px]">
-              <div className="h-[3px] w-[59%] rounded-[4.5px] bg-primary md:h-[5px] md:rounded-[15px]"></div>
-            </div>
 
-            <div className="mb-[12.5px] mt-[20px] flex justify-between md:mb-[37px]">
-              <span className="text-[12px] font-bold leading-[110%] text-gray-dark md:text-[14px] lg:text-base xl:text-[24px]">
-                {project?.budget?.current}
+
+            <div className="mb-[4.5px] flex justify-between mt-4 md:mb-[10px]">
+              <span className="text-[7px]  leading-[130%] text-primary md:text-base">{perventage}%</span>
+              <span className="text-[7px] md:text-base text-gray-light">до {formattedDate}</span>
+            </div>
+            <div className="h-[2px] rounded-[4.5px] bg-gray-300 md:h-[5px] md:rounded-[10px]">
+              <div className={`h-[2px] w-[${perventage}%] rounded-[4.5px] bg-primary md:h-[5px] md:rounded-[10px]`}></div>
+            </div>
+            <div className="mb-[4.5px] flex justify-between mt-4 md:mb-[10px]">
+              <span className="text-sm text-[#1e1e1e] font-bold leading-[130%] md:text-base">
+                {splitEvery3(project?.total_investor_price)} ₽
               </span>
-              <span className="text-[12px] font-light lowercase leading-[110%] text-gray-light md:text-[14px]">
+              <span className="text-[6px] font-light lowercase leading-[110%] text-gray-light md:text-[14px]">
                 СОБРАНО ИЗ
               </span>
-              <span className="text-[12px] font-bold leading-[110%] text-gray-dark md:text-[14px] lg:text-base xl:text-[24px]">
-                {project?.budget?.final}
+              <span className="text-sm text-[#1e1e1e] leading-[110%] font-bold  md:text-base">
+                {splitEvery3(project?.financial_goal)} ₽
               </span>
             </div>
 
@@ -155,6 +171,16 @@ const ProjectPage = () => {
                   />
                 )}
               </div>
+            </div>
+            <div className="mt-[30px] flex items-center justify-center gap-[30px] sm:mb-[60px] md:justify-end md:gap-[20px]">
+              {socialMedia?.map(item => (
+
+                <a href="vk.com" className="h-[30px] w-[30px]">
+                  <img src={item?.src} alt={item?.alt} />
+                </a>
+              ))}
+
+
             </div>
           </div>
         </div>

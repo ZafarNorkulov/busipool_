@@ -21,7 +21,6 @@ export default function SwiperSection() {
     getProjects()
       .then((response) => {
         setProjects(response);
-        console.log(response);
       })
       .catch((error) => {
         console.log(error);

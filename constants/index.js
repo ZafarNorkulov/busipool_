@@ -24,6 +24,8 @@ import shutdown from "@/assets/images/svg/profile-menu/shutdown.svg";
 import b1 from "@/assets/images/blog/b1.jpg";
 import b2 from "@/assets/images/blog/b2.jpg";
 
+import question from "@/assets/images/_.png"
+
 export const navLinks = [
   { href: "/", label: "Главная" },
   { href: "/investor", label: "Инвестору" },

@@ -13,10 +13,7 @@ const HomeBlogs = () => {
   
   function fetchBlogsApi() {
     getBlogs().then((response) => {
-      console.log('response');
-      console.log(response);
       setBlogs(response);
-      console.log('response');
     }
   ).catch((error) => {
     console.log(error);
@@ -26,7 +23,6 @@ const HomeBlogs = () => {
 useEffect(() => {
   fetchBlogsApi();
 }, []);
-console.log(blogs)
   return (
     <section className="max-container mb-[100px] md:mb-[150px]">
       <h2 className="section-title mb-[30px] md:mb-[100px]">

@@ -192,7 +192,7 @@ const SmallBusinessPage = () => {
       {!loading && projects && (
         <div className="max-container mb-[60px] grid grid-cols-2 gap-[8px] md:mb-[30px] md:grid-cols-3 md:gap-[20px] wide:grid-cols-4">
           {projects.map((card, index) => (
-            <ProjectCard key={index} card={card} isGridItem />
+            <ProjectCard key={index} card={card} />
           ))}
         </div>
       )}

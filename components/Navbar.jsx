@@ -23,21 +23,26 @@ const Navbar = () => {
   const [mobileNavbarMenu, setMobileNavbarMenu] = useState(false);
   const [extraLinksMenu, setExtraLinksMenu] = useState(false);
   const [providers, setProviders] = useState(null);
-
+  const [token, setToken] = useState(null);
   const path = usePathname();
   const router = useRouter();
-  const [token,setToken] = useState(null)
+ 
   useEffect(() => {
     setMobileNavbarMenu(false);
     setExtraLinksMenu(false);
   }, [path]);
 
   useEffect(() => {
-    setToken(localStorage.getItem('token'))
+    
     const setAuthProvider = async () => {
       const response = await getProviders();
       setProviders(response);
     };
+
+    if (typeof window !== "undefined") {
+      const storedToken = localStorage.getItem("token");
+      setToken(storedToken);
+    }
     setAuthProvider();
   }, []);
 

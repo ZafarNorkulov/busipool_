@@ -10,16 +10,16 @@ const Navbar = dynamic(()=>import("@/components/Navbar"),{
 const MainLayoutBody = ({ children }) => {
   const path = usePathname();
 
-  const signInPathnames = ["/sign-in", "/sign-up", "/sign-up/confirm"];
+  const authPathnames = ["/sign-in", "/sign-up", "/sign-up/confirm"];
 
   return (
     <body>
       <Scroll />
-      {!signInPathnames.includes(path) && <Navbar />}
+      {!authPathnames.includes(path) && <Navbar />}
 
       {children}
 
-      {!signInPathnames.includes(path) && <Footer />}
+      {!authPathnames.includes(path) && <Footer />}
     </body>
   );
 };

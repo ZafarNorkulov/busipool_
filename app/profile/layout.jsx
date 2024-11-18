@@ -5,23 +5,26 @@ import Link from "next/link";
 import { CiSquarePlus } from "react-icons/ci";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
+import { Router } from "next/router";
 
 const ProfilePageLayout = ({ children }) => {
   const router = useRouter();
   const { data: session } = useSession();
   const profileImage = session?.user?.image;
   const profileName = session?.user?.name;
-  const [token, setToken] = useState(null);
 
+
+  const token = localStorage.getItem("token");
   useEffect(() => {
     if (!token) {
       router.push("/sign-in");
+      console.log("error")
+    } else {
+      console.log("succes")
     }
   }, [token, router]);
-  useEffect(() => {
-    setToken(localStorage.getItem("token"));
-  }, []);
+
 
   return (
     <section>

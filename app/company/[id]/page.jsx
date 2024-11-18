@@ -251,7 +251,7 @@ const InvestorPage = () => {
         <div className="max-container mb-[60px] grid grid-cols-2 gap-[8px] md:mb-[30px] md:grid-cols-3 md:gap-[20px] wide:grid-cols-4">
           {projects?.results?.map((card, index) => (
             <div className="">
-              <ProjectCard key={index} card={card} isGridItem />
+              <ProjectCard key={index} card={card} />
             </div>
           ))}
         </div>
