@@ -1,38 +1,38 @@
 "use client";
-import React, { useRef, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 // import { projects } from "@/constants";
 import { Autoplay } from "swiper/modules";
 import "@/assets/styles/globals.css";
 
-import { getProjects } from '../app/api/projects/project';
+import { getProjects } from "../app/api/projects/project";
 
 import "swiper/css";
 import "swiper/css/pagination";
 import ProjectCard from "../components/ProjectCard";
-import { fetchProjects } from "@/utils/requests";
 import Spinner from "./Spinner";
 
 export default function SwiperSection() {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
 
-
   function fetchProjectsFromAPI() {
-    getProjects().then((response) => {
-      setProjects(response);
-      console.log(response);
-    }).catch((error) => {
-      console.log(error);
-    }
-    ).finally(() => {
-      setLoading(false);
-    });
+    getProjects()
+      .then((response) => {
+        setProjects(response);
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }
 
   useEffect(() => {
-    fetchProjectsFromAPI()
+    fetchProjectsFromAPI();
   }, [loading]);
 
   return (

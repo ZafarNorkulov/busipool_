@@ -7,7 +7,7 @@ import Button from "@/components/Button";
 import Image from "next/image";
 import buildProjectImage from "@/assets/images/build-project.png";
 import HomeBlogs from "@/components/sections/HomeBlogs";
-import { fetchProjects } from "@/utils/requests";
+import { getProjects } from "@/app/api/projects/project";
 import Spinner from "@/components/Spinner";
 import { SlMagnifier } from "react-icons/sl";
 
@@ -18,8 +18,8 @@ const SmallBusinessPage = () => {
   useEffect(() => {
     const fetchProjectsFromDB = async () => {
       try {
-        const projectsFromDB = await fetchProjects();
-        setProjects(projectsFromDB);
+        const projectsFromDB = await getProjects();
+        setProjects(projectsFromDB?.results);
       } catch (error) {
         console.error("Error fetching projects", error);
       } finally {

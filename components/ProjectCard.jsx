@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 const ProjectCard = ({ card, isGridItem }) => {
   const router = useRouter();
 
-  console.log("card", card);
+  // console.log("card", card);
 
   if (isGridItem) {
     return (

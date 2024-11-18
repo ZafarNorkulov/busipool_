@@ -7,7 +7,7 @@ import Button from "@/components/Button";
 import Image from "next/image";
 import buildProjectImage from "@/assets/images/build-project.png";
 import HomeBlogs from "@/components/sections/HomeBlogs";
-import { fetchProjects } from "@/utils/requests";
+import { getProjects } from "@/app/api/projects/project";
 import Spinner from "@/components/Spinner";
 import { SlMagnifier } from "react-icons/sl";
 
@@ -18,8 +18,8 @@ const BaseStartupsPage = () => {
   useEffect(() => {
     const fetchProjectsFromDB = async () => {
       try {
-        const projectsFromDB = await fetchProjects();
-        setProjects(projectsFromDB);
+        const projectsFromDB = await getProjects();
+        setProjects(projectsFromDB?.results);
       } catch (error) {
         console.error("Error fetching projects", error);
       } finally {
@@ -31,7 +31,6 @@ const BaseStartupsPage = () => {
       fetchProjectsFromDB();
     }
   }, [projects.length, loading]);
-
   const [catalogTheme, setCatalogTheme] = useState([
     { label: "Все проекты", active: true },
     { label: "Технологии", active: false },
@@ -60,7 +59,7 @@ const BaseStartupsPage = () => {
       </div>
 
       <div className="mb-[60px] bg-secondary py-[30px] md:py-[60px]">
-        <div className="flex flex-col justify-between max-container xl:flex-row">
+        <div className="max-container flex flex-col justify-between xl:flex-row">
           <div className="flex-1">
             <h2 className="mb-[10px] text-[24px] font-bold leading-[120%] text-gray-dark md:mb-[30px] md:text-[64px]">
               Хотите попасть в каталог?

@@ -30,8 +30,8 @@ export const navLinks = [
   { href: "/company", label: "Компаниям" },
   { href: "/become-partner", label: "Стать парнером" },
   { href: "/about-us", label: "Видение" },
-  { href: "/about-us/partner", label: "Партнеры" },
-  { href: "/about-us/contact", label: "Контакты" },
+  { href: "/about-us/partners", label: "Партнеры" },
+  { href: "/about-us/contacts", label: "Контакты" },
   { href: "/about-us/faq", label: "Q&A" },
   { href: "/about-us/blog", label: "Блог" },
 ];
