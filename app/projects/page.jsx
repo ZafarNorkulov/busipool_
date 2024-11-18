@@ -9,8 +9,6 @@ import Image from "next/image";
 import buildProjectImage from "../../assets/images/build-project.png";
 // import HomeBlogs from "@/components/sections/HomeBlogs";
 import HomeBlogs from "../../components/sections/HomeBlogs";
-// import { fetchProjects } from "@/utils/requests";
-import { fetchProjects } from "../../utils/requests";
 // import Spinner from "@/components/Spinner";
 import Spinner from "../../components/Spinner";
 import { getProjects } from "../api/projects/project";

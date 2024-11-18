@@ -6,6 +6,7 @@
 /.pnp
 .pnp.js
 .yarn/install-state.gz
+.package-lock.json
 
 # testing
 /coverage
@@ -35,6 +36,5 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfogit push origin --force
-
 next-env.d.ts
 .env
