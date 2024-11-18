@@ -22,7 +22,10 @@ const InvestorPage = () => {
   const [faqs, setFaqs] = useState([]);
 
   useEffect(() => {
-    localStorage.getItem("token")
+    if (typeof window !== "undefined") {
+      const storedToken = localStorage.getItem("token")
+      setToken(storedToken);
+    }
     fetchFaqsApi();
   }, []);
 

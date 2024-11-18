@@ -13,9 +13,10 @@ const ProfilePageLayout = ({ children }) => {
   const { data: session } = useSession();
   const profileImage = session?.user?.image;
   const profileName = session?.user?.name;
+  const [token,setToken] = useState(null)
 
 
-  const token = localStorage.getItem("token");
+
   useEffect(() => {
     if (!token) {
       router.push("/sign-in");
@@ -24,6 +25,13 @@ const ProfilePageLayout = ({ children }) => {
       console.log("succes")
     }
   }, [token, router]);
+  useEffect(() => {
+
+    if (typeof window !== "undefined") {
+      const storedToken = localStorage.getItem("token")
+      setToken(storedToken);
+    }
+  }, [])
 
 
   return (

@@ -28,17 +28,22 @@ const ProfileSettingsPage = () => {
   const [token, setToken] = useState(null);
 
   useEffect(() => {
-    setToken(localStorage.getItem("token"));
-    getProfile(token)
-      .then((res) => {
-        setProfile(res);
-        console.log(res);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    if (typeof window !== "undefined") {
+      const storedToken = localStorage.getItem("token");
+      setToken(storedToken);
+  
+      if (storedToken) {
+        getProfile(storedToken)
+          .then((res) => {
+            setProfile(res);
+            console.log(res);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
+    }
   }, []);
-  console.log(profile);
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];

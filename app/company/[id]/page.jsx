@@ -40,7 +40,10 @@ const InvestorPage = () => {
     geRealizationAPi();
   }, [loading]);
   useEffect(() => {
-    setToken(localStorage.getItem("token"))
+    if (typeof window !== "undefined") {
+      const storedToken = localStorage.getItem("token")
+      setToken(storedToken)
+    }
   }, []);
   
 

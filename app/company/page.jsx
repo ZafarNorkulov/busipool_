@@ -47,7 +47,10 @@ const CompanyPage = () => {
     });
   }
   useEffect(() => {
-    setToken(localStorage.getItem("token"));
+    if (typeof window !== "undefined") {
+      const storedToken = localStorage.getItem("token")
+      setToken(storedToken);
+    }
     fetchFaqsApi();
     getInverstors();
   }, []);
@@ -188,13 +191,11 @@ const CompanyPage = () => {
             {workProcess.map((step, index, arr) => (
               <div
                 key={index}
-                className={`${
-                  index == arr.length - 1 ? "pb-0" : "pb-[60px] md:pb-[100px]"
-                } ${
-                  index == arr.length - 1
+                className={`${index == arr.length - 1 ? "pb-0" : "pb-[60px] md:pb-[100px]"
+                  } ${index == arr.length - 1
                     ? "border-0"
                     : "border-l md:border-l-2"
-                } relative border-primary pl-[55px] md:pl-[275px] xl:pl-[372px]`}
+                  } relative border-primary pl-[55px] md:pl-[275px] xl:pl-[372px]`}
               >
                 <h3 className="mb-[20px] text-[18px] font-bold leading-normal text-gray-dark md:mb-[30px] md:text-[32px]">
                   {step.title}

@@ -31,10 +31,10 @@ const BlogPage = () => {
         {blogs?.results?.map((blog) => (
           <BlogCard
             img={blog.image}
-            title={blog.title}
-            text={blog.text}
-            key={blog.id}
-            id={blog.id}
+            title={blog?.title}
+            text={blog?.description}
+            key={blog?.id}
+            id={blog?.id}
             large
           />
         ))}
