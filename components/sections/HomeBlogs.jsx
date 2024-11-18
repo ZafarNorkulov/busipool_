@@ -1,21 +1,16 @@
 "use client";
 import BlogCard from "@/components/BlogCard";
 import Link from "next/link";
-import { blogs } from "@/constants";
 
 import { getBlogs } from "@/app/api/blogs/blogs";
 import { useEffect, useState } from "react";
 
 const HomeBlogs = () => {
-  // const recentBlogs = blogs.slice(0, 2);
 
   const [blogs, setBlogs] = useState([]);
 
 
-  useEffect(() => {
-    fetchBlogsApi();
-  }, []);
-
+  
   function fetchBlogsApi() {
     getBlogs().then((response) => {
       console.log('response');
@@ -23,11 +18,15 @@ const HomeBlogs = () => {
       setBlogs(response);
       console.log('response');
     }
-    ).catch((error) => {
-      console.log(error);
-    });
-  }
+  ).catch((error) => {
+    console.log(error);
+  });
+}
 
+useEffect(() => {
+  fetchBlogsApi();
+}, []);
+console.log(blogs)
   return (
     <section className="max-container mb-[100px] md:mb-[150px]">
       <h2 className="section-title mb-[30px] md:mb-[100px]">
@@ -40,7 +39,7 @@ const HomeBlogs = () => {
           <BlogCard
             img={blog.image}
             title={blog.title}
-            text={blog.text}
+            text={blog.description}
             key={blog.id}
             id={blog.id}
           />

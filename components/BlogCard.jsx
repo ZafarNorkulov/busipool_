@@ -19,8 +19,9 @@ const BlogCard = ({ img, title, text, large, id }) => {
         className={`h-auto ${large && "md:w-[375px]"} w-[120px] shrink-0 rounded-[5px] object-contain md:w-[235px]`}
       />
 
-      <div className="flex flex-col">
-        <h3
+      <div className="flex w-full flex-col justify-end">
+       <div>
+       <h3
           className={`mb-[10px] text-base font-bold leading-[110%] text-gray-dark md:mb-[20px] ${large ? "md:mb-[30px] md:text-[48px]" : "md:text-[36px]"}`}
         >
           {title}
@@ -28,6 +29,7 @@ const BlogCard = ({ img, title, text, large, id }) => {
         <p className="line-clamp-2 text-[12px] font-light leading-[120%] text-gray-light md:line-clamp-3 md:text-[24px]">
           {text}
         </p>
+       </div>
 
         <Link
           href={`/about-us/blog/${id}`}
