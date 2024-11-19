@@ -57,7 +57,7 @@ export const postProject = async (data) => {
     });
 
     if (!response.ok) throw new Error("Failed to post data");
-
+    console.log(response.json())
     return response.json();
   } catch (error) {
     console.log(error);

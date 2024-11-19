@@ -38,8 +38,11 @@ const SignInPage = () => {
   const login = (e) => {
     e.preventDefault();
     loginUser(user).then((response) => {
-      localStorage.setItem("token", response.access);
-      router.push("/");
+      if(response.ok){
+        
+      localStorage.setItem("token", response?.access);
+      router.push("/profile");
+      }
     });
   };
 
