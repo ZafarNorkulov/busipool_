@@ -27,16 +27,18 @@ const BlogPage = () => {
   return (
     <section className="blog-container mb-[150px] pt-[150px]">
       <h2 className="section-title mb-[30px] md:mb-[100px]">Блог</h2>
-      <div className="flex flex-col items-center justify-center gap-[60px]">
+      <div className="relative grid grid-cols-12 w-full shrink-0 gap-[20px] rounded-[3px] p-[15px]  md:gap-[40px] md:rounded-[5px] md:p-[30px]">
         {blogs?.results?.map((blog) => (
-          <BlogCard
-            img={blog.image}
-            title={blog?.title}
-            text={blog?.description}
-            key={blog?.id}
-            id={blog?.id}
-            large
-          />
+          <div className="md:col-span-6 col-span-12">
+            <BlogCard
+              img={blog.image}
+              title={blog?.title}
+              text={blog?.description}
+              key={blog?.id}
+              id={blog?.id}
+              large
+            />
+          </div>
         ))}
       </div>
     </section>

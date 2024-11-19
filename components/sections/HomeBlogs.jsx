@@ -10,19 +10,19 @@ const HomeBlogs = () => {
   const [blogs, setBlogs] = useState([]);
 
 
-  
+
   function fetchBlogsApi() {
     getBlogs().then((response) => {
       setBlogs(response);
     }
-  ).catch((error) => {
-    console.log(error);
-  });
-}
+    ).catch((error) => {
+      console.log(error);
+    });
+  }
 
-useEffect(() => {
-  fetchBlogsApi();
-}, []);
+  useEffect(() => {
+    fetchBlogsApi();
+  }, []);
   return (
     <section className="max-container mb-[100px] md:mb-[150px]">
       <h2 className="section-title mb-[30px] md:mb-[100px]">
@@ -30,15 +30,17 @@ useEffect(() => {
           Блог
         </Link>
       </h2>
-      <div className="flex flex-wrap items-center justify-center gap-[20px]">
+      <div className="grid grid-cols-12 justify-center gap-[20px]">
         {blogs?.results?.map((blog) => (
-          <BlogCard
-            img={blog.image}
-            title={blog.title}
-            text={blog.description}
-            key={blog.id}
-            id={blog.id}
-          />
+          <div className="col-span-12 md:col-span-6">
+            <BlogCard
+              img={blog.image}
+              title={blog.title}
+              text={blog.description}
+              key={blog.id}
+              id={blog.id}
+            />
+          </div>
         ))}
       </div>
     </section>
