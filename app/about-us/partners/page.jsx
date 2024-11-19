@@ -1,32 +1,36 @@
+"use client";
 import HomeBlogs from "@/components/sections/HomeBlogs";
+import { getPartnersLogo } from "../../api/partners/partner"
+import { useEffect, useState } from "react";
+import Image from "next/image";
 
-const partnersLogo = [
-  "Logo",
-  "Logo",
-  "Logo",
-  "Logo",
-  "Logo",
-  "Logo",
-  "Logo",
-  "Logo",
-  "Logo",
-  "Logo",
-];
 
 const PartnersPage = () => {
+  const [partners, setPartners] = useState()
+
+  function fetchPartnerwithLogo() {
+    getPartnersLogo().then(response => {
+      setPartners(response)
+    }).catch((error) => {
+      console.log(error);
+    })
+
+  }
+  useEffect(() => {
+    fetchPartnerwithLogo()
+  }, [])
   return (
     <>
       <div className="max-container mt-[100px] md:mt-[150px]">
         <h2 className="section-title mb-[60px] md:mb-[100px]">Наши партнеры</h2>
 
-        <div className="mb-[100px] flex flex-wrap justify-between gap-x-[95px] gap-y-[60px] px-[40px] md:mb-[150px] md:justify-center md:gap-[200px] md:px-[65px]">
-          {partnersLogo.map((logo, index) => (
-            <div key={index}>
-              <h3 className="text-[36px] font-bold leading-[120%] text-black md:text-[64px]">
-                {logo}
-              </h3>
+        <div className="grid grid-cols-12 gap-x-[40px] mb-[100px] gap-y-[60px] md:mb-[150px]  ">
+          {partners?.map((logo, index) => (
+            <div key={index} className="col-span-6 md:col-span-3 ">
+              <img src={logo?.image} className="object-cover w-full h-full" alt={logo?.name} />
             </div>
           ))}
+         
         </div>
       </div>
       <HomeBlogs />
