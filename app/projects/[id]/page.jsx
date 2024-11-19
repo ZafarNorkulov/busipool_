@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
-import avatar from "../../../assets/images/project-page-images/avatar.png";
-import rocket from "../../../assets/images/project-page-images/rocket.png";
+import avatar from "@/assets/images/project-page-images/avatar.png";
+import rocket from "@/assets/images/project-page-images/rocket.png";
 import Button from "../../../components/Button";
 import { CiHeart } from "react-icons/ci";
 import { FaHeart } from "react-icons/fa";
@@ -13,7 +13,8 @@ import { getProject } from "../../api/projects/project";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import { socialMedia } from "@/constants";
-
+import Link from "next/link";
+import useWindowSize from "@/hooks/useWindowSize"
 
 const ProjectPage = () => {
   const [toggleHeart, setToggleHeart] = useState(false);
@@ -21,16 +22,16 @@ const ProjectPage = () => {
 
   const [project, setProject] = useState(null);
   const [loading, setLoading] = useState(true);
-
+  const { width, height } = useWindowSize
   useEffect(() => {
     fetchProjectsWithIdFromAPI();
   }, [id]);
+
 
   function fetchProjectsWithIdFromAPI() {
     getProject(id)
       .then((response) => {
         setProject(response);
-        console.log(response);
       })
       .catch((error) => {
         console.log(error);
@@ -48,6 +49,8 @@ const ProjectPage = () => {
     );
   }
 
+
+
   const perventage = Math.round((project?.total_investor_price * 100) / project?.financial_goal)
   const date = new Date(project?.project_completion_date);
   const day = String(date.getDate()).padStart(2, '0');  // Kunning 2 raqamli bo'lishini ta'minlash
@@ -57,7 +60,6 @@ const ProjectPage = () => {
   // Yangi formatni yaratish: DD.MM.YYYY
   const formattedDate = `${day}.${month}.${year}`;
 
-  console.log(project)
   const splitEvery3 = (num) => {
     // Raqqa stringga aylantiramiz, keyin bo'sh joy bilan ajratamiz
     return num
@@ -85,7 +87,7 @@ const ProjectPage = () => {
               </div>
             )}
           </div>
-          <div className="max-w-[425px] flex-1 self-center md:max-w-[600px] lg:max-w-full">
+          <div className="w-full  flex-1 lg:self-center sm:max-w-[600px] lg:max-w-full">
             <h3 className="mb-[20px] text-[18px] font-bold leading-[110%] text-gray-dark lg:text-[24px] xl:text-[32px]">
               {project?.name}
             </h3>
@@ -101,7 +103,7 @@ const ProjectPage = () => {
                 width={0}
                 height={0}
                 sizes="100%"
-                className="mr-[15px] size-5 object-contain md:size-[32px]"
+                className="mr-[15px] size-5 object-contain md:size-[40px]"
               />
 
               <div className="mr-5 flex flex-col md:mr-[50px]">
@@ -122,12 +124,12 @@ const ProjectPage = () => {
                 <Image
                   src={rocket}
                   alt="rocket"
-                  width={0}
-                  height={0}
+                  width={30}
+                  height={30}
                   sizes="100%"
                   className="mr-[10px] size-4 h-auto w-auto object-contain md:size-[30px]"
                 />
-                <span className="text-[10px] font-light text-black md:text-base md:leading-[16px]">
+                <span className="text-base font-light text-black md:text-sm md:leading-[16px]">
                   5 проектов
                 </span>
               </div>
@@ -137,8 +139,8 @@ const ProjectPage = () => {
 
 
             <div className="mb-[4.5px] flex justify-between mt-4 md:mb-[10px]">
-              <span className="text-[7px]  leading-[130%] text-primary md:text-base">{perventage}%</span>
-              <span className="text-[7px] md:text-base text-gray-light">до {formattedDate}</span>
+              <span className="text-sm  leading-[130%] text-primary md:text-base">{perventage}%</span>
+              <span className="text-sm md:text-base text-gray-light">до {formattedDate}</span>
             </div>
             <div className="h-[2px] rounded-[4.5px] bg-gray-300 md:h-[5px] md:rounded-[10px]">
               <div className={`h-[2px] w-[${perventage}%] rounded-[4.5px] bg-primary md:h-[5px] md:rounded-[10px]`}></div>
@@ -147,7 +149,7 @@ const ProjectPage = () => {
               <span className="text-sm text-[#1e1e1e] font-bold leading-[130%] md:text-base">
                 {splitEvery3(project?.total_investor_price)} ₽
               </span>
-              <span className="text-[6px] font-light lowercase leading-[110%] text-gray-light md:text-[14px]">
+              <span className="text-sm font-light lowercase leading-[110%] text-gray-light md:text-[14px]">
                 СОБРАНО ИЗ
               </span>
               <span className="text-sm text-[#1e1e1e] leading-[110%] font-bold  md:text-base">
@@ -155,7 +157,7 @@ const ProjectPage = () => {
               </span>
             </div>
 
-            <div className="flex items-center gap-[30px]">
+            <div className="flex items-center gap-[30px] mt-[30px]">
               <Button text="Поддержать" primary />
 
               <div>
@@ -172,12 +174,18 @@ const ProjectPage = () => {
                 )}
               </div>
             </div>
-            <div className="mt-[30px] flex items-center justify-center gap-[30px] sm:mb-[60px] md:justify-end md:gap-[20px]">
-              {socialMedia?.map(item => (
-
-                <a href="vk.com" className="h-[30px] w-[30px]">
-                  <img src={item?.src} alt={item?.alt} />
-                </a>
+            <div className="mt-[30px] sm:mb-[30px] flex items-center gap-[30px] mb-[60px] md:justify-end md:gap-[20px]">
+              {socialMedia.map((item) => (
+                <Link href={item.href} target="_blank" rel="noopener noreferrer">
+                  <Image
+                    src={item.src}
+                    width={37}
+                    height={37}
+                    sizes="100%"
+                    className="md:h-[37px] md:w-[37px] w-5 h-5"
+                    alt={item.alt}
+                  />
+                </Link>
               ))}
 
 
@@ -190,11 +198,11 @@ const ProjectPage = () => {
       <div className="max-container grid grid-cols-1 gap-x-7 xl:grid-cols-[2fr,minmax(560px,1fr)] xl:gap-x-[165px]">
         <Tabs>
           <TabList className={"mb-8 flex gap-14 text-[#4F4F4F]"}>
-            <Tab className={"cursor-pointer text-[32px] font-bold"}>
+            <Tab className={"cursor-pointer md:text-[32px] text-sm font-bold"}>
               Описание
             </Tab>
-            <Tab className={"cursor-pointer text-[32px] font-bold"}>FAQ</Tab>
-            <Tab className={"cursor-pointer text-[32px] font-bold"}>
+            <Tab className={"cursor-pointer md:text-[32px] text-sm font-bold"}>FAQ</Tab>
+            <Tab className={"cursor-pointer md:text-[32px] text-sm font-bold"}>
               Комментарии
             </Tab>
           </TabList>
@@ -229,11 +237,21 @@ const ProjectPage = () => {
             <button className="mt-8 h-[65px] w-full rounded-[6px] bg-primary text-[22px] font-normal text-white">
               Отправить
             </button>
+            <h3 className="mb-[30px] text-lg font-bold leading-[120%] md:mb-[60px] md:text-[24px] my-[60px]">
+              Комментарии пользователей
+            </h3>
+            {project?.comment?.slice(0, 10).map((item, idx) => (
+
+              <div className="comment md:mb-[60px] mb-[30px]" key={id}>
+                <h3 className="text-[32px] font-bold leading-[120%] md:text-[24px]"> {item?.owner?.last_name} {item?.owner?.first_name} </h3>
+                <p className="md:text-[24px] mt-4 font-light capitalize leading-[110%] text-gray-light text-[14px]">{item?.comment}</p>
+              </div>
+            ))}
           </TabPanel>
         </Tabs>
 
         <div>
-          <h3 className="mb-[30px] text-lg font-bold leading-[120%] md:mb-[60px] md:text-[24px]">
+          <h3 className="mb-[30px] md:mt-0 mt-[30px] text-lg font-bold leading-[120%] md:mb-[60px] md:text-[24px]">
             Выберите вознаграждение
           </h3>
 

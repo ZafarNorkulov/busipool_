@@ -16,13 +16,17 @@ import { getProjects } from "../api/projects/project";
 const ProjectsPage = () => {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState(null);
+  const [isPopular, setIsPopular] = useState(null)
+  const [cityRel, setCityRel] = useState(null)
+
 
   useEffect(() => {
     fetchProjectsWithFromAPI()
   }, [loading]);
 
   function fetchProjectsWithFromAPI() {
-    getProjects().then((response) => {
+    getProjects({ isPopular, search, cityRel }).then((response) => {
       setProjects(response);
       console.log(response);
     }).catch((error) => {
@@ -115,28 +119,25 @@ const ProjectsPage = () => {
             >
               <div className="py-1">
                 <MenuItem>
-                  <a
-                    href="#"
+                  <p
                     className="block px-2 py-1 text-[8px] text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900 md:px-4 md:py-2 md:text-sm"
                   >
                     Lorem, ipsum.
-                  </a>
+                  </p>
                 </MenuItem>
                 <MenuItem>
-                  <a
-                    href="#"
+                  <p
                     className="block px-2 py-1 text-[8px] text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900 md:px-4 md:py-2 md:text-sm"
                   >
                     Lorem, ipsum.
-                  </a>
+                  </p>
                 </MenuItem>
                 <MenuItem>
-                  <a
-                    href="#"
+                  <p
                     className="block px-2 py-1 text-[8px] text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900 md:px-4 md:py-2 md:text-sm"
                   >
                     Lorem, ipsum.
-                  </a>
+                  </p>
                 </MenuItem>
               </div>
             </MenuItems>

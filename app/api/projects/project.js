@@ -1,19 +1,34 @@
 import { BASE_URL } from "../../../utils/url";
 
 // get all projects
-export const getProjects = async () => {
+export const getProjects = async (options) => {
   try {
-    if (!BASE_URL) return console.log("base_url is not defined");
+    if (!BASE_URL) {
+      console.log("BASE_URL is not defined");
+      return [];
+    }
 
-    const response = await fetch(`${BASE_URL}/project/`);
+    const { isPopular, search, cityRel } = options || {};
 
-    if (!response.ok) throw new Error("Failed to fetch data");
-    return response.json();
+    // Query parametrlarini qo'shish
+
+
+
+    const url = `${BASE_URL}/project/`;
+
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch data");
+    }
+    return await response.json();
   } catch (error) {
     console.log(error);
     return [];
   }
 };
+
+
 
 // get project by id
 export const getProject = async (id) => {
@@ -78,6 +93,7 @@ export const getProjectCategoryById = async (id) => {
     return {};
   }
 };
+
 
 // get /realization/ api
 export const getRealization = async () => {

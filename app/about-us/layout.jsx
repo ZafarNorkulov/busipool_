@@ -46,7 +46,7 @@ const AboutUsPageLayout = ({ children }) => {
 
           <div className="flex flex-col justify-center gap-x-[20px] gap-y-[30px] min-[768px]:flex-row">
             <div className="flex-1 wide:max-w-[850px]">
-              <p className="mb-[30px] text-[20px] font-light leading-[120%] text-gray-dark md:mb-[76px] xl:text-[57px]">
+              <p className="mb-[30px] text-[20px] font-light leading-[120%] text-gray-dark md:mb-[76px] xl:text-[57px] md:text-4xl">
                 BUSIPOOL - онлайн-платформа, где инвестор может купить акции и
                 стать совладельцем компаний малого и среднего бизнеса.
               </p>

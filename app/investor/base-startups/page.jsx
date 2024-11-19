@@ -14,11 +14,14 @@ import { SlMagnifier } from "react-icons/sl";
 const BaseStartupsPage = () => {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState(null);
+  const [isPopular, setIsPopular] = useState(null)
+  const [cityRel, setCityRel] = useState(null)
 
   useEffect(() => {
     const fetchProjectsFromDB = async () => {
       try {
-        const projectsFromDB = await getProjects();
+        const projectsFromDB = await getProjects({search,cityRel,isPopular});
         setProjects(projectsFromDB?.results);
       } catch (error) {
         console.error("Error fetching projects", error);
@@ -179,6 +182,7 @@ const BaseStartupsPage = () => {
           <input
             type="search"
             placeholder="Поиск"
+            onChange={(e)=>setSearch(e.target.value)}
             className="flex-1 border-none p-[20px] text-[14px] font-bold leading-[110%] text-gray-dark outline-none"
           />
           <button className="border-l border-gray-dark p-[20px]">
