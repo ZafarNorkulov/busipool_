@@ -48,7 +48,7 @@ const CompanyPage = () => {
   }
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const storedToken = localStorage.getItem("token")
+      const storedToken = localStorage.getItem("access_token")
       setToken(storedToken);
     }
     fetchFaqsApi();

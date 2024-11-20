@@ -7,6 +7,7 @@ import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 const Catogories = () => {
     const [category, setCategory] = useState([])
     const [projects, setProjects] = useState([])
+    const [me, setMe] = useState(null)
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
@@ -25,11 +26,28 @@ const Catogories = () => {
             fetchProjectsFromDB();
         }
     }, [projects?.length, loading]);
+    useEffect(() => {
+        const getUserFromDB = async () => {
+            try {
+                const projectsFromDB = await getProjects();
+                setMe(projectsFromDB?.results);
+            } catch (error) {
+                console.error("Error fetching projects", error);
+            } finally {
+                setLoading(false);
+            }
+        };
 
+        if (!projects?.length && loading) {
+            getUserFromDB();
+        }
+    }, [projects?.length, loading]);
+
+    console.log(me)
     return (
         <div>
 
-{/* <Tabs>
+            {/* <Tabs>
           <TabList className={"mb-8 flex gap-14 text-[#4F4F4F]"}>
             <Tab className={"cursor-pointer md:text-[32px] text-sm font-bold"}>
             Все проекты

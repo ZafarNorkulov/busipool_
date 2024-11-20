@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const ProfileMenu = ({ shutdown, closeProfileMenu }) => {
   const logOut = () => {
-    localStorage.removeItem("token");
+    localStorage.removeItem("access_token");
     window.location("/");
   };
 

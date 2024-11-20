@@ -48,9 +48,22 @@ export const getCategory = async () => {
 
         const response = await fetch(`${BASE_URL}/project/category/`);
         if (!response.ok) throw new Error("Failed to fetch data");
-        const cities = await response.json()
+     
 
-        return cities
+        return response.json()
+    } catch (error) {
+        return error
+
+    }
+};
+export const UserMe = async () => {
+    try {
+        if (!BASE_URL) return console.log("BASE_URL is not defined");
+
+        const response = await fetch(`${BASE_URL}/profile`);
+        if (!response.ok) throw new Error("Failed to fetch data");
+
+        return response.json()
     } catch (error) {
         return error
 

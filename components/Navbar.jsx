@@ -40,7 +40,7 @@ const Navbar = () => {
     };
 
     if (typeof window !== "undefined") {
-      const storedToken = localStorage.getItem("token");
+      const storedToken = localStorage.getItem("access_token");
       setToken(storedToken);
     }
     setAuthProvider();
@@ -138,7 +138,7 @@ const Navbar = () => {
             }}
             shutdown={() => {
               signOut({ callbackUrl: "/" });
-              localStorage.removeItem("token")
+              localStorage.removeItem("access_token")
 
             }}
           />
@@ -210,7 +210,7 @@ const Navbar = () => {
                     href="#!"
                     onClick={() => {
                       signOut({ callbackUrl: "/" });
-                      localStorage.removeItem("token")
+                      localStorage.removeItem("access_token")
                     }}
                     className="border-b border-gray-dark py-[2px] text-base font-light leading-[120%] text-gray-dark"
                   >

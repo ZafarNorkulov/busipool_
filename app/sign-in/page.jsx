@@ -39,7 +39,7 @@ const SignInPage = () => {
     e.preventDefault();
     loginUser(user).then((response) => {
         
-      localStorage.setItem("token", response?.access);
+      localStorage.setItem("access_token", response?.access);
       router.push("/profile");
     });
   };
