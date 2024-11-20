@@ -26,14 +26,14 @@ const Navbar = () => {
   const [token, setToken] = useState(null);
   const path = usePathname();
   const router = useRouter();
- 
+
   useEffect(() => {
     setMobileNavbarMenu(false);
     setExtraLinksMenu(false);
   }, [path]);
 
   useEffect(() => {
-    
+
     const setAuthProvider = async () => {
       const response = await getProviders();
       setProviders(response);
@@ -48,9 +48,10 @@ const Navbar = () => {
 
   return (
     <header className="relative bg-headerColor">
-      <nav className="max-container relative flex items-center justify-between pt-[56px] sm:py-[20px]">
+      <nav className="max-container relative flex items-center justify-between md:pt-[56px] pt-5 sm:py-[20px]">
         {/* Logo */}
-        <BusipoolLogoSmall />
+        <Link href="/">     <BusipoolLogoSmall /></Link>
+
 
         {/* Desktop Links */}
         <div className="relative py-3">
@@ -137,6 +138,8 @@ const Navbar = () => {
             }}
             shutdown={() => {
               signOut({ callbackUrl: "/" });
+              localStorage.removeItem("token")
+
             }}
           />
         </div>
@@ -207,6 +210,7 @@ const Navbar = () => {
                     href="#!"
                     onClick={() => {
                       signOut({ callbackUrl: "/" });
+                      localStorage.removeItem("token")
                     }}
                     className="border-b border-gray-dark py-[2px] text-base font-light leading-[120%] text-gray-dark"
                   >

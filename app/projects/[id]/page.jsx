@@ -51,7 +51,7 @@ const ProjectPage = () => {
 
 
 
-  const perventage = Math.round((project?.total_investor_price * 100) / project?.financial_goal)
+  const percentage = Math.round((project?.total_investor_price * 100) / project?.financial_goal)
   const date = new Date(project?.project_completion_date);
   const day = String(date.getDate()).padStart(2, '0');  // Kunning 2 raqamli bo'lishini ta'minlash
   const month = String(date.getMonth() + 1).padStart(2, '0');  // Oyning 2 raqamli bo'lishini ta'minlash
@@ -139,11 +139,11 @@ const ProjectPage = () => {
 
 
             <div className="mb-[4.5px] flex justify-between mt-4 md:mb-[10px]">
-              <span className="text-sm  leading-[130%] text-primary md:text-base">{perventage}%</span>
+              <span className="text-sm  leading-[130%] text-primary md:text-base">{percentage}%</span>
               <span className="text-sm md:text-base text-gray-light">до {formattedDate}</span>
             </div>
             <div className="h-[2px] rounded-[4.5px] bg-gray-300 md:h-[5px] md:rounded-[10px]">
-              <div className={`h-[2px] w-[${perventage}%] rounded-[4.5px] bg-primary md:h-[5px] md:rounded-[10px]`}></div>
+              <div className={`h-[2px] rounded-[4.5px] bg-primary md:h-[5px] md:rounded-[10px]`} style={{width: `${percentage}%`}}></div>
             </div>
             <div className="mb-[4.5px] flex justify-between mt-4 md:mb-[10px]">
               <span className="text-sm text-[#1e1e1e] font-bold leading-[130%] md:text-base">

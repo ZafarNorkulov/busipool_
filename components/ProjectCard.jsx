@@ -3,10 +3,10 @@ import Button from "@/components/Button";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-const ProjectCard = ({ card }) => {
+const ProjectCard = ({ card, isGrid }) => {
   const router = useRouter();
 
-  const perventage = Math.round((card?.total_investor_price * 100) / card?.financial_goal)
+  const percentage = Math.round((card?.total_investor_price * 100) / card?.financial_goal)
   const date = new Date(card?.project_completion_date);
   const day = String(date.getDate()).padStart(2, '0');  // Kunning 2 raqamli bo'lishini ta'minlash
   const month = String(date.getMonth() + 1).padStart(2, '0');  // Oyning 2 raqamli bo'lishini ta'minlash
@@ -22,7 +22,7 @@ const ProjectCard = ({ card }) => {
       .toString()
       .replace(/\B(?=(\d{3})+(?!\d))/g, ' ');  // Har 3 raqamdan keyin bo'sh joy qo'yadi
   };
-  return (
+  return isGrid ? (
     <div className="h-full rounded-[5px] shadow md:rounded-[10px]">
       <Image
         src={card?.img || card?.image}
@@ -41,13 +41,12 @@ const ProjectCard = ({ card }) => {
           <p className="mb-[11px] text-[7px] font-light leading-[130%] text-gray-light md:mb-[30px] md:text-base">
             {card?.description}
           </p>
-
           <div className="mb-[4.5px] flex justify-between mt-4 md:mb-[10px]">
-            <span className="text-[7px] font-bold leading-[130%] text-primary md:text-base">{perventage}%</span>
+            <span className="text-[7px] font-bold leading-[130%] text-primary md:text-base">{percentage}%</span>
             <span className="text-[7px] md:text-base text-gray-light">до {formattedDate}</span>
           </div>
           <div className="h-[2px] rounded-[4.5px] bg-gray-300 md:h-[5px] md:rounded-[10px]">
-            <div className={`h-[2px] w-[${perventage}%] rounded-[4.5px] bg-primary md:h-[5px] md:rounded-[10px]`}></div>
+            <div className={`h-[2px] rounded-[4.5px] bg-primary md:h-[5px] md:rounded-[10px]`} style={{ width: `${percentage}%` }}></div>
           </div>
           <div className="mb-[4.5px] flex justify-between mt-4 md:mb-[10px]">
             <span className="text-sm text-[#1e1e1e] font-bold leading-[130%] md:text-base">
@@ -70,6 +69,7 @@ const ProjectCard = ({ card }) => {
               {card?.budget?.final}
             </span>
           </div>
+
         </div>
         <Button
           onclick={() => router.push(`/projects/${card.id}`)}
@@ -80,7 +80,36 @@ const ProjectCard = ({ card }) => {
         />
       </div>
     </div>
-  );
+  ) : (<div className="h-full rounded-[5px] shadow md:rounded-[10px]">
+    <Image
+      src={card?.img || card?.image}
+      width={0}
+      height={0}
+      sizes="100%"
+      priority={true}
+      alt="project card"
+      className="h-[40%] w-full sm:h-[45%] rounded-[5px] object-cover md:rounded-[10px]"
+    />
+    <div className="flex h-[60%] sm:h-[50%] flex-col justify-between p-[12.35px] md:p-[30px]">
+      <div>
+        <h3 className="mb-[10px] text-[8px] font-bold leading-[110%] text-gray-dark md:mb-[17px] md:text-[18px]">
+          {card?.name}
+        </h3>
+        <p className="mb-[11px] text-[7px] font-light leading-[130%] text-gray-light md:mb-[22px] md:text-base">
+          {card?.description.slice(0, 90)}
+        </p>
+
+      </div>
+      <Button
+        onclick={() => router.push(`/projects/${card.id}`)}
+        text="УЗНАТЬ БОЛЬШЕ"
+        fullWidth
+        primary
+        extraSmall
+      />
+    </div>
+  </div>);
+
 
 };
 

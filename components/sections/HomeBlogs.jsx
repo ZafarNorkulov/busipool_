@@ -32,7 +32,7 @@ const HomeBlogs = () => {
       </h2>
       <div className="grid grid-cols-12 justify-center gap-[20px]">
         {blogs?.results?.map((blog) => (
-          <div className="col-span-12 md:col-span-6">
+          <div className="col-span-12 md:col-span-6" key={blog?.id}>
             <BlogCard
               img={blog.image}
               title={blog.title}

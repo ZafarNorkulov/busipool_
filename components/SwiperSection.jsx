@@ -67,7 +67,7 @@ export default function SwiperSection() {
           projects &&
           projects?.results?.map((card, index) => (
             <SwiperSlide key={index} className="max-w-[415px]">
-              <ProjectCard card={card} />
+              <ProjectCard card={card} isGrid={true} />
             </SwiperSlide>
           ))}
       </Swiper>

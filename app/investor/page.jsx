@@ -15,25 +15,30 @@ import SignUpLink from "@/components/SignUpLink";
 import SignInLink from "@/components/SignInLink";
 import { getFaqs } from "../api/blogs/blogs";
 import { useEffect, useState } from "react";
+import { BASE_URL } from "@/utils/url";
+import { getProjectTypes } from "../api/business_type/typebusiness";
 
 const InvestorPage = () => {
-  const [token,setToken] = useState(null)
-
+  const [token, setToken] = useState(null)
+  const [businessType, setTypeBusiness] = useState([])
   const [faqs, setFaqs] = useState([]);
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const storedToken = localStorage.getItem("token")
-      setToken(storedToken);
-    }
-    fetchFaqsApi();
-  }, []);
+
+
 
   function fetchFaqsApi() {
     getFaqs().then((response) => {
       setFaqs(response);
     })
   }
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedToken = localStorage.getItem("token")
+      setToken(storedToken);
+    }
+    fetchFaqsApi();
+    getProjectTypes().then(res => setTypeBusiness(res))
+  }, []);
 
   return (
     <section>
@@ -158,42 +163,28 @@ const InvestorPage = () => {
             </h3>
 
             <div className="flex flex-wrap justify-center gap-[30px] md:gap-[20px]">
-              <div className="w-[230px] rounded-[10px] p-[20px] shadow md:w-[560px] md:p-[30px]">
-                <h2 className="mb-[10px] text-[18px] font-light leading-[110%] text-gray-dark md:mb-[20px] md:text-[48px]">
-                  База стартапов
-                </h2>
-                <p className="md:wrap-balance mb-[20px] text-[15px] font-light leading-[120%] text-gray-light md:mb-[30px] md:text-[24px]">
-                  Посмотрите нашу базу интересных проектов для инвестирования
-                </p>
+              {businessType?.map(item => (
 
-                <Link
-                  href="/investor/base-startups"
-                  onClick={scrollToTop}
-                  className={`ml-auto flex w-fit items-center text-[10px] font-light leading-[110%] text-gray-dark hover:text-primary md:text-[24px]`}
-                >
-                  Подробнее
-                  <BsArrowDownRight className="ml-[5px] text-[10px] md:ml-[10px] md:text-[24px]" />
-                </Link>
-              </div>
+                <div className="w-[230px] rounded-[10px] p-[20px] shadow md:w-[560px] md:p-[30px]" key={item?.id}>
+                  <h2 className="mb-[10px] text-[18px] font-light leading-[110%] text-gray-dark md:mb-[20px] md:text-[48px]">
+                    {item?.name}
+                  </h2>
+                  <p className="md:wrap-balance mb-[20px] text-[15px] font-light leading-[120%] text-gray-light md:mb-[30px] md:text-[24px]">
+                    Посмотрите нашу {item?.name} для инвестирования
+                  </p>
 
-              <div className="w-[230px] rounded-[10px] p-[20px] shadow md:w-[560px] md:p-[30px]">
-                <h2 className="mb-[10px] text-[18px] font-light leading-[110%] text-gray-dark md:mb-[20px] md:text-[48px]">
-                  Малый бизнес
-                </h2>
-                <p className="md:wrap-balance mb-[20px] text-[15px] font-light leading-[120%] text-gray-light md:mb-[30px] md:text-[24px]">
-                  Посмотрите нашу базу интересных малых бизнесов для
-                  инвестирования
-                </p>
+                  <Link
+                    href={`/investor/${item?.id}`}
+                    onClick={scrollToTop}
+                    className={`ml-auto flex w-fit items-center text-[10px] font-light leading-[110%] text-gray-dark hover:text-primary md:text-[24px]`}
+                  >
+                    Подробнее
+                    <BsArrowDownRight className="ml-[5px] text-[10px] md:ml-[10px] md:text-[24px]" />
+                  </Link>
+                </div>
+              ))}
 
-                <Link
-                  href="/investor/small-business"
-                  onClick={scrollToTop}
-                  className={`ml-auto flex w-fit items-center text-[10px] font-light leading-[110%] text-gray-dark hover:text-primary md:text-[24px]`}
-                >
-                  Подробнее
-                  <BsArrowDownRight className="ml-[5px] text-[10px] md:ml-[10px] md:text-[24px]" />
-                </Link>
-              </div>
+
             </div>
           </div>
 

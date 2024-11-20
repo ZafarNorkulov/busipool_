@@ -4,7 +4,7 @@ import Link from "next/link";
 import logo from "@/assets/images/logo.png";
 import img1 from "@/assets/images/login-images/img1.png";
 import Image from "next/image";
-import { signIn, signOut, useSession, getProviders } from "next-auth/react";
+import { signIn, useSession, getProviders } from "next-auth/react";
 import { useEffect, useState } from "react";
 import Spinner from "@/components/Spinner";
 import { useRouter } from "next/navigation";
@@ -38,11 +38,9 @@ const SignInPage = () => {
   const login = (e) => {
     e.preventDefault();
     loginUser(user).then((response) => {
-      if(response.ok){
         
       localStorage.setItem("token", response?.access);
       router.push("/profile");
-      }
     });
   };
 

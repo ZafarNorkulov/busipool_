@@ -1,15 +1,20 @@
 "use client";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { profileIcons } from "@/constants";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import Image from "next/image";
 import { postProject } from "@/app/api/projects/project";
+import { getCounterparty, getProjectTypes, getCities, getCategory } from "@/utils/request"
 
 const CreateProjectPage = () => {
   const [activeForm, setActiveForm] = useState(1);
   const [isModalOpen, setModalOpen] = useState(false);
   const [youtubeLink, setYoutubeLink] = useState('');
+  const [cities, setCities] = useState([])
+  const [typeBusiness, setTypeBusiness] = useState([])
+  const [counterparty, setCounterparty] = useState([])
+  const [category, setCategory] = useState([])
 
   const [project, setProject] = useState({
     id: null, // так как readOnly, можно оставить как null
@@ -42,8 +47,8 @@ const CreateProjectPage = () => {
     correspondent_account: "",
     bik: "",
     other_data: "",
-    owner: null,
-    is_active: false,
+    // owner: null,
+    // is_active: false,
     reward: "",
     create_at: null, // так как readOnly
   });
@@ -67,11 +72,21 @@ const CreateProjectPage = () => {
     postProject(formData)
       .then((response) => {
         console.log(response);
+        return response
       })
       .catch((error) => {
         console.log(error);
       });
   };
+
+
+
+  useEffect(() => {
+    getCounterparty().then(res => setCounterparty(res))
+    getProjectTypes().then(res => setTypeBusiness(res))
+    getCities().then(res => { setCities(res) })
+    getCategory().then(res => setCategory(res))
+  }, [])
 
 
   const createProjectForms = {
@@ -105,6 +120,30 @@ const CreateProjectPage = () => {
             />
           </div>
         </div>
+
+        <div className="flex flex-wrap items-center justify-between">
+          <label htmlFor="projectCity" className="form-label">
+            Категория
+          </label>
+          <div className="form-input-box">
+            {/* <input id="projectCity" type="text" className="form-input" /> */}
+            <select
+              onChange={(e) => setProject({ ...project, category: e.target.value })}
+              name="category"
+              id="category"
+              className="form-input select-arrow bg-transparent"
+            >
+              <option value="" disabled selected>
+                Выберите город
+              </option>
+              {category?.map(cat => (
+
+                <option value={String(cat?.id)} key={cat?.id}>{cat?.name}</option>
+              ))}
+
+            </select>
+          </div>
+        </div>
         <div className="flex flex-wrap items-center justify-between">
           <label htmlFor="projectCity" className="form-label">
             Город реализации
@@ -120,9 +159,11 @@ const CreateProjectPage = () => {
               <option value="" disabled selected>
                 Выберите город
               </option>
-              <option value="moscow">Moscow</option>
-              <option value="london">London</option>
-              <option value="berlin">Berlin</option>
+              {cities?.map(city => (
+
+                <option value={city?.id} key={city?.id}>{city?.name}</option>
+              ))}
+
             </select>
           </div>
         </div>
@@ -132,7 +173,7 @@ const CreateProjectPage = () => {
           </label>
           <div className="form-input-box">
             <input
-              onChange={(e) => setProject({ ...project, financial_goal: e.target.value })}
+              onChange={(e) => setProject({ ...project, financial_goal: Number(e.target.value) })}
               id="projectFinance"
               type="text"
               className="form-input"
@@ -150,7 +191,7 @@ const CreateProjectPage = () => {
               id="projectDeadline"
               type="text"
               className="form-input"
-              placeholder="ДД.ММ.ГГГГ"
+              placeholder="ГГГГ-ММ-ДД"
             />
           </div>
         </div>
@@ -258,7 +299,7 @@ const CreateProjectPage = () => {
                 <h2 className="text-xl mb-4">Загрузить видео с YouTube</h2>
                 <form onSubmit={handleLinkSubmit}>
                   <input
-                    nChange={(e) => setProject({ ...files, description: e.target.value })}
+                    onChange={(e) => setProject({ ...project, description: e.target.value })}
                     type="text"
                     placeholder="Вставьте ссылку на видео с YouTube"
                     value={youtubeLink}
@@ -457,16 +498,20 @@ const CreateProjectPage = () => {
           <label htmlFor="kontragent" className="form-label">
             Выбор контрагента
           </label>
-          <div className="form-input-box mt-[10px]">
+          <div className="form-input-box">
             <select
-              onChange={(e) => setProject({ ...project, counterparty: e.target.value })}
+              onChange={(e) => {
+                setProject({ ...project, counterparty: Number(e.target.value) })
+                console.log(e.target.value)
+              }}
               name="kontragent"
               id="kontragent"
               className="form-input select-arrow bg-transparent"
             >
-              <option value="1">Новый контрагент</option>
-              <option value="2">Новый контрагент</option>
-              <option value="3">Новый контрагент</option>
+              {counterparty?.map(c => (
+
+                <option value={c?.id}>{c?.name}</option>
+              ))}
             </select>
           </div>
         </div>
@@ -477,14 +522,18 @@ const CreateProjectPage = () => {
           </label>
           <div className="form-input-box">
             <select
-              onChange={(e) => setProject({ ...project, type_susiness: e.target.value })}
+              onChange={(e) => {
+                setProject({ ...project, type_susiness: e.target.value })
+                console.log(e.target.value)
+              }}
               name="kontragent"
               id="kontragent"
               className="form-input select-arrow bg-transparent"
             >
-              <option value="1">Физическое лицо</option>
-              <option value="2">Физическое лицо</option>
-              <option value="3">Физическое лицо</option>
+              {typeBusiness?.map(bus => (
+
+                <option value={bus?.id}>{bus?.name}</option>
+              ))}
             </select>
           </div>
         </div>
@@ -680,12 +729,19 @@ const CreateProjectPage = () => {
             </p>
           </div>
           <div className="form-input-box flex items-end self-stretch p-[30px]">
-            <button
-              type="button"
-              className="w-full bg-gray-dark py-[10px] text-[12px] leading-[110%] text-white opacity-60 active:scale-[0.99]"
+            <label
+              htmlFor="projectRewardDescription"
+              className="w-full bg-gray-dark text-center rounded-[5px] py-[10px] text-[12px] leading-[110%] text-white opacity-60 active:scale-[0.99] cursor-pointer"
             >
               Загрузить
-            </button>
+            </label>
+            <input
+              onChange={(e) => setProject({ ...project, document: e.target.files[0] })}
+              type="file"
+              id="projectRewardDescription"
+              accept=".txt,.doc,.pdf"
+              className="hidden"
+            />
           </div>
         </div>
 
