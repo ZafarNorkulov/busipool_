@@ -15,8 +15,7 @@ import SignUpLink from "@/components/SignUpLink";
 import SignInLink from "@/components/SignInLink";
 import { getFaqs } from "../api/blogs/blogs";
 import { useEffect, useState } from "react";
-import { BASE_URL } from "@/utils/url";
-import { getProjectTypes } from "../api/business_type/typebusiness";
+import { getProjectTypes } from "@/utils/request";
 
 const InvestorPage = () => {
   const [token, setToken] = useState(null)
