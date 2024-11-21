@@ -4,44 +4,26 @@ import profileImageDefault from "@/assets/images/profileImageDefault.png";
 import Link from "next/link";
 import { CiSquarePlus } from "react-icons/ci";
 import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useAppSelector } from "@/store"
 
 const ProfilePageLayout = ({ children }) => {
   const router = useRouter();
-  const { data: session } = useSession();
-  const profileImage = session?.user?.image;
-  const profileName = session?.user?.name;
-  const [token, setToken] = useState(null)
-  const [loading, setLoading] = useState(true);
-
-
+  const auth = useAppSelector(state => state.auth)
 
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const storedToken = localStorage.getItem("access_token");
-      setToken(storedToken);
-      setLoading(false);
+    if (!auth.isAuthenticated) {
+      router.push("/sign-in");
     }
-  }, []);
-  useEffect(() => {
-    if (!loading) {
-      if (!token) {
-        router.push("/sign-in");
-      } else {
-        console.log("succes");
-      }
-    }
-  }, [token, loading]);
-
+  }, [auth.isAuthenticated]);
 
   return (
     <section>
       <div className="max-container mt-[40px] flex flex-col items-center justify-between gap-5 sm:flex-row md:mt-[100px]">
         <div className="flex items-center gap-[20px] md:gap-[30px]">
           <Image
-            src={profileImage || profileImageDefault}
+            src={profileImageDefault}
             width={0}
             height={0}
             sizes="100%"
@@ -50,7 +32,7 @@ const ProfilePageLayout = ({ children }) => {
           />
           <div>
             <h3 className="mb-[10px] text-base font-bold leading-none text-gray-dark md:mb-3 md:text-[24px]">
-              {profileName}
+              {/* {profileName} */}
             </h3>
             <Link
               href="/profile/settings"

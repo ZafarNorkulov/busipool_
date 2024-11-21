@@ -1,17 +1,19 @@
+"use client"
 import "@/assets/styles/globals.css";
-import AuthProvider from "@/components/AuthProvider";
 import MainLayoutBody from "@/components/MainLayoutBody";
+import store from "@/store";
+import { Provider } from "react-redux";
 
-export const metadata = {
-  title: "BUSIPOOL | Инвестиции в будущее",
-  description: "Инвестиции в будущее",
-  keywords:
-    "Сбор денег для бизнеса, технологических, творческих и социальных проектов",
-};
+// export const metadata = {
+//   title: "BUSIPOOL | Инвестиции в будущее",
+//   description: "Инвестиции в будущее",
+//   keywords:
+//     "Сбор денег для бизнеса, технологических, творческих и социальных проектов",
+// };
 
 const MainLayout = ({ children }) => {
   return (
-    <AuthProvider>
+    <Provider store={store}>
       <html lang="en">
         <head>
           <link rel="icon" href="/rocket.svg" type="image/svg+xml" />
@@ -24,7 +26,7 @@ const MainLayout = ({ children }) => {
 
         <MainLayoutBody children={children} />
       </html>
-    </AuthProvider>
+    </Provider>
   );
 };
 

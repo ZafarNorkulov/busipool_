@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
 
-import { useSession } from "next-auth/react";
 
 import { getProfile, updateProfile } from "@/app/api/profile/profile";
 
@@ -22,9 +21,6 @@ const ProfileSettingsPage = () => {
     username: "",
   });
 
-  const { data: session } = useSession();
-  const profileImage = session?.user?.image;
-  const profileName = session?.user?.name;
   const [token, setToken] = useState(null);
 
   useEffect(() => {

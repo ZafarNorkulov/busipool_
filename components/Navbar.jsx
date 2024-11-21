@@ -9,42 +9,25 @@ import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import BusipoolLogoSmall from "./BusipoolLogoSmall";
 import profileImageDefault from "@/assets/images/profileImageDefault.png";
-import { signOut, useSession, getProviders } from "next-auth/react";
 import ProfileMenu from "@/components/ProfileMenu";
 import { FaChevronDown } from "react-icons/fa";
 import NavLink from "./NavLink";
+import { useAppSelector } from "@/store";
 
 const Navbar = () => {
-  const { data: session } = useSession();
-  const profileImage = session?.user?.image;
-  const profileName = session?.user?.name;
 
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const [mobileNavbarMenu, setMobileNavbarMenu] = useState(false);
   const [extraLinksMenu, setExtraLinksMenu] = useState(false);
-  const [providers, setProviders] = useState(null);
-  const [token, setToken] = useState(null);
   const path = usePathname();
   const router = useRouter();
+  const auth = useAppSelector(state => state.auth)
+  console.log(auth.isAuthenticated)
 
   useEffect(() => {
     setMobileNavbarMenu(false);
     setExtraLinksMenu(false);
   }, [path]);
-
-  useEffect(() => {
-
-    const setAuthProvider = async () => {
-      const response = await getProviders();
-      setProviders(response);
-    };
-
-    if (typeof window !== "undefined") {
-      const storedToken = localStorage.getItem("access_token");
-      setToken(storedToken);
-    }
-    setAuthProvider();
-  }, []);
 
   return (
     <header className="relative bg-headerColor">
@@ -90,13 +73,13 @@ const Navbar = () => {
         </div>
 
         {/* Right Side Menu (Logged In) */}
-        {token && (
+        {auth.isAuthenticated && (
           <div
             className="hidden cursor-pointer items-center gap-[30px] px-1 xl:flex"
             onClick={() => setIsProfileMenuOpen((prev) => !prev)}
           >
             <Image
-              src={profileImage || profileImageDefault}
+              src={profileImageDefault}
               width={0}
               height={0}
               sizes="100%"
@@ -105,7 +88,7 @@ const Navbar = () => {
             />
             <div className="flex items-center gap-2 select-none">
               <h3 className="text-[24px] font-bold leading-none text-gray-dark">
-                {profileName}
+                {/* {profileName} */}
               </h3>
               <FaChevronDown
                 className={`${isProfileMenuOpen && "rotate-180"} transition-transform`}
@@ -115,7 +98,7 @@ const Navbar = () => {
         )}
 
         {/* Right Side Menu (Logged Out) */}
-        {!token && (
+        {!auth.isAuthenticated && (
           <div className="hidden gap-x-[30px] xl:flex">
             <Button
               text="Создать проект"
@@ -137,7 +120,7 @@ const Navbar = () => {
               setIsProfileMenuOpen(false);
             }}
             shutdown={() => {
-              signOut({ callbackUrl: "/" });
+              // signOut({ callbackUrl: "/" });
               localStorage.removeItem("access_token")
 
             }}
@@ -163,7 +146,7 @@ const Navbar = () => {
           } absolute left-0 right-0 top-full z-10 bg-headerColor px-[20px] py-[60px]`}
       >
         {/* Right Side Menu Mobile (Logged Out) */}
-        {!token && (
+        {!auth.isAuthenticated && (
           <div className="mb-[60px] flex flex-col gap-y-[20px]">
             <Button
               text="Войти"
@@ -178,11 +161,11 @@ const Navbar = () => {
         )}
 
         {/* Right Side Menu Mobile (Logged In) */}
-        {token && (
+        {auth.isAuthenticated && (
           <>
             <div className="mb-[30px] flex items-center gap-[30px] xl:hidden">
               <Image
-                src={profileImage || profileImageDefault}
+                src={profileImageDefault}
                 width={0}
                 height={0}
                 sizes="100%"
@@ -191,7 +174,7 @@ const Navbar = () => {
               />
               <div className="flex-1">
                 <h3 className="mb-[10px] text-base font-bold leading-none text-gray-dark">
-                  {session?.user?.name}
+                  {/* {session?.user?.name} */}
                 </h3>
                 <div className="flex items-center justify-between sm:justify-start sm:gap-[30px]">
                   <Link
@@ -209,7 +192,7 @@ const Navbar = () => {
                   <Link
                     href="#!"
                     onClick={() => {
-                      signOut({ callbackUrl: "/" });
+                      // signOut({ callbackUrl: "/" });
                       localStorage.removeItem("access_token")
                     }}
                     className="border-b border-gray-dark py-[2px] text-base font-light leading-[120%] text-gray-dark"
