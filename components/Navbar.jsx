@@ -21,6 +21,7 @@ const Navbar = () => {
   const [mobileNavbarMenu, setMobileNavbarMenu] = useState(false);
   const [extraLinksMenu, setExtraLinksMenu] = useState(false);
   const [user, setUser] = useState(null);
+  const [role, setRole] = useState("");
   const path = usePathname();
   const router = useRouter();
   const auth = useAppSelector((state) => state.auth);
@@ -31,6 +32,9 @@ const Navbar = () => {
   useEffect(() => {
     const storedToken = localStorage.getItem("access_token");
     getProfile(storedToken).then((res) => setUser(res));
+    if (typeof window != "undefined") {
+      setRole(localStorage.getItem("role"));
+    }
   }, []);
 
   return (
@@ -107,10 +111,13 @@ const Navbar = () => {
         {/* Right Side Menu (Logged Out) */}
         {!auth.isAuthenticated && (
           <div className="hidden gap-x-[30px] xl:flex">
-            <Button
-              text="Создать проект"
-              onclick={() => router.push(`/sign-in`)}
-            />
+            {role.toLowerCase() === "bussines" && (
+              <Button
+                text="Создать проект"
+                onclick={() => router.push(`/sign-in`)}
+              />
+            )}
+
             <Button
               text="Войти"
               primary
@@ -209,12 +216,14 @@ const Navbar = () => {
                 </div>
               </div>
             </div>
-            <Button
-              text="Создать проект"
-              onclick={() => router.push("/profile/create")}
-              fullWidth
-              primary
-            />
+            {role.toLowerCase() === "bussines" && (
+              <Button
+                text="Создать проект"
+                onclick={() => router.push("/profile/create")}
+                fullWidth
+                primary
+              />
+            )}
           </>
         )}
 

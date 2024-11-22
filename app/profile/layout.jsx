@@ -23,6 +23,7 @@ const ProfilePageLayout = ({ children }) => {
     getProfile(storedToken).then((res) => {
       setUser(res);
       localStorage.setItem("user", JSON.stringify(res));
+      localStorage.setItem("role", res?.groups[0]?.name);
     });
   }, []);
 

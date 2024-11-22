@@ -5,13 +5,16 @@ import UserPageCard from "@/components/UserPageCard";
 import { profileIcons } from "@/constants";
 import buildProjectImage from "@/assets/images/build-project.png";
 import HomeBlogs from "@/components/sections/HomeBlogs";
-import ProjectCard from "@/components/ProjectCard";
+import SwiperSection from "@/components/SwiperSection";
 import { useEffect, useState } from "react";
 
 const ProfilePage = () => {
-  const [user, setUser] = useState([]);
+  const [role, setRole] = useState("");
   useEffect(() => {
-    setUser(localStorage.getItem("user"));
+    if (typeof window !== "undefined") {
+      const storedRole = localStorage.getItem("role");
+      setRole(storedRole || ""); // Set the role or an empty string if not found
+    }
   }, []);
   return (
     <section>
@@ -88,12 +91,14 @@ const ProfilePage = () => {
               Создание собственного проекта на такой платформе - это шаг,
               который может привести вас к успеху.
             </p>
-            <Link
-              href="/profile/create"
-              className="rounded-[3px] border-2 border-primary bg-primary px-[60px] py-[20px] text-[14px] font-bold leading-[120%] text-white transition active:scale-95 md:px-[47px] md:text-base"
-            >
-              Создать проект
-            </Link>
+            {role.toLowerCase() === "bussines" && (
+              <Link
+                href="/profile/create"
+                className="rounded-[3px] border-2 border-primary bg-primary px-[60px] py-[20px] text-[14px] font-bold leading-[120%] text-white transition active:scale-95 md:px-[47px] md:text-base"
+              >
+                Создать проект
+              </Link>
+            )}
           </div>
           <Image
             src={buildProjectImage}
@@ -106,7 +111,11 @@ const ProfilePage = () => {
           />
         </div>
       </div>
-
+      {role.toLowerCase() === "investor" && (
+        <div className="mt-[100px]">
+          <SwiperSection />
+        </div>
+      )}
       <div className="mt-[100px]">
         <HomeBlogs />
       </div>

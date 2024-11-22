@@ -1,21 +1,31 @@
+"use client";
 import { profileIcons } from "@/constants";
 import { AUTH_ACTIONS } from "@/store/auth";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const ProfileMenu = ({ shutdown, closeProfileMenu }) => {
+  const [role, setRole] = useState("");
+  useEffect(() => {
+    if (typeof window != "undefined") {
+      setRole(localStorage.getItem("role"));
+    }
+  }, []);
   return (
     <div
       id="profile-menu"
       className="w-[370px] select-none bg-headerColor px-[60px] py-[30px]"
     >
-      <Link
-        href="/profile/create"
-        onClick={closeProfileMenu}
-        className="mb-[30px] block w-full rounded-[5px] border-2 border-primary bg-primary px-[20px] py-[10px] text-center text-[14px] font-bold leading-6 text-white transition active:scale-95"
-      >
-        Создать проект +
-      </Link>
+      {role.toLowerCase() === "bussines" && (
+        <Link
+          href="/profile/create"
+          onClick={closeProfileMenu}
+          className="mb-[30px] block w-full rounded-[5px] border-2 border-primary bg-primary px-[20px] py-[10px] text-center text-[14px] font-bold leading-6 text-white transition active:scale-95"
+        >
+          Создать проект +
+        </Link>
+      )}
       <ul>
         <li className="mb-[10px] flex items-center gap-[10px]">
           <Image
