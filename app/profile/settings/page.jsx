@@ -69,15 +69,15 @@ const ProfileSettingsPage = () => {
   const avatarUrl =
     profile.avatar instanceof File
       ? URL.createObjectURL(profile.avatar)
-      : profile.avatar || profileImageDefault;
+      : profile?.avatar || profileImageDefault;
 
   useEffect(() => {
     return () => {
-      if (profile.avatar instanceof File) {
+      if (profile?.avatar instanceof File) {
         URL.revokeObjectURL(avatarUrl);
       }
     };
-  }, [profile.avatar]);
+  }, [profile?.avatar]);
 
   const mainSettings = (
     <form onSubmit={(e) => editProfile(e)} className="mx-auto max-w-[1140px]">

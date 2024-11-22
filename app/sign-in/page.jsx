@@ -21,8 +21,8 @@ const SignInPage = () => {
   });
   useEffect(() => {
     const token = localStorage.getItem("access_token");
-    if (!(token && auth.isAuthenticated)) {
-      router.push("/sign-in");
+    if (token && auth.isAuthenticated) {
+      router.push("/profile");
     }
   }, [auth.isAuthenticated, router]);
 
@@ -35,7 +35,6 @@ const SignInPage = () => {
       console.error("Login failed", err);
     }
   };
-
 
   {
     /* {loading && <Spinner loading={loading} />} */

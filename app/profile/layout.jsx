@@ -11,7 +11,7 @@ import { getProfile } from "../api/profile/profile";
 const ProfilePageLayout = ({ children }) => {
   const router = useRouter();
   const auth = useAppSelector((state) => state.auth);
-  const [user, setUser] = useState();
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     if (!auth.isAuthenticated) {
@@ -29,16 +29,17 @@ const ProfilePageLayout = ({ children }) => {
       <div className="max-container mt-[40px] flex flex-col items-center justify-between gap-5 sm:flex-row md:mt-[100px]">
         <div className="flex items-center gap-[20px] md:gap-[30px]">
           <Image
-            src={profileImageDefault}
+            src={user?.avatar || profileImageDefault}
             width={0}
             height={0}
             sizes="100%"
+            objectFit="cover"
             className="size-[45px] rounded-full md:size-[60px]"
             alt="profile image"
           />
           <div>
             <h3 className="mb-[10px] text-base font-bold leading-none text-gray-dark md:mb-3 md:text-[24px]">
-              {/* {profileName} */}
+              {user?.username}
             </h3>
             <Link
               href="/profile/settings"

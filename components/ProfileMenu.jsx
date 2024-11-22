@@ -1,13 +1,9 @@
 import { profileIcons } from "@/constants";
+import { AUTH_ACTIONS } from "@/store/auth";
 import Image from "next/image";
 import Link from "next/link";
 
 const ProfileMenu = ({ shutdown, closeProfileMenu }) => {
-  const logOut = () => {
-    localStorage.removeItem("access_token");
-    window.location("/");
-  };
-
   return (
     <div
       id="profile-menu"
@@ -138,7 +134,7 @@ const ProfileMenu = ({ shutdown, closeProfileMenu }) => {
             onClick={() => {
               shutdown();
               closeProfileMenu();
-              logOut();
+              AUTH_ACTIONS.signOut();
             }}
           >
             Выход

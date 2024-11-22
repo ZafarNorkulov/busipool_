@@ -17,23 +17,14 @@ export const initialState: TypeInitialStateAuth = {
 };
 
 const SignInSlice = createSlice({
-  name: "auth", 
+  name: "auth",
   initialState,
   reducers: {
-    login(state, action: PayloadAction<{ access: string }>) {
-      state.isAuthenticated = true;
-      state.access_token = action.payload.access;
-      state.status = "success";
-    },
-    logout(state) {
-      state.isAuthenticated = false;
-      state.access_token = null;
-      localStorage.removeItem("access_token");
-      localStorage.removeItem("refresh_token");
-    },
     signOut(state) {
       state.isAuthenticated = false;
       state.status = "success";
+      localStorage.removeItem("access_token");
+      localStorage.removeItem("refrsh_token");
     },
   },
   extraReducers: (builder) => {

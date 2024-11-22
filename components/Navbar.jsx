@@ -13,28 +13,34 @@ import ProfileMenu from "@/components/ProfileMenu";
 import { FaChevronDown } from "react-icons/fa";
 import NavLink from "./NavLink";
 import { useAppSelector } from "@/store";
+import { getProfile } from "@/app/api/profile/profile";
+import { AUTH_ACTIONS } from "@/store/auth";
 
 const Navbar = () => {
-
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const [mobileNavbarMenu, setMobileNavbarMenu] = useState(false);
   const [extraLinksMenu, setExtraLinksMenu] = useState(false);
+  const [user, setUser] = useState(null);
   const path = usePathname();
   const router = useRouter();
-  const auth = useAppSelector(state => state.auth)
-  console.log(auth.isAuthenticated)
-
+  const auth = useAppSelector((state) => state.auth);
   useEffect(() => {
     setMobileNavbarMenu(false);
     setExtraLinksMenu(false);
   }, [path]);
+  useEffect(() => {
+    const storedToken = localStorage.getItem("access_token");
+    getProfile(storedToken).then((res) => setUser(res));
+  }, []);
 
   return (
     <header className="relative bg-headerColor">
-      <nav className="max-container relative flex items-center justify-between md:pt-[56px] pt-5 sm:py-[20px]">
+      <nav className="max-container relative flex items-center justify-between pt-5 sm:py-[20px] md:pt-[56px]">
         {/* Logo */}
-        <Link href="/">     <BusipoolLogoSmall /></Link>
-
+        <Link href="/">
+          {" "}
+          <BusipoolLogoSmall />
+        </Link>
 
         {/* Desktop Links */}
         <div className="relative py-3">
@@ -79,16 +85,17 @@ const Navbar = () => {
             onClick={() => setIsProfileMenuOpen((prev) => !prev)}
           >
             <Image
-              src={profileImageDefault}
+              src={user?.avatar || profileImageDefault}
               width={0}
               height={0}
               sizes="100%"
+              objectFit="cover"
               className="h-[60px] w-[60px] rounded-full"
               alt="profile image"
             />
-            <div className="flex items-center gap-2 select-none">
+            <div className="flex select-none items-center gap-2">
               <h3 className="text-[24px] font-bold leading-none text-gray-dark">
-                {/* {profileName} */}
+                {user?.username}
               </h3>
               <FaChevronDown
                 className={`${isProfileMenuOpen && "rotate-180"} transition-transform`}
@@ -121,8 +128,7 @@ const Navbar = () => {
             }}
             shutdown={() => {
               // signOut({ callbackUrl: "/" });
-              localStorage.removeItem("access_token")
-
+              localStorage.removeItem("access_token");
             }}
           />
         </div>
@@ -142,8 +148,9 @@ const Navbar = () => {
       </nav>
       {/* Mobile navbar menu */}
       <div
-        className={`${mobileNavbarMenu ? "block" : "hidden"
-          } absolute left-0 right-0 top-full z-10 bg-headerColor px-[20px] py-[60px]`}
+        className={`${
+          mobileNavbarMenu ? "block" : "hidden"
+        } absolute left-0 right-0 top-full z-10 bg-headerColor px-[20px] py-[60px]`}
       >
         {/* Right Side Menu Mobile (Logged Out) */}
         {!auth.isAuthenticated && (
@@ -165,16 +172,17 @@ const Navbar = () => {
           <>
             <div className="mb-[30px] flex items-center gap-[30px] xl:hidden">
               <Image
-                src={profileImageDefault}
+                src={user?.avatar || profileImageDefault}
                 width={0}
                 height={0}
                 sizes="100%"
+                objectFit="cover"
                 className="size-[45px] rounded-full"
                 alt="profile image"
               />
               <div className="flex-1">
                 <h3 className="mb-[10px] text-base font-bold leading-none text-gray-dark">
-                  {/* {session?.user?.name} */}
+                  {user?.username}
                 </h3>
                 <div className="flex items-center justify-between sm:justify-start sm:gap-[30px]">
                   <Link
@@ -192,8 +200,7 @@ const Navbar = () => {
                   <Link
                     href="#!"
                     onClick={() => {
-                      // signOut({ callbackUrl: "/" });
-                      localStorage.removeItem("access_token")
+                      AUTH_ACTIONS.signOut();
                     }}
                     className="border-b border-gray-dark py-[2px] text-base font-light leading-[120%] text-gray-dark"
                   >
