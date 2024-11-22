@@ -20,9 +20,11 @@ const ProfilePageLayout = ({ children }) => {
   }, [auth.isAuthenticated]);
   useEffect(() => {
     const storedToken = localStorage.getItem("access_token");
-    getProfile(storedToken).then((res) => setUser(res));
+    getProfile(storedToken).then((res) => {
+      setUser(res);
+      localStorage.setItem("user", JSON.stringify(res));
+    });
   }, []);
-  console.log(user);
 
   return (
     <section>

@@ -37,7 +37,7 @@ export default function SwiperSection() {
     <>
       {loading && <Spinner loading={loading} />}
       <Swiper
-        slidesPerView={1}
+        slidesPerView={1.2}
         spaceBetween={20}
         grabCursor={true}
         mousewheel={true}

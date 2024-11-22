@@ -1,17 +1,18 @@
 "use client";
 import { useEffect, useState } from "react";
 
-
 import { getProfile, updateProfile } from "@/app/api/profile/profile";
 
 import profileImageDefault from "@/assets/images/profileImageDefault.png";
 
 const ProfileSettingsPage = () => {
+  const [user, setUser] = useState("");
+  const [avatar, setAvatar] = useState("");
   const [profile, setProfile] = useState({
     about_me: null,
-    avatar: null,
-    birthday: null,
-    city: null,
+    avatar: avatar,
+    birthday: "",
+    city: "",
     email: "",
     id: null,
     is_active: false,
@@ -20,26 +21,21 @@ const ProfileSettingsPage = () => {
     url_profile: null,
     username: "",
   });
-
-  const [token, setToken] = useState(null);
+  const token =
+    typeof window !== "undefined" ? localStorage.getItem("access_token") : null;
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const storedToken = localStorage.getItem("access_token");
-      setToken(storedToken);
-  
-      if (storedToken) {
-        getProfile(storedToken)
-          .then((res) => {
-            setProfile(res);
-            console.log(res);
-          })
-          .catch((error) => {
-            console.error(error);
-          });
-      }
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    if (storedUser) {
+      setUser(storedUser);
     }
-  }, []);
+
+    if (token) {
+      getProfile(token)
+        .then((res) => setProfile(res))
+        .catch(console.error);
+    }
+  }, [token]);
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -53,6 +49,7 @@ const ProfileSettingsPage = () => {
 
   const editProfile = async (event) => {
     event.preventDefault();
+    console.log(profile);
     const formData = new FormData();
     for (const key in profile) {
       formData.append(key, profile[key]);
@@ -66,15 +63,15 @@ const ProfileSettingsPage = () => {
     }
   };
 
-  const avatarUrl =
-    profile.avatar instanceof File
-      ? URL.createObjectURL(profile.avatar)
-      : profile?.avatar || profileImageDefault;
-
   useEffect(() => {
+    const avatarUrl =
+      profile.avatar instanceof File
+        ? URL.createObjectURL(profile.avatar)
+        : profile?.avatar || profileImageDefault;
+    setAvatar(avatarUrl);
     return () => {
       if (profile?.avatar instanceof File) {
-        URL.revokeObjectURL(avatarUrl);
+        URL.revokeObjectURL(avatar);
       }
     };
   }, [profile?.avatar]);
@@ -124,7 +121,7 @@ const ProfileSettingsPage = () => {
             type="text"
             id="userBirthDate"
             className="settings-input"
-            placeholder="ДД.ММ.ГГГГ"
+            placeholder="ГГГГ.ММ.ДД"
           />
         </div>
         <div className="flex flex-[1_1_560px] flex-col">
@@ -133,7 +130,7 @@ const ProfileSettingsPage = () => {
           </label>
           <input
             onChange={(e) => setProfile({ ...profile, phone: e.target.value })}
-            value={profile.phone || ""}
+            value={profile?.phone || ""}
             type="text"
             id="userPhoneNumber"
             className="settings-input"
@@ -175,9 +172,9 @@ const ProfileSettingsPage = () => {
           </label>
           <div className="mt-[30px] flex flex-col items-center">
             <img
-              src={avatarUrl}
-              width={230}
-              height={230}
+              src={avatar}
+              width={200}
+              height={200}
               className="rounded-full object-cover"
               alt="profile image"
             />

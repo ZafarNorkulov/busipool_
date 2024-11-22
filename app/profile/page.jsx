@@ -5,8 +5,14 @@ import UserPageCard from "@/components/UserPageCard";
 import { profileIcons } from "@/constants";
 import buildProjectImage from "@/assets/images/build-project.png";
 import HomeBlogs from "@/components/sections/HomeBlogs";
+import ProjectCard from "@/components/ProjectCard";
+import { useEffect, useState } from "react";
 
 const ProfilePage = () => {
+  const [user, setUser] = useState([]);
+  useEffect(() => {
+    setUser(localStorage.getItem("user"));
+  }, []);
   return (
     <section>
       <div className="max-container mb-[60px] mt-[100px] grid grid-cols-1 gap-[30px] md:mb-[150px] md:grid-cols-2 xl:grid-cols-3">
