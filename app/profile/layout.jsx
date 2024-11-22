@@ -4,19 +4,25 @@ import profileImageDefault from "@/assets/images/profileImageDefault.png";
 import Link from "next/link";
 import { CiSquarePlus } from "react-icons/ci";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
-import { useAppSelector } from "@/store"
+import { useEffect, useState } from "react";
+import { useAppSelector } from "@/store";
+import { getProfile } from "../api/profile/profile";
 
 const ProfilePageLayout = ({ children }) => {
   const router = useRouter();
-  const auth = useAppSelector(state => state.auth)
-
+  const auth = useAppSelector((state) => state.auth);
+  const [user, setUser] = useState();
 
   useEffect(() => {
     if (!auth.isAuthenticated) {
       router.push("/sign-in");
     }
   }, [auth.isAuthenticated]);
+  useEffect(() => {
+    const storedToken = localStorage.getItem("access_token");
+    getProfile(storedToken).then((res) => setUser(res));
+  }, []);
+  console.log(user);
 
   return (
     <section>

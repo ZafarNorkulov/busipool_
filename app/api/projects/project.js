@@ -12,8 +12,6 @@ export const getProjects = async (options) => {
 
     // Query parametrlarini qo'shish
 
-
-
     const url = `${BASE_URL}/project/?${search ? `search=${search}&` : ""}${isPopular ? `is_popular=${isPopular}&` : ""}${cityRel ? `city_realization=${cityRel}&` : ""}`;
 
     const response = await fetch(url);
@@ -28,10 +26,13 @@ export const getProjects = async (options) => {
   }
 };
 
-
-
 // get project by type
-export const getProjectBusinessType = async ({search, cityRel, isPopular,id}) => {
+export const getProjectBusinessType = async ({
+  search,
+  cityRel,
+  isPopular,
+  id,
+}) => {
   try {
     if (!BASE_URL) return console.log("BASE_URL is not defined");
 
@@ -63,17 +64,19 @@ export const getProject = async (id) => {
 };
 
 // post project api with form data
-export const postProject = async (data) => {
+export const postProject = async ({ formData, token }) => {
   try {
     if (!BASE_URL) return console.log("BASE_URL is not defined");
 
     const response = await fetch(`${BASE_URL}/project/`, {
       method: "POST",
-      body: data,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: formData,
     });
 
     if (!response.ok) throw new Error("Failed to post data");
-    console.log(response.json())
     return response.json();
   } catch (error) {
     console.log(error);
@@ -109,7 +112,6 @@ export const getProjectCategoryById = async (id) => {
     return {};
   }
 };
-
 
 // get /realization/ api
 export const getRealization = async () => {

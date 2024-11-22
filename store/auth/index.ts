@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import SignIn from "./service";
+import { useEffect } from "react";
 
 export type TypeInitialStateAuth = {
   isAuthenticated: boolean;
@@ -7,16 +8,16 @@ export type TypeInitialStateAuth = {
   status: "pending" | "success" | "error";
   access_token: string | null;
 };
-
+const isClient = typeof window !== "undefined";
 export const initialState: TypeInitialStateAuth = {
-  isAuthenticated: false,
+  isAuthenticated: isClient ? !!localStorage.getItem("access_token") : false,
   isLoading: false,
   status: "success",
-  access_token: null,
+  access_token: isClient ? localStorage.getItem("access_token") : null,
 };
 
 const SignInSlice = createSlice({
-  name: "auth",
+  name: "auth", 
   initialState,
   reducers: {
     login(state, action: PayloadAction<{ access: string }>) {
@@ -43,18 +44,14 @@ const SignInSlice = createSlice({
     builder.addCase(
       SignIn.fulfilled,
       (state, action: PayloadAction<{ access: string }>) => {
-        console.log("fulfilled", action);
-        state.isLoading = false;
         state.isAuthenticated = true;
-        state.status = "success";
-        state.access_token = action.payload.access;
-      }
+        state.access_token = action.payload?.access || null;
+      },
     );
-    builder.addCase(SignIn.rejected, (state,action) => {
+    builder.addCase(SignIn.rejected, (state, action) => {
       console.log("rejected", action);
       state.isLoading = false;
       state.status = "error";
-
     });
   },
 });

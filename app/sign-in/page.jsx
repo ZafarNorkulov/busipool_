@@ -13,36 +13,35 @@ import SignIn from "@/store/auth/service";
 const SignInPage = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
-  const auth = useAppSelector(state => state.auth)
-
+  const auth = useAppSelector((state) => state.auth);
 
   const [user, setUser] = useState({
     username: "",
     password: "",
   });
   useEffect(() => {
-    const token = localStorage.getItem("access_token")
+    const token = localStorage.getItem("access_token");
     if (!(token && auth.isAuthenticated)) {
-      router.push("/sign-in")
+      router.push("/sign-in");
     }
-  }, [auth.isAuthenticated, router])
+  }, [auth.isAuthenticated, router]);
 
   const login = async (values) => {
     values.preventDefault();
     try {
       await dispatch(SignIn({ data: user }));
-      router.push("/profile")
+      router.push("/profile");
     } catch (err) {
       console.error("Login failed", err);
     }
   };
-  console.log(auth.isAuthenticated)
 
-  {/* {loading && <Spinner loading={loading} />} */ }
+
+  {
+    /* {loading && <Spinner loading={loading} />} */
+  }
   return (
     <>
-
-
       <main className="flex flex-col-reverse overflow-hidden md:flex-row">
         <section className="flex w-full flex-1 items-center justify-center pt-3 lg:w-[560px] extraWide:w-[760px]">
           <form
@@ -58,9 +57,7 @@ const SignInPage = () => {
                 E-mail или телефон
               </label>
               <input
-                onChange={(e) =>
-                  setUser({ ...user, username: e.target.value })
-                }
+                onChange={(e) => setUser({ ...user, username: e.target.value })}
                 type="text"
                 id="email-phone"
                 className="login-input"
@@ -74,9 +71,7 @@ const SignInPage = () => {
                 Пароль
               </label>
               <input
-                onChange={(e) =>
-                  setUser({ ...user, password: e.target.value })
-                }
+                onChange={(e) => setUser({ ...user, password: e.target.value })}
                 type="password"
                 id="password"
                 className="login-input"
@@ -141,7 +136,6 @@ const SignInPage = () => {
           />
         </section>
       </main>
-
     </>
   );
 };

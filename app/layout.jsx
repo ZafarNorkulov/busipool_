@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import "@/assets/styles/globals.css";
 import MainLayoutBody from "@/components/MainLayoutBody";
 import store from "@/store";

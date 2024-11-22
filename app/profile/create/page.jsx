@@ -5,17 +5,23 @@ import { profileIcons } from "@/constants";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import Image from "next/image";
 import { postProject } from "@/app/api/projects/project";
-import { getCounterparty, getProjectTypes, getCities, getCategory } from "@/utils/request"
+import {
+  getCounterparty,
+  getProjectTypes,
+  getCities,
+  getCategory,
+} from "@/utils/request";
 
 const CreateProjectPage = () => {
   const [activeForm, setActiveForm] = useState(1);
   const [isModalOpen, setModalOpen] = useState(false);
-  const [youtubeLink, setYoutubeLink] = useState('');
-  const [cities, setCities] = useState([])
-  const [typeBusiness, setTypeBusiness] = useState([])
-  const [counterparty, setCounterparty] = useState([])
-  const [category, setCategory] = useState([])
-
+  const [youtubeLink, setYoutubeLink] = useState("");
+  const [cities, setCities] = useState([]);
+  const [typeBusiness, setTypeBusiness] = useState([]);
+  const [counterparty, setCounterparty] = useState([]);
+  const [category, setCategory] = useState([]);
+  const [token, setToken] = useState("");
+  const [loading, setLoading] = useState(true);
   const [project, setProject] = useState({
     id: null, // так как readOnly, можно оставить как null
     name: "",
@@ -40,7 +46,7 @@ const CreateProjectPage = () => {
     passport_number: "",
     issued_passport: "",
     department_code: "",
-    document: '', // так как readOnly
+    document: "", // так как readOnly
     address_register: "",
     current_account: "",
     recipients_bank: "",
@@ -53,14 +59,15 @@ const CreateProjectPage = () => {
     create_at: null, // так как readOnly
   });
 
-
   const handleLinkSubmit = () => {
     // Здесь можно добавить логику для обработки ссылки YouTube
-    console.log('YouTube Video Link:', youtubeLink);
+    console.log("YouTube Video Link:", youtubeLink);
     // setModalOpen(false); // Закрыть модальное окно после ввода ссылки
   };
 
   const handlePost = () => {
+    if (loading) return; // Prevent submitting the form if it's already loading
+    setLoading(true);
     const formData = new FormData();
 
     // Заполнение данных проекта
@@ -69,25 +76,44 @@ const CreateProjectPage = () => {
     }
 
     // Отправка данных на сервер
-    postProject(formData)
+    postProject({ formData, token })
       .then((response) => {
         console.log(response);
-        return response
+        return response;
       })
       .catch((error) => {
         console.log(error);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
-
-
   useEffect(() => {
-    getCounterparty().then(res => setCounterparty(res))
-    getProjectTypes().then(res => setTypeBusiness(res))
-    getCities().then(res => { setCities(res) })
-    getCategory().then(res => setCategory(res))
-  }, [])
+    setLoading(true);
+    Promise.all([
+      getCounterparty(),
+      getProjectTypes(),
+      getCities(),
+      getCategory(),
+    ])
+      .then(
+        ([counterpartyData, typeBusinessData, citiesData, categoryData]) => {
+          setCounterparty(counterpartyData);
+          setTypeBusiness(typeBusinessData);
+          setCities(citiesData);
+          setCategory(categoryData);
+          setLoading(false); // Set loading to false after all data is fetched
+        },
+      )
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        setLoading(false); // Ensure loading is false even if there's an error
+      });
 
+    const storedToken = localStorage.getItem("access_token");
+    setToken(storedToken);
+  }, []);
 
   const createProjectForms = {
     1: (
@@ -112,7 +138,9 @@ const CreateProjectPage = () => {
           </label>
           <div className="form-input-box">
             <input
-              onChange={(e) => setProject({ ...project, project_address: e.target.value })}
+              onChange={(e) =>
+                setProject({ ...project, project_address: e.target.value })
+              }
               id="projectAddress"
               type="text"
               className="form-input"
@@ -128,7 +156,9 @@ const CreateProjectPage = () => {
           <div className="form-input-box">
             {/* <input id="projectCity" type="text" className="form-input" /> */}
             <select
-              onChange={(e) => setProject({ ...project, category: e.target.value })}
+              onChange={(e) =>
+                setProject({ ...project, category: e.target.value })
+              }
               name="category"
               id="category"
               className="form-input select-arrow bg-transparent"
@@ -136,11 +166,11 @@ const CreateProjectPage = () => {
               <option value="" disabled selected>
                 Выберите город
               </option>
-              {category?.map(cat => (
-
-                <option value={String(cat?.id)} key={cat?.id}>{cat?.name}</option>
+              {category?.map((cat) => (
+                <option value={String(cat?.id)} key={cat?.id}>
+                  {cat?.name}
+                </option>
               ))}
-
             </select>
           </div>
         </div>
@@ -151,7 +181,9 @@ const CreateProjectPage = () => {
           <div className="form-input-box">
             {/* <input id="projectCity" type="text" className="form-input" /> */}
             <select
-              onChange={(e) => setProject({ ...project, city_realization: e.target.value })}
+              onChange={(e) =>
+                setProject({ ...project, city_realization: e.target.value })
+              }
               name="projectCity"
               id="projectCity"
               className="form-input select-arrow bg-transparent"
@@ -159,11 +191,11 @@ const CreateProjectPage = () => {
               <option value="" disabled selected>
                 Выберите город
               </option>
-              {cities?.map(city => (
-
-                <option value={city?.id} key={city?.id}>{city?.name}</option>
+              {cities?.map((city) => (
+                <option value={city?.id} key={city?.id}>
+                  {city?.name}
+                </option>
               ))}
-
             </select>
           </div>
         </div>
@@ -173,7 +205,12 @@ const CreateProjectPage = () => {
           </label>
           <div className="form-input-box">
             <input
-              onChange={(e) => setProject({ ...project, financial_goal: Number(e.target.value) })}
+              onChange={(e) =>
+                setProject({
+                  ...project,
+                  financial_goal: Number(e.target.value),
+                })
+              }
               id="projectFinance"
               type="text"
               className="form-input"
@@ -187,7 +224,12 @@ const CreateProjectPage = () => {
           </label>
           <div className="form-input-box">
             <input
-              onChange={(e) => setProject({ ...project, project_completion_date: e.target.value })}
+              onChange={(e) =>
+                setProject({
+                  ...project,
+                  project_completion_date: e.target.value,
+                })
+              }
               id="projectDeadline"
               type="text"
               className="form-input"
@@ -201,7 +243,9 @@ const CreateProjectPage = () => {
           </label>
           <div className="form-input-box">
             <textarea
-              onChange={(e) => setProject({ ...project, description: e.target.value })}
+              onChange={(e) =>
+                setProject({ ...project, description: e.target.value })
+              }
               name="projectDescription"
               id="projectDescription"
               className="form-input block min-h-[120px] resize-none"
@@ -220,12 +264,14 @@ const CreateProjectPage = () => {
           <div className="flex justify-between overflow-clip md:flex-[0_1_850px]">
             <label
               htmlFor="uploadImage"
-              className="block w-fit border-b border-primary text-[18px] leading-[120%] text-primary cursor-pointer"
+              className="block w-fit cursor-pointer border-b border-primary text-[18px] leading-[120%] text-primary"
             >
               Загрузить фото
             </label>
             <input
-              onChange={(e) => setProject({ ...project, image: e.target.files[0] })}
+              onChange={(e) =>
+                setProject({ ...project, image: e.target.files[0] })
+              }
               type="file"
               id="uploadImage"
               accept="image/*"
@@ -240,7 +286,6 @@ const CreateProjectPage = () => {
             </Link>
           </div>
         </div>
-
       </div>
     ),
     2: (
@@ -260,12 +305,14 @@ const CreateProjectPage = () => {
             <div className="flex flex-col gap-[20px]">
               <label
                 htmlFor="uploadMedia"
-                className="block w-fit text-nowrap border-b border-primary text-[14px] leading-[120%] text-primary cursor-pointer md:text-[18px]"
+                className="block w-fit cursor-pointer text-nowrap border-b border-primary text-[14px] leading-[120%] text-primary md:text-[18px]"
               >
                 Загрузить фото или видео
               </label>
               <input
-                onChange={(e) => setProject({ ...project, image_or_video: e.target.files[0] })}
+                onChange={(e) =>
+                  setProject({ ...project, image_or_video: e.target.files[0] })
+                }
                 type="file"
                 id="uploadMedia"
                 accept="image/*,video/*"
@@ -295,27 +342,29 @@ const CreateProjectPage = () => {
           {/* Модальное окно для ввода YouTube ссылки */}
           {isModalOpen && (
             <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-              <div className="bg-white p-6 rounded-md shadow-md">
-                <h2 className="text-xl mb-4">Загрузить видео с YouTube</h2>
+              <div className="rounded-md bg-white p-6 shadow-md">
+                <h2 className="mb-4 text-xl">Загрузить видео с YouTube</h2>
                 <form onSubmit={handleLinkSubmit}>
                   <input
-                    onChange={(e) => setProject({ ...project, description: e.target.value })}
+                    onChange={(e) =>
+                      setProject({ ...project, description: e.target.value })
+                    }
                     type="text"
                     placeholder="Вставьте ссылку на видео с YouTube"
                     value={youtubeLink}
-                    className="w-full border p-2 mb-4"
+                    className="mb-4 w-full border p-2"
                   />
                   <div className="flex justify-end gap-4">
                     <button
                       type="button"
                       onClick={() => setModalOpen(false)}
-                      className="px-4 py-2 bg-gray-300 rounded-md"
+                      className="rounded-md bg-gray-300 px-4 py-2"
                     >
                       Отмена
                     </button>
                     <button
                       type="submit"
-                      className="px-4 py-2 bg-blue-500 text-white rounded-md"
+                      className="rounded-md bg-blue-500 px-4 py-2 text-white"
                     >
                       Загрузить
                     </button>
@@ -325,7 +374,6 @@ const CreateProjectPage = () => {
             </div>
           )}
         </div>
-
 
         <div className="flex flex-wrap items-center justify-between gap-x-[30px] gap-y-[30px] md:gap-x-0">
           <div className="md:flex-[1_1_270px]">
@@ -346,7 +394,9 @@ const CreateProjectPage = () => {
           </div>
           <div className="form-input-box mx-auto !min-h-[300px] self-stretch">
             <textarea
-              onChange={(e) => setProject({ ...project, detailed_description: e.target.value })}
+              onChange={(e) =>
+                setProject({ ...project, detailed_description: e.target.value })
+              }
               name="projectDetailedDescription"
               id="projectDetailedDescription"
               className="form-input block h-full resize-none"
@@ -364,7 +414,9 @@ const CreateProjectPage = () => {
           </label>
           <div className="form-input-box">
             <input
-              onChange={(e) => setProject({ ...project, reward: e.target.value })}
+              onChange={(e) =>
+                setProject({ ...project, reward: e.target.value })
+              }
               id="projectReward"
               type="text"
               className="form-input"
@@ -424,7 +476,9 @@ const CreateProjectPage = () => {
           </label>
           <div className="form-input-box">
             <input
-              onChange={(e) => setProject({ ...project, financial_goal: e.target.value })}
+              onChange={(e) =>
+                setProject({ ...project, financial_goal: e.target.value })
+              }
               id="projectRewardPrice"
               type="text"
               className="form-input"
@@ -501,15 +555,17 @@ const CreateProjectPage = () => {
           <div className="form-input-box">
             <select
               onChange={(e) => {
-                setProject({ ...project, counterparty: Number(e.target.value) })
-                console.log(e.target.value)
+                setProject({
+                  ...project,
+                  counterparty: Number(e.target.value),
+                });
+                console.log(e.target.value);
               }}
               name="kontragent"
               id="kontragent"
               className="form-input select-arrow bg-transparent"
             >
-              {counterparty?.map(c => (
-
+              {counterparty?.map((c) => (
                 <option value={c?.id}>{c?.name}</option>
               ))}
             </select>
@@ -523,15 +579,14 @@ const CreateProjectPage = () => {
           <div className="form-input-box">
             <select
               onChange={(e) => {
-                setProject({ ...project, type_susiness: e.target.value })
-                console.log(e.target.value)
+                setProject({ ...project, type_susiness: e.target.value });
+                console.log(e.target.value);
               }}
               name="kontragent"
               id="kontragent"
               className="form-input select-arrow bg-transparent"
             >
-              {typeBusiness?.map(bus => (
-
+              {typeBusiness?.map((bus) => (
                 <option value={bus?.id}>{bus?.name}</option>
               ))}
             </select>
@@ -550,7 +605,9 @@ const CreateProjectPage = () => {
           </div>
           <div className="form-input-box mx-auto self-stretch">
             <textarea
-              onChange={(e) => setProject({ ...project, full_name: e.target.value })}
+              onChange={(e) =>
+                setProject({ ...project, full_name: e.target.value })
+              }
               name="full_name"
               id="full_name"
               className="form-input block h-full resize-none"
@@ -569,7 +626,9 @@ const CreateProjectPage = () => {
           </div>
           <div className="form-input-box mx-auto self-stretch">
             <input
-              onChange={(e) => setProject({ ...project, surname_signature: e.target.value })}
+              onChange={(e) =>
+                setProject({ ...project, surname_signature: e.target.value })
+              }
               id="surname_signature"
               type="text"
               className="form-input"
@@ -588,7 +647,9 @@ const CreateProjectPage = () => {
           </div>
           <div className="form-input-box mx-auto self-stretch">
             <input
-              onChange={(e) => setProject({ ...project, birth_date: e.target.value })}
+              onChange={(e) =>
+                setProject({ ...project, birth_date: e.target.value })
+              }
               id="birth_date"
               type="text"
               className="form-input"
@@ -626,7 +687,9 @@ const CreateProjectPage = () => {
           </div>
           <div className="form-input-box mx-auto self-stretch">
             <input
-              onChange={(e) => setProject({ ...project, phone: e.target.value })}
+              onChange={(e) =>
+                setProject({ ...project, phone: e.target.value })
+              }
               id="phone"
               type="text"
               className="form-input"
@@ -646,9 +709,12 @@ const CreateProjectPage = () => {
             </p>
           </div>
           <div className="form-input-box mx-auto">
-            <input onChange={
-              (e) => setProject({ ...project, inn: e.target.value })
-            } id="inn" type="text" className="form-input" />
+            <input
+              onChange={(e) => setProject({ ...project, inn: e.target.value })}
+              id="inn"
+              type="text"
+              className="form-input"
+            />
           </div>
         </div>
 
@@ -663,9 +729,14 @@ const CreateProjectPage = () => {
             </p>
           </div>
           <div className="form-input-box mx-auto">
-            <input onChange={
-              (e) => setProject({ ...project, passport_number: e.target.value })
-            } id="passport_number" type="text" className="form-input" />
+            <input
+              onChange={(e) =>
+                setProject({ ...project, passport_number: e.target.value })
+              }
+              id="passport_number"
+              type="text"
+              className="form-input"
+            />
           </div>
         </div>
 
@@ -676,9 +747,14 @@ const CreateProjectPage = () => {
             </label>
           </div>
           <div className="form-input-box mx-auto">
-            <input onChange={
-              (e) => setProject({ ...project, issued_passport: e.target.value })
-            } id="issued_passport" type="text" className="form-input" />
+            <input
+              onChange={(e) =>
+                setProject({ ...project, issued_passport: e.target.value })
+              }
+              id="issued_passport"
+              type="text"
+              className="form-input"
+            />
           </div>
         </div>
 
@@ -691,7 +767,6 @@ const CreateProjectPage = () => {
           <div className="mx-auto flex flex-[0_1_850px] flex-wrap items-center justify-between gap-y-[30px]">
             <div className="min-h-[50px] flex-[0_1_271px] overflow-clip rounded-[5px] border border-gray-dark outline-none has-[:active]:outline-primary has-[:focus-visible]:outline-primary has-[:focus]:outline-primary">
               <input
-
                 id="projectRewardPrice"
                 type="text"
                 className="form-input"
@@ -706,7 +781,9 @@ const CreateProjectPage = () => {
             </label>
             <div className="min-h-[50px] flex-[0_1_271px] overflow-clip rounded-[5px] border border-gray-dark outline-none has-[:active]:outline-primary has-[:focus-visible]:outline-primary has-[:focus]:outline-primary">
               <input
-                onChange={(e) => { setProject({ ...project, department_code: e.target.value }) }}
+                onChange={(e) => {
+                  setProject({ ...project, department_code: e.target.value });
+                }}
                 id="department_code"
                 type="text"
                 className="form-input"
@@ -731,12 +808,14 @@ const CreateProjectPage = () => {
           <div className="form-input-box flex items-end self-stretch p-[30px]">
             <label
               htmlFor="projectRewardDescription"
-              className="w-full bg-gray-dark text-center rounded-[5px] py-[10px] text-[12px] leading-[110%] text-white opacity-60 active:scale-[0.99] cursor-pointer"
+              className="w-full cursor-pointer rounded-[5px] bg-gray-dark py-[10px] text-center text-[12px] leading-[110%] text-white opacity-60 active:scale-[0.99]"
             >
               Загрузить
             </label>
             <input
-              onChange={(e) => setProject({ ...project, document: e.target.files[0] })}
+              onChange={(e) =>
+                setProject({ ...project, document: e.target.files[0] })
+              }
               type="file"
               id="projectRewardDescription"
               accept=".txt,.doc,.pdf"
@@ -756,9 +835,14 @@ const CreateProjectPage = () => {
             </label>
           </div>
           <div className="form-input-box mx-auto self-stretch">
-            <input onChange={
-              (e) => { setProject({ ...project, address_register: e.target.value }) }
-            } id="address_register" type="text" className="form-input" />
+            <input
+              onChange={(e) => {
+                setProject({ ...project, address_register: e.target.value });
+              }}
+              id="address_register"
+              type="text"
+              className="form-input"
+            />
           </div>
         </div>
         <div className="flex flex-wrap items-center justify-between gap-x-[30px] gap-y-[30px] md:gap-x-0">
@@ -771,9 +855,14 @@ const CreateProjectPage = () => {
             </label>
           </div>
           <div className="form-input-box mx-auto self-stretch">
-            <input onChange={
-              (e) => { setProject({ ...project, current_account: e.target.value }) }
-            } id="current_account" type="text" className="form-input" />
+            <input
+              onChange={(e) => {
+                setProject({ ...project, current_account: e.target.value });
+              }}
+              id="current_account"
+              type="text"
+              className="form-input"
+            />
           </div>
         </div>
         <div className="flex flex-wrap items-center justify-between gap-x-[30px] gap-y-[30px] md:gap-x-0">
@@ -786,9 +875,14 @@ const CreateProjectPage = () => {
             </label>
           </div>
           <div className="form-input-box mx-auto self-stretch">
-            <input onChange={
-              (e) => { setProject({ ...project, recipients_bank: e.target.value }) }
-            } id="recipients_bank" type="text" className="form-input" />
+            <input
+              onChange={(e) => {
+                setProject({ ...project, recipients_bank: e.target.value });
+              }}
+              id="recipients_bank"
+              type="text"
+              className="form-input"
+            />
           </div>
         </div>
         <div className="flex flex-wrap items-center justify-between gap-x-[30px] gap-y-[30px] md:gap-x-0">
@@ -801,9 +895,17 @@ const CreateProjectPage = () => {
             </label>
           </div>
           <div className="form-input-box mx-auto self-stretch">
-            <input onChange={
-              (e) => { setProject({ ...project, correspondent_account: e.target.value }) }
-            } id="correspondent_account" type="text" className="form-input" />
+            <input
+              onChange={(e) => {
+                setProject({
+                  ...project,
+                  correspondent_account: e.target.value,
+                });
+              }}
+              id="correspondent_account"
+              type="text"
+              className="form-input"
+            />
           </div>
         </div>
         <div className="flex flex-wrap items-center justify-between gap-x-[30px] gap-y-[30px] md:gap-x-0">
@@ -816,9 +918,14 @@ const CreateProjectPage = () => {
             </label>
           </div>
           <div className="form-input-box mx-auto self-stretch">
-            <input onChange={
-              (e) => { setProject({ ...project, bik: e.target.value }) }
-            } id="bik" type="text" className="form-input" />
+            <input
+              onChange={(e) => {
+                setProject({ ...project, bik: e.target.value });
+              }}
+              id="bik"
+              type="text"
+              className="form-input"
+            />
           </div>
         </div>
         <div className="flex flex-wrap items-center justify-between gap-x-[30px] gap-y-[30px] md:gap-x-0">
@@ -831,9 +938,14 @@ const CreateProjectPage = () => {
             </label>
           </div>
           <div className="form-input-box mx-auto self-stretch">
-            <input onChange={
-              (e) => { setProject({ ...project, other_data: e.target.value }) }
-            } id="other_data" type="text" className="form-input" />
+            <input
+              onChange={(e) => {
+                setProject({ ...project, other_data: e.target.value });
+              }}
+              id="other_data"
+              type="text"
+              className="form-input"
+            />
           </div>
         </div>
       </div>
@@ -850,7 +962,6 @@ const CreateProjectPage = () => {
   }
   function saveForm() {
     console.log("Project is saved");
-
   }
 
   return (

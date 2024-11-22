@@ -1,6 +1,6 @@
 import store from "@/store";
 import { AUTH_ACTIONS } from "@/store/auth";
-import { refreshToken } from "@/store/auth/service";
+// import { refreshToken } from "@/store/auth/service";
 import { AxiosError } from "axios";
 
 export class ResponseError {
@@ -64,7 +64,7 @@ export class ResponseError {
       localStorage.removeItem("refresh_token");
       store.dispatch(AUTH_ACTIONS.signOut());
     } else {
-      refreshToken();
+      // refreshToken();
     }
   }
 

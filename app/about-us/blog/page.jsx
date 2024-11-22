@@ -1,7 +1,6 @@
 "use client"
 
 import BlogCard from "@/components/BlogCard";
-import { blogs } from "@/constants";
 import { useEffect, useState } from "react";
 
 import { getBlogs } from "@/app/api/blogs/blogs";

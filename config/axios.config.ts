@@ -1,12 +1,18 @@
-import axios, { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from "axios";
+import axios, {
+  AxiosError,
+  AxiosResponse,
+  InternalAxiosRequestConfig,
+} from "axios";
 import { ResponseError } from "./error";
 
 const instance = axios.create();
 
-const onRequest = (config: InternalAxiosRequestConfig): InternalAxiosRequestConfig => {
+const onRequest = (
+  config: InternalAxiosRequestConfig,
+): InternalAxiosRequestConfig => {
   config.headers!.Accept = "application/json";
   const access_token = localStorage.getItem("access_token") ?? "";
-  if (!config.url?.includes("/login/")) {
+  if (!(config.url?.includes("/login/") || config.url?.includes("/profile/"))) {
     config.headers.Authorization = `Bearer ${access_token}`;
   }
   config.baseURL = process.env.NEXT_PUBLIC_BASE_URL;
