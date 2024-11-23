@@ -12,7 +12,7 @@ import profileImageDefault from "@/assets/images/profileImageDefault.png";
 import ProfileMenu from "@/components/ProfileMenu";
 import { FaChevronDown } from "react-icons/fa";
 import NavLink from "./NavLink";
-import { useAppSelector } from "@/store";
+import { useAppDispatch, useAppSelector } from "@/store";
 import { getProfile } from "@/app/api/profile/profile";
 import { AUTH_ACTIONS } from "@/store/auth";
 
@@ -25,6 +25,9 @@ const Navbar = () => {
   const path = usePathname();
   const router = useRouter();
   const auth = useAppSelector((state) => state.auth);
+
+  const dispatch = useAppDispatch();
+
   useEffect(() => {
     setMobileNavbarMenu(false);
     setExtraLinksMenu(false);
@@ -111,7 +114,7 @@ const Navbar = () => {
         {/* Right Side Menu (Logged Out) */}
         {!auth.isAuthenticated && (
           <div className="hidden gap-x-[30px] xl:flex">
-            {role.toLowerCase() === "bussines" && (
+            {role.toLowerCase() === "business" && (
               <Button
                 text="Создать проект"
                 onclick={() => router.push(`/sign-in`)}
@@ -134,7 +137,7 @@ const Navbar = () => {
               setIsProfileMenuOpen(false);
             }}
             shutdown={() => {
-              // signOut({ callbackUrl: "/" });
+              dispatch(AUTH_ACTIONS.signOut());
               localStorage.removeItem("access_token");
             }}
           />
@@ -207,7 +210,7 @@ const Navbar = () => {
                   <Link
                     href="#!"
                     onClick={() => {
-                      AUTH_ACTIONS.signOut();
+                      dispatch(AUTH_ACTIONS.signOut());
                     }}
                     className="border-b border-gray-dark py-[2px] text-base font-light leading-[120%] text-gray-dark"
                   >
@@ -216,7 +219,7 @@ const Navbar = () => {
                 </div>
               </div>
             </div>
-            {role.toLowerCase() === "bussines" && (
+            {role.toLowerCase() === "business" && (
               <Button
                 text="Создать проект"
                 onclick={() => router.push("/profile/create")}

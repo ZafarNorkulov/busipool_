@@ -8,11 +8,19 @@ export const getProjects = async (options) => {
       return [];
     }
 
-    const { isPopular, search, cityRel } = options || {};
+    const params = new URLSearchParams();
 
-    // Query parametrlarini qo'shish
+    // Parametrlarni dinamik ravishda qo'shish
+    Object.entries(options).forEach(([key, value]) => {
+      if (value !== undefined && value !== null) {
+        params.append(key, value);
+      }
+    });
 
-    const url = `${BASE_URL}/project/?${search ? `search=${search}&` : ""}${isPopular ? `is_popular=${isPopular}&` : ""}${cityRel ? `city_realization=${cityRel}&` : ""}`;
+    // Only append the query string if there are parameters
+    const url = params.toString()
+      ? `${BASE_URL}/project/?${params.toString()}`
+      : `${BASE_URL}/project/`;
 
     const response = await fetch(url);
 
@@ -97,19 +105,17 @@ export const getProjectCategory = async () => {
   }
 };
 
-// get project/category by id
-export const getProjectCategoryById = async (id) => {
+// get category by bussines type
+
+export const getProjectCategoryByBussinesType = async () => {
   try {
     if (!BASE_URL) return console.log("BASE_URL is not defined");
-
-    const response = await fetch(`${BASE_URL}/project/category/${id}/`);
-
+    const response = await fetch(`${BASE_URL}/project/business/category/`);
     if (!response.ok) throw new Error("Failed to fetch data");
-
     return response.json();
   } catch (error) {
     console.log(error);
-    return {};
+    return [];
   }
 };
 

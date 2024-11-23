@@ -18,7 +18,7 @@ export default function SwiperSection() {
   const [loading, setLoading] = useState(true);
 
   function fetchProjectsFromAPI() {
-    getProjects()
+    getProjects({}) // 
       .then((response) => {
         setProjects(response);
       })

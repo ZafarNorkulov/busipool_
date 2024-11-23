@@ -1,11 +1,14 @@
 "use client";
 import { profileIcons } from "@/constants";
+import { useAppDispatch } from "@/store";
 import { AUTH_ACTIONS } from "@/store/auth";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const ProfileMenu = ({ shutdown, closeProfileMenu }) => {
+  const dispatch = useAppDispatch();
+
   const [role, setRole] = useState("");
   useEffect(() => {
     if (typeof window != "undefined") {
@@ -17,7 +20,7 @@ const ProfileMenu = ({ shutdown, closeProfileMenu }) => {
       id="profile-menu"
       className="w-[370px] select-none bg-headerColor px-[60px] py-[30px]"
     >
-      {role.toLowerCase() === "bussines" && (
+      {role.toLowerCase() === "business" && (
         <Link
           href="/profile/create"
           onClick={closeProfileMenu}
@@ -144,7 +147,7 @@ const ProfileMenu = ({ shutdown, closeProfileMenu }) => {
             onClick={() => {
               shutdown();
               closeProfileMenu();
-              AUTH_ACTIONS.signOut();
+              dispatch(AUTH_ACTIONS.signOut());
             }}
           >
             Выход

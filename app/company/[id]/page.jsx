@@ -12,79 +12,82 @@ import Image from "next/image";
 import buildProjectImage from "@/assets/images/build-project.png";
 import HomeBlogs from "@/components/sections/HomeBlogs";
 import Spinner from "@/components/Spinner";
-import { SlMagnifier } from "react-icons/sl";
 import SignUpLink from "@/components/SignUpLink";
 import SignInLink from "@/components/SignInLink";
 import {
-  getProject,
   getProjectCategory,
-  getProjectCategoryById,
-  getRealization,
+  getProjects,
 } from "@/app/api/projects/project";
+import Filters from "../../../components/Filters";
+import { getCities } from "@/utils/request";
 
 const InvestorPage = () => {
-  const [token,setToken] = useState(null);
-  const router = useRouter();
+  const [token, setToken] = useState(null);
   const { id } = useParams();
-  const investor = investors[id - 1] || investors[0];
-
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [projectCategories, setProjectCategories] = useState([]);
-  const [title, setTitle] = useState("Все проекты");
-  const [realization, setRealization] = useState([]);
+  const [cityRel, setCityRel] = useState([]);
+  const [selectedCity, setSelectedCity] = useState(null);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
-    getProjectsWithId();
+    fetchProjectsWithFromAPI();
     getProjectCategories();
-    geRealizationAPi();
-  }, [loading]);
+    fetchCitiesWithFromAPI();
+  }, []);
+  useEffect(() => {
+    fetchProjectsWithFromAPI();
+  }, [selectedCity, search]);
+
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const storedToken = localStorage.getItem("access_token")
-      setToken(storedToken)
+      const storedToken = localStorage.getItem("access_token");
+      setToken(storedToken);
     }
   }, []);
-  
 
   const getProjectCategories = async () => {
     getProjectCategory()
       .then((response) => {
         setProjectCategories(response);
-
-        setTitle(response[0].name);
       })
       .finally(() => {
         setLoading(false);
       });
   };
 
-  const geRealizationAPi = () => {
-    getRealization().then((response) => {
-      setRealization(response);
-    });
-  };
-
-  const getProjects = () => {
-    getProject(id)
+  function fetchProjectsWithFromAPI() {
+    setLoading(true);
+    const cityRealization = selectedCity?.id || null;
+    getProjects({
+      category: id,
+      city_realization: cityRealization,
+      search,
+    })
       .then((response) => {
-        console.log("id", response);
         setProjects(response);
       })
-      .finally(() => {
-        setLoading(false);
-      });
-  };
-  const getProjectsWithId = () => {
-    getProjectCategoryById(id)
-      .then((response) => {
-        console.log("id", response);
-        setProjects(response);
+      .catch((error) => {
+        console.log(error);
       })
       .finally(() => {
         setLoading(false);
       });
-  };
+  }
+  function fetchCitiesWithFromAPI() {
+    getCities()
+      .then((response) => {
+        setCityRel(response);
+        setSelectedCity(response[0]); // Default to the first city
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }
 
   return (
     <section>
@@ -98,8 +101,8 @@ const InvestorPage = () => {
           информации о проектах.
         </p>
 
-        <div className="flex snap-x snap-mandatory gap-[30px] overflow-x-scroll md:flex-wrap md:overflow-auto">
-          {projectCategories.map((e, index) => (
+        <div className="flex flex-wrap snap-x snap-mandatory gap-[30px] overflow-x-scroll md:flex-wrap md:overflow-auto">
+          {projectCategories.reverse().map((e, index) => (
             <InvestorPageButton key={index} investor={e} id={id} />
           ))}
         </div>
@@ -107,7 +110,7 @@ const InvestorPage = () => {
 
       {!token && (
         <div className="mb-[60px] bg-secondary py-[30px] md:py-[60px]">
-          <div className="flex flex-col justify-between max-container xl:flex-row">
+          <div className="max-container flex flex-col justify-between xl:flex-row">
             <div className="flex-1">
               <h2 className="mb-[10px] text-[24px] font-bold leading-[120%] text-gray-dark md:mb-[30px] md:text-[64px]">
                 Хотите больше выгоды?
@@ -116,7 +119,7 @@ const InvestorPage = () => {
                 Зарегистрируйтесь на нашей платформе и получите полную
                 информацию о проектах
               </p>
-              <div className="flex gap-[30px]">
+              <div className="flex sm:flex-row flex-col gap-[30px]">
                 <SignUpLink />
                 <SignInLink />
               </div>
@@ -134,127 +137,21 @@ const InvestorPage = () => {
         </div>
       )}
 
-      <div className="max-container mb-[30px] flex flex-col justify-between gap-[20px] md:flex-row md:items-center">
-        <div className="flex gap-[10px] xl:gap-[30px]">
-          <Menu as="div" className="relative flex-1 text-left md:flex-none">
-            <div>
-              <MenuButton className="inline-flex w-full justify-center gap-x-1.5 text-nowrap rounded-[5px] border border-gray-dark bg-white py-[20px] pl-4 pr-2 text-[14px] font-bold text-gray-dark hover:bg-gray-50 md:py-[15px] md:pl-[30px] md:pr-[22px] md:text-base">
-                По популярности
-                <ChevronDownIcon
-                  aria-hidden="true"
-                  className="-mr-1 size-5 text-gray-dark"
-                />
-              </MenuButton>
-            </div>
-
-            <MenuItems
-              transition
-              className="absolute right-0 z-10 mt-2 w-24 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in md:w-52"
-            >
-              <div className="py-1">
-                <MenuItem>
-                  <a
-                    href="#"
-                    className="block px-2 py-1 text-[8px] text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900 md:px-4 md:py-2 md:text-sm"
-                  >
-                    Lorem, ipsum.
-                  </a>
-                </MenuItem>
-                <MenuItem>
-                  <a
-                    href="#"
-                    className="block px-2 py-1 text-[8px] text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900 md:px-4 md:py-2 md:text-sm"
-                  >
-                    Lorem, ipsum.
-                  </a>
-                </MenuItem>
-                <MenuItem>
-                  <a
-                    href="#"
-                    className="block px-2 py-1 text-[8px] text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900 md:px-4 md:py-2 md:text-sm"
-                  >
-                    Lorem, ipsum.
-                  </a>
-                </MenuItem>
-              </div>
-            </MenuItems>
-          </Menu>
-          <Menu as="div" className="relative flex-1 text-left md:flex-none">
-            <div>
-              <MenuButton className="inline-flex w-full justify-center gap-x-1.5 text-nowrap rounded-[5px] border border-gray-dark bg-white py-[20px] pl-4 pr-2 text-[14px] font-bold text-gray-dark hover:bg-gray-50 md:py-[15px] md:pl-[30px] md:pr-[22px] md:text-base">
-                Вся Россия
-                <ChevronDownIcon
-                  aria-hidden="true"
-                  className="-mr-1 size-5 text-gray-dark"
-                />
-              </MenuButton>
-            </div>
-
-            <MenuItems
-              transition
-              className="absolute right-0 z-10 mt-2 w-24 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in md:w-52"
-            >
-              {realization.map((item, index) => (
-                <div className="py-1" key={index}>
-                  <MenuItem>
-                    <a
-                      href="#"
-                      className="block px-2 py-1 text-[8px] text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900 md:px-4 md:py-2 md:text-sm"
-                    >
-                      {item.name}
-                    </a>
-                  </MenuItem>
-                </div>
-              ))}
-
-              {/* <div className="py-1">
-                <MenuItem>
-                  <a
-                    href="#"
-                    className="block px-2 py-1 text-[8px] text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900 md:px-4 md:py-2 md:text-sm"
-                  >
-                    Lorem, ipsum.
-                  </a>
-                </MenuItem>
-                <MenuItem>
-                  <a
-                    href="#"
-                    className="block px-2 py-1 text-[8px] text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900 md:px-4 md:py-2 md:text-sm"
-                  >
-                    Lorem, ipsum.
-                  </a>
-                </MenuItem>
-                <MenuItem>
-                  <a
-                    href="#"
-                    className="block px-2 py-1 text-[8px] text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900 md:px-4 md:py-2 md:text-sm"
-                  >
-                    Lorem, ipsum.
-                  </a>
-                </MenuItem>
-              </div> */}
-            </MenuItems>
-          </Menu>
-        </div>
-
-        <div className="flex items-center overflow-hidden rounded-[3px] border border-gray-dark hover:bg-gray-50">
-          <input
-            type="search"
-            placeholder="Поиск"
-            className="flex-1 border-none p-[20px] text-[14px] font-bold leading-[110%] text-gray-dark outline-none"
-          />
-          <button className="border-l border-gray-dark p-[20px]">
-            <SlMagnifier />
-          </button>
-        </div>
-      </div>
+      <Filters
+        cityName={selectedCity?.name || "Город"}
+        cities={cityRel}
+        setSelectedCity={setSelectedCity}
+        activeSearch={true}
+        setSearch={setSearch}
+        search={search}
+      />
 
       {loading && <Spinner loading={loading} />}
       {!loading && projects && (
         <div className="max-container mb-[60px] grid grid-cols-2 gap-[8px] md:mb-[30px] md:grid-cols-3 md:gap-[20px] wide:grid-cols-4">
           {projects?.results?.map((card, index) => (
             <div className="">
-              <ProjectCard key={index} card={card} isGrid={false} />
+              <ProjectCard key={index} card={card} />
             </div>
           ))}
         </div>

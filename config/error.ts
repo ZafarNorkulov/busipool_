@@ -1,5 +1,6 @@
 import store from "@/store";
 import { AUTH_ACTIONS } from "@/store/auth";
+import { refreshToken } from "@/store/auth/service";
 // import { refreshToken } from "@/store/auth/service";
 import { AxiosError } from "axios";
 
@@ -59,22 +60,24 @@ export class ResponseError {
   private 401(): void {
     console.log("status -> ", this.error.request);
 
-    if (String(this.error.request?.responseURL).includes("auth/jwt/refresh")) {
+    if (
+      String(this.error.request?.responseURL).includes("/api/token/refresh")
+    ) {
       localStorage.removeItem("access_token");
       localStorage.removeItem("refresh_token");
       store.dispatch(AUTH_ACTIONS.signOut());
     } else {
-      // refreshToken();
+      refreshToken();
     }
   }
 
-  private 403(): void { }
+  private 403(): void {}
 
-  private 404(): void { }
-  private 422(): void { }
+  private 404(): void {}
+  private 422(): void {}
   private 500(): void {
     console.log("Serverdagi ichki xatolik!");
   }
 
-  private withoutStatusError() { }
+  private withoutStatusError() {}
 }

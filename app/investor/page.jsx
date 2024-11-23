@@ -18,25 +18,22 @@ import { useEffect, useState } from "react";
 import { getProjectTypes } from "@/utils/request";
 
 const InvestorPage = () => {
-  const [token, setToken] = useState(null)
-  const [businessType, setTypeBusiness] = useState([])
+  const [token, setToken] = useState(null);
+  const [businessType, setTypeBusiness] = useState([]);
   const [faqs, setFaqs] = useState([]);
-
-
-
 
   function fetchFaqsApi() {
     getFaqs().then((response) => {
       setFaqs(response);
-    })
+    });
   }
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const storedToken = localStorage.getItem("access_token")
+      const storedToken = localStorage.getItem("access_token");
       setToken(storedToken);
     }
     fetchFaqsApi();
-    getProjectTypes().then(res => setTypeBusiness(res))
+    getProjectTypes().then((res) => setTypeBusiness(res));
   }, []);
 
   return (
@@ -59,15 +56,12 @@ const InvestorPage = () => {
             через вложения в проекты, с которых можно заработать.
           </p>
 
-          {
-            !token && (
-              <div className="flex flex-1 flex-wrap justify-center gap-[10px] md:flex-nowrap">
-                <SignUpLink />
-                <SignInLink />
-              </div>
-            )
-          }
-
+          {!token && (
+            <div className="flex flex-1 flex-wrap justify-center gap-[10px] md:flex-nowrap">
+              <SignUpLink />
+              <SignInLink />
+            </div>
+          )}
         </div>
       </div>
 
@@ -78,7 +72,7 @@ const InvestorPage = () => {
           </h2>
 
           <div className="mb-[100px] flex flex-wrap justify-center gap-x-[160px] gap-y-[60px] text-center md:mb-[140px] xl:flex-nowrap">
-            <div className="flex flex-col items-center min-w-min">
+            <div className="flex min-w-min flex-col items-center">
               <h3 className="mb-[20px] w-max text-[20px] font-bold text-primary md:mb-[30px] md:text-[32px]">
                 Онлайн-сделки
               </h3>
@@ -88,7 +82,7 @@ const InvestorPage = () => {
                 онлайн-формате.
               </p>
             </div>
-            <div className="flex flex-col items-center min-w-min">
+            <div className="flex min-w-min flex-col items-center">
               <h3 className="mb-[20px] w-max text-[20px] font-[900] text-primary md:mb-[30px] md:text-[32px]">
                 Аудит отчетности
               </h3>
@@ -98,7 +92,7 @@ const InvestorPage = () => {
                 отчетности.
               </p>
             </div>
-            <div className="flex flex-col items-center min-w-min">
+            <div className="flex min-w-min flex-col items-center">
               <h3 className="mb-[20px] w-max text-[20px] font-[900] text-primary md:mb-[30px] md:text-[32px]">
                 Законность
               </h3>
@@ -122,11 +116,13 @@ const InvestorPage = () => {
             {dealsSteps.map((step, index, arr) => (
               <div
                 key={index}
-                className={`${index == arr.length - 1 ? "pb-0" : "pb-[60px] md:pb-[100px]"
-                  } ${index == arr.length - 1
+                className={`${
+                  index == arr.length - 1 ? "pb-0" : "pb-[60px] md:pb-[100px]"
+                } ${
+                  index == arr.length - 1
                     ? "border-0"
                     : "border-l md:border-l-2"
-                  } relative border-primary pl-[55px] md:pl-[275px] xl:pl-[372px]`}
+                } relative border-primary pl-[55px] md:pl-[275px] xl:pl-[372px]`}
               >
                 <h3 className="mb-[20px] text-[18px] font-bold leading-[110%] text-gray-dark md:mb-[30px] md:text-[32px]">
                   {step.title}
@@ -145,15 +141,12 @@ const InvestorPage = () => {
       </div>
 
       <div className="max-container pb-[150px] md:pt-[100px]">
-
-        {
-          !token && (
-            <div className="mb-[30px] flex flex-1 flex-wrap justify-center gap-[30px] md:flex-nowrap">
-              <SignUpLink />
-              <SignInLink />
-            </div>
-          )
-        }
+        {!token && (
+          <div className="my-[30px] flex flex-1 flex-wrap justify-center gap-[30px] md:flex-nowrap">
+            <SignUpLink />
+            <SignInLink />
+          </div>
+        )}
 
         <div className="flex flex-col-reverse gap-[100px] md:flex-col">
           <div>
@@ -162,9 +155,11 @@ const InvestorPage = () => {
             </h3>
 
             <div className="flex flex-wrap justify-center gap-[30px] md:gap-[20px]">
-              {businessType?.map(item => (
-
-                <div className="w-[230px] rounded-[10px] p-[20px] shadow md:w-[560px] md:p-[30px]" key={item?.id}>
+              {businessType?.map((item) => (
+                <div
+                  className="w-[230px] rounded-[10px] p-[20px] shadow md:w-[560px] md:p-[30px]"
+                  key={item?.id}
+                >
                   <h2 className="mb-[10px] text-[18px] font-light leading-[110%] text-gray-dark md:mb-[20px] md:text-[48px]">
                     {item?.name}
                   </h2>
@@ -182,8 +177,6 @@ const InvestorPage = () => {
                   </Link>
                 </div>
               ))}
-
-
             </div>
           </div>
 
@@ -193,11 +186,13 @@ const InvestorPage = () => {
             </h2>
 
             <div className="mx-auto max-w-[1140px]">
-              {
-                faqs?.map((faq) => (
-                  <Accordion key={faq.id} title={faq.title} description={faq.description} />
-                ))
-              }
+              {faqs?.map((faq) => (
+                <Accordion
+                  key={faq.id}
+                  title={faq.title}
+                  description={faq.description}
+                />
+              ))}
             </div>
           </div>
         </div>

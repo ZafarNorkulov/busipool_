@@ -1,7 +1,5 @@
 "use client";
 import { useState, useEffect } from "react";
-import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import ProjectCard from "../../components/ProjectCard";
 import Button from "../../components/Button";
 import Image from "next/image";
@@ -11,181 +9,173 @@ import buildProjectImage from "../../assets/images/build-project.png";
 import HomeBlogs from "../../components/sections/HomeBlogs";
 // import Spinner from "@/components/Spinner";
 import Spinner from "../../components/Spinner";
-import { getProjects } from "../api/projects/project";
+import {
+  getProjectCategoryByBussinesType,
+  getProjects,
+} from "../api/projects/project";
+import { getCities } from "@/utils/request";
+import Filters from "../../components/Filters";
 
 const ProjectsPage = () => {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [search, setSearch] = useState(null);
-  const [isPopular, setIsPopular] = useState(null)
-  const [cityRel, setCityRel] = useState(null)
-
+  const [cityRel, setCityRel] = useState([]);
+  const [selectedCity, setSelectedCity] = useState(null);
+  const [selectedCatalog, setSelectedCatalog] = useState(null); // null for "Все проекты"
+  const [catalogTheme, setCatalogTheme] = useState([]);
+  const [is_active, setIsActive] = useState(true);
 
   useEffect(() => {
-    fetchProjectsWithFromAPI()
-  }, [loading]);
+    fetchProjectsWithFromAPI();
+    fetchCitiesWithFromAPI();
+    fetchBussinesCategoryWithFromAPI();
+  }, []);
+
+  useEffect(() => {
+    fetchProjectsWithFromAPI();
+  }, [selectedCity, selectedCatalog, is_active]);
 
   function fetchProjectsWithFromAPI() {
-    getProjects({ isPopular, search, cityRel }).then((response) => {
-      setProjects(response);
-      console.log(response);
-    }).catch((error) => {
-      console.log(error);
-    }
-    ).finally(() => {
-      setLoading(false);
-    });
+    setLoading(true);
+    getProjects({
+      city_realization: selectedCity?.id,
+      business_category_type: selectedCatalog || undefined, // Omit if null
+      is_active,
+    })
+      .then((response) => {
+        setProjects(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }
 
-  // const [catalogTheme, setCatalogTheme] = useState([
-  //   { label: "Все проекты", active: true },
-  //   { label: "Технологии", active: false },
-  //   { label: "Бизнес", active: false },
-  //   { label: "Инвестиции", active: false },
-  // ]);
+  function fetchCitiesWithFromAPI() {
+    getCities()
+      .then((response) => {
+        setCityRel(response);
+        setSelectedCity(response[0]); // Default to the first city
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }
 
-  // const chooseCatalog = (index) => {
-  //   const updatedCatalog = catalogTheme.map((item, i) => ({
-  //     ...item,
-  //     active: i === index,
-  //   }));
-  //   setCatalogTheme(updatedCatalog);
-  // };
+  function fetchBussinesCategoryWithFromAPI() {
+    getProjectCategoryByBussinesType()
+      .then((response) => {
+        // Add "Все проекты" as the first option
+        const allProjectsOption = {
+          id: null,
+          name: "Все проекты",
+          active: true,
+        };
+        const updatedCatalog = [
+          allProjectsOption,
+          ...response.map((item) => ({
+            ...item,
+            active: false,
+          })),
+        ];
+        setCatalogTheme(updatedCatalog);
+        setSelectedCatalog(null); // Default to "Все проекты"
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }
+
+  const chooseCatalog = (index) => {
+    const updatedCatalog = catalogTheme.map((item, i) => ({
+      ...item,
+      active: i === index,
+    }));
+    setCatalogTheme(updatedCatalog);
+    const selectedId = updatedCatalog.find((item) => item.active)?.id || null;
+    setSelectedCatalog(selectedId);
+  };
+
+  const [condition, setCondition] = useState([
+    { text: "Действующие", isClick: true, i: 1 },
+    { text: "Завершенные", isClick: false, i: 2 },
+  ]);
+
+  const handleClick = (index) => {
+    const updatedCondition = condition.map((item, i) => ({
+      ...item,
+      isClick: i === index,
+    }));
+    setCondition(updatedCondition);
+
+    // Update is_active based on `i === 1`
+    setIsActive(updatedCondition.some((item) => item.i === 1 && item.isClick));
+  };
 
   return (
     <section>
       {/* Catalog buttons and dropdowns */}
-      <div className="max-container mb-[30px] mt-[30px] flex flex-wrap-reverse justify-between gap-y-5 md:mb-[100px] md:mt-[100px]">
-        {/* <div className="pt-3 md:pt-0">
-          <ul className="mb-[20px] flex gap-1 md:mb-[30px] md:gap-[50px]">
+      <div className="max-container mb-[30px] mt-[30px] flex flex-col flex-wrap-reverse justify-between gap-y-5 md:mb-[100px] md:mt-[100px] lg:flex-row">
+        <div className="pt-3 md:pt-0">
+          <ul className="lg:gap-15 mb-[20px] flex gap-1 md:mb-[30px] md:gap-10">
             {catalogTheme.map((item, index) => (
               <li
                 onClick={() => chooseCatalog(index)}
                 key={index}
-                className={`cursor-pointer text-nowrap px-2 pb-[2px] text-[8px] leading-[110%] md:px-[21.5px] md:text-base ${item.active && "border-b-2 border-primary font-bold text-primary"}`}
+                className={`cursor-pointer text-nowrap border-b-2 border-b-transparent px-2 pb-[2px] text-[8px] leading-[110%] md:px-[21.5px] md:text-base ${item.active && "border-b-2 border-b-primary text-primary"}`}
               >
-                {item.label}
+                {item.name}
               </li>
             ))}
           </ul>
 
-          <div className="flex gap-3 md:gap-[30px]">
-            <div className="flex items-center gap-[8px]">
-              <input
-                type="radio"
-                name="project"
-                id="processing"
-                className="peer h-[6px] w-[6px] border-0 accent-primary outline-0 md:h-[17px] md:w-[17px]"
-              />
-              <label
-                htmlFor="processing"
-                className="cursor-pointer text-[8px] leading-[110%] peer-checked:font-bold peer-checked:text-gray-dark md:text-base"
-              >
-                Действующие
-              </label>
-            </div>
-            <div className="flex items-center gap-[8px]">
-              <input
-                type="radio"
-                name="project"
-                id="finished"
-                className="peer h-[6px] w-[6px] border-0 accent-primary outline-0 md:h-[17px] md:w-[17px]"
-              />
-              <label
-                htmlFor="finished"
-                className="cursor-pointer text-[8px] leading-[110%] peer-checked:font-bold peer-checked:text-gray-dark md:text-base"
-              >
-                Завершенные
-              </label>
-            </div>
+          <div className="flex flex-row items-center gap-4">
+            {condition.map((item, index) => (
+              <>
+                {item.isClick ? (
+                  <div
+                    className="custom-radio flex cursor-pointer items-center gap-x-2"
+                    onClick={() => handleClick(index, false)}
+                  >
+                    <div
+                      className={`flex h-[17px] w-[17px] items-center justify-center rounded-full border-[1px] border-[#ebebeb]`}
+                    >
+                      <span className="block h-full w-full rounded-full bg-[#7aa371]"></span>
+                    </div>
+                    <span>{item.text}</span>
+                  </div>
+                ) : (
+                  <div
+                    className="custom-radio flex cursor-pointer items-center gap-x-2"
+                    onClick={() => handleClick(index, true)}
+                  >
+                    <div
+                      className={`h-[17px] w-[17px] rounded-full border-[1px] border-[#ebebeb]`}
+                    >
+                      <span className="block h-full w-full rounded-full bg-[#c7c7c7]"></span>
+                    </div>
+                    <span>{item.text}</span>
+                  </div>
+                )}
+              </>
+            ))}
           </div>
-        </div> */}
-
-        <div className="flex gap-1 sm:flex-col xl:flex-row xl:gap-[30px]">
-          <Menu as="div" className="relative inline-block text-left">
-            <div>
-              <MenuButton className="inline-flex w-full justify-center gap-x-1.5 rounded-[5px] bg-white py-2 pl-4 pr-2 text-[10px] font-bold text-gray-light shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 md:py-[15px] md:pl-[30px] md:pr-[22px] md:text-base">
-                По популярности
-                <ChevronDownIcon
-                  aria-hidden="true"
-                  className="-mr-1 h-3 w-3 text-gray-light md:h-5 md:w-5"
-                />
-              </MenuButton>
-            </div>
-
-            <MenuItems
-              transition
-              className="absolute right-0 z-10 mt-2 w-24 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in md:w-52"
-            >
-              <div className="py-1">
-                <MenuItem>
-                  <p
-                    className="block px-2 py-1 text-[8px] text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900 md:px-4 md:py-2 md:text-sm"
-                  >
-                    Lorem, ipsum.
-                  </p>
-                </MenuItem>
-                <MenuItem>
-                  <p
-                    className="block px-2 py-1 text-[8px] text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900 md:px-4 md:py-2 md:text-sm"
-                  >
-                    Lorem, ipsum.
-                  </p>
-                </MenuItem>
-                <MenuItem>
-                  <p
-                    className="block px-2 py-1 text-[8px] text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900 md:px-4 md:py-2 md:text-sm"
-                  >
-                    Lorem, ipsum.
-                  </p>
-                </MenuItem>
-              </div>
-            </MenuItems>
-          </Menu>
-          <Menu as="div" className="relative inline-block text-left">
-            <div>
-              <MenuButton className="inline-flex w-full justify-center gap-x-1.5 rounded-[5px] bg-white py-2 pl-4 pr-2 text-[10px] font-bold text-gray-light shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 md:py-[15px] md:pl-[30px] md:pr-[22px] md:text-base">
-                Вся Россия
-                <ChevronDownIcon
-                  aria-hidden="true"
-                  className="-mr-1 h-3 w-3 text-gray-light md:h-5 md:w-5"
-                />
-              </MenuButton>
-            </div>
-
-            <MenuItems
-              transition
-              className="absolute right-0 z-10 mt-2 w-24 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in md:w-52"
-            >
-              <div className="py-1">
-                <MenuItem>
-                  <a
-                    href="#"
-                    className="block px-2 py-1 text-[8px] text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900 md:px-4 md:py-2 md:text-sm"
-                  >
-                    Lorem, ipsum.
-                  </a>
-                </MenuItem>
-                <MenuItem>
-                  <a
-                    href="#"
-                    className="block px-2 py-1 text-[8px] text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900 md:px-4 md:py-2 md:text-sm"
-                  >
-                    Lorem, ipsum.
-                  </a>
-                </MenuItem>
-                <MenuItem>
-                  <a
-                    href="#"
-                    className="block px-2 py-1 text-[8px] text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900 md:px-4 md:py-2 md:text-sm"
-                  >
-                    Lorem, ipsum.
-                  </a>
-                </MenuItem>
-              </div>
-            </MenuItems>
-          </Menu>
         </div>
+
+        <Filters
+          cityName={selectedCity?.name || "Город"}
+          cities={cityRel}
+          setSelectedCity={setSelectedCity}
+         
+        />
       </div>
 
       {loading && <Spinner loading={loading} />}

@@ -12,6 +12,7 @@ const ProfilePageLayout = ({ children }) => {
   const router = useRouter();
   const auth = useAppSelector((state) => state.auth);
   const [user, setUser] = useState(null);
+  const [role, setRole] = useState("");
 
   useEffect(() => {
     if (!auth.isAuthenticated) {
@@ -23,8 +24,15 @@ const ProfilePageLayout = ({ children }) => {
     getProfile(storedToken).then((res) => {
       setUser(res);
       localStorage.setItem("user", JSON.stringify(res));
-      localStorage.setItem("role", res?.groups[0]?.name);
+      const roleName = res.groups?.[0]?.name || "bussines"; // Default to "bussines" if undefined
+      localStorage.setItem("role", roleName);
+      setRole(roleName);
     });
+
+    if (typeof window !== "undefined") {
+      const storedRole = localStorage.getItem("role") || "bussines"; // Default to "bussines" if not set
+      setRole(storedRole);
+    }
   }, []);
 
   return (
@@ -54,12 +62,17 @@ const ProfilePageLayout = ({ children }) => {
         </div>
 
         <ul className="hidden flex-wrap items-center gap-x-[45px] gap-y-0 md:gap-x-[90px] 2xl:flex">
-          <li className="font-bold leading-[120%] text-gray-light">
-            Созданные проекты
-          </li>
-          <li className="font-bold leading-[120%] text-gray-light">
-            Поддержанные проекты
-          </li>
+          {role.toLowerCase() === "business" && (
+            <li className="font-bold leading-[120%] text-gray-light">
+              Созданные проекты
+            </li>
+          )}
+
+          {role.toLowerCase() === "investor" && (
+            <li className="font-bold leading-[120%] text-gray-light">
+              Поддержанные проекты
+            </li>
+          )}
           <li className="font-bold leading-[120%] text-gray-light">
             Вознаграждения и дивиденды
           </li>

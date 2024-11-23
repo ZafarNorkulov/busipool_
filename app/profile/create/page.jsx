@@ -4,7 +4,10 @@ import { useEffect, useState } from "react";
 import { profileIcons } from "@/constants";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import Image from "next/image";
-import { postProject } from "@/app/api/projects/project";
+import {
+  getProjectCategoryByBussinesType,
+  postProject,
+} from "@/app/api/projects/project";
 import {
   getCounterparty,
   getProjectTypes,
@@ -22,6 +25,7 @@ const CreateProjectPage = () => {
   const [category, setCategory] = useState([]);
   const [token, setToken] = useState("");
   const [loading, setLoading] = useState(true);
+  const [typeCategoryBuss, setTypeCategorybuss] = useState([]);
   const [project, setProject] = useState({
     id: null, // так как readOnly, можно оставить как null
     name: "",
@@ -96,13 +100,21 @@ const CreateProjectPage = () => {
       getProjectTypes(),
       getCities(),
       getCategory(),
+      getProjectCategoryByBussinesType(),
     ])
       .then(
-        ([counterpartyData, typeBusinessData, citiesData, categoryData]) => {
+        ([
+          counterpartyData,
+          typeBusinessData,
+          citiesData,
+          categoryData,
+          typeBuss,
+        ]) => {
           setCounterparty(counterpartyData);
           setTypeBusiness(typeBusinessData);
           setCities(citiesData);
           setCategory(categoryData);
+          setTypeCategorybuss(typeBuss);
           setLoading(false); // Set loading to false after all data is fetched
         },
       )
@@ -572,6 +584,26 @@ const CreateProjectPage = () => {
           </div>
         </div>
 
+        <div className="flex flex-wrap items-center justify-between">
+          <label htmlFor="typeBusiness" className="form-label">
+            Тип Категории
+          </label>
+          <div className="form-input-box">
+            <select
+              onChange={(e) => {
+                setProject({ ...project, typeCategoryBuss: e.target.value });
+                console.log(e.target.value);
+              }}
+              name="typeBusiness"
+              id="typeBusiness"
+              className="form-input select-arrow bg-transparent"
+            >
+              {typeCategoryBuss?.map((bus) => (
+                <option value={bus?.id}>{bus?.name}</option>
+              ))}
+            </select>
+          </div>
+        </div>
         <div className="flex flex-wrap items-center justify-between">
           <label htmlFor="kontragent" className="form-label">
             Тип

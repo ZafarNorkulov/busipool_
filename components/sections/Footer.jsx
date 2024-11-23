@@ -21,11 +21,13 @@ const Footer = () => {
   const subscribe = () => {
     console.log(inputValue);
 
-    postSubscription(inputValue).then((response) => {
-      console.log(response);
-    }).catch((error) => {
-      console.log(error);
-    });
+    postSubscription(inputValue)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -54,10 +56,10 @@ const Footer = () => {
       </div>
       <div className="max-container py-[60px]">
         {/* footer links */}
-        <div className="mb-[60px] grid grid-cols-[repeat(2,auto)] gap-[30px] md:grid-cols-4">
+        <div className="mb-[60px] grid grid-cols-[repeat(2,auto)] md:grid-cols-4 md:gap-5 lg:gap-[30px]">
           {footerLinks.map((item, index) => (
             <div key={index} className="w-max">
-              <h3 className="mb-3 max-w-max text-[14px] font-bold uppercase leading-[20px] text-gray-light md:mb-[40px] md:text-[18px]">
+              <h3 className="md:text-md mb-3 max-w-max text-sm font-bold uppercase leading-[20px] text-gray-light md:mb-[40px] lg:text-lg">
                 {item.title}
               </h3>
               {item.links.map((link, index) => (
@@ -65,7 +67,7 @@ const Footer = () => {
                   <li className="mb-2 max-w-max md:mb-[30px]">
                     <Link
                       href={link.href}
-                      className="font-helvetica text-[12px] text-gray-dark hover:underline hover:underline-offset-2 md:text-[18px]"
+                      className="md:text-md font-helvetica text-[12px] text-gray-dark hover:underline hover:underline-offset-2 lg:text-lg"
                     >
                       {link.label}
                     </Link>

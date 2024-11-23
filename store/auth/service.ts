@@ -54,29 +54,30 @@ export const _signOut = async () => {
   store.dispatch(AUTH_ACTIONS.signOut());
   localStorage.removeItem("access_token");
   localStorage.removeItem("refresh_token");
+  localStorage.removeItem("role");
   window.location.pathname = "/sign-in";
 };
 
-// export const refreshToken = async () => {
-//   try {
-//     const refresh_token = localStorage.getItem("refresh_token");
+export const refreshToken = async () => {
+  try {
+    const refresh_token = localStorage.getItem("refresh_token");
 
-//     if (refresh_token) {
-//       const response = await instance({
-//         url: "auth/jwt/refresh",
-//         method: "POST",
-//         data: { refresh: refresh_token },
-//       });
-//       console.log(response);
-//       if (response.status === 200) {
-//         localStorage.setItem("access_token", response.data.access);
-//         store.dispatch(SignIn({}));
-//       }
-//     }
-//   } catch (error) {
-//     window.location.href = "/sign-in";
-//   }
-// };
+    if (refresh_token) {
+      const response = await instance({
+        url: "auth/jwt/refresh",
+        method: "POST",
+        data: { refresh: refresh_token },
+      });
+      console.log(response);
+      if (response.status === 200) {
+        localStorage.setItem("access_token", response.data.access);
+        store.dispatch(SignIn({}));
+      }
+    }
+  } catch (error) {
+    window.location.href = "/sign-in";
+  }
+};
 
 export const logOut = async () => {
   localStorage.removeItem("access_token");

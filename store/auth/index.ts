@@ -25,6 +25,7 @@ const SignInSlice = createSlice({
       state.status = "success";
       localStorage.removeItem("access_token");
       localStorage.removeItem("refrsh_token");
+      window.location.reload();
     },
   },
   extraReducers: (builder) => {
