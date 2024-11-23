@@ -19,7 +19,7 @@ const ProfilePage = () => {
   return (
     <section>
       <div className="max-container mb-[60px] mt-[100px] grid grid-cols-1 gap-[30px] md:mb-[150px] md:grid-cols-2 xl:grid-cols-3">
-        {role.toLowerCase() === "business" && (
+        {role?.toLowerCase() === "business" && (
           <UserPageCard
             cardStyles="rounded-[3px] md:rounded-[5px] p-[20px] md:p-[30px]"
             title="Созданные проекты"
@@ -41,7 +41,7 @@ const ProfilePage = () => {
             </p>
           </UserPageCard>
         )}
-        {role.toLowerCase() === "investor" && (
+        {role?.toLowerCase() === "investor" && (
           <UserPageCard
             cardStyles="rounded-[3px] md:rounded-[5px] p-[20px] md:p-[30px]"
             title="Поддержанные проекты проекты"
@@ -94,7 +94,7 @@ const ProfilePage = () => {
               Создание собственного проекта на такой платформе - это шаг,
               который может привести вас к успеху.
             </p>
-            {role.toLowerCase() === "business" && (
+            {role?.toLowerCase() === "business" && (
               <Link
                 href="/profile/create"
                 className="rounded-[3px] border-2 border-primary bg-primary px-[60px] py-[20px] text-[14px] font-bold leading-[120%] text-white transition active:scale-95 md:px-[47px] md:text-base"
@@ -114,7 +114,7 @@ const ProfilePage = () => {
           />
         </div>
       </div>
-      {role.toLowerCase() === "business" && (
+      {role?.toLowerCase() === "business" && (
         <div className="mt-[100px]">
           <SwiperSection />
         </div>

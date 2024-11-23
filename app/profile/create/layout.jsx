@@ -20,7 +20,7 @@ const CreateLayout = ({ children }) => {
     return <div>Loading...</div>; // Optionally, show a loading state until role is determined
   }
 
-  if (role.toLowerCase() !== "business") {
+  if (role?.toLowerCase() !== "business") {
     router.push("/not-found"); // Redirect if the role isn't "business"
     return null; // Return nothing during the redirect
   }

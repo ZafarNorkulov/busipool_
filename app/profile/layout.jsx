@@ -62,13 +62,13 @@ const ProfilePageLayout = ({ children }) => {
         </div>
 
         <ul className="hidden flex-wrap items-center gap-x-[45px] gap-y-0 md:gap-x-[90px] 2xl:flex">
-          {role.toLowerCase() === "business" && (
+          {role?.toLowerCase() === "business" && (
             <li className="font-bold leading-[120%] text-gray-light">
               Созданные проекты
             </li>
           )}
 
-          {role.toLowerCase() === "investor" && (
+          {role?.toLowerCase() === "investor" && (
             <li className="font-bold leading-[120%] text-gray-light">
               Поддержанные проекты
             </li>

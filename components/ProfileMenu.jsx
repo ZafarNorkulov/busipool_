@@ -20,7 +20,7 @@ const ProfileMenu = ({ shutdown, closeProfileMenu }) => {
       id="profile-menu"
       className="w-[370px] select-none bg-headerColor px-[60px] py-[30px]"
     >
-      {role.toLowerCase() === "business" && (
+      {role?.toLowerCase() === "business" && (
         <Link
           href="/profile/create"
           onClick={closeProfileMenu}
