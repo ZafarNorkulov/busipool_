@@ -94,9 +94,23 @@ const SignUpPage = () => {
               className="login-input"
             />
           </div>
+           <div className="mb-2 lg:mb-[70px]">
+            <Select
+            className="h-full active:h-full"
+              classNamePrefix="select"
+              name="role"
+              options={roles?.map((role) => ({
+                value: role?.id,
+                label: role?.name,
+              }))}
+              onChange={(e) => setUser({ ...user, groups: [e?.value] })}
+              placeholder="Выберите роль"
+            />
+          </div>
           <p className="text-[10px] font-light leading-[24px] text-gray-light opacity-75 lg:mb-[10px] lg:text-[14px]">
             На эту почту придет код для подтверждения
           </p>
+
           <div className="mb-2 lg:mb-[10px]">
             <label htmlFor="password" className="label-text">
               Пароль
@@ -108,6 +122,7 @@ const SignUpPage = () => {
               className="login-input"
             />
           </div>
+         
           <div className="mb-2 lg:mb-[10px]">
             <label htmlFor="confirn_password" className="label-text">
               Подтверждения пароля
@@ -121,19 +136,7 @@ const SignUpPage = () => {
               className="login-input"
             />
           </div>
-          <div className="mb-2 lg:mb-[70px]">
-            <Select
-              className=""
-              classNamePrefix="select"
-              name="role"
-              options={roles?.map((role) => ({
-                value: role?.id,
-                label: role?.name,
-              }))}
-              onChange={(e) => setUser({ ...user, groups: [e?.value] })}
-              placeholder="Выберите роль"
-            />
-          </div>
+          
 
           <Button type="submit" text="Продолжить" fullWidth primary />
         </form>

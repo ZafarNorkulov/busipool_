@@ -14,10 +14,7 @@ import HomeBlogs from "@/components/sections/HomeBlogs";
 import Spinner from "@/components/Spinner";
 import SignUpLink from "@/components/SignUpLink";
 import SignInLink from "@/components/SignInLink";
-import {
-  getProjectCategory,
-  getProjects,
-} from "@/app/api/projects/project";
+import { getProjectCategory, getProjects } from "@/app/api/projects/project";
 import Filters from "../../../components/Filters";
 import { getCities } from "@/utils/request";
 
@@ -101,8 +98,8 @@ const InvestorPage = () => {
           информации о проектах.
         </p>
 
-        <div className="flex flex-wrap snap-x snap-mandatory gap-[30px] overflow-x-scroll md:flex-wrap md:overflow-auto">
-          {projectCategories.reverse().map((e, index) => (
+        <div className="flex snap-x snap-mandatory flex-wrap gap-[30px] overflow-x-scroll md:flex-wrap md:overflow-auto">
+          {projectCategories?.map((e, index) => (
             <InvestorPageButton key={index} investor={e} id={id} />
           ))}
         </div>
@@ -119,7 +116,7 @@ const InvestorPage = () => {
                 Зарегистрируйтесь на нашей платформе и получите полную
                 информацию о проектах
               </p>
-              <div className="flex sm:flex-row flex-col gap-[30px]">
+              <div className="flex flex-col gap-[30px] sm:flex-row">
                 <SignUpLink />
                 <SignInLink />
               </div>
