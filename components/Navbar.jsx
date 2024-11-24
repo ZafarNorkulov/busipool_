@@ -114,12 +114,10 @@ const Navbar = () => {
         {/* Right Side Menu (Logged Out) */}
         {!auth.isAuthenticated && (
           <div className="hidden gap-x-[30px] xl:flex">
-            {role?.toLowerCase() === "business" && (
-              <Button
-                text="Создать проект"
-                onclick={() => router.push(`/sign-in`)}
-              />
-            )}
+            <Button
+              text="Создать проект"
+              onclick={() => router.push(`/sign-in`)}
+            />
 
             <Button
               text="Войти"

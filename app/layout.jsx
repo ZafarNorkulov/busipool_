@@ -3,7 +3,7 @@ import "@/assets/styles/globals.css";
 import MainLayoutBody from "@/components/MainLayoutBody";
 import store from "@/store";
 import { Provider } from "react-redux";
-
+  
 // export const metadata = {
 //   title: "BUSIPOOL | Инвестиции в будущее",
 //   description: "Инвестиции в будущее",
