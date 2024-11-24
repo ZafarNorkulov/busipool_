@@ -19,7 +19,7 @@ const ProfilePage = () => {
   return (
     <section>
       <div className="max-container mb-[60px] mt-[100px] grid grid-cols-1 gap-[30px] md:mb-[150px] md:grid-cols-2 xl:grid-cols-3">
-        {role?.toLowerCase() === "business" && (
+        {role?.toLowerCase() === "business" ? (
           <UserPageCard
             cardStyles="rounded-[3px] md:rounded-[5px] p-[20px] md:p-[30px]"
             title="Созданные проекты"
@@ -40,8 +40,7 @@ const ProfilePage = () => {
               свой первый проект.
             </p>
           </UserPageCard>
-        )}
-        {role?.toLowerCase() === "investor" && (
+        ) : (
           <UserPageCard
             cardStyles="rounded-[3px] md:rounded-[5px] p-[20px] md:p-[30px]"
             title="Поддержанные проекты проекты"
