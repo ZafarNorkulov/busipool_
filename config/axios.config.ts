@@ -4,6 +4,7 @@ import axios, {
   InternalAxiosRequestConfig,
 } from "axios";
 import { ResponseError } from "./error";
+import { BASE_URL } from "@/utils/url";
 
 const instance = axios.create();
 
@@ -15,7 +16,7 @@ const onRequest = (
   if (!(config.url?.includes("/login/") || config.url?.includes("/profile/"))) {
     config.headers.Authorization = `Bearer ${access_token}`;
   }
-  config.baseURL = process.env.NEXT_PUBLIC_BASE_URL;
+  config.baseURL = BASE_URL;
   return config;
 };
 const onRequestError = async (error: AxiosError): Promise<AxiosError> => {
