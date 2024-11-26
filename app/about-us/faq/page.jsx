@@ -50,10 +50,7 @@ const FAQPage = () => {
           </div>
         </div>
       </div>
-      <div className="mx-[177px]">
-        <h2 className="section-title my-[100px]">Актуальные проекты</h2>
-        <SwiperSection />
-      </div>
+      <SwiperSection />
       <HomeBlogs />
     </>
   );
