@@ -3,7 +3,6 @@ import Button from "@/components/Button";
 import SwiperSection from "../../components/SwiperSection";
 import Link from "next/link";
 
-
 const HomeProjects = () => {
   return (
     <section className="max-container pb-[100px] pt-[100px] md:pb-[150px] md:pt-[150px]">
@@ -14,14 +13,12 @@ const HomeProjects = () => {
       <SwiperSection />
 
       <div className="flex flex-wrap items-center justify-center gap-[30px] sm:gap-[20px]">
-      <Link href={"/projects"}>
-      <Button
-          text="Все проекты"
-          primary
-        />
+        <Link href={"/projects"}>
+          <Button text="Все проекты" primary />
         </Link>
-
-        <Button text="Создать свой" />
+        <Link href={"/profile/create"}>
+          <Button text="Создать свой" />
+        </Link>
       </div>
     </section>
   );

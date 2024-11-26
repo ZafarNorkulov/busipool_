@@ -6,6 +6,8 @@ import HomeBlogs from "@/components/sections/HomeBlogs";
 // import Stats from "@/components/sections/Stats";
 import Stats from "../../components/sections/Stats";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
+import Head from "next/head";
 
 const roles = [
   {
@@ -30,6 +32,17 @@ const BecomePartnerPage = () => {
   const router = useRouter();
 
   return (
+    <>
+    <Head>
+        <title>{"BUSIPOOL | Стать парнером"}</title>
+        <meta
+          name="description"
+          content={
+            "Сбор денег для бизнеса, технологических, творческих и социальных проектов"
+          }
+        />
+        <link rel="icon" href="/Fav.png" />
+      </Head>
     <section>
       <div className="max-container pt-[30px] md:pt-[100px]">
         <Stats />
@@ -40,14 +53,19 @@ const BecomePartnerPage = () => {
 
       <div className="max-container">
         <div className="mb-[100px] mt-[30px] flex flex-wrap items-center justify-center gap-x-[20px] gap-y-[60px] md:mb-[150px] md:mt-[100px] wide:flex-nowrap">
-          <p className="text-center text-[24px] font-light tracking-[0.01em] text-primary wide:flex-1 wide:text-left">
-            Цель нашей краудфандинговой платформы - предоставить вам возможность
-            увеличить свои инвестиции через вложения в проекты, с которых можно
-            заработать.
-          </p>
+        <p className="text-lg font-light tracking-[0.01em] text-primary md:text-center lg:text-base wide:flex-1 wide:text-left 2xl:text-[24px]">
+                Цель нашей краудфандинговой платформы - предоставить вам
+                возможность{" "}
+                <span className="text-lg text-gold lg:text-base 2xl:text-[24px]">
+                  увеличить свои инвестиции
+                </span>{" "}
+                через вложения в проекты.
+              </p>
           <div className="flex flex-wrap justify-center gap-[30px] md:flex-nowrap">
             <Button text="Как это работает" />
-            <Button text="Разместить компанию" primary />
+            <Link href={"/profile/create"}>
+              <Button text="Разместить компанию" primary />
+            </Link>
           </div>
         </div>
       </div>
@@ -137,6 +155,7 @@ const BecomePartnerPage = () => {
 
       <HomeBlogs />
     </section>
+    </>
   );
 };
 

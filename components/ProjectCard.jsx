@@ -32,7 +32,7 @@ const ProjectCard = ({ card, isGrid }) => {
         alt="project card"
         className="h-[154px] w-full rounded-[5px] object-cover md:h-[250px] md:rounded-[10px]"
       />
-      <div className="flex h-[65%] flex-col p-[12.35px] md:p-[30px]">
+      <div className="flex h-[65%] flex-col p-[10px] md:p-[30px]">
         <div>
           <h3 className="mb-[10px] h-[30px] text-sm font-bold leading-[110%] text-gray-dark md:mb-[20px] md:h-[20px] md:text-[18px]">
             {card?.name.slice(0, 40)}

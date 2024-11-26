@@ -9,6 +9,7 @@ import Spinner from "@/components/Spinner";
 import { useRouter } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/store";
 import SignIn from "@/store/auth/service";
+import Head from "next/head";
 
 const SignInPage = () => {
   const router = useRouter();
@@ -41,6 +42,16 @@ const SignInPage = () => {
   }
   return (
     <>
+      <Head>
+        <title>{"BUSIPOOL | Авторизоваться"}</title>
+        <meta
+          name="description"
+          content={
+            "Сбор денег для бизнеса, технологических, творческих и социальных проектов"
+          }
+        />
+        <link rel="icon" href="/Fav.png" />
+      </Head>
       <main className="flex flex-col-reverse overflow-hidden md:flex-row">
         <section className="flex w-full flex-1 items-center justify-center pt-3 lg:w-[560px] extraWide:w-[760px]">
           <form

@@ -15,6 +15,7 @@ import "react-tabs/style/react-tabs.css";
 import { socialMedia } from "@/constants";
 import Link from "next/link";
 import useWindowSize from "@/hooks/useWindowSize"
+import Head from "next/head";
 
 const ProjectPage = () => {
   const [toggleHeart, setToggleHeart] = useState(false);
@@ -68,6 +69,17 @@ const ProjectPage = () => {
   };
 
   return (
+    <>
+     <Head>
+        <title>{"BUSIPOOL | Проекты"}</title>
+        <meta
+          name="description"
+          content={
+            "Сбор денег для бизнеса, технологических, творческих и социальных проектов"
+          }
+        />
+        <link rel="icon" href="/Fav.png" />
+      </Head>
     <section>
       {loading && <Spinner loading={loading} />}
       {!loading && project && (
@@ -268,6 +280,7 @@ const ProjectPage = () => {
         </div>
       </div>
     </section>
+    </>
   );
 };
 

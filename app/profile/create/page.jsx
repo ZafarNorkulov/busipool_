@@ -14,6 +14,7 @@ import {
   getCities,
   getCategory,
 } from "@/utils/request";
+import Head from "next/head";
 
 const CreateProjectPage = () => {
   const [activeForm, setActiveForm] = useState(1);
@@ -997,82 +998,95 @@ const CreateProjectPage = () => {
   }
 
   return (
-    <section>
-      <div className="max-container mb-[100px] mt-[30px] md:mb-[150px] md:mt-[100px]">
-        <div className="mb-[60px] flex flex-col items-center">
-          <h2 className="mb-[30px] text-[24px] font-bold text-gray-dark md:text-[32px]">
-            Создание проекта
-          </h2>
-          <ul className="flex w-full max-w-[220px] flex-wrap items-center justify-between gap-y-[20px] md:max-w-[1000px] md:justify-center md:gap-x-[80px]">
-            <li
-              onClick={() => setActiveForm(1)}
-              className={`cursor-pointer border-b text-[14px] leading-[120%] md:pb-[5px] md:leading-[24px] ${activeForm == 1 ? "border-primary text-primary" : "border-transparent text-gray-light"}`}
-            >
-              Основные данные
-            </li>
-            <li
-              onClick={() => setActiveForm(2)}
-              className={`cursor-pointer border-b text-[14px] leading-[120%] md:pb-[5px] md:leading-[24px] ${activeForm == 2 ? "border-primary text-primary" : "border-transparent text-gray-light"}`}
-            >
-              Детали
-            </li>
-            <li
-              onClick={() => setActiveForm(3)}
-              className={`cursor-pointer border-b text-[14px] leading-[120%] md:pb-[5px] md:leading-[24px] ${activeForm == 3 ? "border-primary text-primary" : "border-transparent text-gray-light"}`}
-            >
-              Вознаграждение
-            </li>
-            <li
-              onClick={() => setActiveForm(4)}
-              className={`cursor-pointer border-b text-[14px] leading-[120%] md:pb-[5px] md:leading-[24px] ${activeForm == 4 ? "border-primary text-primary" : "border-transparent text-gray-light"}`}
-            >
-              Контрагенты
-            </li>
-          </ul>
-        </div>
-
-        <form className="create-form mx-auto flex max-w-[1140px] flex-col gap-[60px]">
-          {createProjectForms[activeForm]}
-          <div>
-            <div className="flex flex-wrap-reverse items-center justify-between gap-y-[20px]">
-              <button
-                onClick={() => prevForm()}
-                type="button"
-                className={`${activeForm == 1 && "invisible"} rounded-[5px] border-2 border-gray-light px-[40px] py-[20px] text-[14px] font-bold leading-[120%] text-gray-light active:scale-[0.97] md:leading-[24px]`}
+    <>
+      <Head>
+        <title>{"BUSIPOOL | Создание проекта"}</title>
+        <meta
+          name="description"
+          content={
+            "Сбор денег для бизнеса, технологических, творческих и социальных проектов"
+          }
+        />
+        <link rel="icon" href="/Fav.png" />
+      </Head>
+      <section>
+        <div className="max-container mb-[100px] mt-[30px] md:mb-[150px] md:mt-[100px]">
+          <div className="mb-[60px] flex flex-col items-center">
+            <h2 className="mb-[30px] text-[24px] font-bold text-gray-dark md:text-[32px]">
+              Создание проекта
+            </h2>
+            <ul className="flex w-full max-w-[220px] flex-wrap items-center justify-between gap-y-[20px] md:max-w-[1000px] md:justify-center md:gap-x-[80px]">
+              <li
+                onClick={() => setActiveForm(1)}
+                className={`cursor-pointer border-b text-[14px] leading-[120%] md:pb-[5px] md:leading-[24px] ${activeForm == 1 ? "border-primary text-primary" : "border-transparent text-gray-light"}`}
               >
-                Назад
-              </button>
-              <Link
-                href="#"
-                className="flex items-center gap-[10px] text-[14px] leading-[120%] text-gray-light md:hidden md:text-[18px]"
+                Основные данные
+              </li>
+              <li
+                onClick={() => setActiveForm(2)}
+                className={`cursor-pointer border-b text-[14px] leading-[120%] md:pb-[5px] md:leading-[24px] ${activeForm == 2 ? "border-primary text-primary" : "border-transparent text-gray-light"}`}
               >
-                <MdOutlineRemoveRedEye className="text-primary md:text-[24px]" />
-                Предпросмотр
-              </Link>
-              <div className="flex flex-[0_1_850px] flex-col-reverse justify-between gap-[20px] overflow-clip md:flex-row">
-                <button
-                  onClick={() => nextForm()}
-                  type="button"
-                  className="flex-1 rounded-[5px] bg-primary px-[40px] py-[20px] text-[14px] font-bold leading-[120%] text-white active:scale-[0.97] md:leading-[24px]"
-                >
-                  Продолжить
-                </button>
-                <button
-                  onClick={() => handlePost()}
-                  type="button"
-                  className="flex-1 rounded-[5px] border-2 border-gray-light px-[40px] py-[20px] text-[14px] font-bold leading-[120%] text-gray-light active:scale-[0.97] md:leading-[24px]"
-                >
-                  Сохранить
-                </button>
-              </div>
-            </div>
-            <p className="mt-[22px] text-[18px] leading-[150%] text-gray-dark md:text-center md:leading-[120%]">
-              У вас есть вопросы? Напиши нам на почту <b>support@busipool.ru</b>
-            </p>
+                Детали
+              </li>
+              <li
+                onClick={() => setActiveForm(3)}
+                className={`cursor-pointer border-b text-[14px] leading-[120%] md:pb-[5px] md:leading-[24px] ${activeForm == 3 ? "border-primary text-primary" : "border-transparent text-gray-light"}`}
+              >
+                Вознаграждение
+              </li>
+              <li
+                onClick={() => setActiveForm(4)}
+                className={`cursor-pointer border-b text-[14px] leading-[120%] md:pb-[5px] md:leading-[24px] ${activeForm == 4 ? "border-primary text-primary" : "border-transparent text-gray-light"}`}
+              >
+                Контрагенты
+              </li>
+            </ul>
           </div>
-        </form>
-      </div>
-    </section>
+
+          <form className="create-form mx-auto flex max-w-[1140px] flex-col gap-[60px]">
+            {createProjectForms[activeForm]}
+            <div>
+              <div className="flex flex-wrap-reverse items-center justify-between gap-y-[20px]">
+                <button
+                  onClick={() => prevForm()}
+                  type="button"
+                  className={`${activeForm == 1 && "invisible"} rounded-[5px] border-2 border-gray-light px-[40px] py-[20px] text-[14px] font-bold leading-[120%] text-gray-light active:scale-[0.97] md:leading-[24px]`}
+                >
+                  Назад
+                </button>
+                <Link
+                  href="#"
+                  className="flex items-center gap-[10px] text-[14px] leading-[120%] text-gray-light md:hidden md:text-[18px]"
+                >
+                  <MdOutlineRemoveRedEye className="text-primary md:text-[24px]" />
+                  Предпросмотр
+                </Link>
+                <div className="flex flex-[0_1_850px] flex-col-reverse justify-between gap-[20px] overflow-clip md:flex-row">
+                  <button
+                    onClick={() => nextForm()}
+                    type="button"
+                    className="flex-1 rounded-[5px] bg-primary px-[40px] py-[20px] text-[14px] font-bold leading-[120%] text-white active:scale-[0.97] md:leading-[24px]"
+                  >
+                    Продолжить
+                  </button>
+                  <button
+                    onClick={() => handlePost()}
+                    type="button"
+                    className="flex-1 rounded-[5px] border-2 border-gray-light px-[40px] py-[20px] text-[14px] font-bold leading-[120%] text-gray-light active:scale-[0.97] md:leading-[24px]"
+                  >
+                    Сохранить
+                  </button>
+                </div>
+              </div>
+              <p className="mt-[22px] text-[18px] leading-[150%] text-gray-dark md:text-center md:leading-[120%]">
+                У вас есть вопросы? Напиши нам на почту{" "}
+                <b>support@busipool.ru</b>
+              </p>
+            </div>
+          </form>
+        </div>
+      </section>
+    </>
   );
 };
 

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { getProfile, updateProfile } from "@/app/api/profile/profile";
 
 import profileImageDefault from "@/assets/images/profileImageDefault.png";
+import Head from "next/head";
 
 const ProfileSettingsPage = () => {
   const [user, setUser] = useState("");
@@ -276,32 +277,44 @@ const ProfileSettingsPage = () => {
   const [activeSettings, setActiveSettings] = useState("main-settings");
 
   return (
-    <section>
-      <div className="max-container mb-[100px] mt-[30px] md:mb-[150px] md:mt-[100px]">
-        <div className="mb-[60px] flex flex-col items-center">
-          <h2 className="mb-[30px] text-[24px] font-bold text-gray-dark md:text-[32px]">
-            Настройки
-          </h2>
-          <ul className="flex gap-[80px]">
-            <li
-              data-form="main-settings"
-              className={`cursor-pointer border-b pb-[5px] text-[14px] font-semibold leading-[24px] ${activeSettings == "main-settings" ? "border-primary text-primary" : "border-transparent text-gray-light"}`}
-              onClick={() => setActiveSettings("main-settings")}
-            >
-              Основное
-            </li>
-            <li
-              className={`cursor-pointer border-b pb-[5px] text-[14px] font-semibold leading-[24px] ${activeSettings == "contact-settings" ? "border-primary text-primary" : "border-transparent text-gray-light"}`}
-              onClick={() => setActiveSettings("contact-settings")}
-            >
-              Контакты
-            </li>
-          </ul>
-        </div>
+    <>
+      <Head>
+        <title>{"BUSIPOOL | Настройки профиля"}</title>
+        <meta
+          name="description"
+          content={
+            "Сбор денег для бизнеса, технологических, творческих и социальных проектов"
+          }
+        />
+        <link rel="icon" href="/Fav.png" />
+      </Head>
+      <section>
+        <div className="max-container mb-[100px] mt-[30px] md:mb-[150px] md:mt-[100px]">
+          <div className="mb-[60px] flex flex-col items-center">
+            <h2 className="mb-[30px] text-[24px] font-bold text-gray-dark md:text-[32px]">
+              Настройки
+            </h2>
+            <ul className="flex gap-[80px]">
+              <li
+                data-form="main-settings"
+                className={`cursor-pointer border-b pb-[5px] text-[14px] font-semibold leading-[24px] ${activeSettings == "main-settings" ? "border-primary text-primary" : "border-transparent text-gray-light"}`}
+                onClick={() => setActiveSettings("main-settings")}
+              >
+                Основное
+              </li>
+              <li
+                className={`cursor-pointer border-b pb-[5px] text-[14px] font-semibold leading-[24px] ${activeSettings == "contact-settings" ? "border-primary text-primary" : "border-transparent text-gray-light"}`}
+                onClick={() => setActiveSettings("contact-settings")}
+              >
+                Контакты
+              </li>
+            </ul>
+          </div>
 
-        {profileSettings[activeSettings]}
-      </div>
-    </section>
+          {profileSettings[activeSettings]}
+        </div>
+      </section>
+    </>
   );
 };
 

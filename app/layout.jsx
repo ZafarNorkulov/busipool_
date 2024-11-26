@@ -4,12 +4,7 @@ import MainLayoutBody from "@/components/MainLayoutBody";
 import store from "@/store";
 import { Provider } from "react-redux";
   
-// export const metadata = {
-//   title: "BUSIPOOL | Инвестиции в будущее",
-//   description: "Инвестиции в будущее",
-//   keywords:
-//     "Сбор денег для бизнеса, технологических, творческих и социальных проектов",
-// };
+
 
 const MainLayout = ({ children }) => {
   return (

@@ -7,6 +7,7 @@ import buildProjectImage from "@/assets/images/build-project.png";
 import HomeBlogs from "@/components/sections/HomeBlogs";
 import SwiperSection from "@/components/SwiperSection";
 import { useEffect, useState } from "react";
+import Head from "next/head";
 
 const ProfilePage = () => {
   const [role, setRole] = useState("");
@@ -17,6 +18,17 @@ const ProfilePage = () => {
     }
   }, []);
   return (
+    <>
+    <Head>
+        <title>{"BUSIPOOL | Профиль"}</title>
+        <meta
+          name="description"
+          content={
+            "Сбор денег для бизнеса, технологических, творческих и социальных проектов"
+          }
+        />
+        <link rel="icon" href="/Fav.png" />
+      </Head>
     <section>
       <div className="max-container mb-[60px] mt-[100px] grid grid-cols-1 gap-[30px] md:mb-[150px] md:grid-cols-2 xl:grid-cols-3">
         {role?.toLowerCase() === "business" ? (
@@ -43,7 +55,7 @@ const ProfilePage = () => {
         ) : (
           <UserPageCard
             cardStyles="rounded-[3px] md:rounded-[5px] p-[20px] md:p-[30px]"
-            title="Поддержанные проекты проекты"
+            title="Поддержанные проекты"
             subtitle="Проекты, которые вы поддержали"
             icon={profileIcons.check}
           >
@@ -122,6 +134,7 @@ const ProfilePage = () => {
         <HomeBlogs />
       </div>
     </section>
+    </>
   );
 };
 

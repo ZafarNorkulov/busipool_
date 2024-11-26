@@ -12,6 +12,8 @@ import { SlMagnifier } from "react-icons/sl";
 import { getCities } from "@/utils/request"
 import { getProjectBusinessType } from "@/app/api/projects/project";
 import { useParams } from "next/navigation";
+import Link from "next/link";
+import Head from "next/head";
 
 const BusinessType = () => {
     const [projects, setProjects] = useState([]);
@@ -71,6 +73,17 @@ const BusinessType = () => {
 
 
     return (
+        <>
+        <Head>
+        <title>{"BUSIPOOL | Инвестор"}</title>
+        <meta
+          name="description"
+          content={
+            "Сбор денег для бизнеса, технологических, творческих и социальных проектов"
+          }
+        />
+        <link rel="icon" href="/Fav.png" />
+      </Head>
         <section>
             <div className="max-container pb-[30px] pt-[60px] md:py-[100px]">
                 <h2 className="section-title mb-[20px] !text-left md:mb-[30px]">
@@ -92,11 +105,12 @@ const BusinessType = () => {
                         <p className="mb-[30px] text-base font-light leading-[110%] text-gray-light md:mb-[60px] md:text-[32px]">
                             Заполните форму и создайте проект на нашем сайте
                         </p>
+                        <Link href={"/profile/create"}>
                         <Button
                             text="Создать проект"
-                            // onclick={() => router.push("/profile/create")}
                             primary
                         />
+                        </Link>
                     </div>
                     <Image
                         src={buildProjectImage}
@@ -224,6 +238,7 @@ const BusinessType = () => {
 
             <HomeBlogs />
         </section>
+        </>
     );
 };
 

@@ -42,7 +42,7 @@ const Navbar = () => {
 
   return (
     <header className="relative bg-headerColor">
-      <nav className="max-container relative flex items-center justify-between pt-5 sm:py-[20px] md:pt-[56px]">
+      <nav className="max-container relative flex items-center justify-between pt-5 sm:py-[20px]">
         {/* Logo */}
         <Link href="/">
           {" "}
@@ -136,7 +136,6 @@ const Navbar = () => {
             }}
             shutdown={() => {
               dispatch(AUTH_ACTIONS.signOut());
-              localStorage.removeItem("access_token");
             }}
           />
         </div>
@@ -218,12 +217,9 @@ const Navbar = () => {
               </div>
             </div>
             {role?.toLowerCase() === "business" && (
-              <Button
-                text="Создать проект"
-                onclick={() => router.push("/profile/create")}
-                fullWidth
-                primary
-              />
+              <Link href={"/profile/create"}>
+                <Button text="Создать проект" fullWidth primary />
+              </Link>
             )}
           </>
         )}

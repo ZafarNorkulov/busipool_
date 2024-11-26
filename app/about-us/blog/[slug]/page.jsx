@@ -2,6 +2,7 @@
 import Button from "@/components/Button";
 import Image from "next/image";
 import blog1 from "@/assets/images/blog/blog1.jpg";
+import Head from "next/head";
 
 // import { getBlogs } from "@/app/api/blogs/blogs";
 // import { useState, useEffect } from "react";
@@ -24,6 +25,17 @@ const BlogPage = () => {
   // }
 
   return (
+    <>
+    <Head>
+        <title>{"BUSIPOOL | Блог"}</title>
+        <meta
+          name="description"
+          content={
+            "Сбор денег для бизнеса, технологических, творческих и социальных проектов"
+          }
+        />
+        <link rel="icon" href="/Fav.png" />
+      </Head>
     <section>
       <div className="max-container mb-[30px] mt-[30px] flex justify-between md:mb-[100px] md:mt-[100px]">
         <Button text="Следующая статья" />
@@ -102,6 +114,7 @@ const BlogPage = () => {
         </div>
       </div>
     </section>
+    </>
   );
 };
 

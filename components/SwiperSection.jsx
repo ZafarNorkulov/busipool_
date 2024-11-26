@@ -18,7 +18,7 @@ export default function SwiperSection() {
   const [loading, setLoading] = useState(true);
 
   function fetchProjectsFromAPI() {
-    getProjects({}) // 
+    getProjects({}) //
       .then((response) => {
         setProjects(response);
       })
@@ -37,7 +37,7 @@ export default function SwiperSection() {
     <>
       {loading && <Spinner loading={loading} />}
       <Swiper
-        slidesPerView={1.2}
+        slidesPerView={1}
         spaceBetween={20}
         grabCursor={true}
         mousewheel={true}
@@ -47,6 +47,10 @@ export default function SwiperSection() {
           disableOnInteraction: false,
         }}
         breakpoints={{
+          390:{
+            slidesPerView: 1.2,
+          },
+          
           768: {
             slidesPerView: 2,
           },

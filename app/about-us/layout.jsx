@@ -27,10 +27,10 @@ const AboutUsPageLayout = ({ children }) => {
           </div>
           <div className="max-container">
             <div className="mb-[100px] mt-[30px] flex flex-wrap items-center justify-center gap-x-[20px] gap-y-[60px] md:mb-[150px] md:mt-[100px] wide:flex-nowrap">
-              <p className="font-light tracking-[0.01em] text-primary md:text-center md:text-[24px] wide:flex-1 wide:text-left">
+              <p className="text-lg font-light tracking-[0.01em] text-primary md:text-center lg:text-base wide:flex-1 wide:text-left 2xl:text-[24px]">
                 Цель нашей краудфандинговой платформы - предоставить вам
                 возможность{" "}
-                <span className="text-gold md:text-[24px]">
+                <span className="text-lg text-gold lg:text-base 2xl:text-[24px]">
                   увеличить свои инвестиции
                 </span>{" "}
                 через вложения в проекты.
@@ -46,11 +46,11 @@ const AboutUsPageLayout = ({ children }) => {
 
           <div className="flex flex-col justify-center gap-x-[20px] gap-y-[30px] min-[768px]:flex-row">
             <div className="flex-1 wide:max-w-[850px]">
-              <p className="mb-[30px] text-[20px] font-light leading-[120%] text-gray-dark md:mb-[76px] xl:text-[57px] md:text-4xl">
+              <p className="mb-[30px] text-[20px] font-light tracking-normal text-gray-dark md:mb-[76px] md:text-[36px] md:leading-[52px] xl:text-[57px]">
                 BUSIPOOL - онлайн-платформа, где инвестор может купить акции и
                 стать совладельцем компаний малого и среднего бизнеса.
               </p>
-              <p className="text-[14px] font-light leading-[140%] text-gray-light xl:text-[32px]">
+              <p className="text-[14px] font-light leading-[120%] text-gray-light xl:text-[32px]">
                 Инвестиции начинаются от 15 тыс.₽, а перечень компаний
                 неограничен - от финтех проектов, до производств и
                 сельскохозяйственных компаний.Деньги, полученные от продажи
