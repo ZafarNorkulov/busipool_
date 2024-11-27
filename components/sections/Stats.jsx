@@ -11,20 +11,18 @@ const statistics = [
 const Stats = ({ large }) => {
   const { width } = useWindowSize();
   return (
-    <section
-      className={`${large ? "text-white" : "text-primary"}`}
-    >
+    <section className={`${large ? "text-white" : "text-primary"}`}>
       <div className="flex flex-col gap-y-[30px] text-center">
         {width < 500 ? (
           <>
             {/* Toq indexdagi elementlar */}
-            <div className="flex items-center justify-between gap-y-[30px]">
+            <div className="flex justify-between gap-y-[30px]">
               {statistics
                 .filter((_, index) => index % 2 !== 0)
                 .map((stat, index) => (
                   <div
                     key={`odd-${index}`}
-                    className={`flex flex-col items-center justify-center`}
+                    className={`flex flex-col ${index % 2 === 0 ? "items-start" : "items-end"} justify-center`}
                   >
                     <h2 className={`w-max text-2xl font-bold`}>
                       {stat.number}
@@ -34,13 +32,13 @@ const Stats = ({ large }) => {
                 ))}
             </div>
             {/* Juft indexdagi elementlar */}
-            <div className="flex items-center justify-between gap-y-[30px]">
+            <div className="flex justify-between gap-y-[30px]">
               {statistics
                 .filter((_, index) => index % 2 === 0)
                 .map((stat, index) => (
                   <div
                     key={`odd-${index}`}
-                    className={`flex flex-col items-center justify-center`}
+                    className={`flex flex-col ${index % 2 === 0 ? "items-start" : "items-end"} `}
                   >
                     <h2 className={`w-max text-2xl font-bold`}>
                       {stat.number}
@@ -55,10 +53,10 @@ const Stats = ({ large }) => {
             {statistics.map((stat, index) => (
               <div
                 key={index}
-                className={`flex flex-col items-center justify-center md:w-[240px] lg:w-[270px] lg:items-start xl:w-[300px]`}
+                className={`flex flex-col items-center justify-center md:w-[120px] lg:w-[270px] xl:w-[300px]`}
               >
                 <h2
-                  className={`w-max text-[24px] font-bold lg:text-4xl ${
+                  className={`w-max text-[24px] font-bold lg:text-3xl xl:text-4xl ${
                     large && "2xl:text-[84px]"
                   }`}
                 >

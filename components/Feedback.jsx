@@ -1,10 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import { sendFeedback } from "../utils/request";
 
 export default function Feedback({ isOpen, setIsOpen }) {
-  const [formData, setFormData] = useState({
-    fio: "",
+  const [data, setData] = useState({
+    full_name: "",
     phone: "",
     email: "",
     comment: "",
@@ -12,13 +13,29 @@ export default function Feedback({ isOpen, setIsOpen }) {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setData({ ...data, [name]: value });
   };
 
+  console.log(data);
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
-    setIsOpen(false);
+    // Отправка данных на сервер
+    sendFeedback({ data })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        setData({
+          full_name: "",
+          phone: "",
+          email: "",
+          comment: "",
+        });
+        setIsOpen(false);
+      });
   };
 
   return (
@@ -35,14 +52,17 @@ export default function Feedback({ isOpen, setIsOpen }) {
             <h2 className="mb-4 text-xl font-semibold sm:text-2xl">Заявку</h2>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label htmlFor="fio" className="block text-sm font-medium">
+                <label
+                  htmlFor="full_name"
+                  className="block text-sm font-medium"
+                >
                   Ф.И.О.
                 </label>
                 <input
                   type="text"
-                  id="fio"
-                  name="fio"
-                  value={formData.fio}
+                  id="full_name"
+                  name="full_name"
+                  value={data.full_name}
                   onChange={handleChange}
                   className="w-full rounded-md border px-4 py-2 text-sm focus:outline-none focus:ring focus:ring-[#b5ebab] sm:text-base"
                   required
@@ -56,7 +76,7 @@ export default function Feedback({ isOpen, setIsOpen }) {
                   type="tel"
                   id="phone"
                   name="phone"
-                  value={formData.phone}
+                  value={data.phone}
                   onChange={handleChange}
                   className="w-full rounded-md border px-4 py-2 text-sm focus:outline-none focus:ring focus:ring-[#b5ebab] sm:text-base"
                   required
@@ -70,7 +90,7 @@ export default function Feedback({ isOpen, setIsOpen }) {
                   type="email"
                   id="email"
                   name="email"
-                  value={formData.email}
+                  value={data.email}
                   onChange={handleChange}
                   className="w-full rounded-md border px-4 py-2 text-sm focus:outline-none focus:ring focus:ring-[#b5ebab] sm:text-base"
                   required
@@ -83,7 +103,7 @@ export default function Feedback({ isOpen, setIsOpen }) {
                 <textarea
                   id="comment"
                   name="comment"
-                  value={formData.comment}
+                  value={data.comment}
                   onChange={handleChange}
                   rows="4"
                   className="w-full rounded-md border px-4 py-2 text-sm focus:outline-none focus:ring focus:ring-[#b5ebab] sm:text-base"

@@ -88,9 +88,11 @@ const CompanyPage = () => {
               через вложения в проекты.
             </p>
             <div className="flex w-full flex-col justify-center gap-[20px] md:shrink-0 md:flex-row md:gap-[30px] lg:w-auto">
-              <button className="flex-1 text-nowrap rounded-[3px] border border-gray-dark py-[20px] text-[14px] font-bold leading-[120%] text-gray-dark transition active:scale-95 md:border-2 md:px-[70px] md:text-[20px] md:leading-[24px]">
-                Как это работает
-              </button>
+              <Link href={"/profile/create"}>
+                <button className="flex-1 text-nowrap rounded-[3px] border border-gray-dark py-[20px] text-[14px] font-bold leading-[120%] text-gray-dark transition active:scale-95 md:border-2 md:px-[70px] md:text-[20px] md:leading-[24px]">
+                  Как это работает
+                </button>
+              </Link>
               <Link href={"/profile/create"}>
                 <button className="flex-1 text-nowrap rounded-[3px] border border-primary bg-primary py-[20px] text-[14px] font-bold leading-[120%] text-white transition active:scale-95 md:border-2 md:px-[70px] md:text-[20px] md:leading-[24px]">
                   Разместить компанию
