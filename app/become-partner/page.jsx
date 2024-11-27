@@ -8,6 +8,8 @@ import Stats from "../../components/sections/Stats";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Head from "next/head";
+import { useState } from "react";
+import Feedback from "@/components/Feedback";
 
 const roles = [
   {
@@ -29,11 +31,12 @@ const roles = [
 ];
 
 const BecomePartnerPage = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
 
   return (
     <>
-    <Head>
+      <Head>
         <title>{"BUSIPOOL | Стать парнером"}</title>
         <meta
           name="description"
@@ -43,118 +46,127 @@ const BecomePartnerPage = () => {
         />
         <link rel="icon" href="/Fav.png" />
       </Head>
-    <section>
-      <div className="max-container pt-[30px] md:pt-[100px]">
-        <Stats />
-      </div>
-      <div className="max-container mb-[30px] mt-[60px] md:mt-[100px]">
-        <BusipoolLogoLarge />
-      </div>
+      <section>
+        <div className="max-container pt-[30px] md:pt-[100px]">
+          <Stats />
+        </div>
+        <div className="max-container mb-[30px] mt-[60px] md:mt-[100px]">
+          <BusipoolLogoLarge />
+        </div>
 
-      <div className="max-container">
-        <div className="mb-[100px] mt-[30px] flex flex-wrap items-center justify-center gap-x-[20px] gap-y-[60px] md:mb-[150px] md:mt-[100px] wide:flex-nowrap">
-        <p className="text-lg font-light tracking-[0.01em] text-primary md:text-center lg:text-base wide:flex-1 wide:text-left 2xl:text-[24px]">
-                Цель нашей краудфандинговой платформы - предоставить вам
-                возможность{" "}
-                <span className="text-lg text-gold lg:text-base 2xl:text-[24px]">
-                  увеличить свои инвестиции
-                </span>{" "}
-                через вложения в проекты.
-              </p>
-          <div className="flex flex-wrap justify-center gap-[30px] md:flex-nowrap">
-            <Button text="Как это работает" />
+        <div className="max-container">
+          <div className="mb-[100px] mt-[30px] flex flex-wrap items-center justify-center gap-x-[20px] gap-y-[60px] md:mb-[150px] md:mt-[100px] wide:flex-nowrap">
+            <p className="text-lg font-light tracking-[0.01em] text-primary md:text-center lg:text-base wide:flex-1 wide:text-left 2xl:text-[24px]">
+              Цель нашей краудфандинговой платформы - предоставить вам
+              возможность{" "}
+              <span className="text-lg text-gold lg:text-base 2xl:text-[24px]">
+                увеличить свои инвестиции
+              </span>{" "}
+              через вложения в проекты.
+            </p>
+            <div className="flex flex-wrap justify-center gap-[30px] md:flex-nowrap">
+              <Link href={"/profile/create"}>
+                <Button text="Как это работает" />
+              </Link>
+              <Link href={"/profile/create"}>
+                <Button text="Разместить компанию" primary />
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        <div className="max-container mb-[100px] md:mb-[150px]">
+          <h2 className="section-title mb-[30px] md:mb-[100px]">
+            Какие возможности для вас?
+          </h2>
+
+          <SwiperSection />
+
+          <div className="flex flex-wrap items-center justify-center gap-[30px] sm:gap-[20px]">
+            <Button
+              text="Все проекты"
+              primary
+              onclick={() => router.push("projects")}
+            />
             <Link href={"/profile/create"}>
-              <Button text="Разместить компанию" primary />
+              <Button text="Создать свой" />
             </Link>
           </div>
         </div>
-      </div>
 
-      <div className="max-container mb-[100px] md:mb-[150px]">
-        <h2 className="section-title mb-[30px] md:mb-[100px]">
-          Какие возможности для вас?
-        </h2>
-
-        <SwiperSection />
-
-        <div className="flex flex-wrap items-center justify-center gap-[30px] sm:gap-[20px]">
-          <Button
-            text="Все проекты"
-            primary
-            onclick={() => router.push("projects")}
-          />
-          <Button text="Создать свой" />
+        <div className="max-container mb-[100px] flex flex-col flex-wrap justify-between md:mb-[150px] lg:flex-row">
+          <div className="w-full flex-1 lg:max-w-[850px]">
+            <h2 className="section-title mb-[30px] !text-left">
+              Что такое BUSIPOOL и как проходят сделки на платформе?
+            </h2>
+            <p className="text-base font-light leading-[120%] text-gray-light md:text-[22px]">
+              Что такое BUSIPOOL и как проходят сделки на платформе?
+            </p>
+          </div>
+          <div className="w-full flex-1 lg:max-w-[700px]">
+            <p className="mb-[30px] text-base font-light leading-[120%] text-gray-light md:text-[24px]">
+              BUSIPOOL - это онлайн-платформа для совершения сделок с{" "}
+              <span className="text-base font-bold text-gray-dark md:text-[24px]">
+                внебиржевыми ценными бумагами (акциями и облигациями)
+              </span>
+              . Основной смысл BUSIPOOL - дать компании возможность привлекать
+              инвесторов в капитал (долю в компании) в онлайн-формате, а
+              инвестору дать возможность приобрести долю в перспективной
+              компании на preSeed, Seed, Series A, B, C - до начала её
+              публичного размещения.
+            </p>
+            <p className="mb-[30px] text-base font-light leading-[120%] text-gray-light md:text-[24px]">
+              BUSIPOOL реализует идею создания в России C Corp и OTC-markets,
+              <span className="text-base font-bold text-gray-dark md:text-[24px]">
+                {" "}
+                но наша основная логика - российские деньги для российских
+                компаний в российской юрисдикции в легальной конструкции, онлайн
+                и без налогов
+              </span>
+              . Деньги, полученные от продажи акций, компания может сразу
+              использовать для финансирования своего развития.
+            </p>
+            <p className="mb-[30px] text-base font-light leading-[120%] text-gray-light md:text-[24px]">
+              В рамках сделок на BUSIPOOL существует{" "}
+              <span className="text-base font-bold text-gray-dark md:text-[24px]">
+                экосистема из партнёров, которые участвуют в подготовке компаний
+                к размещению акций
+              </span>
+              . Ниже вы найдёте основные роли, также вам будет предложено
+              оставить заявку, чтобы получить более детальное описание процесса.
+            </p>
+          </div>
         </div>
-      </div>
 
-      <div className="max-container mb-[100px] flex flex-col flex-wrap justify-between md:mb-[150px] lg:flex-row">
-        <div className="w-full flex-1 lg:max-w-[850px]">
-          <h2 className="section-title mb-[30px] !text-left">
-            Что такое BUSIPOOL и как проходят сделки на платформе?
+        <div className="max-container">
+          <h2 className="section-title mb-[30px] md:mb-[100px]">
+            Основные роли в сделках
           </h2>
-          <p className="text-base font-light leading-[120%] text-gray-light md:text-[22px]">
-            Что такое BUSIPOOL и как проходят сделки на платформе?
-          </p>
+
+          <div className="mb-[100px] flex flex-wrap justify-center gap-[20px]">
+            {roles.map((role, index) => (
+              <div key={index} className="flex flex-1 flex-col items-center">
+                <h2 className="mb-[30px] w-[230px] border-b-2 border-gray-dark pb-[10px] text-center text-[20px] font-bold leading-[120%] text-gray-dark md:mb-[60px] md:w-full md:pb-[20px] md:text-[32px]">
+                  {role.title}
+                </h2>
+                <p className="wrap-balance text-base font-light leading-[140%] text-gray-light md:text-[24px] md:leading-[31px]">
+                  {role.text}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
-        <div className="w-full flex-1 lg:max-w-[700px]">
-          <p className="mb-[30px] text-base font-light leading-[120%] text-gray-light md:text-[24px]">
-            BUSIPOOL - это онлайн-платформа для совершения сделок с{" "}
-            <span className="text-base font-bold text-gray-dark md:text-[24px]">
-              внебиржевыми ценными бумагами (акциями и облигациями)
-            </span>
-            . Основной смысл BUSIPOOL - дать компании возможность привлекать
-            инвесторов в капитал (долю в компании) в онлайн-формате, а инвестору
-            дать возможность приобрести долю в перспективной компании на
-            preSeed, Seed, Series A, B, C - до начала её публичного размещения.
-          </p>
-          <p className="mb-[30px] text-base font-light leading-[120%] text-gray-light md:text-[24px]">
-            BUSIPOOL реализует идею создания в России C Corp и OTC-markets,
-            <span className="text-base font-bold text-gray-dark md:text-[24px]">
-              {" "}
-              но наша основная логика - российские деньги для российских
-              компаний в российской юрисдикции в легальной конструкции, онлайн и
-              без налогов
-            </span>
-            . Деньги, полученные от продажи акций, компания может сразу
-            использовать для финансирования своего развития.
-          </p>
-          <p className="mb-[30px] text-base font-light leading-[120%] text-gray-light md:text-[24px]">
-            В рамках сделок на BUSIPOOL существует{" "}
-            <span className="text-base font-bold text-gray-dark md:text-[24px]">
-              экосистема из партнёров, которые участвуют в подготовке компаний к
-              размещению акций
-            </span>
-            . Ниже вы найдёте основные роли, также вам будет предложено оставить
-            заявку, чтобы получить более детальное описание процесса.
-          </p>
+
+        <div className="max-container mb-[100px] flex justify-center md:mb-[150px]">
+          <Button
+            text="Оставить заявку, чтобы получить информацию об акционировании"
+            onclick={() => setIsOpen(true)}
+          />
+          <Feedback isOpen={isOpen} setIsOpen={setIsOpen} />
         </div>
-      </div>
 
-      <div className="max-container">
-        <h2 className="section-title mb-[30px] md:mb-[100px]">
-          Основные роли в сделках
-        </h2>
-
-        <div className="mb-[100px] flex flex-wrap justify-center gap-[20px]">
-          {roles.map((role, index) => (
-            <div key={index} className="flex flex-1 flex-col items-center">
-              <h2 className="mb-[30px] w-[230px] border-b-2 border-gray-dark pb-[10px] text-center text-[20px] font-bold leading-[120%] text-gray-dark md:mb-[60px] md:w-full md:pb-[20px] md:text-[32px]">
-                {role.title}
-              </h2>
-              <p className="wrap-balance text-base font-light leading-[140%] text-gray-light md:text-[24px] md:leading-[31px]">
-                {role.text}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="max-container mb-[100px] flex justify-center md:mb-[150px]">
-        <Button text="Оставить заявку, чтобы получить информацию об акционировании" />
-      </div>
-
-      <HomeBlogs />
-    </section>
+        <HomeBlogs />
+      </section>
     </>
   );
 };

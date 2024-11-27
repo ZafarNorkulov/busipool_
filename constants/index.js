@@ -83,7 +83,7 @@ export const footerLinks = [
     title: "остались Вопросы?",
     links: [
       {
-        href: "/how-it-works",
+        href: "/profile/create",
         label: "Как это работает",
       },
       {
@@ -172,5 +172,3 @@ export const profileIcons = {
   settings,
   shutdown,
 };
-
-

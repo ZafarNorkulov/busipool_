@@ -49,7 +49,7 @@ const Stats = ({ large }) => {
             </div>
           </>
         ) : (
-          <div className="flex flex-wrap items-baseline justify-between">
+          <div className="flex items-baseline justify-between">
             {statistics.map((stat, index) => (
               <div
                 key={index}
@@ -62,7 +62,7 @@ const Stats = ({ large }) => {
                 >
                   {stat.number}
                 </h2>
-                <p className="w-max text-xs font-light md:mt-[10px] md:text-lg lg:text-[20px] 2xl:text-[24px]">
+                <p className="w-max text-xs font-light md:mt-[10px] md:text-base lg:text-[20px] 2xl:text-[24px]">
                   {stat.label}
                 </p>
               </div>

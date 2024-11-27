@@ -56,7 +56,7 @@ const Footer = () => {
       </div>
       <div className="max-container py-[60px]">
         {/* footer links */}
-        <div className="mb-[60px] grid grid-cols-[repeat(2,auto)] md:grid-cols-4 md:gap-5 lg:gap-[30px]">
+        <div className="mb-[60px] grid grid-cols-[repeat(2,auto)] justify-around md:grid-cols-4 md:gap-5 lg:gap-[30px]">
           {footerLinks.map((item, index) => (
             <div key={index} className="w-max">
               <h3 className="md:text-md mb-3 max-w-max text-sm font-bold uppercase leading-[20px] text-gray-light md:mb-[40px] lg:text-lg">

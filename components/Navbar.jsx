@@ -61,6 +61,7 @@ const Navbar = () => {
               className={`relative flex cursor-pointer items-center font-bold uppercase leading-normal hover:text-primary ${path.includes("/about-us") && "text-primary"}`}
               onClick={() => setExtraLinksMenu((prev) => !prev)}
             >
+              
               О нас
               <FaChevronDown className="ml-1 inline-block text-[14px] font-[900]" />
             </li>
@@ -162,7 +163,7 @@ const Navbar = () => {
       <div
         className={`${
           mobileNavbarMenu ? "block" : "hidden"
-        } absolute left-0 right-0 top-full w-screen h-screen z-10 bg-headerColor px-[20px] py-[60px]`}
+        } absolute left-0 right-0 top-full z-10 h-screen w-screen bg-headerColor px-[20px] py-[60px]`}
       >
         {/* Right Side Menu Mobile (Logged Out) */}
         {!auth.isAuthenticated && (
@@ -241,21 +242,21 @@ const Navbar = () => {
           </div>
         )}
         {/* {width > 768 && ( */}
-          <ul className="mb-[60px] mt-[30px] text-gray-dark">
-            {navLinks.map((item, index) => (
-              <li
-                key={index}
-                className={`mb-[30px] font-bold hover:text-primary focus:text-primary focus-visible:text-primary active:text-primary ${path == item.href && "text-primary"}`}
+        <ul className="mb-[60px] mt-[30px] text-gray-dark">
+          {navLinks.map((item, index) => (
+            <li
+              key={index}
+              className={`mb-[30px] font-bold hover:text-primary focus:text-primary focus-visible:text-primary active:text-primary ${path == item.href && "text-primary"}`}
+            >
+              <Link
+                href={item.href}
+                className="text-[24px] font-bold leading-[110%]"
               >
-                <Link
-                  href={item.href}
-                  className="text-[24px] font-bold leading-[110%]"
-                >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
+                {item.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
 
         {/* Social media icons */}
         {width > 768 && (

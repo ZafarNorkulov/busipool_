@@ -50,7 +50,9 @@ const FAQPage = () => {
           </div>
         </div>
       </div>
-      <SwiperSection />
+      <div className="max-container">
+        <SwiperSection />
+      </div>
       <HomeBlogs />
     </>
   );

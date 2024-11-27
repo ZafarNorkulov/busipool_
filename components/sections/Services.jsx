@@ -8,23 +8,31 @@ const Services = () => {
         Выберите нужный вам раздел
       </h2>
 
-      <div className="flex flex-wrap justify-center gap-[30px]">
-        <ServiceCard
-          title="Инвестировать"
-          description="Информация для новых инвесторов о том, как устроен процесс сделок"
-        />
-        <ServiceCard
-          title="Разместить компанию"
-          description="Информация для новых инвесторов о том, как устроен процесс сделок"
-        />
-        <ServiceCard
-          title="Стать партнером"
-          description="Если вы хотели бы помочь в проведении инвестиционных сделок"
-        />
-        <ServiceCard
-          title="Войти в личный кабинет"
-          description="Если вы уже зарегистрированы, то можете войти для изучения предложений"
-        />
+      <div className="grid grid-cols-12 justify-center gap-[30px]">
+        <div className="col-span-12 flex items-center justify-center lg:col-span-6">
+          <ServiceCard
+            title="Инвестировать"
+            description="Информация для новых инвесторов о том, как устроен процесс сделок"
+          />
+        </div>
+        <div className="col-span-12 flex items-center justify-center lg:col-span-6">
+          <ServiceCard
+            title="Разместить компанию"
+            description="Информация для новых инвесторов о том, как устроен процесс сделок"
+          />
+        </div>
+        <div className="col-span-12 flex items-center justify-center lg:col-span-6">
+          <ServiceCard
+            title="Стать партнером"
+            description="Если вы хотели бы помочь в проведении инвестиционных сделок"
+          />
+        </div>
+        <div className="col-span-12 flex items-center justify-center lg:col-span-6">
+          <ServiceCard
+            title="Войти в личный кабинет"
+            description="Если вы уже зарегистрированы, то можете войти для изучения предложений"
+          />
+        </div>
       </div>
     </section>
   );

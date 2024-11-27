@@ -220,7 +220,9 @@ const InvestorPage = () => {
 
           <div className="mb-[100px] flex flex-1 flex-wrap justify-center gap-[30px] md:hidden md:flex-nowrap">
             <Button text="Все проекты" primary />
-            <Button text="Создать свой" />
+            <Link href={"/profile/create"}>
+              <Button text="Создать свой" />
+            </Link>
           </div>
         </div>
 

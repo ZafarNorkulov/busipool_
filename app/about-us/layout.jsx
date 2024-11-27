@@ -11,8 +11,6 @@ const AboutUsPageLayout = ({ children }) => {
 
   const isBlogPage = !isNaN(Number(pathName.split("/").pop()));
 
-  console.log(isBlogPage);
-
   return (
     <section>
       <Scroll />
