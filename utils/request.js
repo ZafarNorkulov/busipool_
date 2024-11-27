@@ -81,3 +81,22 @@ export const sendFeedback = async ({ data }) => {
     return error;
   }
 };
+export const sendSMS = async ({ data, token }) => {
+  try {
+    if (!BASE_URL) return console.log("BASE_URL is not defined");
+
+    const response = await fetch(`${BASE_URL}/verification`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ code: data }),
+    });
+    if (!response.ok) throw new Error("Failed to fetch data");
+    return response;
+  } catch (error) {
+    return error;
+  }
+};

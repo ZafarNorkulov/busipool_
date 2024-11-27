@@ -15,6 +15,7 @@ import NavLink from "./NavLink";
 import { useAppDispatch, useAppSelector } from "@/store";
 import { getProfile } from "@/app/api/profile/profile";
 import { AUTH_ACTIONS } from "@/store/auth";
+import useWindowSize from "@/hooks/useWindowSize";
 
 const Navbar = () => {
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
@@ -27,7 +28,7 @@ const Navbar = () => {
   const auth = useAppSelector((state) => state.auth);
 
   const dispatch = useAppDispatch();
-
+  const { width } = useWindowSize();
   useEffect(() => {
     setMobileNavbarMenu(false);
     setExtraLinksMenu(false);
@@ -126,19 +127,20 @@ const Navbar = () => {
             />
           </div>
         )}
-
-        <div
-          className={`${isProfileMenuOpen ? "scale-100" : "scale-y-0"} absolute right-0 top-[100px] z-50 origin-top transition`}
-        >
-          <ProfileMenu
-            closeProfileMenu={() => {
-              setIsProfileMenuOpen(false);
-            }}
-            shutdown={() => {
-              dispatch(AUTH_ACTIONS.signOut());
-            }}
-          />
-        </div>
+        {width > 768 && (
+          <div
+            className={`${isProfileMenuOpen ? "scale-100" : "scale-y-0"} absolute right-0 top-[100px] z-50 origin-top transition`}
+          >
+            <ProfileMenu
+              closeProfileMenu={() => {
+                setIsProfileMenuOpen(false);
+              }}
+              shutdown={() => {
+                dispatch(AUTH_ACTIONS.signOut());
+              }}
+            />
+          </div>
+        )}
 
         {/* Mobile navbar burger */}
         <div className="xl:hidden">
@@ -149,7 +151,10 @@ const Navbar = () => {
             sizes="100%"
             alt="menu"
             className="h-[50px] w-[44px] cursor-pointer object-contain transition-all"
-            onClick={() => setMobileNavbarMenu((prev) => !prev)}
+            onClick={() => {
+              setMobileNavbarMenu((prev) => !prev);
+              width < 768 ? setIsProfileMenuOpen((prev) => !prev) : "";
+            }}
           />
         </div>
       </nav>
@@ -157,7 +162,7 @@ const Navbar = () => {
       <div
         className={`${
           mobileNavbarMenu ? "block" : "hidden"
-        } absolute left-0 right-0 top-full z-10 bg-headerColor px-[20px] py-[60px]`}
+        } absolute left-0 right-0 top-full w-screen h-screen z-10 bg-headerColor px-[20px] py-[60px]`}
       >
         {/* Right Side Menu Mobile (Logged Out) */}
         {!auth.isAuthenticated && (
@@ -223,40 +228,58 @@ const Navbar = () => {
             )}
           </>
         )}
-
-        <ul className="mb-[60px] mt-[30px] text-gray-dark">
-          {navLinks.map((item, index) => (
-            <li
-              key={index}
-              className={`mb-[30px] font-bold hover:text-primary focus:text-primary focus-visible:text-primary active:text-primary ${path == item.href && "text-primary"}`}
-            >
-              <Link
-                href={item.href}
-                className="text-[24px] font-bold leading-[110%]"
+        {auth.isAuthenticated && path.includes("/profile") && width < 768 && (
+          <div
+            className={`${isProfileMenuOpen ? "right-0 top-[120px]" : "-right-[150vw] -top-[150vh]"} absolute z-50 origin-top transition`}
+          >
+            <ProfileMenu
+              large={true}
+              closeProfileMenu={() => {
+                setIsProfileMenuOpen(false);
+              }}
+            />
+          </div>
+        )}
+        {/* {width > 768 && ( */}
+          <ul className="mb-[60px] mt-[30px] text-gray-dark">
+            {navLinks.map((item, index) => (
+              <li
+                key={index}
+                className={`mb-[30px] font-bold hover:text-primary focus:text-primary focus-visible:text-primary active:text-primary ${path == item.href && "text-primary"}`}
               >
-                {item.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
+                <Link
+                  href={item.href}
+                  className="text-[24px] font-bold leading-[110%]"
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
 
         {/* Social media icons */}
-        <ul className="mx-auto flex w-[238px] items-center justify-between">
-          {socialMedia.map((item, index) => (
-            <li key={index}>
-              <Link href={item.href} target="_blank" rel="noopener noreferrer">
-                <Image
-                  src={item.src}
-                  width={37}
-                  height={37}
-                  sizes="100%"
-                  className="h-[37px] w-[37px]"
-                  alt={item.alt}
-                />
-              </Link>
-            </li>
-          ))}
-        </ul>
+        {width > 768 && (
+          <ul className="mx-auto flex w-[238px] items-center justify-between">
+            {socialMedia.map((item, index) => (
+              <li key={index}>
+                <Link
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Image
+                    src={item.src}
+                    width={37}
+                    height={37}
+                    sizes="100%"
+                    className="h-[37px] w-[37px]"
+                    alt={item.alt}
+                  />
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </header>
   );

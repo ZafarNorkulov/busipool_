@@ -16,7 +16,7 @@ export default function Feedback({ isOpen, setIsOpen }) {
     setData({ ...data, [name]: value });
   };
 
-  console.log(data);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     // Отправка данных на сервер

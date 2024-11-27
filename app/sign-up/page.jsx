@@ -25,7 +25,10 @@ const SignUpPage = () => {
     e.preventDefault();
     registerUser(user)
       .then((response) => {
-        router.push("/sign-in");
+        router.push("/sign-up/confirm");
+        localStorage.setItem("access_token", response?.token?.access);
+        localStorage.setItem("refresh_token", response?.token?.refresh);
+        console.log(response);
       })
       .catch((error) => {
         console.log(error);
@@ -34,11 +37,6 @@ const SignUpPage = () => {
   useEffect(() => {
     GetRole().then((response) => setRoles(response));
   }, []);
-  const options = [
-    { value: "chocolate", label: "Chocolate" },
-    { value: "strawberry", label: "Strawberry" },
-    { value: "vanilla", label: "Vanilla" },
-  ];
 
   return (
     <>

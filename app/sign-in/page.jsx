@@ -90,9 +90,7 @@ const SignInPage = () => {
 
             <div className="mb-4 lg:mb-[30px]">
               <Button text="Войти" fullWidth primary />
-              <p className="mb-[10px] mt-4 text-center text-[10px] font-light leading-[120%] lg:mt-[30px] xl:text-[14px]">
-                или войдите с помощью
-              </p>
+              <p className="mb-[10px] mt-4 text-center text-[10px] font-light leading-[120%] lg:mt-[30px] xl:text-[14px]"></p>
               {/* {Object.values(providers).map((provider, index) => (
                 <button
                   onClick={() => signIn(provider.id)}

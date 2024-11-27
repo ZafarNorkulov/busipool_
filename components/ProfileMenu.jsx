@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-const ProfileMenu = ({ shutdown, closeProfileMenu }) => {
+const ProfileMenu = ({ closeProfileMenu, large }) => {
   const dispatch = useAppDispatch();
 
   const [role, setRole] = useState("");
@@ -18,7 +18,7 @@ const ProfileMenu = ({ shutdown, closeProfileMenu }) => {
   return (
     <div
       id="profile-menu"
-      className="w-[370px] select-none bg-headerColor px-[60px] py-[30px]"
+      className={`${large ? "h-screen w-screen" : "w-[370px]"} select-none bg-headerColor md:px-[60px] px-[20px] py-[30px]`}
     >
       {role?.toLowerCase() === "business" && (
         <Link
@@ -145,7 +145,6 @@ const ProfileMenu = ({ shutdown, closeProfileMenu }) => {
             href="#!"
             className="menu-link"
             onClick={() => {
-              shutdown();
               closeProfileMenu();
               dispatch(AUTH_ACTIONS.signOut());
             }}

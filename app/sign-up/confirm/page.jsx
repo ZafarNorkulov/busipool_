@@ -1,11 +1,35 @@
+"use client";
 import Button from "@/components/Button";
 import Link from "next/link";
 import logo from "@/assets/images/logo.png";
 import img2 from "@/assets/images/login-images/img2.png";
 import Image from "next/image";
 import Head from "next/head";
+import { sendSMS } from "@/utils/request";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
-const SignInPage = () => {
+const Verify = () => {
+  const [data, setData] = useState();
+
+  const router = useRouter();
+  const VirefiedwithCode = (e) => {
+    e.preventDefault();
+
+    const token = localStorage.getItem("access_token");
+    // Отправка данных на сервер
+    sendSMS({ data, token })
+      .then((response) => {
+        console.log(response);
+        if (response.ok) {
+          router.push("/profile");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <>
       <Head>
@@ -20,6 +44,9 @@ const SignInPage = () => {
       </Head>
       <main className="flex flex-col-reverse overflow-hidden md:flex-row">
         <section className="flex w-full flex-1 flex-col items-center justify-center pt-3 lg:w-[560px] extraWide:w-[760px]">
+          <strong className="mb-4 bg-[#b5ebab] px-1 text-[#4f4f4f]">
+            Код был отправлен по вашей электронной почте
+          </strong>
           <form className="w-[calc(100%-20px)] sm:w-[calc(100%-150px)] md:w-[calc(100%-30px)] 2xl:md:w-[calc(100%-100px)]">
             <div className="mb-2 lg:mb-[30px]">
               <label htmlFor="email-phone" className="label-text">
@@ -27,14 +54,21 @@ const SignInPage = () => {
               </label>
               <input
                 type="text"
+                value={data}
                 id="email-phone"
                 className="login-input"
                 placeholder="000-000"
+                onChange={(e) => setData(e.target.value)}
               />
             </div>
 
             <div className="mb-4 md:mb-[30px] lg:mb-[60px] extraWide:mb-[150px]">
-              <Button text="Продолжить" fullWidth primary />
+              <Button
+                text="Продолжить"
+                fullWidth
+                primary
+                onclick={(e) => VirefiedwithCode(e)}
+              />
             </div>
 
             <p className="text-[10px] font-light text-gray-light extraWide:text-[14px] extraWide:leading-[24px]">
@@ -95,4 +129,4 @@ const SignInPage = () => {
   );
 };
 
-export default SignInPage;
+export default Verify;

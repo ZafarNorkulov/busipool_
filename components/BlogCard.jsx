@@ -16,7 +16,7 @@ const BlogCard = ({ img, title, text, large, id }) => {
         sizes="100%"
         priority={true}
         alt="blog images"
-        className={`lg:h-[239px] lg:w-[239px] md:w-[200px] md:h-[200px] h-[120px] w-[120px] object-cover shrink-0 rounded-[5px] `}
+        className={`xl:h-[239px] xl:w-[239px] lg:w-[220px] lg:h-[220px] md:w-[170px] md:h-[170px] h-[120px] w-[120px] object-cover shrink-0 rounded-[5px] `}
       />
 
       <div className="flex w-full flex-col justify-end">
