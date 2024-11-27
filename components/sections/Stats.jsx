@@ -62,7 +62,7 @@ const Stats = ({ large }) => {
                 >
                   {stat.number}
                 </h2>
-                <p className="w-max text-xs font-light md:mt-[10px] md:text-base lg:text-[20px] 2xl:text-[24px]">
+                <p className="mt-[5px] w-max text-xs font-light md:mt-[10px] md:text-base lg:text-[20px] 2xl:text-[24px]">
                   {stat.label}
                 </p>
               </div>
