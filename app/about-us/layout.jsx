@@ -24,11 +24,11 @@ const AboutUsPageLayout = ({ children }) => {
             <BusipoolLogoLarge />
           </div>
           <div className="max-container">
-            <div className="mb-[100px] mt-[30px] flex flex-wrap items-center justify-center gap-x-[20px] gap-y-[60px] md:mb-[150px] md:mt-[100px] wide:flex-nowrap">
-              <p className="text-lg font-light tracking-[0.01em] text-primary md:text-center lg:text-base wide:flex-1 wide:text-left 2xl:text-[24px]">
+            <div className="mb-[100px] mt-[30px] flex flex-wrap items-center justify-center gap-x-[20px] gap-y-[60px] md:mb-[60px] md:mt-[60px] lg:flex-none xl:mb-[100px] xl:mt-[100px] wide:flex-nowrap">
+              <p className="text-center text-xl font-light tracking-[0.01em] text-primary md:text-lg lg:text-[15px] xl:text-left xl:text-[18px] wide:flex-1 2xl:text-[24px]">
                 Цель нашей краудфандинговой платформы - предоставить вам
                 возможность{" "}
-                <span className="text-lg text-gold lg:text-base 2xl:text-[24px]">
+                <span className="text-xl text-gold md:text-lg lg:text-[15px] xl:text-[18px] 2xl:text-[24px]">
                   увеличить свои инвестиции
                 </span>{" "}
                 через вложения в проекты.

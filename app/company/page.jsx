@@ -78,32 +78,28 @@ const CompanyPage = () => {
           <BusipoolLogoLarge />
         </div>
         <div className="max-container">
-          <div className="flex flex-col items-center gap-x-[20px] gap-y-[30px] md:mt-[100px] xl:flex-row">
-            <p className="text-lg font-light tracking-[0.01em] text-primary md:text-center lg:text-base wide:flex-1 wide:text-left 2xl:text-[24px]">
+          <div className="mb-[100px] mt-[30px] flex flex-wrap items-center justify-center gap-x-[20px] gap-y-[60px] md:mb-[60px] md:mt-[60px] lg:flex-nowrap xl:mb-[100px] xl:mt-[100px] wide:flex-nowrap">
+            <p className="text-center text-xl font-light tracking-[0.01em] text-primary md:text-lg xl:w-[55%] xl:text-left wide:flex-1 2xl:text-[24px]">
               Цель нашей краудфандинговой платформы - предоставить вам
               возможность{" "}
-              <span className="text-lg text-gold lg:text-base 2xl:text-[24px]">
+              <span className="text-xl text-gold md:text-lg 2xl:text-[24px]">
                 увеличить свои инвестиции
               </span>{" "}
               через вложения в проекты.
             </p>
-            <div className="flex w-full flex-col justify-center gap-[20px] md:shrink-0 md:flex-row md:gap-[30px] lg:w-auto">
-              <Link href={"/profile/create"}>
-                <button className="flex-1 text-nowrap rounded-[3px] border border-gray-dark py-[20px] text-[14px] font-bold leading-[120%] text-gray-dark transition active:scale-95 md:border-2 md:px-[70px] md:text-[20px] md:leading-[24px]">
-                  Как это работает
-                </button>
-              </Link>
-              <Link href={"/profile/create"}>
-                <button className="flex-1 text-nowrap rounded-[3px] border border-primary bg-primary py-[20px] text-[14px] font-bold leading-[120%] text-white transition active:scale-95 md:border-2 md:px-[70px] md:text-[20px] md:leading-[24px]">
-                  Разместить компанию
-                </button>
-              </Link>
+            <div className="w-full flex-col items-stretch gap-[30px] sm:flex sm:flex-row sm:items-center md:flex-nowrap md:justify-center xl:w-[45%]">
+              <Button
+                text="Как это работает"
+                fullWidth={true}
+                style={"sm:mb-0 mb-2"}
+              />
+              <Button text="Разместить компанию" primary fullWidth={true} />
             </div>
           </div>
         </div>
         {/* Who is Busipool suitable for? */}
         <div className="max-container">
-          <div className="pt-[100px] md:pt-[150px]">
+          <div className="">
             <h2 className="section-title mb-[30px] md:mb-[100px]">
               Кому подойдет BUSIPOOL?
             </h2>

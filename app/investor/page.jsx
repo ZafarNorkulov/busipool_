@@ -59,22 +59,15 @@ const InvestorPage = () => {
         </div>
 
         <div className="max-container">
-          <div className="mt-[30px] flex flex-wrap items-center justify-center gap-x-[20px] gap-y-[30px] md:mt-[100px] wide:flex-nowrap">
-            <p className="text-lg font-light tracking-[0.01em] text-primary md:text-center lg:text-base wide:flex-1 wide:text-left 2xl:text-[24px]">
+          <div className="mb-[100px] mt-[30px] flex flex-wrap items-center justify-center gap-x-[20px] gap-y-[60px] md:mb-[60px] md:mt-[60px] lg:flex-nowrap xl:mb-[100px] xl:mt-[100px] wide:flex-nowrap">
+            <p className="text-lg font-light tracking-[0.01em] text-primary md:text-center md:text-[14px] lg:text-[15px] 2xl:text-[24px]">
               Цель нашей краудфандинговой платформы - предоставить вам
               возможность{" "}
-              <span className="text-lg text-gold lg:text-base 2xl:text-[24px]">
+              <span className="text-lg text-gold md:text-[14px] lg:text-[15px] 2xl:text-[24px]">
                 увеличить свои инвестиции
               </span>{" "}
               через вложения в проекты.
             </p>
-
-            {!token && (
-              <div className="flex flex-1 flex-wrap justify-center gap-[10px] md:flex-nowrap">
-                <SignUpLink />
-                <SignInLink />
-              </div>
-            )}
           </div>
         </div>
 

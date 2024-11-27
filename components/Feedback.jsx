@@ -16,7 +16,6 @@ export default function Feedback({ isOpen, setIsOpen }) {
     setData({ ...data, [name]: value });
   };
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
     // Отправка данных на сервер
@@ -116,13 +115,13 @@ export default function Feedback({ isOpen, setIsOpen }) {
                   onClick={() => setIsOpen(false)}
                   className="rounded-md bg-gray-300 px-4 py-2 text-sm text-gray-700 hover:bg-gray-400 sm:text-base"
                 >
-                  Cancel
+                  Отменить
                 </button>
                 <button
                   type="submit"
                   className="rounded-md bg-[#78a371] px-4 py-2 text-sm text-white hover:bg-[#659a5e] sm:text-base"
                 >
-                  Submit
+                  Отправить
                 </button>
               </div>
             </form>

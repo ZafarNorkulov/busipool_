@@ -26,7 +26,7 @@ const AboutUsPage = () => {
         <link rel="icon" href="/Fav.png" />
       </Head>
       <section>
-        <div className="max-container mb-[100px] mt-[100px] md:mb-[150px] md:mt-[150px] 2xl:mx-36">
+        <div className="max-container mb-[100px] mt-[100px] md:mb-[150px] md:mt-[150px]">
           <h2 className="section-title mb-[30px] md:mb-[100px]">
             Развитие проекта в 2024-2025 годах
           </h2>
