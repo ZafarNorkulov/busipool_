@@ -8,7 +8,7 @@ const NavLink = ({ href, children, onclick }) => {
   return (
     <li className="relative" onClick={onclick}>
       <Link
-        className={`flex items-center font-bold uppercase leading-normal hover:text-primary focus:text-primary focus-visible:text-primary active:text-primary ${path == href && "text-primary"}`}
+        className={`flex items-center font-bold uppercase leading-normal hover:text-primary focus:text-primary focus-visible:text-primary active:text-primary xl:text-base text-sm ${path == href && "text-primary"}`}
         href={href}
       >
         {children}

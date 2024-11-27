@@ -7,7 +7,6 @@ import Services from "@/components/sections/Services";
 import Stats from "../components/sections/Stats";
 import Head from "next/head";
 
-
 const HomePage = () => {
   <Head>
     <title>{"BUSIPOOL | Инвестиции в будущее"}</title>

@@ -12,7 +12,7 @@ const HomeProjects = () => {
 
       <SwiperSection />
 
-      <div className="flex flex-wrap items-center justify-center gap-[30px] sm:gap-[20px]">
+      <div className="flex items-center justify-center gap-[10px] md:gap-[30px]">
         <Link href={"/projects"}>
           <Button text="Все проекты" primary />
         </Link>

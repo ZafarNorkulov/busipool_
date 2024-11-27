@@ -60,10 +60,10 @@ const BlogPage = () => {
       </Head>
       <section>
         <div className="max-container mb-[30px] mt-[30px] flex justify-between md:mb-[100px] md:mt-[100px]">
-          <Link href={`/about-us/blog/${nextId ? nextId:"#"}`}>
+          <Link href={`/about-us/blog/${nextId ? nextId : "#"}`}>
             <Button text="Следующая статья" />
           </Link>
-          <Link href={`/about-us/blog/${prevId?prevId:"#"}`}>
+          <Link href={`/about-us/blog/${prevId ? prevId : "#"}`}>
             <Button text="Назад" />
           </Link>
         </div>
@@ -71,21 +71,23 @@ const BlogPage = () => {
         <div className="max-container mx-auto md:max-w-[1430px]">
           <Image
             src={blog?.image || blog1}
-            width={0}
-            height={0}
-            sizes="100%"
-            priority={true}
+            width={500}
+            height={500}
+            priority
             alt="blog image"
-            className="mb-[30px] object-contain md:mb-[100px]"
+            className="mb-[30px] h-full max-h-[600px] w-full max-w-[1720px] rounded-xl md:mb-[100px]"
           />
 
-          <h2 className="mb-[20px] text-center text-2xl font-bold leading-[110%] text-gray-dark md:mb-[60px] md:text-[64px] md:leading-[120%]">
+          <h2 className="mx-auto mb-[20px] w-max text-center text-2xl font-bold leading-[110%] text-gray-dark md:mb-[60px] md:text-[64px] md:leading-[120%]">
             {blog?.title}
           </h2>
 
           <div className="mx-auto mb-[30px] max-w-[1430px] md:mb-[100px]">
-            <p className="mb-5 text-base font-light leading-[140%] text-gray-light md:mb-[50px] md:text-[36px]">
-              {blog?.description}
+            <p className="mx-5 mb-5 text-left text-base font-light leading-[140%] text-gray-light md:mb-[50px] md:text-[36px] lg:mx-[100px]">
+              {blog?.title}
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minima
+              ipsam non libero doloribus quasi officiis quibusdam iure, esse
+              unde. Sint?
             </p>
           </div>
         </div>
