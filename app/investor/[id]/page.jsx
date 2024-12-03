@@ -9,7 +9,7 @@ import buildProjectImage from "@/assets/images/build-project.png";
 import HomeBlogs from "@/components/sections/HomeBlogs";
 import Spinner from "@/components/Spinner";
 import { SlMagnifier } from "react-icons/sl";
-import { getCities } from "@/utils/request";
+import { getCities, getProjectTypes } from "@/utils/request";
 import { getProjectBusinessType } from "@/app/api/projects/project";
 import { useParams } from "next/navigation";
 import Link from "next/link";
@@ -19,11 +19,12 @@ const BusinessType = () => {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState(null);
-  const [isPopular, setIsPopular] = useState(null);
   const [cityRel, setCityRel] = useState(null);
   const [cities, setCities] = useState();
   const [selectedCity, setSelectedCity] = useState("Выберите город"); // Default placeholder
   const { id } = useParams();
+  const [businessType, setBusinessType] = useState("");
+  const [selectedType, setSelectedType] = useState("");
 
   useEffect(() => {
     const fetchProjectsFromDB = async () => {
@@ -31,7 +32,6 @@ const BusinessType = () => {
         const projectsFromDB = await getProjectBusinessType({
           search,
           cityRel,
-          isPopular,
           id,
         });
         setProjects(projectsFromDB?.results);
@@ -48,7 +48,17 @@ const BusinessType = () => {
   }, [projects?.length, loading]);
   useEffect(() => {
     getCities().then((res) => setCities(res));
+    getProjectTypes().then((res) => setBusinessType(res));
   }, []);
+
+  useEffect(() => {
+    if (businessType && id) {
+      const selectedBusiness = businessType.find((item) => item.id == id);
+      if (selectedBusiness) {
+        setSelectedType(selectedBusiness.name);
+      }
+    }
+  }, [businessType, id]);
 
   useEffect(() => {
     if (cities?.length) {
@@ -56,21 +66,6 @@ const BusinessType = () => {
       setSelectedCity(cities[0]?.name); // Birinchi shahar nomini o'rnatish
     }
   }, [cities]);
-
-  const [catalogTheme, setCatalogTheme] = useState([
-    { label: "Все проекты", active: true },
-    { label: "Технологии", active: false },
-    { label: "Бизнес", active: false },
-    { label: "Инвестиции", active: false },
-  ]);
-
-  const chooseCatalog = (index) => {
-    const updatedCatalog = catalogTheme.map((item, i) => ({
-      ...item,
-      active: i === index,
-    }));
-    setCatalogTheme(updatedCatalog);
-  };
 
   return (
     <>
@@ -84,10 +79,10 @@ const BusinessType = () => {
         />
         <link rel="icon" href="/Fav.png" />
       </Head>
-      <section className="mt-[30px] md:mt-[100px]">
+      <section className="mt-[30px] md:mt-[90px] lg:mt-[100px]">
         <div className="max-container pb-[30px] pt-[60px] md:py-[100px]">
           <h2 className="section-title mb-[20px] !text-left md:mb-[30px]">
-            База стартапов
+            {selectedType}
           </h2>
           <p className="text-base font-light leading-[130%] text-gray-light md:text-[32px] md:leading-[120%]">
             Если вы хотите найти инвестиции для запуска своего бизнеса,
@@ -182,8 +177,8 @@ const BusinessType = () => {
                 className="absolute right-0 z-10 mt-2 w-24 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in md:w-52"
               >
                 <div className="py-1">
-                  {cities?.map((city) => (
-                    <MenuItem>
+                  {cities?.map((city, idx) => (
+                    <MenuItem key={idx}>
                       <span
                         onClick={() => {
                           setCityRel(city?.id); // Tanlangan shahar ID sini o'rnatish
@@ -217,16 +212,22 @@ const BusinessType = () => {
         {!loading && projects && (
           <div className="max-container mb-[60px] grid grid-cols-12 gap-[8px] md:mb-[30px] md:gap-[20px]">
             {projects?.map((card, index) => (
-              <div className="col-span-6 sm:col-span-4 lg:col-span-3">
+              <div
+                className="col-span-6 sm:col-span-4 lg:col-span-3"
+                key={index}
+              >
                 <ProjectCard key={index} card={card} isGrid={false} />
               </div>
             ))}
           </div>
         )}
-
-        <div className="max-container mb-[100px] flex items-center justify-center md:mb-[150px]">
-          <Button text="Загрузить еще" primary />
-        </div>
+        {projects?.results?.length ? (
+          <div className="max-container mb-[100px] flex items-center justify-center md:mb-[150px]">
+            <Button text="Загрузить еще" primary />
+          </div>
+        ) : (
+          ""
+        )}
 
         <HomeBlogs />
       </section>

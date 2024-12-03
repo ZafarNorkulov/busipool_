@@ -18,7 +18,7 @@ export default function SwiperSection() {
   const [loading, setLoading] = useState(true);
 
   function fetchProjectsFromAPI() {
-    getProjects({}) //
+    getProjects({ is_popular: true }) //
       .then((response) => {
         setProjects(response);
       })
@@ -47,10 +47,10 @@ export default function SwiperSection() {
           disableOnInteraction: false,
         }}
         breakpoints={{
-          390:{
+          390: {
             slidesPerView: 1.2,
           },
-          
+
           768: {
             slidesPerView: 2,
           },

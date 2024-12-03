@@ -70,7 +70,7 @@ const CompanyPage = () => {
         />
         <link rel="icon" href="/Fav.png" />
       </Head>
-      <section className="mt-[30px] md:mt-[100px]">
+      <section className="mt-[30px] md:mt-[90px] lg:mt-[100px]">
         <div className="max-container pt-[30px] md:pt-[100px]">
           <Stats />
         </div>

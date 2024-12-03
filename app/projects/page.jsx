@@ -134,7 +134,7 @@ const ProjectsPage = () => {
         />
         <link rel="icon" href="/Fav.png" />
       </Head>
-      <section className="mt-[30px] md:mt-[100px]">
+      <section className="mt-[30px] md:mt-[90px] lg:mt-[100px]">
         {/* Catalog buttons and dropdowns */}
         <div className="max-container mb-[30px] mt-[30px] flex flex-col flex-wrap-reverse justify-between gap-y-5 md:mb-[100px] md:mt-[100px] lg:flex-row">
           <div className="pt-3 md:pt-0">
@@ -198,10 +198,11 @@ const ProjectsPage = () => {
             ))}
           </div>
         )}
-
-        <div className="max-container mb-[100px] flex items-center justify-center md:mb-[150px]">
-          <Button text="Загрузить еще" primary />
-        </div>
+        {projects?.results?.length ? (
+          <div className="max-container mb-[100px] flex items-center justify-center md:mb-[150px]">
+            <Button text="Загрузить еще" primary />
+          </div>
+        ):""}
 
         <div className="bg-secondary py-[60px]">
           <div className="max-container flex justify-between md:flex-col xl:flex-row">

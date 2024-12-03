@@ -12,7 +12,7 @@ const AboutUsPageLayout = ({ children }) => {
   const isBlogPage = !isNaN(Number(pathName.split("/").pop()));
 
   return (
-    <section className="mt-[30px] md:mt-[100px]">
+    <section className="mt-[30px] md:mt-[90px] lg:mt-[100px]">
       <Scroll />
 
       {!isBlogPage && (

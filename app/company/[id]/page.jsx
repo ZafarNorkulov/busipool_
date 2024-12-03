@@ -99,7 +99,7 @@ const InvestorPage = () => {
         />
         <link rel="icon" href="/Fav.png" />
       </Head>
-      <section className="mt-[30px] md:mt-[100px]">
+      <section className="mt-[30px] md:mt-[90px] lg:mt-[100px]">
         <div className="max-container py-[60px] md:pb-[170px] md:pt-[100px]">
           <h2 className="section-title mb-[30px] !text-left">
             {projects?.results && projects?.results[0]?.category?.name}
@@ -165,10 +165,11 @@ const InvestorPage = () => {
             ))}
           </div>
         )}
-
-        <div className="max-container mb-[100px] flex items-center justify-center md:mb-[150px]">
-          <Button text="Загрузить еще" primary />
-        </div>
+        {projects?.results?.length ? (
+          <div className="max-container mb-[100px] flex items-center justify-center md:mb-[150px]">
+            <Button text="Загрузить еще" primary />
+          </div>
+        ):""}
 
         <HomeBlogs />
       </section>
