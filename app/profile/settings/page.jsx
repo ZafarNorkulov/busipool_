@@ -166,7 +166,7 @@ const ProfileSettingsPage = () => {
         </div>
       </div>
 
-      <div className="flex flex-col  gap-[30px] md:flex-row md:gap-[50px]">
+      <div className="flex flex-col gap-[30px] md:flex-row md:gap-[50px]">
         <div>
           <label htmlFor="userImage" className="settings-label">
             Фотография
@@ -176,7 +176,7 @@ const ProfileSettingsPage = () => {
               src={avatar}
               width={200}
               height={200}
-              className="rounded-full w-[200px] h-[200px] object-cover"
+              className="h-[200px] w-[200px] rounded-full object-cover"
               alt="profile image"
             />
             <input

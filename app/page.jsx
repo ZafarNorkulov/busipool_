@@ -27,15 +27,17 @@ const HomePage = () => {
         />
         <link rel="icon" href="/Fav.png" />
       </Head>
-      <Hero />
-      <HomeProjects />
-      <div className="mb-[100px] bg-primary py-[60px] md:mb-[150px] md:py-[100px]">
-        <div className="max-container">
-          <Stats large />
+      <div className="mt-[30px] md:mt-[100px]">
+        <Hero />
+        <HomeProjects />
+        <div className="mb-[100px] bg-primary py-[60px] md:mb-[150px] md:py-[100px]">
+          <div className="max-container">
+            <Stats large />
+          </div>
         </div>
+        <Services />
+        <HomeBlogs />
       </div>
-      <Services />
-      <HomeBlogs />
     </>
   );
 };

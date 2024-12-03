@@ -99,7 +99,7 @@ const InvestorPage = () => {
         />
         <link rel="icon" href="/Fav.png" />
       </Head>
-      <section>
+      <section className="mt-[30px] md:mt-[100px]">
         <div className="max-container py-[60px] md:pb-[170px] md:pt-[100px]">
           <h2 className="section-title mb-[30px] !text-left">
             {projects?.results && projects?.results[0]?.category?.name}

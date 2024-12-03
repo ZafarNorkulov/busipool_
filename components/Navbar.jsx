@@ -131,7 +131,7 @@ const Navbar = () => {
         )}
         {width > 1024 && (
           <div
-            className={`${isProfileMenuOpen ? "block" : "hidden"} fixed right-0 top-[90px] z-50 transition lg:absolute`}
+            className={`${isProfileMenuOpen ? "block" : "hidden"} fixed -right-5 top-[90px] z-50 transition lg:absolute`}
           >
             <ProfileMenu
               closeProfileMenu={() => {
