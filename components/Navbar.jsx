@@ -42,7 +42,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <header className="relative bg-headerColor">
+    <header className="fixed left-0 right-0 top-0 z-50 bg-headerColor">
       <nav className="max-container relative flex items-center justify-between pt-5 sm:py-[20px]">
         {/* Logo */}
         <Link href="/">
@@ -52,16 +52,15 @@ const Navbar = () => {
 
         {/* Desktop Links */}
         <div className="relative py-3">
-          <ul className="hidden flex-wrap items-center gap-x-5 text-gray-dark xl:flex wide:gap-x-[60px]">
+          <ul className="hidden flex-wrap items-center gap-x-5 text-gray-dark lg:flex wide:gap-x-[60px]">
             <NavLink href="/">Главная</NavLink>
             <NavLink href="/investor">Инвестору</NavLink>
             <NavLink href="/company">Компаниям</NavLink>
             <NavLink href="/become-partner">Стать парнером</NavLink>
             <li
-              className={`relative flex cursor-pointer items-center font-bold uppercase leading-normal hover:text-primary ${path.includes("/about-us") && "text-primary"}`}
+              className={`relative flex cursor-pointer items-center text-sm font-bold uppercase leading-normal hover:text-primary xl:text-base ${path.includes("/about-us") && "text-primary"}`}
               onClick={() => setExtraLinksMenu((prev) => !prev)}
             >
-              
               О нас
               <FaChevronDown className="ml-1 inline-block text-[14px] font-[900]" />
             </li>
@@ -90,8 +89,10 @@ const Navbar = () => {
         {/* Right Side Menu (Logged In) */}
         {auth.isAuthenticated && (
           <div
-            className="hidden cursor-pointer items-center gap-[30px] px-1 xl:flex"
-            onClick={() => setIsProfileMenuOpen((prev) => !prev)}
+            className="hidden cursor-pointer items-center gap-[10px] px-1 lg:flex"
+            onClick={() => {
+              setIsProfileMenuOpen((prev) => !prev);
+            }}
           >
             <Image
               src={user?.avatar || profileImageDefault}
@@ -103,7 +104,7 @@ const Navbar = () => {
               alt="profile image"
             />
             <div className="flex select-none items-center gap-2">
-              <h3 className="text-[24px] font-bold leading-none text-gray-dark">
+              <h3 className="text-base font-bold leading-none text-gray-dark md:text-xl xl:text-[24px]">
                 {user?.username}
               </h3>
               <FaChevronDown
@@ -128,9 +129,9 @@ const Navbar = () => {
             />
           </div>
         )}
-        {width > 768 && (
+        {width > 1024 && (
           <div
-            className={`${isProfileMenuOpen ? "scale-100" : "scale-y-0"} absolute right-0 top-[100px] z-50 origin-top transition`}
+            className={`${isProfileMenuOpen ? "block" : "hidden"} fixed right-0 top-[90px] z-50 transition md:absolute`}
           >
             <ProfileMenu
               closeProfileMenu={() => {
@@ -144,7 +145,7 @@ const Navbar = () => {
         )}
 
         {/* Mobile navbar burger */}
-        <div className="xl:hidden">
+        <div className="lg:hidden">
           <Image
             src={mobileNavbarMenu ? x : burger}
             width={0}
@@ -154,7 +155,7 @@ const Navbar = () => {
             className="h-[50px] w-[44px] cursor-pointer object-contain transition-all"
             onClick={() => {
               setMobileNavbarMenu((prev) => !prev);
-              width < 768 ? setIsProfileMenuOpen((prev) => !prev) : "";
+              setIsProfileMenuOpen((prev) => !prev);
             }}
           />
         </div>
@@ -163,11 +164,13 @@ const Navbar = () => {
       <div
         className={`${
           mobileNavbarMenu ? "block" : "hidden"
-        } absolute left-0 right-0 top-full z-10 h-screen w-screen bg-headerColor px-[20px] py-[60px]`}
+        } fixed bottom-0 left-0 right-0 top-[70px] z-10 w-screen overflow-hidden overflow-y-scroll bg-headerColor px-[20px] pb-[30px] sm:top-[90px]`}
       >
         {/* Right Side Menu Mobile (Logged Out) */}
         {!auth.isAuthenticated && (
-          <div className="mb-[60px] flex flex-col gap-y-[20px]">
+          <div
+            className={`mb-[60px] flex flex-col gap-y-[20px] ${width < 1024 && "mt-9 block"}`}
+          >
             <Button
               text="Войти"
               primary
@@ -179,11 +182,10 @@ const Navbar = () => {
             />
           </div>
         )}
-
         {/* Right Side Menu Mobile (Logged In) */}
         {auth.isAuthenticated && (
           <>
-            <div className="mb-[30px] flex items-center gap-[30px] xl:hidden">
+            <div className="flex items-center gap-[30px] lg:hidden">
               <Image
                 src={user?.avatar || profileImageDefault}
                 width={0}
@@ -194,7 +196,7 @@ const Navbar = () => {
                 alt="profile image"
               />
               <div className="flex-1">
-                <h3 className="mb-[10px] text-base font-bold leading-none text-gray-dark">
+                <h3 className="mb-[10px] text-sm font-bold leading-none text-gray-dark xl:text-base">
                   {user?.username}
                 </h3>
                 <div className="flex items-center justify-between sm:justify-start sm:gap-[30px]">
@@ -222,16 +224,17 @@ const Navbar = () => {
                 </div>
               </div>
             </div>
-            {role?.toLowerCase() === "business" && (
-              <Link href={"/profile/create"}>
-                <Button text="Создать проект" fullWidth primary />
-              </Link>
-            )}
+            {role?.toLowerCase() === "business" &&
+              !path.includes("/profile") && (
+                <Link href={"/profile/create"} className="mt-7 block">
+                  <Button text="Создать проект" fullWidth primary />
+                </Link>
+              )}
           </>
         )}
-        {auth.isAuthenticated && path.includes("/profile") && width < 768 && (
+        {auth.isAuthenticated && path.includes("/profile") && (
           <div
-            className={`${isProfileMenuOpen ? "right-0 top-[120px]" : "-right-[150vw] -top-[150vh]"} absolute z-50 origin-top transition`}
+            className={`${isProfileMenuOpen ? "block" : "hidden"} z-50 transition`}
           >
             <ProfileMenu
               large={true}
@@ -241,25 +244,26 @@ const Navbar = () => {
             />
           </div>
         )}
-        {/* {width > 768 && ( */}
-        <ul className="mb-[60px] mt-[30px] text-gray-dark">
-          {navLinks.map((item, index) => (
-            <li
-              key={index}
-              className={`mb-[30px] font-bold hover:text-primary focus:text-primary focus-visible:text-primary active:text-primary ${path == item.href && "text-primary"}`}
-            >
-              <Link
-                href={item.href}
-                className="text-[24px] font-bold leading-[110%]"
-              >
-                {item.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
 
+        {width < 1024 && !path.includes("/profile") && (
+          <ul className="mb-[60px] mt-[30px] text-gray-dark">
+            {navLinks.map((item, index) => (
+              <li
+                key={index}
+                className={`mb-[30px] font-bold hover:text-primary focus:text-primary focus-visible:text-primary active:text-primary ${path == item.href && "text-primary"}`}
+              >
+                <Link
+                  href={item.href}
+                  className="text-[24px] font-bold leading-[110%]"
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
         {/* Social media icons */}
-        {width > 768 && (
+        {width < 1024 && (
           <ul className="mx-auto flex w-[238px] items-center justify-between">
             {socialMedia.map((item, index) => (
               <li key={index}>

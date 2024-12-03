@@ -18,17 +18,18 @@ const ProfileMenu = ({ closeProfileMenu, large }) => {
   return (
     <div
       id="profile-menu"
-      className={`${large ? "h-screen w-screen" : "w-[370px]"} select-none bg-headerColor md:px-[60px] px-[20px] py-[30px]`}
+      className={`${large ? "h-full w-full" : "w-[370px]"} select-none bg-headerColor px-[20px] py-[30px]`}
     >
-      {role?.toLowerCase() === "business" && (
-        <Link
-          href="/profile/create"
+      <Link href="/profile/create">
+        <button
           onClick={closeProfileMenu}
-          className="mb-[30px] block w-full rounded-[5px] border-2 border-primary bg-primary px-[20px] py-[10px] text-center text-[14px] font-bold leading-6 text-white transition active:scale-95"
+          className={
+            "mb-[30px] flex w-full justify-center rounded-[5px] border-2 border-primary bg-primary px-[20px] py-[10px] text-center text-[14px] font-bold leading-6 text-white transition active:scale-95"
+          }
         >
           Создать проект +
-        </Link>
-      )}
+        </button>
+      </Link>
       <ul>
         <li className="mb-[10px] flex items-center gap-[10px]">
           <Image
