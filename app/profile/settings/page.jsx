@@ -10,16 +10,16 @@ const ProfileSettingsPage = () => {
   const [user, setUser] = useState("");
   const [avatar, setAvatar] = useState("");
   const [profile, setProfile] = useState({
-    about_me: null,
+    about_me: "",
     avatar: avatar,
     birthday: "",
     city: "",
     email: "",
-    id: null,
+    id: "",
     is_active: false,
     is_staff: false,
-    phone: null,
-    url_profile: null,
+    phone: "",
+    url_profile: "",
     username: "",
   });
   const token =
@@ -166,7 +166,7 @@ const ProfileSettingsPage = () => {
         </div>
       </div>
 
-      <div className="flex flex-col items-center gap-[30px] md:flex-row md:gap-[90px]">
+      <div className="flex flex-col  gap-[30px] md:flex-row md:gap-[50px]">
         <div>
           <label htmlFor="userImage" className="settings-label">
             Фотография
@@ -176,7 +176,7 @@ const ProfileSettingsPage = () => {
               src={avatar}
               width={200}
               height={200}
-              className="rounded-full object-cover"
+              className="rounded-full w-[200px] h-[200px] object-cover"
               alt="profile image"
             />
             <input

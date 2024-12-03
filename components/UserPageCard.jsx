@@ -5,7 +5,7 @@ const UserPageCard = ({ cardStyles, title, subtitle, icon, children }) => {
     <div className={`${cardStyles} shadow`}>
       <div className="flex items-center justify-between md:pr-[30px]">
         <div>
-          <h2 className="mb-[10px] text-[24px] font-bold leading-[120%] text-gray-dark md:text-[32px]">
+          <h2 className="mb-[10px] text-[24px] font-bold leading-[120%] text-gray-dark lg:text-[32px]">
             {title}
           </h2>
 

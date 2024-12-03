@@ -41,7 +41,7 @@ const ContactsPage = () => {
               <div className="mb-[20px] flex flex-col justify-between gap-x-[70px] gap-y-[20px] sm:flex-row md:mb-[60px] md:justify-normal md:gap-y-[30px] xl:gap-x-[100px]">
                 <div className="flex flex-col items-start gap-y-5 sm:items-center md:items-start md:gap-y-7">
                   <div className="flex h-[72px] flex-col items-start sm:items-center md:h-[120px] md:items-start">
-                    <h3 className="mb-[10px] font-bold leading-[110%] text-gray-dark md:mb-[20px] md:text-2xl 2xl:mb-[30px] 2xl:text-[32px]">
+                    <h3 className="mb-[10px] font-bold leading-[110%] text-gray-dark md:mb-[20px] md:text-xl 2xl:mb-[30px]">
                       Наш адрес
                     </h3>
                     <p className="max-w-[300px] font-light leading-[140%] text-gray-light md:text-base 2xl:text-[24px]">
@@ -79,7 +79,7 @@ const ContactsPage = () => {
                   </div>
                 </div>
               </div>
-              <div className="mb-[60px] flex items-center gap-[30px] md:mb-[100px] md:gap-[20px]">
+              <div className="mb-[60px] flex items-center gap-[30px] md:mb-[60px] md:gap-[20px] xl:mb-[100px]">
                 <Link
                   href=""
                   className="size-[30px] md:size-[40px] xl:size-[60px]"
@@ -101,7 +101,10 @@ const ContactsPage = () => {
                   <RiWhatsappFill className="block size-full text-gray-dark" />
                 </Link>
 
-                <Link href="" className="size-[25px] md:size-[50px]">
+                <Link
+                  href=""
+                  className="size-[30px] md:size-[40px] xl:size-[60px]"
+                >
                   <SiTelegram className="block size-full text-gray-dark" />
                 </Link>
               </div>

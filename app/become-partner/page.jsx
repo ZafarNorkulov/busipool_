@@ -65,12 +65,16 @@ const BecomePartnerPage = () => {
               через вложения в проекты.
             </p>
             <div className="w-full flex-col items-stretch gap-[30px] sm:flex sm:flex-row sm:items-center md:flex-nowrap md:justify-center xl:w-[45%]">
-              <Button
-                text="Как это работает"
-                fullWidth={true}
-                style={"sm:mb-0 mb-2"}
-              />
-              <Button text="Разместить компанию" primary fullWidth={true} />
+              <Link href={"/profile/create"}>
+                <Button
+                  text="Как это работает"
+                  fullWidth={true}
+                  style={"sm:mb-0 mb-2"}
+                />
+              </Link>
+              <Link href={"/profile/create"}>
+                <Button text="Разместить компанию" primary fullWidth={true} />
+              </Link>
             </div>
           </div>
         </div>

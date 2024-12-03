@@ -42,7 +42,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <header className="fixed left-0 right-0 top-0 z-50 bg-headerColor">
+    <header className="fixed left-0 right-0 top-0 z-50 w-full bg-headerColor">
       <nav className="max-container relative flex items-center justify-between pt-5 sm:py-[20px]">
         {/* Logo */}
         <Link href="/">
@@ -131,7 +131,7 @@ const Navbar = () => {
         )}
         {width > 1024 && (
           <div
-            className={`${isProfileMenuOpen ? "block" : "hidden"} fixed right-0 top-[90px] z-50 transition md:absolute`}
+            className={`${isProfileMenuOpen ? "block" : "hidden"} fixed right-0 top-[90px] z-50 transition lg:absolute`}
           >
             <ProfileMenu
               closeProfileMenu={() => {
@@ -185,7 +185,9 @@ const Navbar = () => {
         {/* Right Side Menu Mobile (Logged In) */}
         {auth.isAuthenticated && (
           <>
-            <div className="flex items-center gap-[30px] lg:hidden">
+            <div
+              className={`mt-[40px] flex items-center gap-[30px] lg:hidden ${path.includes("/profile") && "px-[20px]"}`}
+            >
               <Image
                 src={user?.avatar || profileImageDefault}
                 width={0}
@@ -199,7 +201,7 @@ const Navbar = () => {
                 <h3 className="mb-[10px] text-sm font-bold leading-none text-gray-dark xl:text-base">
                   {user?.username}
                 </h3>
-                <div className="flex items-center justify-between sm:justify-start sm:gap-[30px]">
+                <div className="flex items-center gap-x-4 sm:gap-[30px]">
                   <Link
                     href="/profile/settings"
                     className="border-b border-primary py-[2px] text-base font-light leading-[120%] text-primary"
@@ -211,15 +213,6 @@ const Navbar = () => {
                     className="border-b border-gray-dark py-[2px] text-base font-light leading-[120%] text-gray-dark"
                   >
                     Профиль
-                  </Link>
-                  <Link
-                    href="#!"
-                    onClick={() => {
-                      dispatch(AUTH_ACTIONS.signOut());
-                    }}
-                    className="border-b border-gray-dark py-[2px] text-base font-light leading-[120%] text-gray-dark"
-                  >
-                    Выход
                   </Link>
                 </div>
               </div>
@@ -233,9 +226,7 @@ const Navbar = () => {
           </>
         )}
         {auth.isAuthenticated && path.includes("/profile") && (
-          <div
-            className={`${isProfileMenuOpen ? "block" : "hidden"} z-50 transition`}
-          >
+          <div className="block">
             <ProfileMenu
               large={true}
               closeProfileMenu={() => {

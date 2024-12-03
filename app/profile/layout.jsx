@@ -3,7 +3,7 @@ import Image from "next/image";
 import profileImageDefault from "@/assets/images/profileImageDefault.png";
 import Link from "next/link";
 import { CiSquarePlus } from "react-icons/ci";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useAppSelector } from "@/store";
 import { getProfile } from "../api/profile/profile";
@@ -13,6 +13,8 @@ const ProfilePageLayout = ({ children }) => {
   const auth = useAppSelector((state) => state.auth);
   const [user, setUser] = useState(null);
   const [role, setRole] = useState("");
+
+  const path = usePathname();
 
   useEffect(() => {
     if (!auth.isAuthenticated) {
@@ -37,7 +39,7 @@ const ProfilePageLayout = ({ children }) => {
 
   return (
     <section>
-      <div className="max-container mt-[40px] flex flex-col items-center justify-between gap-5 sm:flex-row md:mt-[100px]">
+      <div className="max-container mt-[130px] flex flex-col items-center justify-between gap-5 sm:flex-row md:mt-[200px]">
         <div className="flex items-center gap-[20px] md:gap-[30px]">
           <Image
             src={user?.avatar || profileImageDefault}
@@ -61,21 +63,24 @@ const ProfilePageLayout = ({ children }) => {
           </div>
         </div>
 
-        <ul className="hidden flex-wrap items-center gap-x-[45px] gap-y-0 md:gap-x-[90px] 2xl:flex">
-          {role?.toLowerCase() === "business" && (
-            <li className="font-bold leading-[120%] text-gray-light">
-              Созданные проекты
-            </li>
-          )}
+        <ul className="hidden flex-col items-center justify-between gap-4 gap-y-0 md:flex lg:flex-row">
+          {role?.toLowerCase() === "business" &&
+            path.includes("/profile/create") && (
+              <li className="font-bold leading-[120%] text-gray-light">
+                Созданные проекты
+              </li>
+            )}
 
-          {role?.toLowerCase() === "investor" && (
+          {path.includes("/profile/create") && (
             <li className="font-bold leading-[120%] text-gray-light">
               Поддержанные проекты
             </li>
           )}
-          <li className="font-bold leading-[120%] text-gray-light">
-            Вознаграждения и дивиденды
-          </li>
+          {path.includes("/profile/create") && (
+            <li className="font-bold leading-[120%] text-gray-light">
+              Вознаграждения и дивиденды
+            </li>
+          )}
         </ul>
 
         <div>

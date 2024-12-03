@@ -18,7 +18,7 @@ const ProfileMenu = ({ closeProfileMenu, large }) => {
   return (
     <div
       id="profile-menu"
-      className={`${large ? "h-full w-full" : "w-[370px]"} select-none bg-headerColor px-[20px] py-[30px]`}
+      className={`${large ? "h-full w-full" : "w-[370px]"} select-none bg-headerColor rounded-b-md px-[20px] py-[30px]`}
     >
       <Link href="/profile/create">
         <button
