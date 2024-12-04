@@ -31,7 +31,7 @@ const AboutUsPage = () => {
             Развитие проекта в 2024-2025 годах
           </h2>
 
-          <div className="about-us-table mb-[30px] flex h-[98px] justify-between text-[14px] font-bold leading-[120%] text-gray-dark md:mb-[100px] md:h-[334px] md:text-[32px]">
+          <div className="about-us-table mb-[30px] flex h-[98px] justify-between text-[14px] font-bold leading-[120%] text-gray-dark md:mx-[50px] md:mb-[100px] md:h-[334px] md:text-[24px] lg:mx-[100px] 2xl:text-[32px]">
             <div className="flex flex-col justify-between">
               <h3 className="wrap-balance">Заявок на размещение</h3>
               <h3 className="wrap-balance">Размещений</h3>
@@ -67,26 +67,25 @@ const AboutUsPage = () => {
               </div>
             </div>
           </div>
-
-          <div className="mb-[100px] flex justify-between gap-5 text-[14px] font-bold leading-[120%] md:text-[32px]">
-            <h3 className="text-[14px] font-bold leading-[120%] text-gray-dark md:text-[32px]">
+          <div className="mb-[100px] flex justify-between gap-5 text-[14px] font-bold leading-[120%] md:mx-[50px] md:text-[32px] lg:mx-[100px]">
+            <h3 className="text-[14px] font-bold leading-[120%] text-gray-dark md:text-[24px] 2xl:text-[32px]">
               Событие
             </h3>
 
-            <div className="flex justify-between gap-2 sm:w-[70%] md:gap-[70px]">
-              <p className="text-[10px] font-light leading-[120%] text-gray-light sm:text-[12px] md:text-lg lg:break-all lg:text-[32px] xl:break-normal">
+            <div className="flex justify-between gap-2 sm:w-[70%] sm:gap-[20px] md:gap-[40px] lg:gap-[70px]">
+              <p className="text-[12px] font-light leading-[120%] text-gray-light md:text-[20px] lg:break-all lg:text-[24px] xl:break-normal 2xl:text-[32px]">
                 Тестирование платформы BUSIPOOL
               </p>
-              <p className="text-[10px] font-light leading-[120%] text-gray-light sm:text-[12px] md:text-lg lg:break-all lg:text-[32px] xl:break-normal">
+              <p className="text-[12px] font-light leading-[120%] text-gray-light md:text-[20px] lg:break-all lg:text-[24px] xl:break-normal 2xl:text-[32px]">
                 Доработка бизнес-процессов
               </p>
-              <p className="text-[10px] font-light leading-[120%] text-gray-light sm:text-[12px] md:text-lg lg:break-all lg:text-[32px] xl:break-normal">
+              <p className="text-[12px] font-light leading-[120%] text-gray-light md:text-[20px] lg:break-all lg:text-[24px] xl:break-normal 2xl:text-[32px]">
                 Масштабирование числа кейсов, отработка массового числа сделок
               </p>
             </div>
           </div>
 
-          <div className="relative ml-auto flex w-full justify-between border-t-2 border-gray-dark pt-[50px] md:max-w-[1084px]">
+          <div className="relative ml-auto flex w-full justify-between border-t-2 border-gray-dark pt-[50px] md:w-[70%] md:max-w-[1084px]">
             <DatePoint date="май, 2024" />
             <DatePoint date="июль, 2024" />
             <DatePoint date="июль, 2024" />
