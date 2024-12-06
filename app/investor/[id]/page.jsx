@@ -56,7 +56,7 @@ const BusinessType = () => {
 
   useEffect(() => {
     fetchProjectsFromDB();
-  }, [selectedCity, filters]);
+  }, [selectedCity, search, filters]);
   useEffect(() => {
     fetchCitiesFromDB();
     getProjectTypes().then((res) => setBusinessType(res));
