@@ -39,8 +39,8 @@ const Filters = ({
           className="relative inline-block max-w-[200px] text-left"
         >
           <div>
-            <MenuButton className="inline-flex w-[180px] justify-center gap-x-1.5 rounded-[5px] bg-white py-2 pl-4 pr-2 text-xs font-bold text-gray-light shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 md:w-[200px] md:py-[15px] md:pl-[30px] md:pr-[22px] md:text-base">
-              <span className="block w-[90%] text-start text-sm md:text-sm">
+            <MenuButton className="flex w-[180px] justify-center gap-x-1.5 rounded-[5px] bg-white py-2 pl-4 pr-2 text-xs font-bold text-gray-light shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 md:w-[200px] md:py-[15px] md:pl-[30px] md:pr-[22px] md:text-base">
+              <span className="block w-[90%] text-start text-xs md:text-sm">
                 {selectedFilterTitle}
               </span>
               <div className="w-[10%]">

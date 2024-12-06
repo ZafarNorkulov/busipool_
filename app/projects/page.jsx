@@ -115,16 +115,16 @@ const ProjectsPage = () => {
         />
         <link rel="icon" href="/Fav.png" />
       </Head>
-      <section className="mt-[30px] md:mt-[90px] lg:mt-[100px]">
+      <section className="mt-[80px] sm:mt-[120px] lg:mt-[130px]">
         {/* Catalog buttons and dropdowns */}
-        <div className="max-container mb-[30px] mt-[30px] flex flex-col flex-wrap-reverse justify-between gap-y-5 md:mb-[100px] md:mt-[100px] lg:flex-row">
+        <div className="max-container mb-[30px] mt-[30px] flex flex-col justify-between gap-y-5 md:mb-[100px] md:mt-[100px] lg:flex-row">
           <div className="pt-3 md:pt-0">
-            <ul className="lg:gap-15 mb-[20px] flex gap-1 md:mb-[30px] md:gap-10">
+            <ul className="lg:gap-15 mb-[20px] flex flex-wrap gap-1 md:mb-[30px] md:gap-10">
               {catalogTheme.map((item, index) => (
                 <li
                   onClick={() => chooseCatalog(index)}
                   key={index}
-                  className={`cursor-pointer text-nowrap border-b-2 border-b-transparent px-2 pb-[2px] text-[8px] leading-[110%] md:px-[21.5px] md:text-base ${
+                  className={`cursor-pointer text-nowrap border-b-2 border-b-transparent px-2 pb-[2px] text-[14px] leading-[110%] md:px-[21.5px] md:text-base ${
                     item.active && "border-b-2 border-b-primary text-primary"
                   }`}
                 >
@@ -156,14 +156,15 @@ const ProjectsPage = () => {
               ))}
             </div>
           </div>
-
-          <Filters
-            filters={filters}
-            setFilters={setFilters}
-            cityName={selectedCity?.name || "Город"}
-            cities={cityRel}
-            setSelectedCity={setSelectedCity}
-          />
+          <div className="w-max">
+            <Filters
+              filters={filters}
+              setFilters={setFilters}
+              cityName={selectedCity?.name || "Город"}
+              cities={cityRel}
+              setSelectedCity={setSelectedCity}
+            />
+          </div>
         </div>
 
         {loading && <Spinner loading={loading} />}
