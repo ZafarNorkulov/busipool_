@@ -3,17 +3,14 @@ import { useState, useEffect } from "react";
 import ProjectCard from "../../components/ProjectCard";
 import Button from "../../components/Button";
 import Image from "next/image";
-// import buildProjectImage from "@/assets/images/build-project.png";
 import buildProjectImage from "../../assets/images/build-project.png";
-// import HomeBlogs from "@/components/sections/HomeBlogs";
 import HomeBlogs from "../../components/sections/HomeBlogs";
-// import Spinner from "@/components/Spinner";
 import Spinner from "../../components/Spinner";
 import {
   getProjectCategoryByBussinesType,
   getProjects,
 } from "../api/projects/project";
-import { getCities } from "@/utils/request";
+import { getCities } from "../../utils/request";
 import Filters from "../../components/Filters";
 import Link from "next/link";
 import Head from "next/head";
@@ -26,75 +23,68 @@ const ProjectsPage = () => {
   const [selectedCatalog, setSelectedCatalog] = useState(null); // null for "Все проекты"
   const [catalogTheme, setCatalogTheme] = useState([]);
   const [is_active, setIsActive] = useState(true);
+  const [filters, setFilters] = useState({
+    is_popular: { value: false, title: "По популярности" },
+    price_max: { value: false, title: "Подороже" },
+    price_min: { value: false, title: "Подешевле" },
+    start_date: { value: false, title: "Новейший" },
+    end_date: { value: false, title: "Самый первый" },
+  });
+
+  const [condition, setCondition] = useState([
+    { text: "Действующие", isClick: true, i: 1 },
+    { text: "Завершенные", isClick: false, i: 2 },
+  ]);
 
   useEffect(() => {
-    fetchProjectsWithFromAPI();
-    fetchCitiesWithFromAPI();
-    fetchBussinesCategoryWithFromAPI();
+    fetchInitialData();
   }, []);
 
   useEffect(() => {
-    fetchProjectsWithFromAPI();
-  }, [selectedCity, selectedCatalog, is_active]);
+    fetchProjects();
+  }, [selectedCity, selectedCatalog, is_active, filters]);
 
-  function fetchProjectsWithFromAPI() {
-    setLoading(true);
-    getProjects({
-      city_realization: selectedCity?.id,
-      business_category_type: selectedCatalog || undefined, // Omit if null
-      is_active,
-    })
-      .then((response) => {
-        setProjects(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }
+  const fetchInitialData = async () => {
+    try {
+      setLoading(true);
+      const cities = await getCities();
+      setCityRel(cities);
+      setSelectedCity(cities[0]);
 
-  function fetchCitiesWithFromAPI() {
-    getCities()
-      .then((response) => {
-        setCityRel(response);
-        setSelectedCity(response[0]); // Default to the first city
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }
+      const categories = await getProjectCategoryByBussinesType();
+      const allProjectsOption = {
+        id: null,
+        name: "Все проекты",
+        active: true,
+      };
+      setCatalogTheme([allProjectsOption, ...categories]);
+    } catch (error) {
+      console.error("Error fetching initial data:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-  function fetchBussinesCategoryWithFromAPI() {
-    getProjectCategoryByBussinesType()
-      .then((response) => {
-        // Add "Все проекты" as the first option
-        const allProjectsOption = {
-          id: null,
-          name: "Все проекты",
-          active: true,
-        };
-        const updatedCatalog = [
-          allProjectsOption,
-          ...response.map((item) => ({
-            ...item,
-            active: false,
-          })),
-        ];
-        setCatalogTheme(updatedCatalog);
-        setSelectedCatalog(null); // Default to "Все проекты"
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-      .finally(() => {
-        setLoading(false);
+  const fetchProjects = async () => {
+    try {
+      setLoading(true);
+      const activeFilters = Object.keys(filters).reduce((acc, key) => {
+        if (filters[key].value) acc[key] = true;
+        return acc;
+      }, {});
+      const response = await getProjects({
+        ...activeFilters,
+        city_realization: selectedCity?.id,
+        business_category_type: selectedCatalog || undefined,
+        is_active,
       });
-  }
+      setProjects(response);
+    } catch (error) {
+      console.error("Error fetching projects:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const chooseCatalog = (index) => {
     const updatedCatalog = catalogTheme.map((item, i) => ({
@@ -106,19 +96,12 @@ const ProjectsPage = () => {
     setSelectedCatalog(selectedId);
   };
 
-  const [condition, setCondition] = useState([
-    { text: "Действующие", isClick: true, i: 1 },
-    { text: "Завершенные", isClick: false, i: 2 },
-  ]);
-
   const handleClick = (index) => {
     const updatedCondition = condition.map((item, i) => ({
       ...item,
       isClick: i === index,
     }));
     setCondition(updatedCondition);
-
-    // Update is_active based on `i === 1`
     setIsActive(updatedCondition.some((item) => item.i === 1 && item.isClick));
   };
 
@@ -128,9 +111,7 @@ const ProjectsPage = () => {
         <title>{"BUSIPOOL | Проекты"}</title>
         <meta
           name="description"
-          content={
-            "Сбор денег для бизнеса, технологических, творческих и социальных проектов"
-          }
+          content="Сбор денег для бизнеса, технологических, творческих и социальных проектов"
         />
         <link rel="icon" href="/Fav.png" />
       </Head>
@@ -143,7 +124,9 @@ const ProjectsPage = () => {
                 <li
                   onClick={() => chooseCatalog(index)}
                   key={index}
-                  className={`cursor-pointer text-nowrap border-b-2 border-b-transparent px-2 pb-[2px] text-[8px] leading-[110%] md:px-[21.5px] md:text-base ${item.active && "border-b-2 border-b-primary text-primary"}`}
+                  className={`cursor-pointer text-nowrap border-b-2 border-b-transparent px-2 pb-[2px] text-[8px] leading-[110%] md:px-[21.5px] md:text-base ${
+                    item.active && "border-b-2 border-b-primary text-primary"
+                  }`}
                 >
                   {item.name}
                 </li>
@@ -152,38 +135,31 @@ const ProjectsPage = () => {
 
             <div className="flex flex-row items-center gap-4">
               {condition.map((item, index) => (
-                <>
-                  {item.isClick ? (
-                    <div
-                      className="custom-radio flex cursor-pointer items-center gap-x-2"
-                      onClick={() => handleClick(index, false)}
-                    >
-                      <div
-                        className={`flex h-[17px] w-[17px] items-center justify-center rounded-full border-[1px] border-[#ebebeb]`}
-                      >
-                        <span className="block h-full w-full rounded-full bg-[#7aa371]"></span>
-                      </div>
-                      <span>{item.text}</span>
-                    </div>
-                  ) : (
-                    <div
-                      className="custom-radio flex cursor-pointer items-center gap-x-2"
-                      onClick={() => handleClick(index, true)}
-                    >
-                      <div
-                        className={`h-[17px] w-[17px] rounded-full border-[1px] border-[#ebebeb]`}
-                      >
-                        <span className="block h-full w-full rounded-full bg-[#c7c7c7]"></span>
-                      </div>
-                      <span>{item.text}</span>
-                    </div>
-                  )}
-                </>
+                <div
+                  key={index}
+                  className="custom-radio flex cursor-pointer items-center gap-x-2"
+                  onClick={() => handleClick(index)}
+                >
+                  <div
+                    className={`h-[17px] w-[17px] rounded-full border-[1px] ${
+                      item.isClick ? "border-[#7aa371]" : "border-[#ebebeb]"
+                    }`}
+                  >
+                    <span
+                      className={`block h-full w-full rounded-full ${
+                        item.isClick ? "bg-[#7aa371]" : "bg-[#c7c7c7]"
+                      }`}
+                    ></span>
+                  </div>
+                  <span>{item.text}</span>
+                </div>
               ))}
             </div>
           </div>
 
           <Filters
+            filters={filters}
+            setFilters={setFilters}
             cityName={selectedCity?.name || "Город"}
             cities={cityRel}
             setSelectedCity={setSelectedCity}
@@ -202,7 +178,9 @@ const ProjectsPage = () => {
           <div className="max-container mb-[100px] flex items-center justify-center md:mb-[150px]">
             <Button text="Загрузить еще" primary />
           </div>
-        ):""}
+        ) : (
+          ""
+        )}
 
         <div className="bg-secondary py-[60px]">
           <div className="max-container flex justify-between md:flex-col xl:flex-row">

@@ -28,6 +28,13 @@ const InvestorPage = () => {
   const [cityRel, setCityRel] = useState([]);
   const [selectedCity, setSelectedCity] = useState(null);
   const [search, setSearch] = useState("");
+  const [filters, setFilters] = useState({
+    is_popular: { value: false, title: "По популярности" },
+    price_max: { value: false, title: "Подороже" },
+    price_min: { value: false, title: "Подешевле" },
+    start_date: { value: false, title: "Новейший" },
+    end_date: { value: false, title: "Самый первый" },
+  });
 
   useEffect(() => {
     fetchProjectsWithFromAPI();
@@ -36,7 +43,7 @@ const InvestorPage = () => {
   }, []);
   useEffect(() => {
     fetchProjectsWithFromAPI();
-  }, [selectedCity, search]);
+  }, [selectedCity, search, filters]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -58,7 +65,13 @@ const InvestorPage = () => {
   function fetchProjectsWithFromAPI() {
     setLoading(true);
     const cityRealization = selectedCity?.id || null;
+    setLoading(true);
+    const activeFilters = Object.keys(filters).reduce((acc, key) => {
+      if (filters[key].value) acc[key] = true;
+      return acc;
+    }, {});
     getProjects({
+      ...activeFilters,
       category: id,
       city_realization: cityRealization,
       search,
@@ -147,6 +160,8 @@ const InvestorPage = () => {
         )}
 
         <Filters
+          filters={filters}
+          setFilters={setFilters}
           cityName={selectedCity?.name || "Город"}
           cities={cityRel}
           setSelectedCity={setSelectedCity}
@@ -169,7 +184,9 @@ const InvestorPage = () => {
           <div className="max-container mb-[100px] flex items-center justify-center md:mb-[150px]">
             <Button text="Загрузить еще" primary />
           </div>
-        ):""}
+        ) : (
+          ""
+        )}
 
         <HomeBlogs />
       </section>
