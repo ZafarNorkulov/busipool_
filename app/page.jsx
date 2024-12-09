@@ -27,7 +27,7 @@ const HomePage = () => {
         />
         <link rel="icon" href="/Fav.png" />
       </Head>
-      <div className="mt-[30px] md:mt-[100px]">
+      <div className="mt-[80px] md:mt-[120px] lg:mt-[130px]">
         <Hero />
         <HomeProjects />
         <div className="mb-[100px] bg-primary py-[60px] md:mb-[150px] md:py-[100px]">

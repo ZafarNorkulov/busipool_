@@ -22,6 +22,7 @@ module.exports = {
         DEFAULT: "0px 1px 2px 0px rgba(68, 68, 68, 0.5)",
       },
       screens: {
+        xs: "420px",
         sm: "640px",
         md: "768px",
         lg: "1024px",

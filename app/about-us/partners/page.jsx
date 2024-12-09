@@ -20,6 +20,7 @@ const PartnersPage = () => {
   useEffect(() => {
     fetchPartnerwithLogo();
   }, []);
+
   return (
     <>
       <Head>
@@ -35,9 +36,12 @@ const PartnersPage = () => {
       <div className="max-container mt-[100px] md:mt-[150px]">
         <h2 className="section-title mb-[60px] md:mb-[100px]">Наши партнеры</h2>
 
-        <div className="mb-[100px] grid grid-cols-12 gap-x-[40px] gap-y-[60px] md:mb-[150px]">
+        <div className="mb-[100px] flex grid-cols-12 flex-wrap gap-x-[40px] gap-y-[60px] sm:grid md:mb-[150px]">
           {partners?.map((logo, index) => (
-            <div key={index} className="col-span-6 md:col-span-3">
+            <div
+              key={index}
+              className="col-span-6 w-[calc(50%-20px)] sm:w-auto md:col-span-3"
+            >
               <img
                 src={logo?.image}
                 className="h-full w-full object-cover"

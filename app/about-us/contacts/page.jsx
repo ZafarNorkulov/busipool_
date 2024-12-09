@@ -26,14 +26,13 @@ const ContactsPage = () => {
       <div className="mb-[100px] bg-secondary py-[100px] md:mb-[150px] md:py-[150px]">
         <h2 className="section-title mb-[30px] md:mb-[100px]">Контакты</h2>
 
-        <div className="max-container px-[10px]">
-          <div className="grid grid-cols-12 gap-[30px] lg:gap-[60px] 2xl:gap-[100px]">
-            <div className="col-span-12 h-[200px] flex-auto shrink-0 self-stretch border-0 outline-none md:h-[500px] md:flex-1 lg:col-span-6 xl:h-[600px] 2xl:col-span-6 extraWide:h-auto">
+        <div className="max-container md:px-[10px]">
+          <div className="flex grid-cols-12 flex-col gap-[30px] sm:grid lg:gap-[60px] 2xl:gap-[100px]">
+            <div className="relative col-span-12 h-[200px] flex-auto shrink-0 self-stretch border-0 outline-none md:h-[500px] md:flex-1 lg:col-span-6 xl:h-[600px] 2xl:col-span-6 extraWide:h-auto">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2235.601997546124!2d37.53223837641897!3d55.921601178977596!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b5398f6ad359f1%3A0x766d0ee5691c0582!2sDolgoprudnenskoye%20Shosse%2C%203%2C%20Moskva%2C%20Russia%2C%20141700!5e0!3m2!1sen!2s!4v1723969037718!5m2!1sen!2s"
-                className="size-full w-full"
+                className="size-full rounded-lg"
                 loading="lazy"
-                style={{ borderRadius: "8px" }}
                 referrerPolicy="no-referrer-when-downgrade"
               ></iframe>
             </div>

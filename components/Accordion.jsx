@@ -8,7 +8,7 @@ const Accordion = ({ title, description }) => {
   return (
     <div
       onClick={() => setToggle((prev) => !prev)}
-      className={`cursor-pointer border-b border-gray-dark pb-[60px] pr-[16px] pt-[20px] transition sm:pb-[30px] md:border-b-2 md:pr-[46px] md:pt-[60px] ${toggle ? "h-auto" : "h-[70px] overflow-hidden md:h-[125px]"}`}
+      className={`cursor-pointer border-b border-gray-dark pr-[16px] pt-[20px] transition sm:pb-[30px] md:border-b-2 md:pr-[46px] md:pt-[60px] ${toggle ? "h-auto" : "h-[70px] overflow-hidden md:h-[125px]"}`}
     >
       <div className="flex items-center justify-between pb-[20px] md:pb-[30px]">
         <h3 className="text-[20px] font-light text-gray-dark md:text-[32px]">
@@ -17,9 +17,7 @@ const Accordion = ({ title, description }) => {
 
         <AiOutlinePlus className="size-[20px] text-gray-light md:size-[30px]" />
       </div>
-      <p>
-        {description}
-      </p>
+      <p>{description}</p>
     </div>
   );
 };

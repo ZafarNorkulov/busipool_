@@ -83,15 +83,15 @@ export const footerLinks = [
     title: "остались Вопросы?",
     links: [
       {
-        href: "/profile/create",
+        href: "/about-us/faq",
         label: "Как это работает",
       },
       {
-        href: "/what-is-crowdfunding",
+        href: "/about-us/faq",
         label: "Что такое краудфандинг?",
       },
       {
-        href: "/security",
+        href: "/about-us/faq",
         label: "Безопасность",
       },
     ],

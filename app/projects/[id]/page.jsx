@@ -77,7 +77,7 @@ const ProjectPage = () => {
         />
         <link rel="icon" href="/Fav.png" />
       </Head>
-      <section className="mt-[30px] md:mt-[90px] lg:mt-[100px]">
+      <section className="mt-[80px] md:mt-[120px] lg:mt-[130px]">
         {loading && <Spinner loading={loading} />}
         {!loading && project && (
           <div className="max-container mb-[60px] mt-[20px] flex flex-col items-baseline gap-[30px] md:mt-[100px] lg:flex-row xl:mb-[150px] xl:gap-[100px]">
