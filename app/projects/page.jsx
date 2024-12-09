@@ -115,9 +115,9 @@ const ProjectsPage = () => {
         />
         <link rel="icon" href="/Fav.png" />
       </Head>
-      <section className="mt-[80px] sm:mt-[120px] lg:mt-[130px]">
+      <section className="mt-[80px] sm:mt-[90px] lg:mt-[100px]">
         {/* Catalog buttons and dropdowns */}
-        <div className="max-container mb-[30px] mt-[30px] flex flex-col justify-between gap-y-5 md:mb-[100px] md:mt-[100px] lg:flex-row">
+        <div className="max-container mb-[30px] pt-[30px] flex flex-col justify-between gap-y-5 md:mb-[100px] md:pt-[100px] lg:flex-row">
           <div className="pt-3 md:pt-0">
             <ul className="lg:gap-15 mb-[20px] flex flex-wrap gap-1 md:mb-[30px] md:gap-10">
               {catalogTheme.map((item, index) => (

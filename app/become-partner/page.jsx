@@ -46,8 +46,8 @@ const BecomePartnerPage = () => {
         />
         <link rel="icon" href="/Fav.png" />
       </Head>
-      <section className="mt-[80px] md:mt-[120px] lg:mt-[130px]">
-        <div className="max-container pt-[30px] md:pt-[100px]">
+      <section className="mt-[100px] sm:mt-[140px] lg:mt-[200px]">
+        <div className="max-container ">
           <Stats />
         </div>
         <div className="max-container mb-[30px] mt-[60px] md:mt-[100px]">

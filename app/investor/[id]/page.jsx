@@ -96,7 +96,7 @@ const BusinessType = () => {
         />
         <link rel="icon" href="/Fav.png" />
       </Head>
-      <section className="mt-[80px] md:mt-[120px] lg:mt-[130px]">
+      <section className="mt-[70px] sm:mt-[90px] md:mt-[95px] lg:mt-[105px]">
         <div className="max-container pb-[30px] pt-[60px] md:py-[100px]">
           <h2 className="section-title mb-[20px] !text-left md:mb-[30px]">
             {selectedType}
