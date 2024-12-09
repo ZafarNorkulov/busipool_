@@ -79,12 +79,12 @@ const ProjectCard = ({ card, isGrid }) => {
               </span>
             </div>
           </div>
-          <Button
-            onclick={() => router.push(`/projects/${card.id}`)}
-            text="УЗНАТЬ БОЛЬШЕ"
-            fullWidth
-            primary
-          />
+          <button
+            onClick={() => router.push(`/projects/${card.id}`)}
+            className={`wrap-balance xs:px-[30px] xs:py-[10px] w-full rounded-[5px] border-2 border-gray-dark border-primary bg-primary px-[20px] py-[5px] text-[9px] font-bold text-gray-dark text-white transition active:scale-95 sm:text-xs md:px-[38px] md:py-[15px] md:text-sm lg:px-[47px] lg:py-[20px]`}
+          >
+            УЗНАТЬ БОЛЬШЕ
+          </button>
         </div>
       </div>
     </div>
@@ -99,7 +99,7 @@ const ProjectCard = ({ card, isGrid }) => {
         alt="project card"
         className="h-[154px] w-full rounded-[5px] object-cover md:h-[250px] md:rounded-[10px]"
       />
-      <div className="flex h-[65%] flex-col p-[10px] lg:p-[30px] p-[20px]">
+      <div className="flex h-[65%] flex-col p-[10px] lg:p-[30px] ">
         <h3 className="mb-[10px] h-[30px] text-xs font-bold leading-[110%] text-gray-dark md:mb-[20px] md:h-[20px] md:text-[17px]">
           {card?.name.slice(0, 40)}
         </h3>
@@ -107,12 +107,12 @@ const ProjectCard = ({ card, isGrid }) => {
           {card?.description.slice(0, 85)}
         </p>
         <div>
-          <Button
-            onclick={() => router.push(`/projects/${card.id}`)}
-            text="УЗНАТЬ БОЛЬШЕ"
-            fullWidth
-            primary
-          />
+          <button
+            onClick={() => router.push(`/projects/${card.id}`)}
+            className={`wrap-balance xs:px-[30px] xs:py-[10px] w-full rounded-[5px] border-2 border-gray-dark border-primary bg-primary px-[20px] py-[5px] text-[9px] font-bold text-gray-dark text-white transition active:scale-95 sm:text-xs md:px-[38px] md:py-[15px] md:text-sm lg:px-[47px] lg:py-[20px]`}
+          >
+            УЗНАТЬ БОЛЬШЕ
+          </button>
         </div>
       </div>
     </div>
