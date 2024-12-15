@@ -64,6 +64,10 @@ html {
   }
 }
 
+.react-tabs__tab--selected{
+  text-decoration: underline;
+}
+
 .login-input {
   @apply block w-full rounded-[5px] border border-gray-dark p-3 text-[14px] leading-[24px] xl:p-3 xl:text-lg extraWide:p-[23px_20px] extraWide:text-xl;
 }

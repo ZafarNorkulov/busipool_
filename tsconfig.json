@@ -28,6 +28,6 @@
     "**/*.ts",
     "**/*.tsx",
     "app/api/projects/project.js"
-, "app/sign-in/page.jsx", "hooks/useWindowSize.js"  ],
+, "app/sign-in/page.jsx", "hooks/useWindowSize.js", "app/profile/comment-questions/page.jsx"  ],
   "exclude": ["node_modules"]
 }
