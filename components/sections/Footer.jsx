@@ -1,15 +1,13 @@
 "use client";
 import Link from "next/link";
 import Button from "@/components/Button";
-import { footerLinks } from "@/constants";
-import { SlSocialVkontakte } from "react-icons/sl";
-import { SiTelegram } from "react-icons/si";
-import { RiWhatsappFill } from "react-icons/ri";
-import { AiFillInstagram } from "react-icons/ai";
+import { footerLinks, socialMedia } from "@/constants";
 import BusipoolLogoLarge from "@/components/BusipoolLogoLarge";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { postSubscription } from "@/app/api/blogs/blogs";
+import Image from "next/image";
+import Busipool from "@/assets/images/busipool.png";
 
 const Footer = () => {
   const pathName = usePathname();
@@ -62,9 +60,9 @@ const Footer = () => {
               <h3 className="md:text-md mb-3 max-w-max text-sm font-bold uppercase leading-[20px] text-gray-light md:mb-[40px] lg:text-lg">
                 {item.title}
               </h3>
-              {item.links.map((link, index) => (
-                <ul key={index}>
-                  <li className="mb-2 max-w-max md:mb-[30px]">
+              <ul className="flex flex-col gap-y-5 md:gap-y-[30px]">
+                {item.links.map((link, index) => (
+                  <li className="max-w-max" key={index}>
                     <Link
                       href={link.href}
                       className="md:text-md font-helvetica text-[12px] text-gray-dark hover:underline hover:underline-offset-2 lg:text-lg"
@@ -72,36 +70,37 @@ const Footer = () => {
                       {link.label}
                     </Link>
                   </li>
-                </ul>
-              ))}
+                ))}
+              </ul>
             </div>
           ))}
         </div>
 
-        {pathName == "/" && <BusipoolLogoLarge />}
+        {pathName == "/" && (
+          <div className="relative w-full">
+            <Image
+              src={Busipool}
+              alt="BUSIPOOL"
+              width={0}
+              height={0}
+              sizes="100%"
+              priority={true}
+            />
+          </div>
+        )}
 
         {/* footer social media icons */}
-        <div className="mt-[30px] flex items-center justify-center gap-[30px] sm:mb-[60px] md:justify-end md:gap-[20px]">
-          <Link href="" className="h-[30px] w-[30px]">
-            <SlSocialVkontakte className="block h-full w-full" />
-          </Link>
-
-          <Link href="" className="h-[30px] w-[30px]">
-            <AiFillInstagram className="block h-full w-full" />
-          </Link>
-
-          <Link href="" className="h-[30px] w-[30px]">
-            <RiWhatsappFill className="block h-full w-full" />
-          </Link>
-
-          <Link href="" className="h-[25px] w-[25px]">
-            <SiTelegram className="block h-full w-full" />
-          </Link>
+        <div className="mt-[30px] flex items-center justify-center gap-[20px] sm:mb-[60px] md:justify-end md:gap-[30px]">
+          {socialMedia?.map((social, idx) => (
+            <Link href={social.href} key={idx} className="h-[30px] w-[30px]">
+              <Image src={social.src} sizes="100%" />
+            </Link>
+          ))}
         </div>
 
         {/* footer credits */}
         <div className="flex flex-wrap-reverse items-center justify-center gap-[20px] md:justify-between">
-          <p className="mt-[60px] text-[12px] font-light sm:mt-0 sm:text-base">
+          <p className="mt-[60px] text-[12px] sm:font-normal font-light text-gray-dark sm:mt-0 sm:text-base">
             © BUSIPOOL. {currentYear}. Все права защищены.
           </p>
 
@@ -109,14 +108,14 @@ const Footer = () => {
             <Link
               href="/privacy-policy"
               rel="noopener noreferrer"
-              className="text-base text-gray-dark sm:text-[20px]"
+              className="text-base text-gray-dark "
             >
               Политика конфиденциальности
             </Link>
             <Link
               href="/terms-&-conditions"
               rel="noopener noreferrer"
-              className="text-base text-gray-dark sm:text-[20px]"
+              className="text-base text-gray-dark "
             >
               Пользовательское соглашение
             </Link>

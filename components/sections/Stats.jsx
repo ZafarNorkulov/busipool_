@@ -53,7 +53,7 @@ const Stats = ({ large }) => {
             {statistics.map((stat, index) => (
               <div
                 key={index}
-                className={`flex flex-col items-center justify-center w-max   `}
+                className={`flex w-max flex-col items-center justify-center gap-y-[10px] leading-[120%] 2xl:gap-y-[30px]`}
               >
                 <h2
                   className={`w-max text-[24px] font-bold lg:text-[28px] xl:text-4xl ${
@@ -62,7 +62,7 @@ const Stats = ({ large }) => {
                 >
                   {stat.number}
                 </h2>
-                <p className="mt-[5px] w-max text-xs font-light md:mt-[10px] md:text-base lg:text-[18px] 2xl:text-[24px]">
+                <p className="w-max text-xs font-light md:text-base lg:text-[18px] xl:text-[24px]">
                   {stat.label}
                 </p>
               </div>

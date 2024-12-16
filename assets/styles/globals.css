@@ -13,13 +13,13 @@
   font-size: 16px;
 }
 html {
-  overflow: visible!important;
-  padding: 0!important;
+  overflow: visible !important;
+  padding: 0 !important;
 }
 
 @layer components {
   .max-container {
-    max-width: 1720px;
+    max-width: 1920px;
     width: calc(100% - 40px);
     margin: 0 auto;
   }
@@ -36,6 +36,9 @@ html {
   background-position: center;
   background-size: cover;
   position: relative;
+  max-width: 1920px;
+  width: 100%;
+  margin: 0 auto;
 }
 .hero-bg::before {
   position: absolute;
@@ -64,7 +67,7 @@ html {
   }
 }
 
-.react-tabs__tab--selected{
+.react-tabs__tab--selected {
   text-decoration: underline;
 }
 
@@ -130,4 +133,14 @@ html {
 }
 .react-tabs__tab {
   padding: 0 !important;
+}
+
+/* Chat */
+
+.chat .chat-content::-webkit-scrollbar {
+  width: 8px;
+}
+.chat .chat-content::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
 }

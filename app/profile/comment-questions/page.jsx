@@ -17,7 +17,7 @@ const CommentQuestionsPage = () => {
         />
         <link rel="icon" href="/Fav.png" />
       </Head>
-      <section className="mb-[150px] mt-[100px]">
+      <div >
         <div className="max-container">
           <div className="flex flex-col items-center gap-y-[10px]">
             <div className="flex items-start gap-x-[10px] text-gray-dark">
@@ -42,7 +42,7 @@ const CommentQuestionsPage = () => {
             </TabPanel>
           </Tabs>
         </div>
-      </section>
+      </div>
     </>
   );
 };

@@ -23,7 +23,7 @@ const ProjectPage = () => {
 
   const [project, setProject] = useState(null);
   const [loading, setLoading] = useState(true);
-  const { width, height } = useWindowSize;
+  const [token, setToken] = useState("");
   useEffect(() => {
     fetchProjectsWithIdFromAPI();
   }, [id]);
@@ -64,6 +64,18 @@ const ProjectPage = () => {
     // Raqqa stringga aylantiramiz, keyin bo'sh joy bilan ajratamiz
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " "); // Har 3 raqamdan keyin bo'sh joy qo'yadi
   };
+  
+  // chat works
+//   if (typeof window !== "undefined") {
+//     const storedToken = localStorage.getItem("access_token") ?? "";
+//     setToken(storedToken);
+//   }
+
+// function fetchChatConversation(){
+//   checkConversation()
+// }
+  
+//   console.log(project?.owner);
 
   return (
     <>
@@ -121,12 +133,12 @@ const ProjectPage = () => {
                         ? project?.owner?.first_name
                         : "Сергей Устюжанин"}
                     </p>
-                    <a
+                    <Link
                       href="#!"
                       className="text-[10px] text-primary hover:underline md:text-base md:leading-[16px]"
                     >
                       Написать автору
-                    </a>
+                    </Link>
                   </div>
 
                   <div className="flex items-center">

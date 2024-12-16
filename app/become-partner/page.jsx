@@ -37,7 +37,7 @@ const BecomePartnerPage = () => {
   return (
     <>
       <Head>
-        <title>{"BUSIPOOL | Стать парнером"}</title>
+        <title>{"BUSIPOOL | Стать парнтером"}</title>
         <meta
           name="description"
           content={
@@ -84,18 +84,7 @@ const BecomePartnerPage = () => {
             Какие возможности для вас?
           </h2>
 
-          <SwiperSection />
-
-          <div className="flex flex-wrap items-center justify-center gap-[30px] sm:gap-[20px]">
-            <Button
-              text="Все проекты"
-              primary
-              onclick={() => router.push("projects")}
-            />
-            <Link href={"/profile/create"}>
-              <Button text="Создать свой" />
-            </Link>
-          </div>
+       
         </div>
 
         <div className="max-container mb-[100px] flex flex-col flex-wrap justify-between md:mb-[150px] lg:flex-row">

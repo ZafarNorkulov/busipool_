@@ -52,27 +52,38 @@ const InvestorPage = () => {
       <section className="mt-[80px] md:mt-[120px] lg:mt-[130px]">
         <div className="max-container pt-[30px] md:pt-[100px]">
           <Stats />
-        </div>
 
-        <div className="mx-auto mb-[30px] mt-[60px] w-fit px-[10px] md:mt-[100px] md:px-[20px]">
-          <BusipoolLogoLarge />
-        </div>
-
-        <div className="max-container">
-          <div className="mb-[100px] mt-[30px] flex flex-wrap items-center justify-center gap-x-[20px] gap-y-[60px] md:mb-[60px] md:mt-[60px] lg:flex-nowrap xl:mb-[100px] xl:mt-[100px] wide:flex-nowrap">
-            <p className="text-lg font-light tracking-[0.01em] text-primary md:text-center md:text-[14px] lg:text-[15px] 2xl:text-[24px]">
-              Цель нашей краудфандинговой платформы - предоставить вам
-              возможность{" "}
-              <span className="text-lg text-gold md:text-[14px] lg:text-[15px] 2xl:text-[24px]">
-                увеличить свои инвестиции
-              </span>{" "}
-              через вложения в проекты.
-            </p>
+          <div className="mb-[30px] mt-[60px] w-fit px-[10px] md:mt-[100px] md:px-[20px]">
+            <BusipoolLogoLarge />
           </div>
-        </div>
 
-        <div className="max-container">
-          <div className="pt-[100px] md:pt-[150px]">
+          <div className="max-container">
+            <div className="mb-[100px] mt-[30px] flex flex-wrap items-center justify-center gap-x-[20px] gap-y-[60px] md:mb-[60px] md:mt-[60px] lg:flex-nowrap xl:mb-[100px] xl:mt-[100px] wide:flex-nowrap">
+              <p className="text-center text-xl font-light tracking-[0.01em] text-primary md:text-lg xl:w-[55%] xl:text-left wide:flex-1 2xl:text-[24px]">
+                Цель нашей краудфандинговой платформы - предоставить вам
+                возможность{" "}
+                <span className="text-lg text-gold md:text-[14px] lg:text-[15px] 2xl:text-[24px]">
+                  увеличить свои инвестиции
+                </span>{" "}
+                через вложения в проекты, с которых можно заработать.
+              </p>
+
+              <div className="w-full flex-col items-stretch gap-[30px] sm:flex sm:flex-row sm:items-center md:flex-nowrap md:justify-center xl:w-[45%]">
+                <Link href={"/profile/create"}>
+                  <Button
+                    text="Как это работает"
+                    fullWidth={true}
+                    style={"sm:mb-0 mb-2"}
+                  />
+                </Link>
+                <Link href={"/profile/create"}>
+                  <Button text="Разместить компанию" primary fullWidth={true} />
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-[100px] md:mt-[150px]">
             <h2 className="section-title mb-[30px] md:mb-[100px]">
               Кратко о сделках
             </h2>
@@ -110,116 +121,118 @@ const InvestorPage = () => {
               </div>
             </div>
           </div>
-        </div>
 
-        <div className="bg-secondary pb-[100px] pt-[60px] md:pb-[150px] md:pt-[100px]">
-          <h2 className="mb-[30px] text-center text-[24px] font-bold leading-[120%] text-gray-dark md:mb-[100px] md:text-[64px]">
-            Как проходят сделки?
-          </h2>
+          <div className="bg-secondary pb-[100px] pt-[60px] md:pb-[150px] md:pt-[100px]">
+            <h2 className="mb-[30px] text-center text-[24px] font-bold leading-[120%] text-gray-dark md:mb-[100px] md:text-[64px]">
+              Как проходят сделки?
+            </h2>
 
-          <div className="max-container">
-            <div className="mx-auto max-w-[1385px] pl-[25px] md:pl-[60px]">
-              {dealsSteps.map((step, index, arr) => (
-                <div
-                  key={index}
-                  className={`${
-                    index == arr.length - 1 ? "pb-0" : "pb-[60px] md:pb-[100px]"
-                  } ${
-                    index == arr.length - 1
-                      ? "border-0"
-                      : "border-l md:border-l-2"
-                  } relative border-primary pl-[55px] md:pl-[275px] xl:pl-[372px]`}
-                >
-                  <h3 className="mb-[20px] text-[18px] font-bold leading-[110%] text-gray-dark md:mb-[30px] md:text-[32px]">
-                    {step.title}
-                  </h3>
-                  <p className="text-base font-light leading-[140%] text-gray-light md:text-[24px]">
-                    {step.text}
-                  </p>
-
-                  <span className="absolute left-0 top-0 flex size-[50px] -translate-x-[50%] items-center justify-center rounded-full border-2 border-primary bg-secondary text-[24px] font-light leading-[110%] text-primary md:h-[125px] md:w-[125px] md:text-[48px]">
-                    {index + 1}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <div className="max-container pb-[150px] md:pt-[100px]">
-          {!token && (
-            <div className="my-[30px] flex flex-1 flex-wrap justify-center gap-[30px] md:flex-nowrap">
-              <SignUpLink />
-              <SignInLink />
-            </div>
-          )}
-
-          <div className="flex flex-col-reverse gap-[100px] md:flex-col">
-            <div>
-              <h3 className="section-title mb-[30px] md:mb-[100px] md:mt-[150px]">
-                База стартапов
-              </h3>
-
-              <div className="flex flex-wrap justify-center gap-[30px] md:gap-[20px]">
-                {businessType?.map((item) => (
+            <div className="max-container">
+              <div className="mx-auto max-w-[1385px] pl-[25px] md:pl-[60px]">
+                {dealsSteps.map((step, index, arr) => (
                   <div
-                    className="w-[230px] rounded-[10px] p-[20px] shadow md:w-[560px] md:p-[30px]"
-                    key={item?.id}
+                    key={index}
+                    className={`${
+                      index == arr.length - 1
+                        ? "pb-0"
+                        : "pb-[60px] md:pb-[100px]"
+                    } ${
+                      index == arr.length - 1
+                        ? "border-0"
+                        : "border-l md:border-l-2"
+                    } relative border-primary pl-[55px] md:pl-[275px] xl:pl-[372px]`}
                   >
-                    <h2 className="mb-[10px] text-[18px] font-light leading-[110%] text-gray-dark md:mb-[20px] md:text-[48px]">
-                      {item?.name}
-                    </h2>
-                    <p className="md:wrap-balance mb-[20px] text-[15px] font-light leading-[120%] text-gray-light md:mb-[30px] md:text-[24px]">
-                      Посмотрите нашу {item?.name} для инвестирования
+                    <h3 className="mb-[20px] text-[18px] font-bold leading-[110%] text-gray-dark md:mb-[30px] md:text-[32px]">
+                      {step.title}
+                    </h3>
+                    <p className="text-base font-light leading-[140%] text-gray-light md:text-[24px]">
+                      {step.text}
                     </p>
 
-                    <Link
-                      href={`/investor/${item?.id}`}
-                      onClick={scrollToTop}
-                      className={`ml-auto flex w-fit items-center text-[10px] font-light leading-[110%] text-gray-dark hover:text-primary md:text-[24px]`}
-                    >
-                      Подробнее
-                      <BsArrowDownRight className="ml-[5px] text-[10px] md:ml-[10px] md:text-[24px]" />
-                    </Link>
+                    <span className="absolute left-0 top-0 flex size-[50px] -translate-x-[50%] items-center justify-center rounded-full border-2 border-primary bg-secondary text-[24px] font-light leading-[110%] text-primary md:h-[125px] md:w-[125px] md:text-[48px]">
+                      {index + 1}
+                    </span>
                   </div>
                 ))}
               </div>
             </div>
+          </div>
 
-            <div>
-              <h2 className="section-title mt-[100px] md:mb-[100px]">
-                Финансовые инструменты
-              </h2>
+          <div className="max-container pb-[150px] md:pt-[100px]">
+            {!token && (
+              <div className="my-[30px] flex flex-1 flex-wrap justify-center gap-[30px] md:flex-nowrap">
+                <SignUpLink />
+                <SignInLink />
+              </div>
+            )}
 
-              <div className="mx-auto max-w-[1140px]">
-                {faqs?.map((faq) => (
-                  <Accordion
-                    key={faq.id}
-                    title={faq.title}
-                    description={faq.description}
-                  />
-                ))}
+            <div className="flex flex-col-reverse gap-[100px] md:flex-col">
+              <div>
+                <h3 className="section-title mb-[30px] md:mb-[100px] md:mt-[150px]">
+                  База стартапов
+                </h3>
+
+                <div className="flex flex-wrap justify-center gap-[30px] md:gap-[20px]">
+                  {businessType?.map((item) => (
+                    <div
+                      className="w-[230px] rounded-[10px] p-[20px] shadow md:w-[560px] md:p-[30px]"
+                      key={item?.id}
+                    >
+                      <h2 className="mb-[10px] text-[18px] font-light leading-[110%] text-gray-dark md:mb-[20px] md:text-[48px]">
+                        {item?.name}
+                      </h2>
+                      <p className="md:wrap-balance mb-[20px] text-[15px] font-light leading-[120%] text-gray-light opacity-70 md:mb-[30px] md:text-[24px]">
+                        Посмотрите нашу {item?.name} для инвестирования
+                      </p>
+
+                      <Link
+                        href={`/investor/${item?.id}`}
+                        onClick={scrollToTop}
+                        className={`ml-auto flex w-fit items-center text-[10px] font-light leading-[110%] text-gray-dark hover:text-primary md:text-[24px]`}
+                      >
+                        Подробнее
+                        <BsArrowDownRight className="ml-[5px] text-[10px] md:ml-[10px] md:text-[24px]" />
+                      </Link>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h2 className="section-title mt-[100px] md:mb-[100px]">
+                  Финансовые инструменты
+                </h2>
+
+                <div className="mx-auto max-w-[1140px]">
+                  {faqs?.map((faq) => (
+                    <Accordion
+                      key={faq.id}
+                      title={faq.title}
+                      description={faq.description}
+                    />
+                  ))}
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div className="max-container">
-          <h2 className="section-title mb-[30px] md:mb-[100px]">
-            Актуальные проекты
-          </h2>
+          <div className="max-container">
+            <h2 className="section-title mb-[30px] md:mb-[100px]">
+              Актуальные проекты
+            </h2>
 
-          <SwiperSection />
+            <SwiperSection />
 
-          <div className="mb-[100px] flex flex-1 flex-wrap justify-center gap-[30px] md:hidden md:flex-nowrap">
-            <Button text="Все проекты" primary />
-            <Link href={"/profile/create"}>
-              <Button text="Создать свой" />
-            </Link>
+            <div className="mb-[100px] flex flex-1 flex-wrap justify-center gap-[30px] md:hidden md:flex-nowrap">
+              <Button text="Все проекты" primary />
+              <Link href={"/profile/create"}>
+                <Button text="Создать свой" />
+              </Link>
+            </div>
           </div>
-        </div>
 
-        <HomeBlogs />
+          <HomeBlogs />
+        </div>
       </section>
     </>
   );

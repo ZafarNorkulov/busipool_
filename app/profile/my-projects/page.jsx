@@ -97,7 +97,7 @@ const MyProjects = () => {
         />
         <link rel="icon" href="/Fav.png" />
       </Head>
-      <section className="mb-[150px] mt-[100px]">
+      <section >
         <div className="max-container">
           <div className="mx-auto flex w-max flex-col items-center gap-y-[10px] text-gray-dark">
             <h3 className="text-2xl font-bold">Ваши проекты</h3>

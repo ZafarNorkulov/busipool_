@@ -1,13 +1,10 @@
-import SignInPage from "@/app/sign-in/page";
-import Button from "@/components/Button";
 import SignInLink from "@/components/SignInLink";
 import SignUpLink from "@/components/SignUpLink";
 import HomeBlogs from "@/components/sections/HomeBlogs";
+import { socialMedia } from "@/constants";
 import Head from "next/head";
+import Image from "next/image";
 import Link from "next/link";
-import { AiFillInstagram } from "react-icons/ai";
-import { RiWhatsappFill } from "react-icons/ri";
-import { SiTelegram } from "react-icons/si";
 import { SlSocialVkontakte } from "react-icons/sl";
 
 const ContactsPage = () => {
@@ -79,33 +76,15 @@ const ContactsPage = () => {
                 </div>
               </div>
               <div className="mb-[60px] flex items-center gap-[30px] md:mb-[60px] md:gap-[20px] xl:mb-[100px]">
-                <Link
-                  href=""
-                  className="size-[30px] md:size-[40px] xl:size-[60px]"
-                >
-                  <SlSocialVkontakte className="block size-full text-gray-dark" />
-                </Link>
-
-                <Link
-                  href=""
-                  className="size-[30px] md:size-[40px] xl:size-[60px]"
-                >
-                  <AiFillInstagram className="block size-full text-gray-dark" />
-                </Link>
-
-                <Link
-                  href=""
-                  className="size-[30px] md:size-[40px] xl:size-[60px]"
-                >
-                  <RiWhatsappFill className="block size-full text-gray-dark" />
-                </Link>
-
-                <Link
-                  href=""
-                  className="size-[30px] md:size-[40px] xl:size-[60px]"
-                >
-                  <SiTelegram className="block size-full text-gray-dark" />
-                </Link>
+                {socialMedia?.map((social, i) => (
+                  <Link
+                    href={social.href}
+                    className="size-[30px] md:size-[40px] xl:size-[60px]"
+                    key={i}
+                  >
+                    <Image src={social.src} sizes="100%" />
+                  </Link>
+                ))}
               </div>
 
               <div className="grid grid-cols-12 gap-5 md:gap-[30px]">

@@ -38,8 +38,8 @@ const ProfilePageLayout = ({ children }) => {
   }, []);
 
   return (
-    <section>
-      <div className="max-container mt-[130px] flex flex-col items-center justify-between gap-5 sm:flex-row md:mt-[200px]">
+    <section className="mb-[150px]">
+      <div className="max-container mb-[100px] mt-[130px] flex flex-col items-center justify-between gap-5 sm:flex-row md:mt-[200px]">
         <div className="flex items-center gap-[20px] md:gap-[30px]">
           <Image
             src={user?.avatar || profileImageDefault}

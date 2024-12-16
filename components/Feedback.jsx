@@ -48,14 +48,14 @@ export default function Feedback({ isOpen, setIsOpen }) {
             >
               ✕
             </button>
-            <h2 className="mb-4 text-xl font-semibold sm:text-2xl">Заявку</h2>
+            <h2 className="mb-4 text-xl font-semibold sm:text-2xl">Остфвить заявку</h2>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label
                   htmlFor="full_name"
                   className="block text-sm font-medium"
                 >
-                  Ф.И.О.
+                  Имя
                 </label>
                 <input
                   type="text"

@@ -56,7 +56,7 @@ const Navbar = () => {
             <NavLink href="/">Главная</NavLink>
             <NavLink href="/investor">Инвестору</NavLink>
             <NavLink href="/company">Компаниям</NavLink>
-            <NavLink href="/become-partner">Стать парнером</NavLink>
+            <NavLink href="/become-partner">Стать партнером</NavLink>
             <li
               className={`relative flex cursor-pointer items-center text-sm font-bold uppercase leading-normal hover:text-primary xl:text-base ${path.includes("/about-us") && "text-primary"}`}
               onClick={() => setExtraLinksMenu((prev) => !prev)}

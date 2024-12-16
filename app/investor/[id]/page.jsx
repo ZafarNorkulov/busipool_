@@ -97,7 +97,7 @@ const BusinessType = () => {
         <link rel="icon" href="/Fav.png" />
       </Head>
       <section className="mt-[70px] sm:mt-[90px] md:mt-[95px] lg:mt-[105px]">
-        <div className="max-container pb-[30px] pt-[60px] md:py-[100px]">
+        <div className="mx-auto max-w-[1920px] px-5 pb-[30px] pt-[60px] md:py-[100px] xl:mx-[80px]">
           <h2 className="section-title mb-[20px] !text-left md:mb-[30px]">
             {selectedType}
           </h2>
@@ -108,8 +108,8 @@ const BusinessType = () => {
           </p>
         </div>
 
-        <div className="mb-[60px] bg-secondary py-[30px] md:py-[60px]">
-          <div className="max-container flex flex-col justify-between xl:flex-row">
+        <div className="mb-[60px] bg-secondary px-5 py-[30px] md:py-[60px]">
+          <div className="mx-auto flex max-w-[1920px] flex-col justify-between xl:mx-[80px] xl:flex-row">
             <div className="flex-1">
               <h2 className="mb-[10px] text-[24px] font-bold leading-[120%] text-gray-dark md:mb-[30px] md:text-[64px]">
                 Хотите попасть в каталог?
@@ -132,40 +132,40 @@ const BusinessType = () => {
             />
           </div>
         </div>
+        <div className="mx-auto max-w-[1920px] px-[20px] xl:mx-[80px]">
+          <Filters
+            search={search}
+            setSearch={setSearch}
+            activeSearch
+            filters={filters}
+            setFilters={setFilters}
+            cityName={selectedCity?.name || "Город"}
+            cities={cityRel}
+            setSelectedCity={setSelectedCity}
+          />
+          {loading && <Spinner loading={loading} />}
+          {!loading && projects && (
+            <div className="mb-[60px] grid grid-cols-12 gap-[8px] md:mb-[30px] md:gap-[20px]">
+              {projects?.map((card, index) => (
+                <div
+                  className="col-span-6 sm:col-span-4 lg:col-span-3"
+                  key={index}
+                >
+                  <ProjectCard key={index} card={card} isGrid={false} />
+                </div>
+              ))}
+            </div>
+          )}
+          {projects?.results?.length ? (
+            <div className="max-container mb-[100px] flex items-center justify-center md:mb-[150px]">
+              <Button text="Загрузить еще" primary />
+            </div>
+          ) : (
+            ""
+          )}
 
-        <Filters
-          search={search}
-          setSearch={setSearch}
-          activeSearch
-          filters={filters}
-          setFilters={setFilters}
-          cityName={selectedCity?.name || "Город"}
-          cities={cityRel}
-          setSelectedCity={setSelectedCity}
-        />
-
-        {loading && <Spinner loading={loading} />}
-        {!loading && projects && (
-          <div className="max-container mb-[60px] grid grid-cols-12 gap-[8px] md:mb-[30px] md:gap-[20px]">
-            {projects?.map((card, index) => (
-              <div
-                className="col-span-6 sm:col-span-4 lg:col-span-3"
-                key={index}
-              >
-                <ProjectCard key={index} card={card} isGrid={false} />
-              </div>
-            ))}
-          </div>
-        )}
-        {projects?.results?.length ? (
-          <div className="max-container mb-[100px] flex items-center justify-center md:mb-[150px]">
-            <Button text="Загрузить еще" primary />
-          </div>
-        ) : (
-          ""
-        )}
-
-        <HomeBlogs />
+          <HomeBlogs />
+        </div>
       </section>
     </>
   );

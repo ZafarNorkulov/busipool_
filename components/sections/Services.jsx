@@ -9,7 +9,7 @@ const Services = () => {
       </h2>
 
       <div className="grid grid-cols-12 justify-center gap-[30px]">
-        <div className="col-span-12 flex items-center justify-center lg:col-span-6">
+        <div className="col-span-12 flex items-center justify-center lg:col-span-6 ">
           <ServiceCard
             title="Инвестировать"
             description="Информация для новых инвесторов о том, как устроен процесс сделок"

@@ -1,6 +1,6 @@
 import Whatsapp from "@/assets/images/social/Whatsapp.png";
 import Instagram from "@/assets/images/social/Instagram.png";
-import VK from "@/assets/images/social/VK.png";
+import VK from "@/assets/images/social/Vk.png";
 import Telegram from "@/assets/images/social/Telegram.png";
 
 import idea from "@/assets/images/svg/profile-menu/idea.svg";
@@ -12,14 +12,11 @@ import ruble from "@/assets/images/svg/profile-menu/ruble.svg";
 import settings from "@/assets/images/svg/profile-menu/settings.svg";
 import shutdown from "@/assets/images/svg/profile-menu/shutdown.svg";
 
-import b1 from "@/assets/images/blog/b1.jpg";
-import b2 from "@/assets/images/blog/b2.jpg";
-
 export const navLinks = [
   { href: "/", label: "Главная" },
   { href: "/investor", label: "Инвестору" },
   { href: "/company", label: "Компаниям" },
-  { href: "/become-partner", label: "Стать парнером" },
+  { href: "/become-partner", label: "Стать партнером" },
   { href: "/about-us", label: "Видение" },
   { href: "/about-us/partners", label: "Партнеры" },
   { href: "/about-us/contacts", label: "Контакты" },
@@ -147,7 +144,7 @@ export const workProcess = [
   },
   {
     title: "Подготовка документов к размещению",
-    text: "Разработка документации для размещения бизнес на площадке BUSIPOOL. Минимально будет необходимо подготовить: Инвестиционное предложение, Инвестиционную презентацию и Финансовую модель проекта. Параллельно, нужно будет получить аудиторское заключение о корректности предоставленной финансовой информации.",
+    text: "Разработка документации для размещения бизнеса на площадке BUSIPOOL. Минимально будет необходимо подготовить: Инвестиционное предложение, Инвестиционную презентацию и Финансовую модель проекта. Параллельно, нужно будет получить аудиторское заключение о корректности предоставленной финансовой информации.",
     deadline: "Срок: 7 дней",
   },
   {
