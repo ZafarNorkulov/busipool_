@@ -14,10 +14,14 @@ export const checkConversation = async ({ owner_id, token }) => {
         },
       },
     );
+    if (response.status === 404) {
+      return null; // No conversation found, return null
+    }
+    if (!response.ok) {
+      throw new Error("Conversation check failed");
+    }
 
-    if (!response.ok) throw new Error("Failed to fetch data");
-
-    return response.json();
+    return await response.json();
   } catch (error) {
     console.log(error);
     return {};
@@ -27,43 +31,48 @@ export const checkConversation = async ({ owner_id, token }) => {
 export const startConvo = async ({ username, token }) => {
   try {
     if (!BASE_URL) return console.log("BASE_URL is not defined");
-    const myData = { username: username };
+    const myData = { username };
+    console.log(JSON.stringify(myData));
     const response = await fetch(`${BASE_URL}/chat/start_convo/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Accept":"application/json",
         Authorization: `Bearer ${token}`,
       },
-      data: JSON.stringify(myData)
+      body: JSON.stringify(myData),
     });
+    console.log("????????", response);
+    if (!response.ok) {
+      throw new Error("Conversation start failed");
+    }
 
-    if (!response.ok) throw new Error("Failed to fetch data");
-
-    return response.json();
+    return await response.json();
   } catch (error) {
     console.log(error);
-    return {};
+    return null;
   }
 };
 
 export const getConversationById = async ({ convo_id, token }) => {
   try {
-    console.log(BASE_URL);
+    if (!convo_id) {
+      console.log("convo_id is required but not provided");
+      return {};
+    }
     if (!BASE_URL) return console.log("BASE_URL is not defined");
 
     const response = await fetch(
-      `${BASE_URL}/chat/get-conversation/${convo_id}/`,
+      `${BASE_URL}/chat/get_conversation/${convo_id}/`,
       {
         method: "GET",
         headers: {
-          "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
       },
     );
-
-    if (!response.ok) throw new Error("Failed to fetch data");
+    if (!response.ok) {
+      throw new Error(`API error: ${response.statusText}`);
+    }
 
     return response.json();
   } catch (error) {
