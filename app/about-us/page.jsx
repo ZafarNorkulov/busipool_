@@ -5,9 +5,12 @@ import Head from "next/head";
 
 const DatePoint = ({ date }) => {
   return (
-    <div className="text-[12px] font-light leading-[120%] text-gray-dark md:text-[32px]">
-      <div className="absolute top-0 h-[15px] w-[15px] -translate-y-[50%] rounded-full bg-secondary md:h-[40px] md:w-[40px]"></div>
+    <div className="">
+      <div className="absolute top-0 h-[15px] w-[15px] -translate-y-[50%] -translate-x-[50%] rounded-full bg-secondary md:h-[40px] md:w-[40px]"></div>
+      <div className=" -translate-x-[50%] text-[12px] font-light  leading-[120%] text-blck md:text-[24px] xl:text-[32px]">
+
       {date}
+      </div>
     </div>
   );
 };
@@ -104,7 +107,7 @@ const AboutUsPage = () => {
                 Для этого за 2 года требуется:
               </h2>
               <p className="mb-[20px] text-base font-bold leading-[120%] text-gray-dark xl:mb-[50px] xl:text-[36px]">
-                1. Акционировать всего 450 компаний за 2 лет;
+                1. Акционировать всего 450 компаний за 2 года;
               </p>
               <p className="mb-[20px] text-base font-bold leading-[120%] text-gray-dark xl:mb-[50px] xl:text-[36px]">
                 2. На 2-ой год запустить вторичный рынок акций внебиржевых

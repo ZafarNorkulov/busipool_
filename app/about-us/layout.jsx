@@ -42,16 +42,16 @@ const AboutUsPageLayout = ({ children }) => {
         <div className="max-container mb-[100px] md:mb-[150px]">
           <h2 className="section-title mb-[30px] md:mb-[100px]">О нас</h2>
 
-          <div className="flex flex-col justify-center gap-x-[20px] gap-y-[30px] min-[768px]:flex-row">
-            <div className="flex-1 wide:max-w-[850px]">
-              <p className="mb-[30px] text-[20px] font-light tracking-normal text-gray-dark md:mb-[76px] md:text-[36px] md:leading-[52px] xl:text-[57px]">
+          <div className="flex flex-col justify-center gap-x-[20px] gap-y-[30px] md:flex-row">
+            <div className="flex flex-col gap-y-[30px] xl:gap-y-[76px] flex-1 wide:max-w-[850px]">
+              <p className=" text-[20px] font-light leading-[120%] tracking-normal text-gray-dark  md:!text-[22px] lg:!text-[36px] xl:!text-[40px] 2xl:!text-[55px]">
                 BUSIPOOL - онлайн-платформа, где инвестор может купить акции и
                 стать совладельцем компаний малого и среднего бизнеса.
               </p>
-              <p className="text-[14px] font-light leading-[120%] text-gray-light xl:text-[32px]">
+              <p className="text-[16px] font-light leading-[140%] md:leading-[120%] text-black md:text-gray-light md:text-[20px] xl:text-[32px]">
                 Инвестиции начинаются от 15 тыс.₽, а перечень компаний
                 неограничен - от финтех проектов, до производств и
-                сельскохозяйственных компаний.Деньги, полученные от продажи
+                сельскохозяйственных компаний. Деньги, полученные от продажи
                 акций компания может использовать для финансирования своего
                 развития.
               </p>

@@ -171,7 +171,7 @@ const ProjectsPage = () => {
         {!loading && projects && (
           <div className="max-container mb-[60px] grid grid-cols-2 gap-[8px] md:mb-[30px] md:grid-cols-3 md:gap-[20px] wide:grid-cols-4">
             {projects?.results?.map((card, index) => (
-              <ProjectCard key={index} card={card} isGrid={false} />
+              <ProjectCard key={index} card={card} isGrid={true} />
             ))}
           </div>
         )}

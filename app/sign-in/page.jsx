@@ -5,11 +5,11 @@ import logo from "@/assets/images/logo.png";
 import img1 from "@/assets/images/login-images/img1.png";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import Spinner from "@/components/Spinner";
 import { useRouter } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/store";
 import SignIn from "@/store/auth/service";
 import Head from "next/head";
+import { MdKeyboardArrowLeft } from "react-icons/md";
 
 const SignInPage = () => {
   const router = useRouter();
@@ -53,7 +53,10 @@ const SignInPage = () => {
         <link rel="icon" href="/Fav.png" />
       </Head>
       <main className="flex flex-col-reverse overflow-hidden md:flex-row">
-        <section className="flex w-full flex-1 items-center justify-center pt-3 lg:w-[560px] extraWide:w-[760px]">
+        <section className="relative flex w-full flex-1 items-center justify-center pt-3 lg:w-[560px] extraWide:w-[760px]">
+          <Link href={"/"} className="absolute left-2 top-4">
+            <MdKeyboardArrowLeft size={30} className="rounded-full bg-[#ccc]" />
+          </Link>
           <form
             // action="POST"
             onSubmit={login}

@@ -44,7 +44,7 @@ const ProfilePage = () => {
               <p className="mb-[10px] text-[18px] font-light leading-[120%] text-gray-light">
                 Можете{" "}
                 <Link
-                  href="/profile/create"
+                  href="/projects"
                   className="border-b border-primary text-base font-light leading-[120%] text-primary md:leading-[24px]"
                 >
                   создать
@@ -64,7 +64,7 @@ const ProfilePage = () => {
               </h2>
               <p className="mb-[10px] text-[18px] font-light leading-[120%] text-gray-light">
                 <Link
-                  href="#"
+                  href="/projects"
                   className="border-b border-primary text-base font-light leading-[120%] text-primary md:leading-[24px]"
                 >
                   Найдите
@@ -85,7 +85,7 @@ const ProfilePage = () => {
             </h2>
             <p className="mb-[10px] text-[18px] font-light leading-[120%] text-gray-light">
               <Link
-                href="#"
+                href="/projects"
                 className="border-b border-primary text-base font-light leading-[120%] text-primary md:leading-[24px]"
               >
                 Поддерживайте

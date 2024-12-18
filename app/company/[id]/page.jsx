@@ -4,8 +4,6 @@ import { investors } from "@/constants";
 import InvestorPageButton from "@/components/company/InvestorPageButton";
 
 import { useState, useEffect } from "react";
-import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import ProjectCard from "../../../components/ProjectCard";
 import Button from "@/components/Button";
 import Image from "next/image";
@@ -132,9 +130,9 @@ const InvestorPage = () => {
 
         {!token && (
           <div className="mb-[60px] bg-secondary py-[30px] md:py-[60px]">
-            <div className="max-container flex flex-col justify-between xl:flex-row">
+            <div className="max-container flex flex-col gap-y-[60px] justify-between xl:flex-row">
               <div className="flex-1">
-                <h2 className="mb-[10px] text-[24px] font-bold leading-[120%] text-gray-dark md:mb-[30px] md:text-[64px]">
+                <h2 className="mb-[10px] text-[24px] font-bold leading-[120%] text-gray-dark md:mb-[30px] lg:text-[52px] 2xl:text-[64px]">
                   Хотите больше выгоды?
                 </h2>
                 <p className="mb-[30px] text-base font-light leading-[110%] text-gray-light md:mb-[60px] md:text-[32px]">
@@ -153,7 +151,7 @@ const InvestorPage = () => {
                 width={0}
                 height={0}
                 sizes="100%"
-                className="flex-1 object-contain md:max-w-[650px]"
+                className="flex-1 object-contain  lg:max-w-[600px] 2xl:max-w-[650px]"
               />
             </div>
           </div>

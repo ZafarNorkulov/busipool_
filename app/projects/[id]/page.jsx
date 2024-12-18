@@ -5,28 +5,53 @@ import rocket from "@/assets/images/project-page-images/rocket.png";
 import Button from "../../../components/Button";
 import { CiHeart } from "react-icons/ci";
 import { FaHeart } from "react-icons/fa";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import RewardCard from "../../../components/RewardCard";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import Spinner from "../../../components/Spinner";
 import { getProject } from "../../api/projects/project";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
-import { socialMedia } from "@/constants";
 import Link from "next/link";
-import useWindowSize from "@/hooks/useWindowSize";
 import Head from "next/head";
+import { checkConversation, startConvo } from "@/app/api/chat/chat";
+import Code from "@/assets/images/social/code.png";
+import Telegram from "@/assets/images/social/telegramgray.png";
+import VK from "@/assets/images/social/vkgray.png";
+import Facebook from "@/assets/images/social/facebookgray.png";
+import Whatsapp from "@/assets/images/social/whatsappgray.png";
 
 const ProjectPage = () => {
   const [toggleHeart, setToggleHeart] = useState(false);
-  const { id } = useParams();
-
   const [project, setProject] = useState(null);
   const [loading, setLoading] = useState(true);
   const [token, setToken] = useState("");
-  useEffect(() => {
-    fetchProjectsWithIdFromAPI();
-  }, [id]);
+  const [isConversation, setIsConversation] = useState();
+
+  const { id } = useParams();
+  const router = useRouter();
+  const socials = [
+    {
+      src: Code,
+      alt: "Code",
+    },
+    {
+      src: Telegram,
+      alt: "Telegram",
+    },
+    {
+      src: VK,
+      alt: "VK",
+    },
+    {
+      src: Facebook,
+      alt: "Facebook",
+    },
+    {
+      src: Whatsapp,
+      alt: "Whatsapp",
+    },
+  ];
 
   function fetchProjectsWithIdFromAPI() {
     getProject(id)
@@ -41,13 +66,9 @@ const ProjectPage = () => {
       });
   }
 
-  if (!project && !loading) {
-    return (
-      <h1 className="mt-10 text-center text-2xl font-bold">
-        Property Not Found
-      </h1>
-    );
-  }
+  useEffect(() => {
+    fetchProjectsWithIdFromAPI();
+  }, [id]);
 
   const percentage = Math.round(
     (project?.total_investor_price * 100) / project?.financial_goal,
@@ -64,19 +85,37 @@ const ProjectPage = () => {
     // Raqqa stringga aylantiramiz, keyin bo'sh joy bilan ajratamiz
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " "); // Har 3 raqamdan keyin bo'sh joy qo'yadi
   };
-  
+
   // chat works
-//   if (typeof window !== "undefined") {
-//     const storedToken = localStorage.getItem("access_token") ?? "";
-//     setToken(storedToken);
-//   }
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedToken = localStorage.getItem("access_token") ?? "";
+      setToken(storedToken);
+    }
+  }, []);
 
-// function fetchChatConversation(){
-//   checkConversation()
-// }
-  
-//   console.log(project?.owner);
+  const fetchChatConversation = useCallback(() => {
+    if (!project?.owner?.id || !token) return;
+    checkConversation({ owner_id: project.owner.id, token })
+      .then((response) => setIsConversation(response?.id ? true : false))
+      .catch((error) => console.error("Error fetching conversation:", error));
+  }, [project?.owner?.id, token]);
 
+  const fetchStartConvo = useCallback(() => {
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    if (!isConversation) {
+      startConvo({ username: storedUser?.username, token }).then((res) => {
+        console.log(res);
+      });
+    }
+  }, [isConversation, token]);
+
+  useEffect(() => {
+    fetchChatConversation();
+  }, [fetchChatConversation]);
+  useEffect(() => {
+    fetchStartConvo();
+  }, [fetchStartConvo]);
   return (
     <>
       <Head>
@@ -119,7 +158,7 @@ const ProjectPage = () => {
                 {/* Contact author */}
                 <div className="mb-5 flex items-center lg:mb-[30px]">
                   <Image
-                    src={avatar}
+                    src={project?.avatar || avatar}
                     alt="avatar"
                     width={0}
                     height={0}
@@ -131,10 +170,25 @@ const ProjectPage = () => {
                     <p className="text-[10px] font-light text-[#3C3C3B] md:mb-[5px] md:text-base md:leading-[16px]">
                       {project?.owner?.first_name
                         ? project?.owner?.first_name
-                        : "Сергей Устюжанин"}
+                        : "Неизвестный"}
                     </p>
                     <Link
                       href="#!"
+                      onClick={async (e) => {
+                        e.preventDefault(); // Prevent default navigation behavior
+                          await fetchStartConvo(); // Start a conversation if none exists
+                          // const conversation = await checkConversation({
+                          //   owner_id: project?.owner?.id,
+                          //   token,
+                          // });
+                          // if (conversation?.id) {
+                          //   // Save conversation response to localStorage
+                          //   localStorage.setItem("conversation", JSON.stringify(conversation));
+
+                          //   setIsConversation(true); // Update state
+                          // }
+                        // router.push("/profile/chat"); // Navigate to chat
+                      }}
                       className="text-[10px] text-primary hover:underline md:text-base md:leading-[16px]"
                     >
                       Написать автору
@@ -200,11 +254,12 @@ const ProjectPage = () => {
                   </div>
                 </div>
                 <div className="mb-[60px] mt-[30px] flex items-center gap-[30px] sm:mb-[30px] md:justify-end md:gap-[20px]">
-                  {socialMedia.map((item) => (
+                  {socials?.map((item, idx) => (
                     <Link
-                      href={item.href}
+                      href={"#"}
                       target="_blank"
                       rel="noopener noreferrer"
+                      key={idx}
                     >
                       <Image
                         src={item.src}

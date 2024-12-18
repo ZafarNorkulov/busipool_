@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 
 const CreateLayout = ({ children }) => {
   const [role, setRole] = useState(null); // Set initial state to null to indicate loading
+  const [loading, setLoading] = useState(true); // Loading holati
   const router = useRouter();
 
   useEffect(() => {
@@ -13,15 +14,18 @@ const CreateLayout = ({ children }) => {
         const myRole = storedUser.groups[0].name;
         setRole(myRole);
       }
+      setLoading(false);
     }
   }, []); // Empty dependency array ensures this runs only once
-
-  if (role?.toLowerCase() !== "business") {
+  if (loading) {
+    return <div></div>;
+  }
+  if (role?.toLowerCase() === "business") {
+    return <div>{children}</div>;
+  } else {
     router.push("/not-found"); // Redirect if the role isn't "business"
     return null; // Return nothing during the redirect
   }
-
-  return <div>{children}</div>;
 };
 
 export default CreateLayout;

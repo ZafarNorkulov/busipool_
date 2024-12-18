@@ -1,10 +1,11 @@
 "use client";
-import Button from "@/components/Button";
+import useWindowSize from "@/hooks/useWindowSize";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 const ProjectCard = ({ card, isGrid }) => {
   const router = useRouter();
+  const { width } = useWindowSize();
 
   const percentage = Math.round(
     (card?.total_investor_price * 100) / card?.financial_goal,
@@ -90,8 +91,8 @@ const ProjectCard = ({ card, isGrid }) => {
       </div>
     </div>
   ) : (
-    <div className="h-full max-h-[305px] rounded-[5px] shadow md:rounded-[10px]">
-     <Image
+    <div className="h-full max-h-[305px] rounded-[5px] shadow md:max-h-[486px] md:rounded-[10px]">
+      <Image
         src={card?.img || card?.image}
         width={0}
         height={0}
@@ -100,19 +101,23 @@ const ProjectCard = ({ card, isGrid }) => {
         alt="project card"
         className="h-[102px] w-full rounded-[5px] object-cover md:h-[250px] md:rounded-[10px]"
       />
-      <div className="flex h-[65%] flex-col p-[10px] mt-[10px] md:p-[30px]">
-        <div className="mb-[20px] flex flex-col gap-y-[10px] md:mb-[30px] md:gap-y-5">
-          <h3 className="h-[30px] text-sm font-bold leading-[110%] text-gray-dark md:h-[20px] md:text-[18px]">
-            {card?.name.slice(0, 40)}
+      <div className="mt-[10px] flex h-[65%] flex-col p-[10px] lg:p-[30px]">
+        <div className="mb-[20px] flex flex-col gap-y-[10px] md:mb-[30px] lg:gap-y-5">
+          <h3 className="h-[30px] text-sm font-bold leading-[110%] text-gray-dark md:h-[40px] md:text-[18px]">
+            {width > 640 ? card?.name.slice(0, 40) : card?.name.slice(0, 20)}
           </h3>
-          <p className="h-[80px] text-xs font-light leading-[130%] text-gray-light md:text-base">
-            {card?.description.slice(0, 115)}
+          <p className="h-[40px] text-xs font-light leading-[130%] text-gray-light md:text-base">
+            {width > 768
+              ? card?.description.slice(0, 50)
+              : width > 640
+                ? card?.description.slice(0, 85)
+                : card?.description.slice(0, 50)}
           </p>
         </div>
         <div>
           <button
             onClick={() => router.push(`/projects/${card.id}`)}
-            className={`wrap-balance w-full rounded-[5px] border-2 border-gray-dark border-primary bg-primary px-[10px] py-[10px] text-[9px] font-bold sm:font-normal text-gray-dark text-white transition active:scale-95 xs:px-[30px] xs:py-[10px] sm:text-xs md:px-[15px] md:py-[15px] md:text-sm lg:px-[20px] lg:py-[20px]`}
+            className={`wrap-balance w-full rounded-[5px] border-2 border-gray-dark border-primary bg-primary px-[20px] py-[5px] text-[9px] font-normal leading-[24px] text-gray-dark text-white transition active:scale-95 xs:px-[30px] xs:py-[10px] sm:text-xs md:px-[38px] md:py-[10px] md:text-sm lg:px-[47px]`}
           >
             УЗНАТЬ БОЛЬШЕ
           </button>
