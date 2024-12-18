@@ -19,7 +19,7 @@ const Chat = () => {
     setToken(access_token);
     setReceiver(JSON.parse(user));
   }, []);
-  const webSocketUrl = `${process.env.NEXT_PUBLIC_SOCKET_URL}ws/chat/${`${params?.id || ""}/`}?token=${token}`;
+  const webSocketUrl = `${process.env.NEXT_PUBLIC_SOCKET_URL}/ws/chat/${`${params?.id || ""}/`}?token=${token}`;
   const { messages, sendMessage } = useWebSocket(webSocketUrl);
   useEffect(() => {
     if (token) {
