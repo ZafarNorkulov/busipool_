@@ -1,6 +1,6 @@
 import Whatsapp from "@/assets/images/social/Whatsapp.png";
 import Instagram from "@/assets/images/social/Instagram.png";
-import VK from "@/assets/images/social/Vk.png";
+import VK from "@/assets/images/social/VK.png";
 import Telegram from "@/assets/images/social/Telegram.png";
 
 import idea from "@/assets/images/svg/profile-menu/idea.svg";
