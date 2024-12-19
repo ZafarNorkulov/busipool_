@@ -1,6 +1,6 @@
 "use client";
 import Head from "next/head";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { getConversationById } from "@/app/api/chat/chat";
 import { useParams } from "next/navigation";
 import Bubble from "@/components/Bubble";
@@ -23,6 +23,11 @@ const Chat = () => {
   }, []);
   const webSocketUrl = `${process.env.NEXT_PUBLIC_SOCKET_URL}/ws/chat/${`${params?.id || ""}/`}?token=${token}`;
   const { messages, sendMessage } = useWebSocket(webSocketUrl);
+  useEffect(() => {
+    if (token) {
+      getMessages();
+    }
+  }, [token]);
 
   useEffect(() => {
     if (bottomRef.current && chatWindowRef.current) {
@@ -32,11 +37,6 @@ const Chat = () => {
       });
     }
   }, [allMessages, messages]);
-  useEffect(() => {
-    if (token) {
-      getMessages();
-    }
-  }, [token]);
 
   const getMessages = async () => {
     try {
@@ -44,17 +44,15 @@ const Chat = () => {
         convo_id: params?.id,
         token,
       });
-      console.log(conversationRes);
       setAllMessages(conversationRes || []);
     } catch (error) {
-      console.log("error");
       if (error && typeof error === "object" && "response" in error) {
         if (error.response.status === 302) {
-          getConversationById(err.response.data.id).then((res) => {
-            setAllMessages(res.data.message_set || []);
+          getConversationById(err.response.id).then((res) => {
+            setAllMessages(res.message_set || []);
           });
         } else {
-          console.error("Error Data:", err.response.data);
+          console.error("Error Data:", err.response);
         }
       } else {
         console.error("Unexpected Error:", error);
@@ -66,32 +64,34 @@ const Chat = () => {
     if (!message.trim()) return;
 
     try {
-      await sendMessage({ message });
+      await sendMessage({ message }); // Xabarni serverga yuboring.
     } catch (error) {
-      console.error("Error sending message:", error);
-      setAllMessages((prev) => prev.filter((msg) => msg.id !== tempMessage.id));
+      console.error("Xabar yuborishda xatolik:", error);
     } finally {
-      setMessage("");
+      setMessage(""); // Matn maydonini tozalash.
       getMessages();
     }
   };
 
   return (
     <>
-      <Head></Head>
-      <title>{"BUSIPOOL | Чат"}</title>
-      <meta
-        name="description"
-        content={
-          "Сбор денег для бизнеса, технологических, творческих и социальных проектов"
-        }
-      />
-      <link rel="icon" href="/Fav.png" />
+      <Head>
+        <title>{"BUSIPOOL | Чат"}</title>
+        <meta
+          name="description"
+          content={
+            "Сбор денег для бизнеса, технологических, творческих и социальных проектов"
+          }
+        />
+        <link rel="icon" href="/Fav.png" />
+      </Head>
+
       <section>
         <div className="max-container">
           <div className="mx-auto flex w-full max-w-[1068px] flex-col items-center justify-center">
             <div className="title mb-[46px] flex flex-col items-center gap-y-[30px] font-bold leading-[120%] text-gray-dark">
               <h3 className="text-xl md:text-2xl">Беседа с пользователем</h3>
+
               <div className="flex gap-x-[60px] text-lg md:text-xl">
                 <h4>
                   {receiver?.first_name} {receiver?.last_name}

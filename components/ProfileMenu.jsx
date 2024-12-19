@@ -19,7 +19,7 @@ const ProfileMenu = ({ closeProfileMenu, large }) => {
   return (
     <div
       id="profile-menu"
-      className={`${large ? "h-full w-full" : "w-[370px]"} select-none bg-headerColor rounded-b-md px-[20px] py-[30px]`}
+      className={`${large ? "h-full w-full" : "w-[370px]"} select-none rounded-b-md bg-headerColor px-[20px] py-[30px]`}
     >
       <Link href="/profile/create">
         <button
@@ -100,10 +100,10 @@ const ProfileMenu = ({ closeProfileMenu, large }) => {
             Баланс
           </Link>
         </li>
-        <li className="mb-[10px] flex items-center gap-[10px]">
-        <IoChatboxEllipsesOutline size={28} color="#79A471"  />
+        <li className="mb-[10px] ml-[3px] flex items-center gap-[10px]">
+          <IoChatboxEllipsesOutline size={28} color="#79A471" />
           <Link
-            href="/profile"
+            href="/profile/chat"
             className="menu-link"
             onClick={closeProfileMenu}
           >

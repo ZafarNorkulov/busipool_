@@ -53,6 +53,26 @@ export const startConvo = async ({ username, token }) => {
   }
 };
 
+export const getConversations = async (token) => {
+  try {
+    if (!BASE_URL) return console.log("BASE_URL is not defined");
+
+    const response = await fetch(`${BASE_URL}/chat/conversations/`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (!response.ok) {
+      throw new Error(`API error: ${response.statusText}`);
+    }
+
+    return response.json();
+  } catch (error) {
+    console.log(error);
+    return {};
+  }
+};
 export const getConversationById = async ({ convo_id, token }) => {
   try {
     if (!convo_id) {

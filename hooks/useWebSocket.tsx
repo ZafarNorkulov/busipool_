@@ -21,17 +21,12 @@ export default function useWebSocket(serverUrl: string) {
 
     socket.onmessage = (event: MessageEvent) => {
       const data: WebSocketMessage = JSON.parse(event.data);
-      console.log("Received message:", data);
       setMessages((prev) => [...prev, data]);
     };
 
-    socket.onerror = (error: Event) => {
-      console.error("WebSocket error:", error);
-    };
+   
 
-    socket.onclose = () => {
-      console.log("WebSocket disconnected");
-    };
+
 
     webSocketRef.current = socket;
   };
