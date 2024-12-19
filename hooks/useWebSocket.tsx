@@ -24,10 +24,6 @@ export default function useWebSocket(serverUrl: string) {
       setMessages((prev) => [...prev, data]);
     };
 
-   
-
-
-
     webSocketRef.current = socket;
   };
 
@@ -44,7 +40,6 @@ export default function useWebSocket(serverUrl: string) {
     } else {
       console.error("WebSocket is not open");
     }
-    // console.log(webSocketRef.current);
   };
 
   return { messages, sendMessage };

@@ -46,17 +46,7 @@ const Chat = () => {
       });
       setAllMessages(conversationRes || []);
     } catch (error) {
-      if (error && typeof error === "object" && "response" in error) {
-        if (error.response.status === 302) {
-          getConversationById(err.response.id).then((res) => {
-            setAllMessages(res.message_set || []);
-          });
-        } else {
-          console.error("Error Data:", err.response);
-        }
-      } else {
-        console.error("Unexpected Error:", error);
-      }
+      console.log(error);
     }
   };
 
@@ -64,11 +54,11 @@ const Chat = () => {
     if (!message.trim()) return;
 
     try {
-      await sendMessage({ message }); // Xabarni serverga yuboring.
+      await sendMessage({ message });
     } catch (error) {
       console.error("Xabar yuborishda xatolik:", error);
     } finally {
-      setMessage(""); // Matn maydonini tozalash.
+      setMessage("");
       getMessages();
     }
   };
@@ -94,9 +84,9 @@ const Chat = () => {
 
               <div className="flex gap-x-[60px] text-lg md:text-xl">
                 <h4>
-                  {receiver?.first_name} {receiver?.last_name}
+                  {receiver?.first_name || ""} {receiver?.last_name || ""}
                 </h4>
-                <h4>{receiver?.phone}</h4>
+                <h4>{receiver?.phone || ""} </h4>
               </div>
             </div>
             <div className="chat relative h-[600px] w-full border border-gray-dark px-[20px] py-[20px] md:h-[785px] md:px-[60px] md:py-[30px]">
@@ -104,15 +94,16 @@ const Chat = () => {
                 className="chat-content h-full max-h-[510px] overflow-y-scroll"
                 ref={chatWindowRef}
               >
-                {messages?.map((item, idx) => (
+                {allMessages?.map((item, idx) => (
                   <Bubble
                     message={item?.text}
                     isSent={item?.sender_type === "initiator"}
                     user={item?.sender}
                     key={idx}
                   />
+                  
                 ))}
-                {allMessages?.map((item, idx) => (
+                {messages?.map((item, idx) => (
                   <Bubble
                     message={item?.text}
                     isSent={item?.sender_type === "initiator"}
@@ -129,7 +120,7 @@ const Chat = () => {
                     placeholder="Напишите сообщение"
                     rows={1}
                     value={message}
-                    onChange={(e) => setMessage(e.target.value.trim())}
+                    onChange={(e) => setMessage(e.target.value)}
                     className="w-full resize-none border border-gray-dark p-[10px] text-sm font-light leading-6 placeholder:text-gray-dark focus-visible:rounded-none focus-visible:outline-primary md:p-5"
                   />
                   <button
