@@ -5,6 +5,7 @@ import { AUTH_ACTIONS } from "@/store/auth";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { IoChatboxEllipsesOutline } from "react-icons/io5";
 
 const ProfileMenu = ({ closeProfileMenu, large }) => {
   const dispatch = useAppDispatch();
@@ -97,6 +98,16 @@ const ProfileMenu = ({ closeProfileMenu, large }) => {
             onClick={closeProfileMenu}
           >
             Баланс
+          </Link>
+        </li>
+        <li className="mb-[10px] flex items-center gap-[10px]">
+        <IoChatboxEllipsesOutline size={28} color="#79A471"  />
+          <Link
+            href="/profile"
+            className="menu-link"
+            onClick={closeProfileMenu}
+          >
+            Чат
           </Link>
         </li>
         <li className="my-[30px] flex items-center gap-[10px]">

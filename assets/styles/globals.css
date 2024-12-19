@@ -138,9 +138,5 @@ html {
 /* Chat */
 
 .chat .chat-content::-webkit-scrollbar {
-  width: 8px;
-}
-.chat .chat-content::-webkit-scrollbar-thumb {
-  background: #ccc;
-  border-radius: 10px;
+  display: none;
 }

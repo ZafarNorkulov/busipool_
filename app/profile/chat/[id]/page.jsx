@@ -1,6 +1,6 @@
 "use client";
 import Head from "next/head";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { getConversationById } from "@/app/api/chat/chat";
 import { useParams } from "next/navigation";
 import Bubble from "@/components/Bubble";
@@ -12,6 +12,8 @@ const Chat = () => {
   const params = useParams();
   const [receiver, setReceiver] = useState("");
   const [token, setToken] = useState("");
+  const bottomRef = useRef(null);
+  const chatWindowRef = useRef(null);
 
   useEffect(() => {
     const user = localStorage.getItem("receiver");
@@ -21,6 +23,15 @@ const Chat = () => {
   }, []);
   const webSocketUrl = `${process.env.NEXT_PUBLIC_SOCKET_URL}/ws/chat/${`${params?.id || ""}/`}?token=${token}`;
   const { messages, sendMessage } = useWebSocket(webSocketUrl);
+
+  useEffect(() => {
+    if (bottomRef.current && chatWindowRef.current) {
+      bottomRef.current.scrollIntoView({
+        block: "nearest",
+        behavior: "smooth",
+      });
+    }
+  }, [allMessages, messages]);
   useEffect(() => {
     if (token) {
       getMessages();
@@ -33,7 +44,8 @@ const Chat = () => {
         convo_id: params?.id,
         token,
       });
-      setAllMessages(conversationRes.data || []);
+      console.log(conversationRes);
+      setAllMessages(conversationRes || []);
     } catch (error) {
       console.log("error");
       if (error && typeof error === "object" && "response" in error) {
@@ -49,11 +61,32 @@ const Chat = () => {
       }
     }
   };
-  // console.log(allMessages);
+
+  const handleSendMessage = async () => {
+    if (!message.trim()) return;
+
+    try {
+      await sendMessage({ message });
+    } catch (error) {
+      console.error("Error sending message:", error);
+      setAllMessages((prev) => prev.filter((msg) => msg.id !== tempMessage.id));
+    } finally {
+      setMessage("");
+      getMessages();
+    }
+  };
 
   return (
     <>
       <Head></Head>
+      <title>{"BUSIPOOL | Чат"}</title>
+      <meta
+        name="description"
+        content={
+          "Сбор денег для бизнеса, технологических, творческих и социальных проектов"
+        }
+      />
+      <link rel="icon" href="/Fav.png" />
       <section>
         <div className="max-container">
           <div className="mx-auto flex w-full max-w-[1068px] flex-col items-center justify-center">
@@ -67,31 +100,40 @@ const Chat = () => {
               </div>
             </div>
             <div className="chat relative h-[600px] w-full border border-gray-dark px-[20px] py-[20px] md:h-[785px] md:px-[60px] md:py-[30px]">
-              {messages?.map((item, idx) => (
-                <Bubble
-                  message={item?.text}
-                  isSent={item?.sender_type === "initiator"}
-                  key={idx}
-                />
-              ))}
-              {allMessages?.map((item, idx) => (
-                <Bubble
-                  message={item?.text}
-                  isSent={item?.sender_type === "initiator"}
-                  key={idx}
-                />
-              ))}
+              <div
+                className="chat-content h-full max-h-[510px] overflow-y-scroll"
+                ref={chatWindowRef}
+              >
+                {messages?.map((item, idx) => (
+                  <Bubble
+                    message={item?.text}
+                    isSent={item?.sender_type === "initiator"}
+                    user={item?.sender}
+                    key={idx}
+                  />
+                ))}
+                {allMessages?.map((item, idx) => (
+                  <Bubble
+                    message={item?.text}
+                    isSent={item?.sender_type === "initiator"}
+                    user={item?.sender}
+                    key={idx}
+                  />
+                ))}
+                <div ref={bottomRef} />
+              </div>
               <div className="absolute bottom-5 left-5 flex w-[calc(100%-40px)] flex-col gap-y-[30px] md:bottom-[60px] md:left-[30px] md:w-[calc(100%-60px)]">
                 <div className="mx-auto h-[1px] w-[60%] bg-gray-dark opacity-60"></div>
                 <div className="flex flex-row items-baseline gap-x-5 md:gap-x-[30px]">
                   <textarea
                     placeholder="Напишите сообщение"
                     rows={1}
-                    onChange={(e) => setMessage(e.target.value)}
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value.trim())}
                     className="w-full resize-none border border-gray-dark p-[10px] text-sm font-light leading-6 placeholder:text-gray-dark focus-visible:rounded-none focus-visible:outline-primary md:p-5"
                   />
                   <button
-                    onClick={() => sendMessage({ message })}
+                    onClick={handleSendMessage}
                     className="w-[180px] rounded-[5px] bg-primary py-[10px] text-sm font-bold leading-6 text-white md:w-[246px] md:py-5"
                   >
                     Отправить
