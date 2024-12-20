@@ -1,16 +1,16 @@
 "use client";
 import React, { useEffect, useState } from "react";
 
-const ChatBubble = ({ message, isSent, user }) => {
+const ChatBubble = ({ message, isSent }) => {
   const [currentUser, setCurrentUser] = useState({});
 
   useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem("user"));
+    const storedUser = JSON.parse(localStorage.getItem("receiver"));
     setCurrentUser(storedUser);
   }, []);
 
-  if (!(user && currentUser)) {
-    return <div>Загрузка...</div>;
+  if (!currentUser) {
+    return <div></div>;
   }
   return (
     <div

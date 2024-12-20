@@ -24,6 +24,9 @@ const SignInSlice = createSlice({
       state.isAuthenticated = false;
       state.status = "success";
       localStorage.removeItem("access_token");
+      localStorage.removeItem("receiver");
+      localStorage.removeItem("user");
+      localStorage.removeItem("role");
       localStorage.removeItem("refrsh_token");
       window.location.reload();
     },

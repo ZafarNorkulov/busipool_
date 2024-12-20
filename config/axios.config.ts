@@ -32,7 +32,7 @@ const onResponseError = (error: AxiosError): Promise<AxiosError> => {
 
   if (error.response?.status === 401) {
     localStorage.removeItem("access_token");
-    // localStorage.removeItem("refresh_token");
+    localStorage.removeItem("refresh_token");
   }
 
   new ResponseError(error);
