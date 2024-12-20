@@ -15,7 +15,7 @@ const Filters = ({
 }) => {
   // Tanlangan filtr nomini saqlash uchun state
   const [selectedFilterTitle, setSelectedFilterTitle] =
-    useState("Выберите Фильтр");
+    useState("Выберите фильтр");
 
   const handleFilterChange = (selectedKey) => {
     const updatedFilters = Object.keys(filters).reduce((acc, key) => {

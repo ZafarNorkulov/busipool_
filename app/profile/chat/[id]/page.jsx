@@ -28,6 +28,7 @@ const Chat = () => {
       getMessages();
     }
   }, [token]);
+  console.log(messages);
 
   useEffect(() => {
     if (bottomRef.current && chatWindowRef.current) {
@@ -86,12 +87,12 @@ const Chat = () => {
                 <h4>
                   {receiver?.first_name || ""} {receiver?.last_name || ""}
                 </h4>
-                <h4>{receiver?.phone || ""} </h4>
+                <h4>{receiver?.phone != "null" ? receiver?.phone : ""}</h4>
               </div>
             </div>
             <div className="chat relative h-[600px] w-full border border-gray-dark px-[20px] py-[20px] md:h-[785px] md:px-[60px] md:py-[30px]">
               <div
-                className="chat-content h-full max-h-[510px] overflow-y-scroll"
+                className="chat-content h-full max-h-[450px] overflow-y-scroll md:max-h-[510px]"
                 ref={chatWindowRef}
               >
                 {allMessages?.map((item, idx) => (

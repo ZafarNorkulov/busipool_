@@ -173,28 +173,47 @@ const InvestorPage = () => {
                 </h3>
 
                 <div className="flex flex-wrap justify-center gap-[30px] md:gap-[20px]">
-                  {businessType?.map((item) => (
-                    <div
-                      className="w-[230px] rounded-[10px] p-[20px] shadow md:w-[560px] md:p-[30px]"
-                      key={item?.id}
-                    >
+                  {/*  */}
+                  <div className="flex w-[230px] flex-col items-end justify-between rounded-[10px] p-[20px] shadow md:w-[560px] md:p-[30px]">
+                    <div>
                       <h2 className="mb-[10px] text-[18px] font-light leading-[110%] text-gray-dark md:mb-[20px] md:text-[48px]">
-                        {item?.name}
+                        {businessType[0]?.name}
                       </h2>
-                      <p className="md:wrap-balance mb-[20px] text-[15px] font-light leading-[120%] text-gray-light opacity-70 md:mb-[30px] md:text-[24px]">
-                        Посмотрите нашу {item?.name} для инвестирования
+                      <p className="md:wrap-balance mb-[20px] text-[15px] font-light leading-[120%] tracking-[0px] text-gray-light opacity-70 md:mb-[30px] md:max-w-[85%] md:text-[24px]">
+                        Посмотрите нашу базу интересных проектов для
+                        инвестирования
                       </p>
-
-                      <Link
-                        href={`/investor/${item?.id}`}
-                        onClick={scrollToTop}
-                        className={`ml-auto flex w-fit items-center text-[10px] font-light leading-[110%] text-gray-dark hover:text-primary md:text-[24px]`}
-                      >
-                        Подробнее
-                        <BsArrowDownRight className="ml-[5px] text-[10px] md:ml-[10px] md:text-[24px]" />
-                      </Link>
                     </div>
-                  ))}
+
+                    <Link
+                      href={`/investor/${businessType[0]?.id}`}
+                      onClick={scrollToTop}
+                      className={`ml-auto flex w-fit items-center text-[10px] font-light leading-[110%] text-gray-dark hover:text-primary md:text-[24px]`}
+                    >
+                      Подробнее
+                      <BsArrowDownRight className="ml-[5px] text-[10px] md:ml-[10px] md:text-[24px]" />
+                    </Link>
+                  </div>
+                  <div className="flex w-[230px] flex-col items-end justify-between rounded-[10px] p-[20px] shadow md:w-[560px] md:p-[30px]">
+                    <div>
+                      <h2 className="mb-[10px] text-[18px] font-light leading-[110%] text-gray-dark md:mb-[20px] md:text-[48px]">
+                        {businessType[1]?.name}
+                      </h2>
+                      <p className="md:wrap-balance mb-[20px] text-[15px] font-light leading-[120%] text-gray-light opacity-70 md:mb-[30px] md:max-w-[85%] md:text-[24px]">
+                        Посмотрите нашу базу интересных малых бизнесов для
+                        инвестирования
+                      </p>
+                    </div>
+
+                    <Link
+                      href={`/investor/${businessType[1]?.id}`}
+                      onClick={scrollToTop}
+                      className={`ml-auto flex w-fit items-center text-[10px] font-light leading-[110%] text-gray-dark hover:text-primary md:text-[24px]`}
+                    >
+                      Подробнее
+                      <BsArrowDownRight className="ml-[5px] text-[10px] md:ml-[10px] md:text-[24px]" />
+                    </Link>
+                  </div>
                 </div>
               </div>
 
