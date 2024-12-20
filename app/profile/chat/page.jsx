@@ -56,7 +56,7 @@ const ChatPage = () => {
               <div className="flex items-center gap-x-2">
                 <Image
                   src={
-                    myRole === "investor"
+                    myRole === "Investor"
                       ? item?.receiver?.avatar || profileImageDefault
                       : item?.initiator?.avatar || profileImageDefault
                   }

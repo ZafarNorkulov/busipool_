@@ -7,7 +7,7 @@ const ProjectLayout = ({ children }) => {
   const auth = useAppSelector((state) => state.auth);
   const router = useRouter();
   if (!auth.isAuthenticated) {
-    router.push("/not-found");
+    router.push("/sign-in");
   }
   return <>{children}</>;
 };
