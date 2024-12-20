@@ -52,6 +52,7 @@ const ChatPage = () => {
                 localStorage.setItem("receiver", JSON.stringify(item?.receiver))
               }
               className="flex w-full cursor-pointer items-end justify-between border-b border-slate-400 px-[5px] py-1"
+              key={idx}
             >
               <div className="flex items-center gap-x-2">
                 <Image
