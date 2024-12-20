@@ -53,6 +53,7 @@ export default SignIn;
 export const _signOut = async () => {
   store.dispatch(AUTH_ACTIONS.signOut());
   localStorage.removeItem("access_token");
+  localStorage.removeItem("convo_id");
   localStorage.removeItem("user");
   localStorage.removeItem("receiver");
   localStorage.removeItem("refresh_token");
@@ -84,6 +85,7 @@ export const refreshToken = async () => {
 export const logOut = async () => {
   localStorage.removeItem("access_token");
   localStorage.removeItem("refresh_token");
+  localStorage.removeItem("convo_id");
   localStorage.removeItem("user");
   localStorage.removeItem("receiver");
   localStorage.removeItem("role");

@@ -25,6 +25,7 @@ const SignInSlice = createSlice({
       state.status = "success";
       localStorage.removeItem("access_token");
       localStorage.removeItem("receiver");
+      localStorage.removeItem("convo_id");
       localStorage.removeItem("user");
       localStorage.removeItem("role");
       localStorage.removeItem("refrsh_token");

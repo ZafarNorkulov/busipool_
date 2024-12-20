@@ -9,11 +9,13 @@ import profileImageDefault from "@/assets/images/profileImageDefault.png";
 
 const ChatPage = () => {
   const [convos, setConvos] = useState([]);
+  const [myRole, setMyRole] = useState("");
   const { width } = useWindowSize();
 
   useEffect(() => {
-    const user = localStorage.getItem("user");
     const token = localStorage.getItem("access_token");
+    const role = localStorage.getItem("role");
+    setMyRole(role);
     (async () => {
       getConversations(token).then((res) => setConvos(res));
     })();
@@ -28,8 +30,6 @@ const ChatPage = () => {
     const formattedDate = `${formattedHours}:${formattedMinutes}`;
     return formattedDate;
   };
-  const data =
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum nobis dolore incidunt repudiandae, unde quidem, pariatur quos sed, magnam distinctio maxime dolorem doloremque tempora fugiat ex facere id quibusdam saepe ut. Perferendis est voluptas maxime dicta sed molestiae doloribus explicabo incidunt expedita, deserunt adipisci sequi quas veritatis necessitatibus facere a labore optio recusandae fugiat magnam velit reiciendis facilis! Porro voluptate accusantium ut, quisquam perferendis sint modi distinctio, dicta dolor nesciunt reprehenderit repellendus. Nobis id libero quo natus, nostrum quam placeat.";
   return (
     <>
       <Head>
@@ -48,11 +48,18 @@ const ChatPage = () => {
           {convos?.map((item, idx) => (
             <Link
               href={`/profile/chat/${item?.id}`}
+              onClick={() =>
+                localStorage.setItem("receiver", JSON.stringify(item?.receiver))
+              }
               className="flex w-full cursor-pointer items-end justify-between border-b border-slate-400 px-[5px] py-1"
             >
               <div className="flex items-center gap-x-2">
                 <Image
-                  src={item?.receiver?.avatar || profileImageDefault}
+                  src={
+                    myRole === "investor"
+                      ? item?.receiver?.avatar || profileImageDefault
+                      : item?.initiator?.avatar || profileImageDefault
+                  }
                   width={50}
                   height={50}
                   objectFit="cover"
@@ -60,15 +67,18 @@ const ChatPage = () => {
                 />
 
                 <div className="">
-                  <h4 className="text-base font-semibold md:text-lg">
-                    {item?.receiver?.username}
+                  <h4 className="text-base font-semibold text-gray-dark md:text-lg">
+                    {myRole === "investor"
+                      ? item?.receiver?.username
+                      : item?.initiator?.username}
                   </h4>
                   <p className="text-sm text-zinc-400 md:text-base">
                     {width > 768
-                      ? data?.slice(0, 55)
+                      ? item?.last_message?.text?.slice(0, 55)
                       : width > 640
-                        ? data?.slice(0, 70)
-                        : data?.slice(0, 30) || "Чат создан"}
+                        ? item?.last_message?.text?.slice(0, 70)
+                        : item?.last_message?.text?.slice(0, 30) ||
+                          "Чат создан"}
                   </p>
                 </div>
               </div>
