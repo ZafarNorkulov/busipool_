@@ -7,7 +7,7 @@ export const getProjects = async (options) => {
       console.log("BASE_URL is not defined");
       return [];
     }
-
+    options.is_active = true;
     const params = new URLSearchParams();
 
     // Parametrlarni dinamik ravishda qo'shish

@@ -1,10 +1,8 @@
 "use client";
-import { useParams, useRouter } from "next/navigation";
-import { investors } from "@/constants";
+import { useParams } from "next/navigation";
 import InvestorPageButton from "@/components/company/InvestorPageButton";
-
 import { useState, useEffect } from "react";
-import ProjectCard from "../../../components/ProjectCard";
+import ProjectCard from "../../../../components/ProjectCard";
 import Button from "@/components/Button";
 import Image from "next/image";
 import buildProjectImage from "@/assets/images/build-project.png";
@@ -12,20 +10,25 @@ import HomeBlogs from "@/components/sections/HomeBlogs";
 import Spinner from "@/components/Spinner";
 import SignUpLink from "@/components/SignUpLink";
 import SignInLink from "@/components/SignInLink";
-import { getProjectCategory, getProjects } from "@/app/api/projects/project";
-import Filters from "../../../components/Filters";
+import Filters from "../../../../components/Filters";
 import { getCities } from "@/utils/request";
 import Head from "next/head";
+import {
+  getCompanySubCategoryByType,
+  getCompanySubCategoryProjects,
+} from "@/app/api/company/company";
+import { getProjects } from "@/app/api/projects/project";
 
 const InvestorPage = () => {
   const [token, setToken] = useState(null);
   const { id } = useParams();
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [projectCategories, setProjectCategories] = useState([]);
   const [cityRel, setCityRel] = useState([]);
   const [selectedCity, setSelectedCity] = useState(null);
   const [search, setSearch] = useState("");
+  const [subCategories, setSubCategories] = useState([]);
+  const [selectedSub, setSelectedSub] = useState(null);
   const [filters, setFilters] = useState({
     is_popular: { value: false, title: "По популярности" },
     price_max: { value: false, title: "Подороже" },
@@ -35,30 +38,20 @@ const InvestorPage = () => {
   });
 
   useEffect(() => {
-    fetchProjectsWithFromAPI();
-    getProjectCategories();
-    fetchCitiesWithFromAPI();
-  }, []);
-  useEffect(() => {
-    fetchProjectsWithFromAPI();
-  }, [selectedCity, search, filters]);
-
-  useEffect(() => {
     if (typeof window !== "undefined") {
       const storedToken = localStorage.getItem("access_token");
       setToken(storedToken);
     }
+
+    fetchCitiesWithFromAPI();
+    fetchProjectsWithFromAPI();
   }, []);
 
-  const getProjectCategories = async () => {
-    getProjectCategory()
-      .then((response) => {
-        setProjectCategories(response);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  };
+  useEffect(() => {
+    fetchProjectsWithFromAPI();
+  }, [selectedCity, search, filters, selectedSub]);
+
+
 
   function fetchProjectsWithFromAPI() {
     setLoading(true);
@@ -70,7 +63,7 @@ const InvestorPage = () => {
     }, {});
     getProjects({
       ...activeFilters,
-      category: id,
+      category: selectedSub?.id,
       city_realization: cityRealization,
       search,
     })
@@ -98,6 +91,18 @@ const InvestorPage = () => {
       });
   }
 
+  useEffect(() => {
+    (() => {
+      getCompanySubCategoryByType(id).then((res) => setSubCategories(res));
+    })();
+  }, []);
+
+  useEffect(() => {
+    if (subCategories.length > 0) {
+      setSelectedSub(subCategories[0]);
+    }
+  }, [subCategories]);
+
   return (
     <>
       <Head>
@@ -113,7 +118,7 @@ const InvestorPage = () => {
       <section className="mt-[65px] md:mt-[90px] lg:mt-[100px]">
         <div className="max-container py-[60px] md:pb-[170px] md:pt-[100px]">
           <h2 className="section-title mb-[30px] !text-left">
-            {projects?.results && projects?.results[0]?.category?.name}
+            {selectedSub?.name}
           </h2>
           <p className="mb-[30px] font-light leading-[120%] text-gray-light md:mb-[60px] md:text-[32px]">
             Если вы хотите начать инвестировать в стартапы и малые бизнесы, то
@@ -121,16 +126,25 @@ const InvestorPage = () => {
             информации о проектах.
           </p>
 
-          <div className="flex snap-x snap-mandatory flex-wrap gap-[30px] overflow-x-scroll md:flex-wrap md:overflow-auto">
-            {projectCategories?.map((e, index) => (
-              <InvestorPageButton key={index} investor={e} id={id} />
+          <div
+            className={
+              "flex snap-x snap-mandatory flex-wrap gap-[30px] overflow-x-scroll md:flex-wrap md:overflow-auto"
+            }
+          >
+            {subCategories?.map((e, index) => (
+              <InvestorPageButton
+                key={index}
+                selected={selectedSub}
+                investor={e}
+                onClick={() => setSelectedSub(e)}
+              />
             ))}
           </div>
         </div>
 
         {!token && (
           <div className="mb-[60px] bg-secondary py-[30px] md:py-[60px]">
-            <div className="max-container flex flex-col gap-y-[60px] justify-between xl:flex-row">
+            <div className="max-container flex flex-col justify-between gap-y-[60px] xl:flex-row">
               <div className="flex-1">
                 <h2 className="mb-[10px] text-[24px] font-bold leading-[120%] text-gray-dark md:mb-[30px] lg:text-[52px] 2xl:text-[64px]">
                   Хотите больше выгоды?
@@ -151,7 +165,7 @@ const InvestorPage = () => {
                 width={0}
                 height={0}
                 sizes="100%"
-                className="flex-1 object-contain  lg:max-w-[600px] 2xl:max-w-[650px]"
+                className="flex-1 object-contain lg:max-w-[600px] 2xl:max-w-[650px]"
               />
             </div>
           </div>

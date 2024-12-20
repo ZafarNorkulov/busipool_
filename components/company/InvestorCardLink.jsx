@@ -14,7 +14,7 @@ const InvestorCardLink = ({ name, id }) => {
       </h2>
 
       <Link
-        href={`/company/${id}`}
+        href={`/company/type`}
         onClick={scrollToTop}
         className={`ml-auto flex w-fit items-center text-[10px] font-light leading-[110%] text-gray-dark hover:text-primary md:text-[24px]`}
       >

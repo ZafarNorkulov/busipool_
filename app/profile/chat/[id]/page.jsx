@@ -101,7 +101,6 @@ const Chat = () => {
                     user={item?.sender}
                     key={idx}
                   />
-                  
                 ))}
                 {messages?.map((item, idx) => (
                   <Bubble
