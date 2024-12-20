@@ -28,7 +28,6 @@ const Chat = () => {
       getMessages();
     }
   }, [token]);
-  console.log(messages);
 
   useEffect(() => {
     if (bottomRef.current && chatWindowRef.current) {
