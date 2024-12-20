@@ -68,7 +68,7 @@ const ChatPage = () => {
 
                 <div className="">
                   <h4 className="text-base font-semibold text-gray-dark md:text-lg">
-                    {myRole === "investor"
+                    {myRole === "Investor"
                       ? item?.receiver?.username
                       : item?.initiator?.username}
                   </h4>
