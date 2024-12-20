@@ -26,7 +26,7 @@ const BlogCard = ({ img, title, text, large, id }) => {
           >
             {title}
           </h3>
-          <p className="line-clamp-2 text-sm md:text-base  font-light leading-[120%] text-gray-light md:line-clamp-3 lg:text-[24px]">
+          <p className="line-clamp-2 text-xs md:text-base  font-light leading-[120%] text-gray-light md:line-clamp-3 lg:text-[24px]">
             {text}
           </p>
         </div>
@@ -34,10 +34,10 @@ const BlogCard = ({ img, title, text, large, id }) => {
         <Link
           href={`/about-us/blog/${id}`}
           onClick={scrollToTop}
-          className={`mt-auto flex w-fit items-center self-end font-helvetica text-xs font-light leading-[110%] text-gray-dark hover:text-primary md:bottom-[30px] md:right-[30px] md:text-base`}
+          className={`mt-auto flex w-fit items-center self-end font-helvetica text-[8px] font-light leading-[110%] text-gray-dark hover:text-primary md:bottom-[30px] md:right-[30px] md:text-base`}
         >
           Подробнее
-          <BsArrowDownRight className="ml-[5px] md:ml-[10px]" />
+          <BsArrowDownRight className="ml-[5px] text-[8px] md:text-base md:ml-[10px]" />
         </Link>
       </div>
     </div>

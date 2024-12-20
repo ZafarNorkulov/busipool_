@@ -36,10 +36,10 @@ const Filters = ({
         {/* Filter Menu */}
         <Menu
           as="div"
-          className="relative inline-block max-w-[200px] text-left"
+          className="relative inline-block w-[calc(50%-5px)] text-left sm:w-full sm:max-w-[200px]"
         >
           <div>
-            <MenuButton className="flex w-[180px] justify-center gap-x-1.5 rounded-[5px] bg-white py-2 pl-4 pr-2 text-xs font-bold text-gray-light shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 md:w-[200px] md:py-[15px] md:pl-[30px] md:pr-[22px] md:text-base">
+            <MenuButton className="flex sm:w-[180px] w-full py-5 justify-center gap-x-1.5 rounded-[5px] bg-white  pl-4 pr-2 text-xs font-bold text-gray-light shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 md:w-[200px] md:py-[15px] md:pl-[30px] md:pr-[22px] md:text-base">
               <span className="block w-[90%] text-start text-xs md:text-sm">
                 {selectedFilterTitle}
               </span>
@@ -54,13 +54,13 @@ const Filters = ({
 
           <MenuItems
             transition
-            className="absolute right-0 z-10 mt-2 w-24 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in md:w-52"
+            className="absolute right-0 z-10 mt-2 w-full origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in md:w-52"
           >
             <div className="py-1">
               {filters &&
                 Object.entries(filters).map(([key, filter]) => (
                   <MenuItem key={key} onClick={() => handleFilterChange(key)}>
-                    <p className="block px-2 py-1 text-[8px] text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900 md:px-4 md:py-2 md:text-sm">
+                    <p className="block px-2 py-1 text-xs text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900 md:px-4 md:py-2 md:text-sm">
                       {filter.title}
                     </p>
                   </MenuItem>
@@ -72,10 +72,10 @@ const Filters = ({
         {/* City Menu */}
         <Menu
           as="div"
-          className="relative inline-block max-w-[150px] text-left"
+          className="relative inline-block w-[calc(50%-5px)] text-left sm:w-full sm:max-w-[150px]"
         >
           <div>
-            <MenuButton className="flex w-[100px] justify-center gap-x-1.5 rounded-[5px] bg-white py-2 pl-4 pr-2 text-[10px] font-bold text-gray-light shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 md:w-[130px] md:py-[15px] md:pl-[30px] md:pr-[22px] md:text-base">
+            <MenuButton className="flex sm:w-[100px] w-full justify-center gap-x-1.5 py-5 rounded-[5px] bg-white pl-4 pr-2 text-[10px] font-bold text-gray-light shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 md:w-[130px] md:py-[15px] md:pl-[30px] md:pr-[22px] md:text-base">
               <span className="block w-[90%] text-start text-xs md:text-sm">
                 {cityName}
               </span>
@@ -90,12 +90,12 @@ const Filters = ({
 
           <MenuItems
             transition
-            className="absolute right-0 z-10 mt-2 w-24 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in md:w-52"
+            className="absolute right-0 z-10 mt-2 w-full origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5  transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in md:w-52"
           >
             <div className="py-1">
               {cities?.map((city) => (
                 <MenuItem key={city.id} onClick={() => setSelectedCity(city)}>
-                  <span className="block px-2 py-1 text-[8px] text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900 md:px-4 md:py-2 md:text-sm">
+                  <span className="block px-2 py-1 text-xs text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900 md:px-4 md:py-2 md:text-sm">
                     {city?.name}
                   </span>
                 </MenuItem>

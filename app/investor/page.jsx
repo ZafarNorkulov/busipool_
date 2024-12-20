@@ -242,10 +242,17 @@ const InvestorPage = () => {
 
             <SwiperSection />
 
-            <div className="mb-[100px] flex flex-1 flex-wrap justify-center gap-[30px] md:hidden md:flex-nowrap">
-              <Button text="Все проекты" primary />
-              <Link href={"/profile/create"}>
-                <Button text="Создать свой" />
+            <div className="mb-[100px] flex flex-1 flex-nowrap justify-center gap-[10px] md:hidden md:gap-[30px]">
+              <Link href={"/projects"} className="w-[calc(50%-5px)]">
+                <Button
+                  text="Все проекты"
+                  primary
+                  fullWidth
+                  style={"py-5 text-sm"}
+                />
+              </Link>
+              <Link href={"/profile/create"} className="w-[calc(50%-5px)]">
+                <Button text="Создать свой" fullWidth style={"py-5 text-sm"} />
               </Link>
             </div>
           </div>

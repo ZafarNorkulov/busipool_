@@ -58,13 +58,19 @@ const BlogPage = () => {
         />
         <link rel="icon" href="/Fav.png" />
       </Head>
-      <section>
+      <section className="mt-[90px] sm:mt-[120px] lg:mt-[130px]">
         <div className="max-container mb-[30px] mt-[30px] flex justify-between md:mb-[100px] md:mt-[100px]">
           <Link href={`/about-us/blog/${nextId ? nextId : "#"}`}>
-            <Button text="Следующая статья" />
+            <Button
+              text="Следующая статья"
+              style={"!py-3 text-xs md:!py-4 md:!text-base"}
+            />
           </Link>
           <Link href={`/about-us/blog/${prevId ? prevId : "#"}`}>
-            <Button text="Назад" />
+            <Button
+              text="Назад"
+              style={"!py-3 text-xs md:!py-4 md:!text-base"}
+            />
           </Link>
         </div>
 

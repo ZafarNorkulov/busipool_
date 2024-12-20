@@ -32,7 +32,7 @@ const ProjectCard = ({ card, isGrid }) => {
         sizes="100%"
         priority={true}
         alt="project card"
-        className="h-[102px] w-full rounded-[5px] object-cover md:h-[250px] md:rounded-[10px]"
+        className="h-[154px] w-full rounded-[5px] object-cover md:h-[250px] md:rounded-[10px]"
       />
       <div className="flex h-[65%] flex-col p-[10px] md:p-[30px]">
         <div className="mb-[11px] flex flex-col gap-y-[10px] md:mb-[30px] md:gap-y-5">

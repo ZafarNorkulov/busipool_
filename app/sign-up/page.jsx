@@ -56,7 +56,7 @@ const SignUpPage = () => {
         <div className="max-container py-[27px]">
           <BusipoolLogoSmall />
         </div>
-        <section className="mx-auto relative w-[calc(100%-10vw)] sm:w-[calc(100%-20vw)] md:w-[calc(100%-50vw)] lg:w-[560px]">
+        <section className="mx-auto relative w-[calc(100%-10vw)] sm:w-[calc(100%-20vw)] md:w-[calc(100%-50vw)] lg:w-[560px] mb-[30px]">
         <Link href={"/"} className="absolute top-4 left-2 "><MdKeyboardArrowLeft size={30}className="bg-[#ccc] rounded-full" /></Link>
           <h1 className="mb-[20px] text-center text-[32px] font-bold leading-[120%] text-gray-dark lg:mb-[60px] lg:text-[48px] extraWide:text-[64px]">
             Регистрация

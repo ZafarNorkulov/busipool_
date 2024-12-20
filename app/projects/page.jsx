@@ -117,15 +117,15 @@ const ProjectsPage = () => {
       </Head>
       <section className="mt-[80px] sm:mt-[90px] lg:mt-[100px]">
         {/* Catalog buttons and dropdowns */}
-        <div className="max-container mb-[30px] pt-[30px] flex flex-col justify-between gap-y-5 md:mb-[100px] md:pt-[100px] lg:flex-row">
+        <div className="max-container mb-[30px] flex flex-col justify-between gap-y-5 pt-[30px] md:mb-[100px] md:pt-[100px] lg:flex-row">
           <div className="pt-3 md:pt-0">
             <ul className="lg:gap-15 mb-[20px] flex flex-wrap gap-1 md:mb-[30px] md:gap-10">
               {catalogTheme.map((item, index) => (
                 <li
                   onClick={() => chooseCatalog(index)}
                   key={index}
-                  className={`cursor-pointer text-nowrap border-b-2 border-b-transparent px-2 pb-[2px] text-[14px] leading-[110%] md:px-[21.5px] md:text-base ${
-                    item.active && "border-b-2 border-b-primary text-primary"
+                  className={`cursor-pointer text-nowrap border-b-2 border-b-transparent px-2 pb-[2px] text-[14px] leading-[110%] text-gray-dark md:px-[21.5px] md:text-base ${
+                    item.active && "!border-b-primary text-primary"
                   }`}
                 >
                   {item.name}
@@ -156,7 +156,7 @@ const ProjectsPage = () => {
               ))}
             </div>
           </div>
-          <div className="w-max">
+          <div className="w-full sm:w-max">
             <Filters
               filters={filters}
               setFilters={setFilters}

@@ -9,7 +9,7 @@ const Button = ({
 }) => (
   <button
     onClick={onclick}
-    className={`wrap-balance xs:px-[30px] xs:py-[10px] rounded-[5px] border-2 border-gray-dark px-[20px] py-[5px] text-[9px] font-bold text-gray-dark transition active:scale-95 sm:text-xs md:px-[38px] md:py-[15px] md:text-sm lg:px-[47px] lg:py-[20px] ${primary && "border-primary bg-primary text-white"} ${fullWidth && "w-full"} ${light && "border-white bg-white text-primary"} ${extraSmall && "py-[4.12px] text-[5.35px] leading-[10px]"} ${style} `}
+    className={`wrap-balance xs:px-[30px] xs:py-[10px] rounded-[5px] border border-gray-dark px-[20px] py-[5px] text-[9px] font-bold text-gray-dark transition active:scale-95 sm:text-xs md:px-[38px] md:py-[15px] md:text-sm lg:px-[47px] lg:py-[20px] ${primary && "border-primary bg-primary text-white"} ${fullWidth && "w-full"} ${light && "border-white bg-white text-primary"} ${extraSmall && "py-[4.12px] text-[5.35px] leading-[10px]"} ${style} `}
   >
     {text}
   </button>

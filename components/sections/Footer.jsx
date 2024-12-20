@@ -54,7 +54,7 @@ const Footer = () => {
       </div>
       <div className="max-container py-[60px]">
         {/* footer links */}
-        <div className="mb-[60px] grid grid-cols-[repeat(2,auto)] justify-around md:grid-cols-4 md:gap-5 lg:gap-[30px]">
+        <div className="mb-[60px] grid grid-cols-[repeat(2,auto)] justify-around gap-y-[30px] md:grid-cols-4 md:gap-5 lg:gap-[30px]">
           {footerLinks.map((item, index) => (
             <div key={index} className="w-max">
               <h3 className="md:text-md mb-3 max-w-max text-sm font-bold uppercase leading-[20px] text-gray-light md:mb-[40px] lg:text-lg">
@@ -90,7 +90,7 @@ const Footer = () => {
         )}
 
         {/* footer social media icons */}
-        <div className="mt-[30px] flex items-center justify-center gap-[20px] sm:mb-[60px] md:justify-end md:gap-[30px]">
+        <div className="mb-[60px] mt-[30px] flex items-center justify-center gap-[20px] sm:mb-[30px] md:justify-end md:gap-[30px]">
           {socialMedia?.map((social, idx) => (
             <Link href={social.href} key={idx} className="h-[30px] w-[30px]">
               <Image src={social.src} sizes="100%" />
@@ -100,22 +100,22 @@ const Footer = () => {
 
         {/* footer credits */}
         <div className="flex flex-wrap-reverse items-center justify-center gap-[20px] md:justify-between">
-          <p className="mt-[60px] text-[12px] sm:font-normal font-light text-gray-dark sm:mt-0 sm:text-base">
+          <p className="mt-[60px] text-[12px] font-light text-gray-dark sm:mt-0 sm:text-base sm:font-normal">
             © BUSIPOOL. {currentYear}. Все права защищены.
           </p>
 
-          <div className="flex flex-wrap justify-center gap-10">
+          <div className="flex flex-wrap justify-center md:gap-[30px] gap-[20px]">
             <Link
               href="/privacy-policy"
               rel="noopener noreferrer"
-              className="text-base text-gray-dark "
+              className="text-base text-gray-dark"
             >
               Политика конфиденциальности
             </Link>
             <Link
               href="/terms-&-conditions"
               rel="noopener noreferrer"
-              className="text-base text-gray-dark "
+              className="text-base text-gray-dark"
             >
               Пользовательское соглашение
             </Link>

@@ -12,6 +12,7 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import Head from "next/head";
 import Filters from "@/components/Filters";
+import { useAppSelector } from "@/store";
 
 const BusinessType = () => {
   const [projects, setProjects] = useState([]);
@@ -29,6 +30,8 @@ const BusinessType = () => {
     start_date: { value: false, title: "Новейший" },
     end_date: { value: false, title: "Самый первый" },
   });
+
+  const auth = useAppSelector((state) => state.auth);
 
   const fetchProjectsFromDB = async () => {
     try {
@@ -107,31 +110,32 @@ const BusinessType = () => {
             могли увидеть его.
           </p>
         </div>
-
-        <div className="mb-[60px] bg-secondary px-5 py-[30px] md:py-[60px]">
-          <div className="mx-auto flex max-w-[1920px] flex-col justify-between xl:mx-[80px] xl:flex-row">
-            <div className="flex-1">
-              <h2 className="mb-[10px] text-[24px] font-bold leading-[120%] text-gray-dark md:mb-[30px] md:text-[64px]">
-                Хотите попасть в каталог?
-              </h2>
-              <p className="mb-[30px] text-base font-light leading-[110%] text-gray-light md:mb-[60px] md:text-[32px]">
-                Заполните форму и создайте проект на нашем сайте
-              </p>
-              <Link href={"/profile/create"}>
-                <Button text="Создать проект" primary />
-              </Link>
+        {auth?.isAuthenticated && (
+          <div className="mb-[60px] bg-secondary px-5 py-[30px] md:py-[60px]">
+            <div className="mx-auto flex max-w-[1920px] flex-col justify-between xl:mx-[80px] xl:flex-row">
+              <div className="flex-1">
+                <h2 className="mb-[10px] text-[24px] font-bold leading-[120%] text-gray-dark md:mb-[30px] md:text-[64px]">
+                  Хотите попасть в каталог?
+                </h2>
+                <p className="mb-[30px] text-base font-light leading-[110%] text-gray-light md:mb-[60px] md:text-[32px]">
+                  Заполните форму и создайте проект на нашем сайте
+                </p>
+                <Link href={"/profile/create"}>
+                  <Button text="Создать проект" primary />
+                </Link>
+              </div>
+              <Image
+                src={buildProjectImage}
+                alt="image"
+                priority={true}
+                width={0}
+                height={0}
+                sizes="100%"
+                className="flex-1 object-contain md:max-w-[650px]"
+              />
             </div>
-            <Image
-              src={buildProjectImage}
-              alt="image"
-              priority={true}
-              width={0}
-              height={0}
-              sizes="100%"
-              className="flex-1 object-contain md:max-w-[650px]"
-            />
           </div>
-        </div>
+        )}
         <div className="mx-auto max-w-[1920px] px-[20px] xl:mx-[80px]">
           <Filters
             search={search}

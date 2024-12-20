@@ -47,7 +47,7 @@ const BecomePartnerPage = () => {
         <link rel="icon" href="/Fav.png" />
       </Head>
       <section className="mt-[100px] sm:mt-[140px] lg:mt-[200px]">
-        <div className="max-container ">
+        <div className="max-container">
           <Stats />
         </div>
         <div className="max-container mb-[30px] mt-[60px] md:mt-[100px]">
@@ -83,8 +83,6 @@ const BecomePartnerPage = () => {
           <h2 className="section-title mb-[30px] md:mb-[100px]">
             Какие возможности для вас?
           </h2>
-
-       
         </div>
 
         <div className="max-container mb-[100px] flex flex-col flex-wrap justify-between md:mb-[150px] lg:flex-row">
@@ -154,6 +152,7 @@ const BecomePartnerPage = () => {
           <Button
             text="Оставить заявку, чтобы получить информацию об акционировании"
             onclick={() => setIsOpen(true)}
+            style={"py-5 md:text-xl leading-[24px] text-base"}
           />
           <Feedback isOpen={isOpen} setIsOpen={setIsOpen} />
         </div>

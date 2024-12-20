@@ -130,7 +130,7 @@ const ProjectPage = () => {
         <link rel="icon" href="/Fav.png" />
       </Head>
 
-      <section className="mt-[70px] sm:mt-[80px]">
+      <section className="mt-[70px] sm:mt-[80px] md:mv-[150px] mb-[100px]">
         <div className="pt-[60px] md:pt-[100px]">
           <div className="max-container mb-[60px] flex flex-col items-baseline gap-[30px] lg:flex-row xl:mb-[150px] xl:gap-[100px]">
             <div className="min-[425px] w-full rounded-xl lg:w-[50%] xl:flex-1">
