@@ -15,6 +15,9 @@ import {
   getCategory,
 } from "@/utils/request";
 import Head from "next/head";
+import sendProjectImage from "@/assets/images/sendImage.png";
+import Button from "@/components/Button";
+import HomeBlogs from "@/components/sections/HomeBlogs";
 
 const CreateProjectPage = () => {
   const [activeForm, setActiveForm] = useState(1);
@@ -27,6 +30,7 @@ const CreateProjectPage = () => {
   const [token, setToken] = useState("");
   const [loading, setLoading] = useState(true);
   const [typeCategoryBuss, setTypeCategorybuss] = useState([]);
+  const [isSendForm, setIsSendForm] = useState(false);
   const [project, setProject] = useState({
     id: null, // так как readOnly, можно оставить как null
     name: "",
@@ -91,6 +95,7 @@ const CreateProjectPage = () => {
       })
       .finally(() => {
         setLoading(false);
+        setIsSendForm(true);
       });
   };
 
@@ -993,9 +998,6 @@ const CreateProjectPage = () => {
     if (activeForm == 4) return;
     setActiveForm(activeForm + 1);
   }
-  function saveForm() {
-    console.log("Project is saved");
-  }
 
   return (
     <>
@@ -1010,81 +1012,117 @@ const CreateProjectPage = () => {
         <link rel="icon" href="/Fav.png" />
       </Head>
       <section>
-        <div className="max-container mb-[100px] mt-[30px] md:mb-[150px] md:mt-[100px]">
-          <div className="mb-[60px] flex flex-col items-center">
-            <h2 className="mb-[30px] text-[24px] font-bold text-gray-dark md:text-[32px]">
-              Создание проекта
-            </h2>
-            <ul className="flex w-full max-w-[220px] flex-wrap items-center justify-between gap-y-[20px] md:max-w-[1000px] md:justify-center md:gap-x-[80px]">
-              <li
-                onClick={() => setActiveForm(1)}
-                className={`cursor-pointer border-b text-[14px] leading-[120%] md:pb-[5px] md:leading-[24px] ${activeForm == 1 ? "border-primary text-primary" : "border-transparent text-gray-light"}`}
-              >
-                Основные данные
-              </li>
-              <li
-                onClick={() => setActiveForm(2)}
-                className={`cursor-pointer border-b text-[14px] leading-[120%] md:pb-[5px] md:leading-[24px] ${activeForm == 2 ? "border-primary text-primary" : "border-transparent text-gray-light"}`}
-              >
-                Детали
-              </li>
-              <li
-                onClick={() => setActiveForm(3)}
-                className={`cursor-pointer border-b text-[14px] leading-[120%] md:pb-[5px] md:leading-[24px] ${activeForm == 3 ? "border-primary text-primary" : "border-transparent text-gray-light"}`}
-              >
-                Вознаграждение
-              </li>
-              <li
-                onClick={() => setActiveForm(4)}
-                className={`cursor-pointer border-b text-[14px] leading-[120%] md:pb-[5px] md:leading-[24px] ${activeForm == 4 ? "border-primary text-primary" : "border-transparent text-gray-light"}`}
-              >
-                Контрагенты
-              </li>
-            </ul>
-          </div>
-
-          <form className="create-form mx-auto flex max-w-[1140px] flex-col gap-[60px]">
-            {createProjectForms[activeForm]}
-            <div>
-              <div className="flex flex-wrap-reverse items-center justify-between gap-y-[20px]">
-                <button
-                  onClick={() => prevForm()}
-                  type="button"
-                  className={`${activeForm == 1 && "invisible"} rounded-[5px] border-2 border-gray-light px-[40px] py-[20px] text-[14px] font-bold leading-[120%] text-gray-light active:scale-[0.97] md:leading-[24px]`}
+        {isSendForm ? (
+          <div className="max-container mb-[100px] mt-[30px] md:mb-[150px] md:mt-[100px]">
+            <div className="mb-[60px] flex flex-col items-center">
+              <h2 className="mb-[30px] text-[24px] font-bold text-gray-dark md:text-[32px]">
+                Создание проекта
+              </h2>
+              <ul className="flex w-full max-w-[220px] flex-wrap items-center justify-between gap-y-[20px] md:max-w-[1000px] md:justify-center md:gap-x-[80px]">
+                <li
+                  onClick={() => setActiveForm(1)}
+                  className={`cursor-pointer border-b text-[14px] leading-[120%] md:pb-[5px] md:leading-[24px] ${activeForm == 1 ? "border-primary text-primary" : "border-transparent text-gray-light"}`}
                 >
-                  Назад
-                </button>
-                <Link
-                  href="#"
-                  className="flex items-center gap-[10px] text-[14px] leading-[120%] text-gray-light md:hidden md:text-[18px]"
+                  Основные данные
+                </li>
+                <li
+                  onClick={() => setActiveForm(2)}
+                  className={`cursor-pointer border-b text-[14px] leading-[120%] md:pb-[5px] md:leading-[24px] ${activeForm == 2 ? "border-primary text-primary" : "border-transparent text-gray-light"}`}
                 >
-                  <MdOutlineRemoveRedEye className="text-primary md:text-[24px]" />
-                  Предпросмотр
-                </Link>
-                <div className="flex flex-[0_1_850px] flex-col-reverse justify-between gap-[20px] overflow-clip md:flex-row">
-                  <button
-                    onClick={() => nextForm()}
-                    type="button"
-                    className="flex-1 rounded-[5px] bg-primary px-[40px] py-[20px] text-[14px] font-bold leading-[120%] text-white active:scale-[0.97] md:leading-[24px]"
-                  >
-                    Продолжить
-                  </button>
-                  <button
-                    onClick={() => handlePost()}
-                    type="button"
-                    className="flex-1 rounded-[5px] border-2 border-gray-light px-[40px] py-[20px] text-[14px] font-bold leading-[120%] text-gray-light active:scale-[0.97] md:leading-[24px]"
-                  >
-                    Сохранить
-                  </button>
-                </div>
-              </div>
-              <p className="mt-[22px] text-[18px] leading-[150%] text-gray-dark md:text-center md:leading-[120%]">
-                У вас есть вопросы? Напиши нам на почту{" "}
-                <b>support@busipool.ru</b>
-              </p>
+                  Детали
+                </li>
+                <li
+                  onClick={() => setActiveForm(3)}
+                  className={`cursor-pointer border-b text-[14px] leading-[120%] md:pb-[5px] md:leading-[24px] ${activeForm == 3 ? "border-primary text-primary" : "border-transparent text-gray-light"}`}
+                >
+                  Вознаграждение
+                </li>
+                <li
+                  onClick={() => setActiveForm(4)}
+                  className={`cursor-pointer border-b text-[14px] leading-[120%] md:pb-[5px] md:leading-[24px] ${activeForm == 4 ? "border-primary text-primary" : "border-transparent text-gray-light"}`}
+                >
+                  Контрагенты
+                </li>
+              </ul>
             </div>
-          </form>
-        </div>
+
+            <form className="create-form mx-auto flex max-w-[1140px] flex-col gap-[60px]">
+              {createProjectForms[activeForm]}
+              <div>
+                <div className="flex flex-wrap-reverse items-center justify-between gap-y-[20px]">
+                  <button
+                    onClick={() => prevForm()}
+                    type="button"
+                    className={`${activeForm == 1 && "invisible"} rounded-[5px] border-2 border-gray-light px-[40px] py-[20px] text-[14px] font-bold leading-[120%] text-gray-light active:scale-[0.97] md:leading-[24px]`}
+                  >
+                    Назад
+                  </button>
+                  <Link
+                    href="#"
+                    className="flex items-center gap-[10px] text-[14px] leading-[120%] text-gray-light md:hidden md:text-[18px]"
+                  >
+                    <MdOutlineRemoveRedEye className="text-primary md:text-[24px]" />
+                    Предпросмотр
+                  </Link>
+                  <div className="flex flex-[0_1_850px] flex-col-reverse justify-between gap-[20px] overflow-clip md:flex-row">
+                    <button
+                      onClick={() => nextForm()}
+                      type="button"
+                      className="flex-1 rounded-[5px] bg-primary px-[40px] py-[20px] text-[14px] font-bold leading-[120%] text-white active:scale-[0.97] md:leading-[24px]"
+                    >
+                      Продолжить
+                    </button>
+                    <button
+                      onClick={() => handlePost()}
+                      type="button"
+                      className="flex-1 rounded-[5px] border-2 border-gray-light px-[40px] py-[20px] text-[14px] font-bold leading-[120%] text-gray-light active:scale-[0.97] md:leading-[24px]"
+                    >
+                      Сохранить
+                    </button>
+                  </div>
+                </div>
+                <p className="mt-[22px] text-[18px] leading-[150%] text-gray-dark md:text-center md:leading-[120%]">
+                  У вас есть вопросы? Напиши нам на почту{" "}
+                  <b>support@busipool.ru</b>
+                </p>
+              </div>
+            </form>
+          </div>
+        ) : (
+          <div className="mb-[100px] mt-[60px] md:mb-[150px]">
+            <div className="mb-[100px] bg-secondary py-[30px] md:mb-[150px] md:py-[100px]">
+              <div className="max-container flex flex-col justify-between gap-[30px] lg:flex-row">
+                <div className="flex flex-col lg:items-start lg:text-left">
+                  <h2 className="text-[28px]max-w-[727px] mb-[10px] font-bold leading-[120%] text-gray-dark md:mb-[30px] md:text-[36px] lg:text-[42px] xl:text-[64px]">
+                    Ваш проект отправлен на модерацию
+                  </h2>
+                  <p className="wrap-balance mb-[30px] max-w-[620px] text-base font-light leading-[110%] text-gray-light md:mb-[60px] md:!text-[26px] lg:text-[32px]">
+                    Как только мы увидим ваш проект и убедимся, что он не
+                    нарушает правила нашего сервиса, то сразу сообщим вам о
+                    решении на почту
+                  </p>
+                  <Link href={"/profile"}>
+                    <Button
+                      text="Личный кабинет"
+                      style={"font-light text-sm !py-5 w-[230px]"}
+                      primary
+                      extraSmall
+                    />
+                  </Link>
+                </div>
+                <Image
+                  src={sendProjectImage}
+                  alt="image"
+                  priority={true}
+                  width={0}
+                  height={0}
+                  className="md:h-80max-w-full object-contain lg:h-auto lg:!max-w-[500px] 2xl:max-w-[700px]"
+                />
+              </div>
+            </div>
+            <HomeBlogs />
+          </div>
+        )}
       </section>
     </>
   );

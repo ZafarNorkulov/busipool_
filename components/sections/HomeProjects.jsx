@@ -12,12 +12,17 @@ const HomeProjects = () => {
 
       <SwiperSection />
 
-      <div className="flex w-full items-center justify-center gap-[10px] md:gap-[30px]">
-        <Link href={"/projects"}>
-          <Button text="Все проекты" primary fullWidth />
+      <div className="mb-[100px] flex flex-1 flex-nowrap justify-center gap-[10px] sm:gap-[30px]">
+        <Link href={"/projects"} className="w-[calc(50%-5px)] sm:w-max">
+          <Button
+            text="Все проекты"
+            primary
+            fullWidth
+            style={"!py-5 text-sm"}
+          />
         </Link>
-        <Link href={"/profile/create"}>
-          <Button text="Создать свой" fullWidth />
+        <Link href={"/profile/create"} className="w-[calc(50%-5px)] sm:w-max">
+          <Button text="Создать свой" fullWidth style={"!py-5 text-sm"} />
         </Link>
       </div>
     </section>

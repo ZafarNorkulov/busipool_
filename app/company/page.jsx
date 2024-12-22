@@ -87,16 +87,25 @@ const CompanyPage = () => {
               </span>{" "}
               через вложения в проекты.
             </p>
-            <div className="w-full flex-col items-stretch gap-[30px] sm:flex sm:flex-row sm:items-center md:flex-nowrap md:justify-center xl:w-[45%]">
-              <Link href={"/profile/create"}>
+            <div className="w-full flex-col items-stretch gap-[30px] sm:flex sm:flex-row sm:items-center md:flex-nowrap xl:w-[45%]">
+              <Link href={"/profile/create"} className="w-full lg:w-[50%]">
                 <Button
                   text="Как это работает"
                   fullWidth={true}
-                  style={"sm:mb-0 mb-2"}
+                  style={
+                    "sm:mb-0 mb-2 text-sm !px-0 md:border-2 !py-5 xl:text-xl  leading-[24px]"
+                  }
                 />
               </Link>
-              <Link href={"/profile/create"}>
-                <Button text="Разместить компанию" primary fullWidth={true} />
+              <Link href={"/profile/create"} className="w-full lg:w-[50%]">
+                <Button
+                  text="Разместить компанию"
+                  style={
+                    "text-sm !py-5 xl:text-xl md:border-2 !px-0  leading-[24px]"
+                  }
+                  primary
+                  fullWidth={true}
+                />
               </Link>
             </div>
           </div>
@@ -195,7 +204,7 @@ const CompanyPage = () => {
             <Button
               text="Оставьте заявку и мы пришлем информацию по тарифам"
               onclick={() => setIsOpen(true)}
-              style={"py-5 md:text-xl leading-[24px] text-base"}
+              style={"!py-5 md:text-xl leading-[24px] text-base"}
             />
             <Feedback isOpen={isOpen} setIsOpen={setIsOpen} />
           </div>
@@ -262,7 +271,7 @@ const CompanyPage = () => {
               База инвесторов
             </h2>
 
-            <div className="flex flex-wrap justify-center gap-[20px]">
+            <div className="flex flex-wrap justify-center gap-[30px] md:gap-[20px]">
               {investors.map((investor, index) => (
                 <InvestorCardLink
                   key={index}
@@ -315,6 +324,7 @@ const CompanyPage = () => {
               <Button
                 text="Получить информацию о процессе и стоимости"
                 onclick={() => setIsOpen(true)}
+                style={"!py-5 md:text-xl leading-[24px] text-base"}
               />
             </div>
           </div>
@@ -376,6 +386,7 @@ const CompanyPage = () => {
             <Button
               text="Оставить заявку, чтобы получить информацию об акционировании"
               onclick={() => setIsOpen(true)}
+              style={"!py-5 md:text-xl leading-[24px] text-base"}
             />
           </div>
         </div>

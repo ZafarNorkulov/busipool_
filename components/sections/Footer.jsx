@@ -31,13 +31,14 @@ const Footer = () => {
   return (
     <footer className="bg-secondary text-primary">
       <div className="flex flex-wrap items-center justify-center gap-x-[60px] bg-primary py-[30px] text-white md:pb-[86px] md:pt-[60px]">
-        <div className="mb-[30px] w-min">
+        <div className="mx-5 mb-[30px] w-max sm:mx-0 sm:w-min">
           <h3 className="mb-[12px] w-max text-base font-bold leading-[120%] md:mb-[12px] md:text-[36px]">
             Подпишитесь на нашу рассылку
           </h3>
           <p className="text-[12px] font-light md:text-base">
             Мы регулярно рассказываем нашим подписчикам о новых проектах,
-            достигнутых результатах и историях успеха.
+            достигнутых результатах и историях успеха. Ваш адрес не попадет
+            в чужие руки, и мы не будем отправлять на него рекламу.
           </p>
         </div>
         <div className="flex items-center gap-x-[30px] md:gap-x-[60px]">
@@ -100,11 +101,11 @@ const Footer = () => {
 
         {/* footer credits */}
         <div className="flex flex-wrap-reverse items-center justify-center gap-[20px] md:justify-between">
-          <p className="mt-[60px] text-[12px] font-light text-gray-dark sm:mt-0 sm:text-base sm:font-normal">
+          <p className="mt-[40px] text-[12px] font-light text-gray-dark sm:mt-0 sm:text-base sm:font-normal">
             © BUSIPOOL. {currentYear}. Все права защищены.
           </p>
 
-          <div className="flex flex-wrap justify-center md:gap-[30px] gap-[20px]">
+          <div className="flex flex-wrap justify-center gap-[20px] md:gap-[30px]">
             <Link
               href="/privacy-policy"
               rel="noopener noreferrer"

@@ -12,7 +12,7 @@ const CompanyTypePage = () => {
   const [categoryType, setCategoryType] = useState([]);
   useEffect(() => {
     (async () => {
-     await getCompanyTypeCategoryByID().then((res) => setCategoryType(res));
+      await getCompanyTypeCategoryByID().then((res) => setCategoryType(res));
     })();
   }, []);
 
@@ -28,7 +28,7 @@ const CompanyTypePage = () => {
         />
         <link rel="icon" href="/Fav.png" />
       </Head>
-      <div className="max-container mb-[100px] mt-[70px] sm:mt-[85px] md:mb-[150px] md:mt-[100px] lg:mt-[180px]">
+      <div className="max-container mb-[100px] mt-[130px] sm:mt-[150px] md:mb-[150px] md:mt-[170px] lg:mt-[185px]">
         <h2 className="section-title mb-[30px] !text-left">
           Стартапы и малый бизнес
         </h2>
@@ -63,7 +63,7 @@ const CompanyTypePage = () => {
                 alt="image"
               />
               <span className="mb-[40px] mt-[30px] text-xl font-light leading-[110%] sm:mb-[70px] sm:mt-[50px] md:text-[32px] lg:mb-[100px] lg:mt-[73px]">
-                {categoryType[0]?.name}
+                {categoryType[1]?.name}
               </span>
               <Link
                 href={`/company/type/${categoryType[0]?.id}`}

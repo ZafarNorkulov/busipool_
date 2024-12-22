@@ -92,7 +92,7 @@ const SignInPage = () => {
             </div>
 
             <div className="mb-4 lg:mb-[30px]">
-              <Button text="Войти" fullWidth primary />
+              <Button text="Войти" fullWidth primary style={"!py-5 text-sm"} />
               <p className="mb-[10px] mt-4 text-center text-[10px] font-light leading-[120%] lg:mt-[30px] xl:text-[14px]"></p>
               {/* {Object.values(providers).map((provider, index) => (
                 <button
@@ -120,7 +120,7 @@ const SignInPage = () => {
           </form>
         </section>
 
-        <section className="flex h-[100vh] w-auto flex-[2] flex-col gap-[20px] bg-secondary p-[24px] md:gap-[40px] lg:w-[calc(-560px+100vw)] extraWide:w-[calc(-560px+100vw)] extraWide:gap-[60px] extraWide:p-[60px]">
+        <section className="flex h-[100vh] w-auto flex-[2] flex-col gap-[20px] bg-secondary p-[24px] md:gap-[20px] lg:w-[calc(-560px+100vw)] extraWide:w-[calc(-560px+100vw)] extraWide:gap-[60px] extraWide:p-[60px]">
           <Link href="/" className="shrink-0">
             <Image
               src={logo}
@@ -129,11 +129,11 @@ const SignInPage = () => {
               width={0}
               sizes="100%"
               priority={true}
-              className="mx-auto h-[26px] w-[187px] object-contain sm:h-[30px] sm:w-[220px] md:mx-0"
+              className="h-[26px] w-[187px] object-contain sm:mx-auto sm:h-[30px] sm:w-[220px] md:mx-0"
             />
           </Link>
 
-          <h1 className="wrap-balance text-center text-[22px] font-bold leading-[120%] text-gray-dark md:text-left md:text-[32px] lg:text-[48px] extraWide:text-[64px]">
+          <h1 className="wrap-balance text-[28px] font-bold leading-[120%] text-gray-dark sm:text-center md:text-left md:text-[32px] lg:text-[44px] extraWide:text-[64px]">
             Добро пожаловать на площадку, где инвестируют
           </h1>
           <Image
@@ -141,9 +141,8 @@ const SignInPage = () => {
             alt="image"
             width={0}
             height={0}
-            sizes="100%"
             priority={true}
-            className="mx-auto h-auto w-[250px] object-contain md:mx-0 md:w-[600px] xl:w-[80vh] 2xl:w-[90vh] extraWide:w-[1140px]"
+            className="h-full lg:h-[75%] w-[250px] object-contain sm:mx-auto md:mx-0 md:w-[600px] xl:w-max extraWide:w-[1140px]"
           />
         </section>
       </main>

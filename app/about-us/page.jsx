@@ -6,10 +6,9 @@ import Head from "next/head";
 const DatePoint = ({ date }) => {
   return (
     <div className="">
-      <div className="absolute top-0 h-[15px] w-[15px] -translate-y-[50%] -translate-x-[50%] rounded-full bg-secondary md:h-[40px] md:w-[40px]"></div>
-      <div className=" -translate-x-[50%] text-[12px] font-light  leading-[120%] text-blck md:text-[24px] xl:text-[32px]">
-
-      {date}
+      <div className="absolute top-0  h-[15px] w-[15px] -translate-x-[50%] -translate-y-[50%] rounded-full bg-secondary md:h-[40px] md:w-[40px]"></div>
+      <div className="w-[32px] -translate-x-[50%] text-wrap text-[12px] font-light leading-[120%] text-black sm:w-auto md:text-[24px] xl:text-[32px]">
+        {date}
       </div>
     </div>
   );
@@ -70,7 +69,7 @@ const AboutUsPage = () => {
               </div>
             </div>
           </div>
-          <div className="mb-[100px] flex justify-between gap-5 text-[14px] font-bold leading-[120%] md:mx-[50px] md:text-[32px] lg:mx-[100px]">
+          <div className="sm:mb-[100px] mb-5 flex justify-between gap-5 text-[14px] font-bold leading-[120%] md:mx-[50px] md:text-[32px] lg:mx-[100px]">
             <h3 className="text-[14px] font-bold leading-[120%] text-gray-dark md:text-[24px] 2xl:text-[32px]">
               Событие
             </h3>
@@ -88,7 +87,7 @@ const AboutUsPage = () => {
             </div>
           </div>
 
-          <div className="relative ml-auto flex w-full justify-between border-t-2 border-gray-dark pt-[50px] md:w-[70%] md:max-w-[1084px]">
+          <div className="relative ml-auto flex w-[350px] justify-between border-t-2 border-gray-dark sm:pt-[50px] pt-[20px] md:w-[70%] md:max-w-[1084px]">
             <DatePoint date="май, 2024" />
             <DatePoint date="июль, 2024" />
             <DatePoint date="июль, 2024" />
@@ -132,7 +131,7 @@ const AboutUsPage = () => {
           </div>
         </div>
 
-        <HomeBlogs />
+      
       </section>
     </>
   );

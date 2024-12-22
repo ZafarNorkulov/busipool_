@@ -51,7 +51,6 @@ const PartnersPage = () => {
           ))}
         </div>
       </div>
-      <HomeBlogs />
     </>
   );
 };

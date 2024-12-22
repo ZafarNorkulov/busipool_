@@ -80,7 +80,7 @@ const ProjectPage = () => {
 
   const handleSendMessage = async () => {
     const receiver = project?.owner;
-    localStorage.setItem("receiver",JSON.stringify(receiver))
+    localStorage.setItem("receiver", JSON.stringify(receiver));
 
     try {
       const res = await checkConversation({
@@ -130,7 +130,7 @@ const ProjectPage = () => {
         <link rel="icon" href="/Fav.png" />
       </Head>
 
-      <section className="mt-[70px] sm:mt-[80px] md:mv-[150px] mb-[100px]">
+      <section className="md:mv-[150px] mb-[100px] mt-[70px] sm:mt-[80px]">
         <div className="pt-[60px] md:pt-[100px]">
           <div className="max-container mb-[60px] flex flex-col items-baseline gap-[30px] lg:flex-row xl:mb-[150px] xl:gap-[100px]">
             <div className="min-[425px] w-full rounded-xl lg:w-[50%] xl:flex-1">
@@ -139,7 +139,7 @@ const ProjectPage = () => {
                   src={project.image}
                   alt="card image"
                   priority={true}
-                  className="w-full rounded-xl object-cover"
+                  className="w-full h-[450px] rounded-xl object-cover"
                 />
               ) : (
                 <div className="fallback-image h-full w-full">
@@ -149,11 +149,11 @@ const ProjectPage = () => {
             </div>
 
             <div className="w-full flex-1 lg:w-[50%] lg:max-w-full lg:self-center">
-              <h3 className="mb-[20px] text-[18px] font-bold leading-[110%] text-gray-dark lg:text-[24px] xl:text-[32px]">
+              <h3 className="mb-[18px] text-[18px] font-bold leading-[110%] text-gray-dark lg:text-[24px] xl:text-[32px]">
                 {project?.name}
               </h3>
-              <p className="mb-[11px] text-[12px] font-light leading-[130%] text-gray-light md:text-base lg:mb-[60px] lg:text-base xl:text-[24px]">
-                {project.description}
+              <p className="mb-[11px] text-[12px] font-light leading-[130%] text-gray-light md:text-base lg:mb-[30px] lg:text-base xl:text-[24px]">
+                {project?.description}
               </p>
 
               {/* Contact author */}
@@ -280,9 +280,7 @@ const ProjectPage = () => {
               </Tabs>
             </div>
           ) : (
-            <div className="max-container text-center">
-              <p>Вознаграждения не предусмотрены</p>
-            </div>
+           ""
           )}
         </div>
       </section>

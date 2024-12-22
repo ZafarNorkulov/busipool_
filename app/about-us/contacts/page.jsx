@@ -35,17 +35,17 @@ const ContactsPage = () => {
             </div>
             <div className="col-span-12 lg:col-span-6">
               <div className="mb-[20px] flex flex-col justify-between gap-x-[70px] gap-y-[20px] sm:flex-row md:mb-[60px] md:justify-normal md:gap-y-[30px] xl:gap-x-[100px]">
-                <div className="flex flex-col items-start gap-y-5 sm:items-center md:items-start md:gap-y-7">
-                  <div className="flex h-[72px] flex-col items-start sm:items-center md:h-[120px] md:items-start">
-                    <h3 className="mb-[10px] font-bold leading-[110%] text-gray-dark md:mb-[30px] md:text-2xl 2xl:text-[32px]">
+                <div className="flex flex-col items-start sm:items-center md:items-start md:gap-y-[30px]">
+                  <div className="flex h-[72px] flex-col items-start gap-y-[10px] sm:items-center md:h-[120px] md:items-start md:gap-y-[30px]">
+                    <h3 className="font-bold leading-[110%] text-gray-dark md:text-2xl 2xl:text-[32px]">
                       Наш адрес
                     </h3>
                     <p className="max-w-[300px] font-light leading-[140%] text-gray-light md:text-base 2xl:text-[24px]">
                       г. Москва Долгопрудненское ш., д. 3
                     </p>
                   </div>
-                  <div className="flex h-[72px] flex-col items-start sm:items-center md:h-[120px] md:items-start">
-                    <h3 className="mb-[10px] font-bold leading-[110%] text-gray-dark md:mb-[30px] md:text-2xl 2xl:text-[32px]">
+                  <div className="flex h-[72px] flex-col items-start gap-y-[10px] sm:items-center md:h-[120px] md:items-start md:gap-y-[30px]">
+                    <h3 className="font-bold leading-[110%] text-gray-dark md:text-2xl 2xl:text-[32px]">
                       Время работы
                     </h3>
                     <p className="max-w-[300px] font-light leading-[140%] text-gray-light md:text-base 2xl:text-[24px]">
@@ -56,17 +56,17 @@ const ContactsPage = () => {
                   </div>
                 </div>
 
-                <div className="flex flex-col items-start gap-y-5 sm:items-center md:items-start md:gap-y-7">
-                  <div className="flex h-[72px] flex-col items-start sm:items-center md:h-[120px] md:items-start">
-                    <h3 className="mb-[10px] font-bold leading-[110%] text-gray-dark md:mb-[30px] md:text-2xl 2xl:text-[32px]">
+                <div className="flex flex-col items-start sm:items-center md:items-start md:gap-y-[30px]">
+                  <div className="flex h-[72px] flex-col items-start gap-y-[10px] sm:items-center md:h-[120px] md:items-start md:gap-y-[30px]">
+                    <h3 className="font-bold leading-[110%] text-gray-dark md:text-2xl 2xl:text-[32px]">
                       Телефон
                     </h3>
                     <p className="max-w-[300px] font-light leading-[140%] text-gray-light md:text-base 2xl:text-[24px]">
                       +7 (954) 342-43-43
                     </p>
                   </div>
-                  <div className="flex h-[72px] flex-col items-start sm:items-center md:h-[120px] md:items-start">
-                    <h3 className="mb-[10px] font-bold leading-[110%] text-gray-dark md:mb-[30px] md:text-2xl 2xl:text-[32px]">
+                  <div className="flex h-[72px] flex-col items-start gap-y-[10px] sm:items-center md:h-[120px] md:items-start md:gap-y-[30px]">
+                    <h3 className="font-bold leading-[110%] text-gray-dark md:text-2xl 2xl:text-[32px]">
                       E-mail
                     </h3>
                     <p className="max-w-[300px] font-light leading-[140%] text-gray-light md:text-base 2xl:text-[24px]">
@@ -89,18 +89,16 @@ const ContactsPage = () => {
 
               <div className="grid grid-cols-12 gap-5 md:gap-[30px]">
                 <SignUpLink
-                  styles={"col-span-6 md:px-0 sm:justify-center justify-center"}
+                  styles={"col-span-7 md:px-0 sm:justify-center justify-center"}
                 />
                 <SignInLink
-                  styles={"col-span-6 md:px-0 sm:justify-center justify-center"}
+                  styles={"col-span-5 md:px-0 sm:justify-center justify-center"}
                 />
               </div>
             </div>
           </div>
         </div>
       </div>
-
-      <HomeBlogs />
     </>
   );
 };

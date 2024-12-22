@@ -51,8 +51,6 @@ const InvestorPage = () => {
     fetchProjectsWithFromAPI();
   }, [selectedCity, search, filters, selectedSub]);
 
-
-
   function fetchProjectsWithFromAPI() {
     setLoading(true);
     const cityRealization = selectedCity?.id || null;
@@ -115,8 +113,8 @@ const InvestorPage = () => {
         />
         <link rel="icon" href="/Fav.png" />
       </Head>
-      <section className="mt-[65px] md:mt-[90px] lg:mt-[100px]">
-        <div className="max-container py-[60px] md:pb-[170px] md:pt-[100px]">
+      <section className="mt-[130px] sm:mt-[150px] md:mt-[170px] lg:mt-[185px]">
+        <div className="max-container mb-[70px] sm:mb-[100px]">
           <h2 className="section-title mb-[30px] !text-left">
             {selectedSub?.name}
           </h2>
@@ -128,7 +126,7 @@ const InvestorPage = () => {
 
           <div
             className={
-              "flex snap-x snap-mandatory flex-wrap gap-[30px] overflow-x-scroll md:flex-wrap md:overflow-auto"
+              "company-subs flex gap-[30px] overflow-x-auto pb-[30px] sm:pb-0"
             }
           >
             {subCategories?.map((e, index) => (
@@ -153,9 +151,17 @@ const InvestorPage = () => {
                   Зарегистрируйтесь на нашей платформе и получите полную
                   информацию о проектах
                 </p>
-                <div className="flex flex-col gap-[30px] sm:flex-row">
-                  <SignUpLink />
-                  <SignInLink />
+                <div className="flex w-full flex-nowrap gap-[30px] lg:w-1/2 xl:w-[40%]">
+                  <SignUpLink
+                    styles={
+                      "lg:w-[60%] sm:w-[230px] py-5  w-[60%] !px-0 !justify-center"
+                    }
+                  />
+                  <SignInLink
+                    styles={
+                      "lg:w-[40%] sm:w-[150px] py-5  w-[40%] !px-0 !justify-center"
+                    }
+                  />
                 </div>
               </div>
               <Image

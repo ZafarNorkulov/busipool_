@@ -7,7 +7,7 @@ const InvestorCardLink = ({ name, id }) => {
   return (
     <div
       key={id}
-      className="flex flex-[1_0_230px] flex-col justify-between rounded-[10px] p-[20px] shadow md:flex-[1_0_560px] md:p-[30px]"
+      className="flex w-[230px] flex-col items-end justify-between rounded-[10px] p-[20px] shadow md:w-[560px] md:p-[30px]"
     >
       <h2 className="mb-[10px] text-[18px] font-light leading-[110%] text-gray-dark md:mb-[55px] md:text-[48px]">
         {name}

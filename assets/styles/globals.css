@@ -140,3 +140,19 @@ html {
 .chat .chat-content::-webkit-scrollbar {
   display: none;
 }
+
+.company-subs::-webkit-scrollbar {
+  height: 3px;
+  width: 10px;
+}
+/* Track */
+.company-subs::-webkit-scrollbar-track {
+  background: #ccc;
+  border-radius: 50px;
+}
+
+/* Handle */
+.company-subs::-webkit-scrollbar-thumb {
+  background: #4f4f4f;
+  border-radius: 50px;
+}

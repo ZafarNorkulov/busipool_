@@ -153,8 +153,7 @@ const ProfileMenu = ({ closeProfileMenu, large }) => {
             alt="icon"
             className="block h-[30px] w-[30px]"
           />
-          <Link
-            href="#!"
+          <div
             className="menu-link"
             onClick={() => {
               closeProfileMenu();
@@ -162,7 +161,7 @@ const ProfileMenu = ({ closeProfileMenu, large }) => {
             }}
           >
             Выход
-          </Link>
+          </div>
         </li>
       </ul>
     </div>

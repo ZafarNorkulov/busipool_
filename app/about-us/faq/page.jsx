@@ -56,7 +56,6 @@ const FAQPage = () => {
         </h2>
         <SwiperSection />
       </div>
-      <HomeBlogs />
     </>
   );
 };

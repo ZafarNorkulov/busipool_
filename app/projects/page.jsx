@@ -156,7 +156,7 @@ const ProjectsPage = () => {
               ))}
             </div>
           </div>
-          <div className="w-full sm:w-max">
+          <div className="w-full sm:mr-5 sm:w-max">
             <Filters
               filters={filters}
               setFilters={setFilters}
@@ -177,24 +177,33 @@ const ProjectsPage = () => {
         )}
         {projects?.results?.length ? (
           <div className="max-container mb-[100px] flex items-center justify-center md:mb-[150px]">
-            <Button text="Загрузить еще" primary />
+            <Button
+              text="Загрузить еще"
+              primary
+              style={"!py-5 text-sm w-[230px] font-light leading-[24px]"}
+            />
           </div>
         ) : (
           ""
         )}
 
-        <div className="bg-secondary py-[60px]">
-          <div className="max-container flex justify-between md:flex-col xl:flex-row">
-            <div className="flex flex-col items-start md:items-center md:text-center xl:items-start xl:text-left">
-              <h2 className="mb-[6px] text-[12px] font-bold leading-[120%] text-gray-dark md:mb-[30px] md:text-[64px]">
+        <div className="bg-secondary py-[30px] md:py-[100px]">
+          <div className="max-container flex justify-between gap-[30px] flex-col lg:flex-row">
+            <div className="flex flex-col lg:items-start lg:text-left">
+              <h2 className="mb-[10px] text-[28px] font-bold leading-[120%] text-gray-dark md:mb-[30px] md:text-[36px] lg:text-[42px] xl:text-[64px]">
                 Создай собственный проект
               </h2>
-              <p className="wrap-balance mb-[12px] max-w-[550px] text-[6px] font-light leading-[110%] text-gray-light md:mb-[60px] md:text-[32px]">
+              <p className="wrap-balance mb-[30px] max-w-[550px] text-base font-light leading-[110%] text-gray-light md:mb-[60px] md:!text-[26px] lg:text-[32px]">
                 Создание собственного проекта на такой платформе - это шаг,
                 который может привести вас к успеху.
               </p>
               <Link href={"/profile/create"}>
-                <Button text="Создать проект" primary extraSmall />
+                <Button
+                  text="Создать проект"
+                  style={"font-light text-sm !py-5 w-[230px]"}
+                  primary
+                  extraSmall
+                />
               </Link>
             </div>
             <Image
@@ -203,8 +212,7 @@ const ProjectsPage = () => {
               priority={true}
               width={0}
               height={0}
-              sizes="100%"
-              className="max-w-[128px] flex-1 object-contain md:h-80 md:max-w-full lg:h-auto xl:max-w-[700px]"
+              className="  object-contain md:h-80max-w-full lg:h-auto lg:!max-w-[500px] 2xl:max-w-[700px]"
             />
           </div>
         </div>

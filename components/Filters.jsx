@@ -31,7 +31,7 @@ const Filters = ({
   };
 
   return (
-    <div className="max-container mb-[30px] flex flex-col justify-between gap-[20px] md:flex-row md:items-center">
+    <div className="md:max-container mb-[30px] flex flex-col justify-between gap-[20px] md:flex-row md:items-center">
       <div className="flex flex-row gap-[10px] md:gap-[30px] xl:flex-row xl:gap-[30px]">
         {/* Filter Menu */}
         <Menu
