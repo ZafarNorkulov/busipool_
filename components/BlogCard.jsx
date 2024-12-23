@@ -7,7 +7,7 @@ import scrollToTop from "../utils/scrollToTop";
 const BlogCard = ({ img, title, text, large, id }) => {
   return (
     <div
-      className={`relative flex w-full shrink-0 gap-[20px] rounded-[3px] p-[15px] shadow md:gap-[40px] md:rounded-[5px] md:p-[30px]`}
+      className={`relative flex w-full shrink-0 gap-[20px] rounded-[3px] p-[15px] shadow md:gap-[30px] xl:gap-[40px] md:rounded-[5px] md:p-[30px]`}
     >
       <Image
         src={img}
@@ -22,11 +22,11 @@ const BlogCard = ({ img, title, text, large, id }) => {
       <div className="flex w-full flex-col justify-end">
         <div>
           <h3
-            className={`mb-[10px] text-base font-bold text-gray-dark md:mb-[20px] md:text-2xl lg:text-[36px]`}
+            className={`mb-[10px] text-base font-bold text-gray-dark md:mb-[20px] md:text-2xl xl:text-[36px]`}
           >
             {title}
           </h3>
-          <p className="line-clamp-2 text-xs font-light leading-[120%] text-gray-light md:line-clamp-3 md:text-base lg:text-[24px]">
+          <p className="line-clamp-2 text-xs font-light leading-[120%] text-gray-light md:line-clamp-3 md:text-base lg:text-xl xl:text-[24px]">
             {text}
           </p>
         </div>

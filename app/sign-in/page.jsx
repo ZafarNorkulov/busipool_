@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/store";
 import SignIn from "@/store/auth/service";
 import Head from "next/head";
-import { MdKeyboardArrowLeft } from "react-icons/md";
+import { IoMdClose } from "react-icons/io";
 
 const SignInPage = () => {
   const router = useRouter();
@@ -52,11 +52,11 @@ const SignInPage = () => {
         />
         <link rel="icon" href="/Fav.png" />
       </Head>
-      <main className="flex flex-col-reverse overflow-hidden md:flex-row">
-        <section className="relative flex w-full flex-1 items-center justify-center pt-3 lg:w-[560px] extraWide:w-[760px]">
-          <Link href={"/"} className="absolute left-2 top-4">
-            <MdKeyboardArrowLeft size={30} className="rounded-full bg-[#ccc]" />
-          </Link>
+      <main className="relative flex flex-col-reverse overflow-hidden md:flex-row">
+      <Link href={"/"} className="absolute right-2 top-4">
+          <IoMdClose  size={30}  />
+        </Link>
+        <section className="relative mb-[30px] flex w-full flex-1 items-center justify-center pt-3 lg:w-[560px] extraWide:w-[760px]">
           <form
             // action="POST"
             onSubmit={login}
@@ -142,7 +142,7 @@ const SignInPage = () => {
             width={0}
             height={0}
             priority={true}
-            className="h-full lg:h-[75%] w-[250px] object-contain sm:mx-auto md:mx-0 md:w-[600px] xl:w-max extraWide:w-[1140px]"
+            className="h-full w-[250px] object-contain sm:mx-auto md:mx-0 md:w-[600px] lg:h-[75%] xl:w-max extraWide:w-[1140px]"
           />
         </section>
       </main>

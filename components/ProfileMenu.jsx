@@ -9,7 +9,6 @@ import { IoChatboxEllipsesOutline } from "react-icons/io5";
 
 const ProfileMenu = ({ closeProfileMenu, large }) => {
   const dispatch = useAppDispatch();
-
   const [role, setRole] = useState("");
   useEffect(() => {
     if (typeof window != "undefined") {
@@ -59,7 +58,7 @@ const ProfileMenu = ({ closeProfileMenu, large }) => {
             className="block h-[30px] w-[30px]"
           />
           <Link
-            href="/profile"
+            href="/profile/statistics"
             className="menu-link"
             onClick={closeProfileMenu}
           >

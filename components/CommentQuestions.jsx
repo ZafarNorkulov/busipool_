@@ -1,8 +1,15 @@
+"use client";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React from "react";
 
-const CommentQuestion = ({ questions }) => {
+const CommentQuestion = ({ questions, received }) => {
+  const pathName = usePathname();
+
+  const isCommentPage = pathName.includes("comments");
+
   if (!questions) return "";
-  return (
+  return !isCommentPage ? (
     <div className="flex flex-col gap-y-[30px]">
       {questions?.slice(0, 2)?.map((item, index) => (
         <div
@@ -17,9 +24,39 @@ const CommentQuestion = ({ questions }) => {
             Мне понравился ваш проект, внес в него 15 000 ₽. Надеюсь на хорошую
             прибыль, спасибо что делаете этот мир лучше.
           </p>
-          <button className="ml-auto w-[150px] rounded-[5px] bg-primary py-[21px] text-xs font-light leading-[110%] text-white sm:w-[125px] sm:py-[8px]">
+          <Link
+            href="/profile/comments"
+            className="ml-auto w-[150px] rounded-[5px] bg-primary py-[21px] text-center text-xs font-light leading-[110%] text-white sm:w-[125px] sm:py-[8px]"
+          >
             Ответить
-          </button>
+          </Link>
+        </div>
+      ))}
+    </div>
+  ) : (
+    <div className="flex flex-col gap-y-[30px]">
+      {questions?.slice(0, 4)?.map((item, index) => (
+        <div
+          className="flex-col text-base font-bold leading-[120%] text-gray-dark"
+          key={index}
+        >
+          <div className="flex flex-col gap-x-[60px] gap-y-[10px] sm:flex-row sm:items-center sm:gap-y-0">
+            <div className="flex justify-between gap-x-[60px] sm:justify-normal">
+              <h4>{item?.full_name}</h4>
+              <h4 className="font-light sm:font-bold">{item?.phone}</h4>
+            </div>
+            <div className="flex items-center justify-between gap-[60px] text-xs font-light leading-[110%] sm:justify-normal sm:gap-[15px]">
+              {received && <p className="text-xs">Ответ получен</p>}
+
+              <button className="w-[150px] rounded-[5px] bg-primary py-[21px] text-xs font-light leading-[110%] text-white sm:w-[125px] sm:py-[8px]">
+                {!received ? "Ответить" : "Открыть чат"}
+              </button>
+            </div>
+          </div>
+          <p className="mb-[20px] mt-[25px] font-light">
+            Мне понравился ваш проект, внес в него 15 000 ₽. Надеюсь на хорошую
+            прибыль, спасибо что делаете этот мир лучше.
+          </p>
         </div>
       ))}
     </div>

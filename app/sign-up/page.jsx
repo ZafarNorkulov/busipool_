@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { GetRole, registerUser } from "../api/auth/auth";
 import Select from "react-select";
 import Head from "next/head";
-import { MdKeyboardArrowLeft } from "react-icons/md";
+import { IoMdClose } from "react-icons/io";
 import Link from "next/link";
 
 const SignUpPage = () => {
@@ -52,12 +52,14 @@ const SignUpPage = () => {
         />
         <link rel="icon" href="/Fav.png" />
       </Head>
-      <main>
+      <main className="relative">
+        <Link href={"/"} className="absolute right-2 top-4">
+          <IoMdClose  size={30}  />
+        </Link>
         <div className="max-container py-[27px]">
           <BusipoolLogoSmall />
         </div>
-        <section className="mx-auto relative w-[calc(100%-10vw)] sm:w-[calc(100%-20vw)] md:w-[calc(100%-50vw)] lg:w-[560px] mb-[30px]">
-        <Link href={"/"} className="absolute top-4 left-2 "><MdKeyboardArrowLeft size={30}className="bg-[#ccc] rounded-full" /></Link>
+        <section className="relative mx-auto mb-[30px] w-[calc(100%-10vw)] sm:w-[calc(100%-20vw)] md:w-[calc(100%-50vw)] lg:w-[560px]">
           <h1 className="mb-[20px] text-center text-[32px] font-bold leading-[120%] text-gray-dark lg:mb-[60px] lg:text-[48px] extraWide:text-[64px]">
             Регистрация
           </h1>

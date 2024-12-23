@@ -3,9 +3,9 @@ import Spinner from "@/components/Spinner";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
-const CreateLayout = ({ children }) => {
+const MyProjectLayout = ({ children }) => {
   const [role, setRole] = useState(null); // Set initial state to null to indicate loading
-  const [loading, setLoading] = useState(true); // Loading holati
+  const [loading, setLoading] = useState(true); // Loading state
   const router = useRouter();
 
   useEffect(() => {
@@ -24,9 +24,11 @@ const CreateLayout = ({ children }) => {
       setLoading(false);
     }
   }, []); // Empty dependency array ensures this runs only once
+
   if (loading) {
     return <Spinner loading={true} />;
   }
+
   if (role?.toLowerCase() === "business") {
     return <div>{children}</div>;
   } else {
@@ -35,4 +37,4 @@ const CreateLayout = ({ children }) => {
   }
 };
 
-export default CreateLayout;
+export default MyProjectLayout;

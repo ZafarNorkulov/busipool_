@@ -9,16 +9,18 @@ import profileImageDefault from "@/assets/images/profileImageDefault.png";
 
 const ChatPage = () => {
   const [convos, setConvos] = useState([]);
-  const [myRole, setMyRole] = useState("");
   const { width } = useWindowSize();
+  const [user, setUser] = useState({});
 
   useEffect(() => {
     const token = localStorage.getItem("access_token");
-    const role = localStorage.getItem("role");
-    setMyRole(role);
-    (async () => {
-      getConversations(token).then((res) => setConvos(res));
-    })();
+    const storeUser = localStorage.getItem("user");
+    setUser(JSON.parse(storeUser));
+    if (token) {
+      (async () => {
+        getConversations(token).then((res) => setConvos(res));
+      })();
+    }
   }, []);
 
   const dateFormatter = (timestamp) => {
@@ -57,7 +59,7 @@ const ChatPage = () => {
               <div className="flex items-center gap-x-2">
                 <Image
                   src={
-                    myRole === "Investor"
+                    user?.id === item?.initiator?.id
                       ? item?.receiver?.avatar || profileImageDefault
                       : item?.initiator?.avatar || profileImageDefault
                   }
@@ -69,7 +71,7 @@ const ChatPage = () => {
 
                 <div className="">
                   <h4 className="text-base font-semibold text-gray-dark md:text-lg">
-                    {myRole === "Investor"
+                    {user?.id === item?.initiator?.id
                       ? item?.receiver?.username
                       : item?.initiator?.username}
                   </h4>

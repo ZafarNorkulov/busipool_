@@ -6,18 +6,16 @@ import { getBlogs } from "@/app/api/blogs/blogs";
 import { useEffect, useState } from "react";
 
 const HomeBlogs = () => {
-
   const [blogs, setBlogs] = useState([]);
 
-
-
   function fetchBlogsApi() {
-    getBlogs().then((response) => {
-      setBlogs(response);
-    }
-    ).catch((error) => {
-      console.log(error);
-    });
+    getBlogs()
+      .then((response) => {
+        setBlogs(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   useEffect(() => {
@@ -30,9 +28,12 @@ const HomeBlogs = () => {
           Блог
         </Link>
       </h2>
-      <div className="grid grid-cols-12 justify-center gap-[20px]">
+      <div className="grid grid-cols-12 gap-[20px]">
         {blogs?.results?.map((blog) => (
-          <div className="col-span-12 md:col-span-6" key={blog?.id}>
+          <div
+            className="col-span-12 sm:col-span-8 sm:col-start-3 lg:col-span-6"
+            key={blog?.id}
+          >
             <BlogCard
               img={blog.image}
               title={blog.title}

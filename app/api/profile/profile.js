@@ -33,3 +33,21 @@ export const updateProfile = async (token, data) => {
     console.log(error);
   }
 };
+
+// get statistics
+
+export const getStatistics = async (token) => {
+  try {
+    const res = await fetch(`${BASE_URL}/statistics/`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const statis = await res.json();
+    return statis;
+  } catch (error) {
+    console.log(error);
+  }
+};

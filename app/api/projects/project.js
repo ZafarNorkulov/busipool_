@@ -136,3 +136,47 @@ export const getRealization = async () => {
     return [];
   }
 };
+
+// sendComment
+
+export const postComment = async (comment, token) => {
+  console.log(comment);
+  try {
+    if (!BASE_URL) return console.log("BASE_URL is not defined");
+
+    const response = await fetch(`${BASE_URL}/comment/project/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(comment),
+    });
+
+    if (!response.ok) throw new Error("Failed to post data");
+    return response.json();
+  } catch (error) {
+    console.log(error);
+    return {};
+  }
+};
+
+export const getComments = async (id, token) => {
+  try {
+    if (!BASE_URL) return console.log("BASE_URL is not defined");
+
+    const response = await fetch(`${BASE_URL}/comments/${id}/`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (!response.ok) throw new Error("Failed to fetch data");
+
+    return response.json();
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+};

@@ -59,7 +59,9 @@ const InvestorPage = () => {
 
           <div className="max-container">
             <div className="flex flex-col items-center gap-x-5 gap-y-[30px] lg:flex-row">
-              <p className="text-center text-xl font-light tracking-[0.01em] text-primary md:text-lg lg:w-[50%] xl:w-[60%] xl:text-left 2xl:text-[24px]">
+              <p
+                className={`text-center text-xl font-light tracking-[0.01em] text-primary md:text-lg ${!token && "lg:w-[50%] xl:w-[60%]"} xl:text-left 2xl:text-[24px]`}
+              >
                 Цель нашей краудфандинговой платформы - предоставить вам
                 возможность{" "}
                 <span className="text-gold">увеличить свои инвестиции</span>{" "}

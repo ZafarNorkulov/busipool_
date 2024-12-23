@@ -5,11 +5,15 @@ import rocket from "@/assets/images/project-page-images/rocket.png";
 import Button from "../../../components/Button";
 import { CiHeart } from "react-icons/ci";
 import { FaHeart } from "react-icons/fa";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import RewardCard from "../../../components/RewardCard";
 import { useParams, useRouter } from "next/navigation";
 import Spinner from "../../../components/Spinner";
-import { getProject } from "../../api/projects/project";
+import {
+  getComments,
+  getProject,
+  postComment,
+} from "../../api/projects/project";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import Link from "next/link";
@@ -20,16 +24,23 @@ import Telegram from "@/assets/images/social/telegramgray.png";
 import VK from "@/assets/images/social/vkgray.png";
 import Facebook from "@/assets/images/social/facebookgray.png";
 import Whatsapp from "@/assets/images/social/whatsappgray.png";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Scrollbar } from "swiper/modules";
+import "swiper/css";
+import useWindowSize from "@/hooks/useWindowSize";
 
 const ProjectPage = () => {
   const [toggleHeart, setToggleHeart] = useState(false);
   const [project, setProject] = useState(null);
   const [loading, setLoading] = useState(true);
   const [token, setToken] = useState("");
-  const [user, setUser] = useState([]);
+  const [commentData, setCommentData] = useState("");
+  const [user, setUser] = useState({});
+  const [comments, setComments] = useState([]);
 
   const { id } = useParams();
   const router = useRouter();
+  const { width } = useWindowSize();
   const socials = [
     { src: Code, alt: "Code" },
     { src: Telegram, alt: "Telegram" },
@@ -71,9 +82,9 @@ const ProjectPage = () => {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const storedToken = localStorage.getItem("access_token") ?? "";
-      const storedUser = JSON.parse(localStorage.getItem("user")) ?? "";
-      setUser(storedUser);
+      const storedToken = localStorage.getItem("access_token");
+      const storedUser = localStorage.getItem("user");
+      setUser(JSON.parse(storedUser));
       setToken(storedToken);
     }
   }, []);
@@ -108,13 +119,28 @@ const ProjectPage = () => {
       console.error("Error:", error);
     }
   };
+  const fetchComments = async () => {
+    getComments(id, token).then((res) => {
+      const reversedData = res.reverse();
+      setComments(reversedData);
+    });
+  };
+  useEffect(() => {
+    fetchComments();
+  }, [token]);
 
+  const sendComment = () => {
+    const comment = {
+      comment: commentData,
+      owner: user?.id,
+      project: project?.id,
+    };
+    postComment(comment, token)
+      .then((res) => {})
+      .finally(setCommentData(""));
+  };
   if (loading) {
     return <Spinner loading={loading} />;
-  }
-
-  if (!project) {
-    return <div>Project not found</div>;
   }
 
   return (
@@ -139,7 +165,7 @@ const ProjectPage = () => {
                   src={project.image}
                   alt="card image"
                   priority={true}
-                  className="w-full h-[450px] rounded-xl object-cover"
+                  className="h-[450px] w-full rounded-xl object-cover"
                 />
               ) : (
                 <div className="fallback-image h-full w-full">
@@ -261,27 +287,156 @@ const ProjectPage = () => {
               </div>
             </div>
           </div>
+          <div className="max-container">
+            <div className="flex flex-col-reverse justify-between gap-x-7 gap-y-[100px] lg:flex-row">
+              <div className="w-full lg:w-[54%] 2xl:w-[57%]">
+                <Tabs>
+                  <TabList
+                    className={
+                      "md:mv-[60px] mb-[30px] flex gap-14 text-[#4F4F4F]"
+                    }
+                  >
+                    <Tab
+                      className={
+                        "cursor-pointer text-sm font-bold sm:text-xl md:text-[32px]"
+                      }
+                    >
+                      Описание
+                    </Tab>
+                    <Tab
+                      className={
+                        "cursor-pointer text-sm font-bold sm:text-xl md:text-[32px]"
+                      }
+                    >
+                      FAQ
+                    </Tab>
+                    <Tab
+                      className={
+                        "cursor-pointer text-sm font-bold sm:text-xl md:text-[32px]"
+                      }
+                    >
+                      Комментарии
+                    </Tab>
+                  </TabList>
 
-          {/* Rewards Section */}
-          {project?.rewards ? (
-            <div className="max-container">
-              <Tabs>
-                <TabList className="mb-[30px] flex flex-wrap md:justify-end">
-                  <Tab>Вознаграждения</Tab>
-                </TabList>
+                  <TabPanel>
+                    <p
+                      className="text-base font-light leading-[130%] text-gray-dark md:mb-[100px] md:text-xl"
+                      dangerouslySetInnerHTML={{
+                        __html: project?.detailed_description,
+                      }}
+                    />
+                  </TabPanel>
+                  <TabPanel>
+                    <div>
+                      <label className="block w-[250px] cursor-pointer text-2xl font-bold text-[#4F4F4F] sm:w-auto md:text-[32px]">
+                        Задайте вопрос автору напрямую
+                      </label>
+                      <textarea
+                        placeholder="Напишите свой вопрос"
+                        className="mt-8 h-[140px] w-full resize-none rounded-[6px] border border-[#4F4F4F] p-4 placeholder:text-base placeholder:text-gray-dark focus:border-primary"
+                      />
 
-                <TabPanel>
-                  <div className="grid grid-cols-1 gap-[20px] sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
-                    {project?.rewards.map((reward, idx) => (
-                      <RewardCard key={idx} reward={reward} />
-                    ))}
+                      <button className="mt-8 h-[65px] w-full rounded-[6px] bg-primary text-[22px] font-normal text-white">
+                        Отправить
+                      </button>
+                    </div>
+                  </TabPanel>
+                  <TabPanel>
+                    <textarea
+                      value={commentData}
+                      onChange={(e) => setCommentData(e.target.value)}
+                      placeholder="Напишите свой комментарий"
+                      className="mt-8 h-[140px] w-full resize-none rounded-[6px] border border-[#4F4F4F] p-4 placeholder:text-base placeholder:text-gray-dark focus:border-primary"
+                    />
+
+                    <button
+                      onClick={sendComment}
+                      className="mt-8 h-[65px] w-full rounded-[6px] bg-primary text-sm font-light text-white md:text-2xl"
+                    >
+                      Отправить
+                    </button>
+                    <h3 className="my-[30px] block text-2xl font-bold text-[#4F4F4F] md:my-[60px] md:text-[32px]">
+                      Комментарии пользователей
+                    </h3>
+                    <div className="flex flex-col gap-y-[30px] md:gap-y-[60px]">
+                      {comments?.slice(0, 5)?.map((item) => (
+                        <div
+                          className="flex flex-col gap-[15px] text-gray-dark"
+                          key={item?.id}
+                        >
+                          <h4 className="text-base font-bold leading-[120%] sm:text-2xl md:text-[28px] 2xl:text-[32px]">
+                            {item?.owner?.first_name} {item?.owner?.last_name}
+                          </h4>
+                          <p className="text-sm font-light leading-[120%] sm:text-xl md:text-[20px] 2xl:text-2xl">
+                            {item?.comment}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </TabPanel>
+                </Tabs>
+              </div>
+
+              <div className="w-full lg:w-[40%] xl:w-[37%] 2xl:w-[32%]">
+                {project?.reward?.length ? (
+                  <div>
+                    <h3 className="mb-[30px] text-2xl font-bold leading-[120%] text-primary md:mb-[60px] md:text-[#3c3c3c]">
+                      Выберите вознаграждение
+                    </h3>
+                    {width > 1023 ? (
+                      <>
+                        {project?.reward?.map((reward) => (
+                          <RewardCard
+                            heading={reward.reward_name}
+                            delivered={reward.methods_obtaining}
+                            quantity={reward.quantity}
+                            price={reward.price + " ₽"}
+                          >
+                            {reward.description_reward}
+                          </RewardCard>
+                        ))}
+                      </>
+                    ) : (
+                      <Swiper
+                        slidesPerView={1.2}
+                        spaceBetween={20}
+                        grabCursor={true}
+                        mousewheel={true}
+                        css-mode="true"
+                        modules={[Scrollbar]}
+                        className="mySwiper"
+                        breakpoints={{
+                          640: {
+                            slidesPerView: 2,
+                          },
+
+                          1024: {
+                            slidesPerView: 3,
+                          },
+                        }}
+                      >
+                        {project?.reward?.map((reward, index) => (
+                          <SwiperSlide key={index} className="max-w-[415px]">
+                            <RewardCard
+                              heading={reward.reward_name}
+                              delivered={reward.methods_obtaining}
+                              quantity={reward.quantity}
+                              price={reward.price + " ₽"}
+                            >
+                              {reward.description_reward}
+                            </RewardCard>
+                          </SwiperSlide>
+                        ))}
+                      </Swiper>
+                    )}
                   </div>
-                </TabPanel>
-              </Tabs>
+                ) : (
+                  ""
+                )}
+              </div>
             </div>
-          ) : (
-           ""
-          )}
+          </div>
         </div>
       </section>
     </>

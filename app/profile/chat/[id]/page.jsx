@@ -19,7 +19,9 @@ const Chat = () => {
     const user = localStorage.getItem("receiver");
     const access_token = localStorage.getItem("access_token");
     setToken(access_token);
-    setReceiver(JSON.parse(user));
+    if (user) {
+      setReceiver(JSON.parse(user));
+    }
   }, []);
   const webSocketUrl = `${process.env.NEXT_PUBLIC_SOCKET_URL}ws/chat/${`${params?.id || ""}/`}?token=${token}`;
   const { messages, sendMessage } = useWebSocket(webSocketUrl);
@@ -82,7 +84,7 @@ const Chat = () => {
             <div className="title mb-[46px] flex flex-col items-center gap-y-[30px] font-bold leading-[120%] text-gray-dark">
               <h3 className="text-xl md:text-2xl">Беседа с пользователем</h3>
 
-              <div className="flex gap-x-[60px] text-lg md:text-xl">
+              <div className="flex flex-wrap gap-x-[60px] gap-y-3 text-lg md:text-xl">
                 <h4>
                   {receiver?.first_name || ""} {receiver?.last_name || ""}
                 </h4>

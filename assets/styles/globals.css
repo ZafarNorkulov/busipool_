@@ -12,6 +12,11 @@
   font-family: "Helvetica Neue", sans-serif;
   font-size: 16px;
 }
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+}
 html {
   overflow: visible !important;
   padding: 0 !important;
@@ -80,7 +85,7 @@ html {
 
 /* profile menu */
 .menu-link {
-  @apply text-[14px] font-light leading-[110%] text-black no-underline;
+  @apply cursor-pointer text-[14px] font-light leading-[110%] text-black no-underline;
 }
 .drop-menu-link {
   @apply mb-[20px] text-base font-bold uppercase text-gray-dark hover:text-primary;
@@ -126,6 +131,7 @@ html {
 }
 .react-tabs__tab--selected {
   color: #79a471 !important;
+  opacity: 1 !important;
 }
 .react-tabs__tab-list {
   display: flex;
@@ -153,6 +159,43 @@ html {
 
 /* Handle */
 .company-subs::-webkit-scrollbar-thumb {
-  background: #4f4f4f;
+  background: transparent;
   border-radius: 50px;
+}
+.multigraph:before {
+  content: "";
+  width: 262px;
+  height: 131px;
+  position: absolute;
+  border: 30px solid rgba(0, 0, 0, 0.1);
+  border-radius: 262px 262px 0 0;
+  border-bottom: none;
+}
+
+.graph {
+  width: 262px;
+  height: 131px;
+  position: absolute;
+  overflow: hidden;
+}
+.graph:before,
+.graph:after {
+  width: 262px;
+  height: 131px;
+  position: absolute;
+  top: 100%;
+  border: 30px solid #79a471;
+  content: "";
+  border-radius: 0 0 262px 262px;
+  border-top: none;
+  animation: demo 3s;
+  transform-origin: center top;
+}
+@keyframes demo {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
 }

@@ -1,22 +1,18 @@
 import React from "react";
 
 const HalfCircleProgressBar = ({ percentage }) => {
-  const z = percentage / 1.8;
+  const rotation = (percentage / 100) * 180;
   return (
-    <div className="flex flex-col items-center justify-center">
-      <div className="half-circle relative mx-auto flex h-[160px] w-[262px] items-end justify-center overflow-hidden">
+    <div class="multigraph relative h-[144px] w-[262px]">
+      <div class={`graph`}>
         <span
-          className={`absolute left-0 top-0 box-border h-[262px] w-[262px] rounded-[50%] border-[30px] border-b-[#79A471] border-l-[#79A471]`}
+          className="absolute top-full h-[131px] w-[262px] rounded-b-[262px] border-[30px] border-t-0 border-[#79a471]"
           style={{
-            transform: `rotate(${z}deg) translate(15px,15px)`,
+            transform: `rotate(${rotation}deg)`,
+            transformOrigin: "center top",
           }}
-        >
-          <div className="small-circle relative">
-            <span className="absolute top-0 z-50 h-[50px] w-[50px] -translate-y-[25%] rounded-full bg-[#79A471]"></span>
-          </div>
-        </span>
+        ></span>
       </div>
-    
     </div>
   );
 };

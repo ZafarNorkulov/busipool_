@@ -1,38 +1,14 @@
 "use client";
 import Head from "next/head";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import HalfCircleProgressBar from "@/components/HalfCircleProgressBar";
 import CommentQuestions from "@/components/CommentQuestions";
 import CommentQuestion from "@/components/CommentQuestions";
+import { getStatistics } from "@/app/api/profile/profile";
 
 const MyProjects = () => {
-  const [progressContent, setProgressContent] = useState([
-    {
-      title: "Всего собрано",
-      number: "350 000 ₽",
-    },
-    {
-      title: "Инвесторы",
-      number: "10",
-    },
-    {
-      title: "Просмотры",
-      number: "43",
-    },
-    {
-      title: "Собрано на площадке",
-      number: "150 000 ₽",
-    },
-    {
-      title: "Эшелон",
-      number: "А",
-    },
-    {
-      title: "Комментариев",
-      number: "5",
-    },
-  ]);
+  const [progressContent, setProgressContent] = useState({});
   const [investors, setInvestors] = useState([
     {
       full_name: "Абрамов Филипп",
@@ -85,6 +61,17 @@ const MyProjects = () => {
       paid: "15 000 ₽",
     },
   ]);
+
+  useEffect(() => {
+    const token = localStorage.getItem("access_token");
+    (async () => {
+      await getStatistics(token).then((res) => setProgressContent(res));
+    })();
+  }, []);
+  const splitEvery3 = (num) => {
+    return num?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  };
+
   return (
     <>
       <Head>
@@ -97,7 +84,7 @@ const MyProjects = () => {
         />
         <link rel="icon" href="/Fav.png" />
       </Head>
-      <section >
+      <section>
         <div className="max-container">
           <div className="mx-auto flex w-max flex-col items-center gap-y-[10px] text-gray-dark">
             <h3 className="text-2xl font-bold">Ваши проекты</h3>
@@ -105,9 +92,11 @@ const MyProjects = () => {
               Здесь хранятся ваши проекты
             </p>
           </div>
-          <Tabs className={"mt-[100px] xl:mx-[144px]"}>
+          <Tabs className={"mt-[100px]"}>
             <TabList
-              className={"flex flex-wrap justify-between lg:flex-nowrap"}
+              className={
+                "mx-[100px] flex flex-wrap justify-between lg:flex-nowrap"
+              }
             >
               <Tab className={"cursor-pointer"}>
                 Hyper+ - приложение для компаний{" "}
@@ -119,34 +108,96 @@ const MyProjects = () => {
                 Магазин доступной Корейской Одежды
               </Tab>
             </TabList>
-            <TabPanel>
-              <div className="mt-[60px] flex flex-col items-center justify-center gap-y-[60px] py-[60px] shadow-md md:mt-[80px] md:flex-row md:gap-x-[40px] md:gap-y-0 lg:mt-[120px] lg:gap-x-[100px] xl:gap-x-[150px]">
+            <TabPanel className={"xl:mx-[144px]"}>
+              <div className="mt-[60px] flex flex-col items-center justify-center gap-y-[60px] px-[5%] py-[60px] shadow-md md:mt-[80px] md:flex-row md:gap-x-[40px] md:gap-y-0 lg:mt-[120px] lg:gap-x-[100px] xl:gap-x-[150px]">
                 {/* progressbar with money */}
                 <div className="flex flex-col items-center justify-center gap-y-[30px]">
-                  <HalfCircleProgressBar percentage={90} />
+                  <HalfCircleProgressBar
+                    percentage={
+                      progressContent?.count_project /
+                      progressContent?.completed_projects
+                    }
+                  />
                   <p className="font-light leading-[120%] text-gray-dark">
-                    <span className="font-bold">350 000 ₽ </span>
+                    <span className="font-bold">
+                      {splitEvery3(progressContent?.total_price)} ₽{" "}
+                    </span>
                     из 600 000 ₽
                   </p>
                 </div>
                 <div className="grid w-max grid-cols-12 gap-y-[60px] leading-[120%] text-gray-dark">
-                  {progressContent?.map((item, index) => (
-                    <div
-                      className="col-span-6 flex flex-col items-center gap-y-[10px] sm:col-span-4"
-                      key={index}
+                  <div className="col-span-6 flex flex-col items-center gap-y-[10px] sm:col-span-4">
+                    <span className="w-max text-base font-light md:text-lg lg:text-xl xl:text-2xl">
+                      Всего собрано
+                    </span>
+                    <h4
+                      className={
+                        "w-max text-2xl font-bold md:text-[26px] lg:text-[28px] xl:text-[32px]"
+                      }
                     >
-                      <span className="w-max text-base font-light md:text-lg lg:text-xl xl:text-2xl">
-                        {item?.title}
-                      </span>
-                      <h4
-                        className={
-                          "w-max text-2xl font-bold md:text-[26px] lg:text-[28px] xl:text-[32px]"
-                        }
-                      >
-                        {item?.number}
-                      </h4>
-                    </div>
-                  ))}
+                      {progressContent?.total_price}
+                    </h4>
+                  </div>
+                  <div className="col-span-6 flex flex-col items-center gap-y-[10px] sm:col-span-4">
+                    <span className="w-max text-base font-light md:text-lg lg:text-xl xl:text-2xl">
+                      Инвесторы
+                    </span>
+                    <h4
+                      className={
+                        "w-max text-2xl font-bold md:text-[26px] lg:text-[28px] xl:text-[32px]"
+                      }
+                    >
+                      {progressContent?.investor}
+                    </h4>
+                  </div>
+                  <div className="col-span-6 flex flex-col items-center gap-y-[10px] sm:col-span-4">
+                    <span className="w-max text-base font-light md:text-lg lg:text-xl xl:text-2xl">
+                      Просмотры
+                    </span>
+                    <h4
+                      className={
+                        "w-max text-2xl font-bold md:text-[26px] lg:text-[28px] xl:text-[32px]"
+                      }
+                    >
+                      {progressContent?.views}
+                    </h4>
+                  </div>
+                  <div className="col-span-6 flex flex-col items-center gap-y-[10px] sm:col-span-4">
+                    <span className="w-max text-base font-light md:text-lg lg:text-xl xl:text-2xl">
+                      Собрано на площадке
+                    </span>
+                    <h4
+                      className={
+                        "w-max text-2xl font-bold md:text-[26px] lg:text-[28px] xl:text-[32px]"
+                      }
+                    >
+                      {progressContent?.total_price}
+                    </h4>
+                  </div>
+                  <div className="col-span-6 flex flex-col items-center gap-y-[10px] sm:col-span-4">
+                    <span className="w-max text-base font-light md:text-lg lg:text-xl xl:text-2xl">
+                      Эшелон
+                    </span>
+                    <h4
+                      className={
+                        "w-max text-2xl font-bold md:text-[26px] lg:text-[28px] xl:text-[32px]"
+                      }
+                    >
+                     A
+                    </h4>
+                  </div>
+                  <div className="col-span-6 flex flex-col items-center gap-y-[10px] sm:col-span-4">
+                    <span className="w-max text-base font-light md:text-lg lg:text-xl xl:text-2xl">
+                      Комментариев
+                    </span>
+                    <h4
+                      className={
+                        "w-max text-2xl font-bold md:text-[26px] lg:text-[28px] xl:text-[32px]"
+                      }
+                    >
+                      {progressContent?.comments}
+                    </h4>
+                  </div>
                 </div>
               </div>
               <div cl assName="">

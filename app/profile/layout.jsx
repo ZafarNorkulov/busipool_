@@ -26,7 +26,7 @@ const ProfilePageLayout = ({ children }) => {
     getProfile(storedToken).then((res) => {
       setUser(res);
       localStorage.setItem("user", JSON.stringify(res));
-      const roleName = res.groups?.[0]?.name || "bussines"; // Default to "bussines" if undefined
+      const roleName = res?.groups?.[0]?.name || "bussines"; // Default to "bussines" if undefined
       localStorage.setItem("role", roleName);
       setRole(roleName);
     });
@@ -39,7 +39,7 @@ const ProfilePageLayout = ({ children }) => {
 
   return (
     <section className="mb-[150px]">
-      <div className="max-container mb-[100px] mt-[130px] flex items-center justify-between gap-5 sflex-row md:mt-[200px]">
+      <div className="max-container sflex-row mb-[100px] mt-[130px] flex items-center justify-between gap-5 md:mt-[200px]">
         <div className="flex items-center gap-[20px] md:gap-[30px]">
           <Image
             src={user?.avatar || profileImageDefault}
