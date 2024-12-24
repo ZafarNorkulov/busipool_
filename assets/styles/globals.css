@@ -65,7 +65,7 @@ html {
 
 @layer utilities {
   .section-title {
-    @apply text-center text-2xl font-bold leading-[110%] text-primary md:text-[64px] md:leading-[120%];
+    @apply text-center text-2xl font-bold leading-[110%] text-primary md:text-4xl md:leading-[120%] lg:text-[44px] 2xl:text-[64px];
   }
   .section-title a {
     font: inherit;
