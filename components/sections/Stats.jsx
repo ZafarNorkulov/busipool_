@@ -11,7 +11,7 @@ const statistics = [
 const Stats = ({ large }) => {
   const { width } = useWindowSize();
   return (
-    <section className={`${large ? "text-white" : "text-primary"}`}>
+    <section className={`${large ? "text-white" : "text-primary"} w-full`}>
       <div className="flex flex-col gap-y-[30px] text-center">
         {width < 500 ? (
           <>

@@ -64,7 +64,7 @@ const InvestorPage = () => {
               >
                 Цель нашей краудфандинговой платформы - предоставить вам
                 возможность{" "}
-                <span className="text-gold">увеличить свои инвестиции</span>{" "}
+                <span className="text-gold text-xl md:text-lg xl:text-left 2xl:text-[24px]">увеличить свои инвестиции</span>{" "}
                 через вложения в проекты, с которых можно заработать.
               </p>
 
