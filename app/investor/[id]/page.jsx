@@ -70,7 +70,6 @@ const BusinessType = () => {
       setLoading(true);
       const cities = await getCities();
       setCityRel(cities);
-      setSelectedCity(cities[0]);
     } catch (error) {
       console.error("Error fetching initial data:", error);
     } finally {
@@ -143,13 +142,13 @@ const BusinessType = () => {
             activeSearch
             filters={filters}
             setFilters={setFilters}
-            cityName={selectedCity?.name || "Город"}
+            cityName={selectedCity?.name || "Регион"}
             cities={cityRel}
             setSelectedCity={setSelectedCity}
           />
           {loading && <Spinner loading={loading} />}
           {!loading && projects && (
-            <div className="mb-[60px] grid grid-cols-12 gap-[8px] md:mb-[30px] md:gap-[20px]">
+            <div className="mb-[60px] grid grid-cols-12 gap-[8px] md:mb-[30px] md:gap-[20px] mt-[30px] md:mt-[100px]">
               {projects?.map((card, index) => (
                 <div
                   className="col-span-6 sm:col-span-4 lg:col-span-3"

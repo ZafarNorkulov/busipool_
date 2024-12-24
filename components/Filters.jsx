@@ -27,7 +27,7 @@ const Filters = ({
     }, {});
     setFilters(updatedFilters);
 
-    setSelectedFilterTitle(filters[selectedKey]?.title || "Select Filter");
+    setSelectedFilterTitle(filters[selectedKey]?.title || "Выберите фильтр");
   };
 
   return (
@@ -39,7 +39,7 @@ const Filters = ({
           className="relative inline-block w-[calc(50%-5px)] text-left sm:w-full sm:max-w-[200px]"
         >
           <div>
-            <MenuButton className="flex sm:w-[180px] w-full py-5 justify-center gap-x-1.5 rounded-[5px] bg-white  pl-4 pr-2 text-xs font-bold text-gray-light shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 md:w-[200px] md:py-[15px] md:pl-[30px] md:pr-[22px] md:text-base">
+            <MenuButton className="flex w-full justify-center gap-x-1.5 rounded-[5px] bg-white py-5 pl-4 pr-2 text-xs font-bold text-gray-light shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:w-[180px] md:w-[200px] md:py-[15px] md:pl-[30px] md:pr-[22px] md:text-base">
               <span className="block w-[90%] text-start text-xs md:text-sm">
                 {selectedFilterTitle}
               </span>
@@ -75,7 +75,7 @@ const Filters = ({
           className="relative inline-block w-[calc(50%-5px)] text-left sm:w-full sm:max-w-[150px]"
         >
           <div>
-            <MenuButton className="flex sm:w-[100px] w-full justify-center gap-x-1.5 py-5 rounded-[5px] bg-white pl-4 pr-2 text-[10px] font-bold text-gray-light shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 md:w-[130px] md:py-[15px] md:pl-[30px] md:pr-[22px] md:text-base">
+            <MenuButton className="flex w-full justify-center gap-x-1.5 rounded-[5px] bg-white py-5 pl-4 pr-2 text-[10px] font-bold text-gray-light shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:w-[100px] md:w-[130px] md:py-[15px] md:pl-[30px] md:pr-[22px] md:text-base">
               <span className="block w-[90%] text-start text-xs md:text-sm">
                 {cityName}
               </span>
@@ -90,7 +90,7 @@ const Filters = ({
 
           <MenuItems
             transition
-            className="absolute right-0 z-10 mt-2 w-full origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5  transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in md:w-52"
+            className="absolute right-0 z-10 mt-2 w-full origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in md:w-52"
           >
             <div className="py-1">
               {cities?.map((city) => (

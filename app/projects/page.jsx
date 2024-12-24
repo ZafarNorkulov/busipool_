@@ -49,7 +49,6 @@ const ProjectsPage = () => {
       setLoading(true);
       const cities = await getCities();
       setCityRel(cities);
-      setSelectedCity(cities[0]);
 
       const categories = await getProjectCategoryByBussinesType();
       const allProjectsOption = {
@@ -160,7 +159,7 @@ const ProjectsPage = () => {
             <Filters
               filters={filters}
               setFilters={setFilters}
-              cityName={selectedCity?.name || "Город"}
+              cityName={selectedCity?.name || "Регион"}
               cities={cityRel}
               setSelectedCity={setSelectedCity}
             />
@@ -188,7 +187,7 @@ const ProjectsPage = () => {
         )}
 
         <div className="bg-secondary py-[30px] md:py-[100px]">
-          <div className="max-container flex justify-between gap-[30px] flex-col lg:flex-row">
+          <div className="max-container flex flex-col justify-between gap-[30px] lg:flex-row">
             <div className="flex flex-col lg:items-start lg:text-left">
               <h2 className="mb-[10px] text-[28px] font-bold leading-[120%] text-gray-dark md:mb-[30px] md:text-[36px] lg:text-[42px] xl:text-[64px]">
                 Создай собственный проект
@@ -212,7 +211,7 @@ const ProjectsPage = () => {
               priority={true}
               width={0}
               height={0}
-              className="  object-contain md:h-80max-w-full lg:h-auto lg:!max-w-[500px] 2xl:max-w-[700px]"
+              className="md:h-80max-w-full object-contain lg:h-auto lg:!max-w-[500px] 2xl:max-w-[700px]"
             />
           </div>
         </div>

@@ -79,7 +79,6 @@ const InvestorPage = () => {
     getCities()
       .then((response) => {
         setCityRel(response);
-        setSelectedCity(response[0]); // Default to the first city
       })
       .catch((error) => {
         console.log(error);
@@ -180,7 +179,7 @@ const InvestorPage = () => {
         <Filters
           filters={filters}
           setFilters={setFilters}
-          cityName={selectedCity?.name || "Город"}
+          cityName={selectedCity?.name || "Регион"}
           cities={cityRel}
           setSelectedCity={setSelectedCity}
           activeSearch={true}
