@@ -97,7 +97,7 @@ const CommentQuestionsPage = () => {
             <div className="my-[60px] md:mx-[20px] lg:mx-[144px]">
               <TabPanel>
                 <CommentQuestion questions={investors} />
-                <div className="w-full flex justify-center">
+                <div className="mt-[30px] flex w-full justify-center md:mt-[60px]">
                   <Button
                     text={"Показать еще"}
                     primary
@@ -107,7 +107,7 @@ const CommentQuestionsPage = () => {
               </TabPanel>
               <TabPanel>
                 <CommentQuestion questions={investors} received={true} />
-                <div className="w-full flex justify-center">
+                <div className="mt-[30px] flex w-full justify-center md:mt-[60px]">
                   <Button
                     text={"Показать еще"}
                     primary

@@ -1012,7 +1012,7 @@ const CreateProjectPage = () => {
         <link rel="icon" href="/Fav.png" />
       </Head>
       <section>
-        {isSendForm ? (
+        {!isSendForm ? (
           <div className="max-container mb-[100px] mt-[30px] md:mb-[150px] md:mt-[100px]">
             <div className="mb-[60px] flex flex-col items-center">
               <h2 className="mb-[30px] text-[24px] font-bold text-gray-dark md:text-[32px]">
