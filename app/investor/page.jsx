@@ -51,7 +51,10 @@ const InvestorPage = () => {
       </Head>
       <section className="mt-[80px] md:mt-[120px] lg:mt-[130px]">
         <div className="max-container pt-[30px] md:pt-[100px]">
+          <div className="max-w-1430px md:mx-[9.5%]">
+
           <Stats />
+          </div>
 
           <div className="mb-[30px] mt-[60px] w-fit px-[10px] md:mt-[100px] md:px-[20px]">
             <BusipoolLogoLarge />
