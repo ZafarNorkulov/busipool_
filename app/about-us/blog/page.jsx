@@ -57,7 +57,6 @@ const BlogPage = () => {
           <h2 className="section-title mb-[30px] md:mb-[100px]">
             Актуальные проекты
           </h2>
-
           <SwiperSection />
         </div>
       </section>
