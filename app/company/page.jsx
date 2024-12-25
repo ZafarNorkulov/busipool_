@@ -202,7 +202,7 @@ const CompanyPage = () => {
           </p>
           <div className="flex-1">
             <Button
-              text="Оставьте заявку и мы пришлем информацию по тарифам"
+              text="Оставьте заявку, и мы пришлем информацию по тарифам"
               onclick={() => setIsOpen(true)}
               style={"!py-5 md:text-xl leading-[24px] text-base"}
             />

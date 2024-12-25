@@ -7,7 +7,7 @@ import scrollToTop from "../utils/scrollToTop";
 const BlogCard = ({ img, title, text, large, id }) => {
   return (
     <div
-      className={`relative flex w-full shrink-0 gap-[20px] rounded-[3px] p-[15px] shadow md:gap-[30px] xl:gap-[40px] md:rounded-[5px] md:p-[30px]`}
+      className={`relative flex w-full shrink-0 gap-[20px] rounded-[3px] p-[15px] shadow md:gap-[30px] md:rounded-[5px] md:p-[30px] 2xl:gap-[40px]`}
     >
       <Image
         src={img}
@@ -16,17 +16,17 @@ const BlogCard = ({ img, title, text, large, id }) => {
         sizes="100%"
         priority={true}
         alt="blog images"
-        className={`h-[120px] w-[120px] shrink-0 rounded-[5px] object-cover md:h-[170px] md:w-[170px] lg:h-[220px] lg:w-[220px] xl:h-[239px] xl:w-[239px]`}
+        className={`h-[120px] w-[120px] shrink-0 rounded-[5px] object-cover md:h-[170px] md:w-[170px] lg:h-[200px] lg:w-[200px] 2xl:h-[239px] 2xl:w-[239px]`}
       />
 
       <div className="flex w-full flex-col justify-end">
-        <div>
+        <div className="flex flex-col gap-y-[10px] 2xl:gap-y-5">
           <h3
-            className={`mb-[10px] text-base font-bold text-gray-dark md:mb-[20px] md:text-2xl xl:text-[36px]`}
+            className={`text-base font-bold text-gray-dark md:text-2xl 2xl:text-[36px]`}
           >
             {title}
           </h3>
-          <p className="line-clamp-2 text-xs font-light leading-[120%] text-gray-light md:line-clamp-3 md:text-base lg:text-xl xl:text-[24px]">
+          <p className="line-clamp-2 text-xs font-light leading-[120%] text-gray-light md:line-clamp-3 md:text-base lg:text-xl 2xl:text-2xl">
             {text}
           </p>
         </div>

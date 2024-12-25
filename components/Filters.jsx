@@ -31,7 +31,7 @@ const Filters = ({
   };
 
   return (
-    <div className="md:max-container mb-[30px] flex flex-col justify-between gap-[20px] md:flex-row md:items-center">
+    <div className="mb-[30px] flex flex-col justify-between gap-[20px] md:flex-row md:items-center">
       <div className="flex flex-row gap-[10px] md:gap-[30px] xl:flex-row xl:gap-[30px]">
         {/* Filter Menu */}
         <Menu
@@ -112,7 +112,7 @@ const Filters = ({
             type="search"
             value={search}
             placeholder="Поиск"
-            className="flex-1 border-none p-[20px] text-[14px] font-bold leading-[110%] text-gray-dark outline-none"
+            className="flex-1 border-none p-[20px] md:py-[15px] text-[14px] font-bold leading-[110%] text-gray-dark outline-none"
             onChange={(e) => setSearch(e.target.value)}
           />
           <span className="border-l border-gray-dark p-[20px]">

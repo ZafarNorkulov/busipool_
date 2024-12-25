@@ -22,7 +22,7 @@ const HomeBlogs = () => {
     fetchBlogsApi();
   }, []);
   return (
-    <section className="max-w-[1430px] px-5 md:mx-[9.5%] mb-[100px] md:mb-[150px]">
+    <section className="mb-[100px] max-w-[1430px] px-5 md:mx-[9.5%] md:mb-[150px]">
       <h2 className="section-title mb-[30px] md:mb-[100px]">
         <Link href="/about-us/blog" className="hover:underline">
           Блог
@@ -30,10 +30,7 @@ const HomeBlogs = () => {
       </h2>
       <div className="grid grid-cols-12 gap-[20px]">
         {blogs?.results?.map((blog) => (
-          <div
-            className="col-span-12 sm:col-span-8 sm:col-start-3 lg:col-span-6"
-            key={blog?.id}
-          >
+          <div className="col-span-12 xl:col-span-6" key={blog?.id}>
             <BlogCard
               img={blog.image}
               title={blog.title}

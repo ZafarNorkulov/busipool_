@@ -142,7 +142,7 @@ const InvestorPage = () => {
         {!token && (
           <div className="mb-[60px] bg-secondary py-[30px] md:py-[60px]">
             <div className="max-container flex flex-col justify-between gap-y-[60px] xl:flex-row">
-              <div className="flex-1">
+              <div className="w-full">
                 <h2 className="mb-[10px] text-[24px] font-bold leading-[120%] text-gray-dark md:mb-[30px] lg:text-[52px] 2xl:text-[64px]">
                   Хотите больше выгоды?
                 </h2>
@@ -150,7 +150,7 @@ const InvestorPage = () => {
                   Зарегистрируйтесь на нашей платформе и получите полную
                   информацию о проектах
                 </p>
-                <div className="flex w-full flex-nowrap gap-[30px] lg:w-1/2 xl:w-[40%]">
+                <div className="flex w-full flex-nowrap gap-[30px] lg:w-[50%] xl:w-full">
                   <SignUpLink
                     styles={
                       "lg:w-[60%] sm:w-[230px] py-5  w-[60%] !px-0 !justify-center"
@@ -170,40 +170,41 @@ const InvestorPage = () => {
                 width={0}
                 height={0}
                 sizes="100%"
-                className="flex-1 object-contain lg:max-w-[600px] 2xl:max-w-[650px]"
+                className="mx-auto flex-1 object-contain lg:max-w-[600px] 2xl:max-w-[650px]"
               />
             </div>
           </div>
         )}
+        <div className="max-container">
+          <Filters
+            filters={filters}
+            setFilters={setFilters}
+            cityName={selectedCity?.name || "Регион"}
+            cities={cityRel}
+            setSelectedCity={setSelectedCity}
+            activeSearch={true}
+            setSearch={setSearch}
+            search={search}
+          />
 
-        <Filters
-          filters={filters}
-          setFilters={setFilters}
-          cityName={selectedCity?.name || "Регион"}
-          cities={cityRel}
-          setSelectedCity={setSelectedCity}
-          activeSearch={true}
-          setSearch={setSearch}
-          search={search}
-        />
-
-        {loading && <Spinner loading={loading} />}
-        {!loading && projects && (
-          <div className="max-container mb-[60px] grid grid-cols-2 gap-[8px] md:mb-[30px] md:grid-cols-3 md:gap-[20px] wide:grid-cols-4">
-            {projects?.results?.map((card, index) => (
-              <div className="">
-                <ProjectCard key={index} card={card} />
-              </div>
-            ))}
-          </div>
-        )}
-        {projects?.results?.length ? (
-          <div className="max-container mb-[100px] flex items-center justify-center md:mb-[150px]">
-            <Button text="Загрузить еще" primary />
-          </div>
-        ) : (
-          ""
-        )}
+          {loading && <Spinner loading={loading} />}
+          {!loading && projects && (
+            <div className="mb-[60px] grid grid-cols-2 gap-[8px] md:mb-[30px] md:grid-cols-3 md:gap-[20px] wide:grid-cols-4">
+              {projects?.results?.map((card, index) => (
+                <div className="">
+                  <ProjectCard key={index} card={card} />
+                </div>
+              ))}
+            </div>
+          )}
+          {projects?.results?.length ? (
+            <div className="mb-[100px] flex items-center justify-center md:mb-[150px]">
+              <Button text="Загрузить еще" primary />
+            </div>
+          ) : (
+            ""
+          )}
+        </div>
 
         <HomeBlogs />
       </section>

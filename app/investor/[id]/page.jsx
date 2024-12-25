@@ -99,7 +99,7 @@ const BusinessType = () => {
         <link rel="icon" href="/Fav.png" />
       </Head>
       <section className="mt-[70px] sm:mt-[90px] md:mt-[95px] lg:mt-[105px]">
-        <div className="mx-auto max-w-[1920px] px-5 pb-[30px] pt-[60px] md:py-[100px] xl:mx-[80px]">
+        <div className="max-container pb-[30px] pt-[60px] md:py-[100px]">
           <h2 className="section-title mb-[20px] !text-left md:mb-[30px]">
             {selectedType}
           </h2>
@@ -111,7 +111,7 @@ const BusinessType = () => {
         </div>
         {auth?.isAuthenticated && (
           <div className="mb-[60px] bg-secondary px-5 py-[30px] md:py-[60px]">
-            <div className="mx-auto flex max-w-[1920px] flex-col justify-between xl:mx-[80px] xl:flex-row">
+            <div className="max-container flex flex-col justify-between xl:flex-row">
               <div className="flex-1">
                 <h2 className="mb-[10px] text-[24px] font-bold leading-[120%] text-gray-dark md:mb-[30px] md:text-[64px]">
                   Хотите попасть в каталог?
@@ -135,20 +135,23 @@ const BusinessType = () => {
             </div>
           </div>
         )}
-        <div className="mx-auto max-w-[1920px] px-[20px] xl:mx-[80px]">
-          <Filters
-            search={search}
-            setSearch={setSearch}
-            activeSearch
-            filters={filters}
-            setFilters={setFilters}
-            cityName={selectedCity?.name || "Регион"}
-            cities={cityRel}
-            setSelectedCity={setSelectedCity}
-          />
+        <div className="max-container">
+
+        <Filters
+          search={search}
+          setSearch={setSearch}
+          activeSearch
+          filters={filters}
+          setFilters={setFilters}
+          cityName={selectedCity?.name || "Регион"}
+          cities={cityRel}
+          setSelectedCity={setSelectedCity}
+        />
+        </div>
+        <div className="max-container">
           {loading && <Spinner loading={loading} />}
           {!loading && projects && (
-            <div className="mb-[60px] grid grid-cols-12 gap-[8px] md:mb-[30px] md:gap-[20px] mt-[30px] md:mt-[100px]">
+            <div className="mb-[60px] mt-[30px] grid grid-cols-12 gap-[8px] md:mb-[30px] md:mt-[100px] md:gap-[20px]">
               {projects?.map((card, index) => (
                 <div
                   className="col-span-6 sm:col-span-4 lg:col-span-3"
@@ -166,9 +169,9 @@ const BusinessType = () => {
           ) : (
             ""
           )}
-
-          <HomeBlogs />
         </div>
+
+        <HomeBlogs />
       </section>
     </>
   );
