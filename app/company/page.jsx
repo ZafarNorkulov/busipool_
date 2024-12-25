@@ -137,7 +137,7 @@ const CompanyPage = () => {
             </h2>
 
             <div className="mb-[60px] flex flex-col justify-between gap-y-[60px] lg:flex-row">
-              <div className="w-[633px] lg:!w-[calc(50%-30px)]">
+              <div className="w-full md:w-[633px] lg:!w-[calc(50%-30px)]">
                 <h3 className="mb-[30px] border-b border-gray-dark px-[60px] pb-[20px] text-center text-[20px] font-bold leading-[120%] text-gray-dark md:mb-[60px] md:border-b-2 md:px-[95px] md:pb-[10px] md:text-left md:text-[32px]">
                   Эшелон A / до 1 млрд.₽
                 </h3>
@@ -160,7 +160,7 @@ const CompanyPage = () => {
                 </p>
               </div>
 
-              <div className="w-[633px] lg:!w-[calc(50%-30px)]">
+              <div className="w-full md:w-[633px] lg:!w-[calc(50%-30px)]">
                 <h3 className="mb-[30px] border-b border-gray-dark px-[60px] pb-[20px] text-center text-[20px] font-bold leading-[120%] text-gray-dark md:mb-[60px] md:border-b-2 md:px-[95px] md:pb-[10px] md:text-left md:text-[32px]">
                   Эшелон С / до 60 млн.₽
                 </h3>
@@ -273,14 +273,16 @@ const CompanyPage = () => {
               База инвесторов
             </h2>
 
-            <div className="flex flex-wrap justify-center gap-[30px] md:gap-[20px]">
-              {investors.map((investor, index) => (
-                <InvestorCardLink
-                  key={index}
-                  name={investor.name}
-                  id={investor.id}
-                />
-              ))}
+            <div className="grid grid-cols-12 gap-[30px] md:gap-[20px]">
+                {investors.map((investor, index) => (
+                  <div className="col-span-6 sm:col-span-4 md:col-span-4">
+                  <InvestorCardLink
+                    key={index}
+                    name={investor.name}
+                    id={investor.id}
+                  />
+              </div>
+                ))}
             </div>
           </div>
 
