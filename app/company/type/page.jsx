@@ -10,6 +10,7 @@ import { getCompanyTypeCategoryByID } from "@/app/api/company/company";
 
 const CompanyTypePage = () => {
   const [categoryType, setCategoryType] = useState([]);
+
   useEffect(() => {
     (async () => {
       await getCompanyTypeCategoryByID().then((res) => setCategoryType(res));
@@ -65,13 +66,13 @@ const CompanyTypePage = () => {
               <span className="mb-[40px] mt-[30px] text-xl font-light leading-[110%] sm:mb-[70px] sm:mt-[50px] md:text-[32px] lg:mb-[100px] lg:mt-[73px]">
                 {categoryType[1]?.name}
               </span>
-              <Link
-                href={`/company/type/${categoryType[0]?.id}`}
+              <div
+                href={`/company/type/${categoryType[1]?.id}`}
                 className="ml-auto flex w-fit items-center text-base font-light leading-[110%] text-gray-dark hover:text-primary md:text-[24px]"
               >
                 Подробнее
                 <BsArrowDownRight className="ml-[5px] text-base md:ml-[10px] md:text-[24px]" />
-              </Link>
+              </div>
             </div>
           </div>
         ) : (

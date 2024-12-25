@@ -175,10 +175,12 @@ const Navbar = () => {
               text="Войти"
               primary
               onclick={() => router.push(`/sign-in`)}
+              style="!py-5 text-sm"
             />
             <Button
               text="Зарегистрироваться"
               onclick={() => router.push(`/sign-in`)}
+              style="!py-5 text-sm"
             />
           </div>
         )}

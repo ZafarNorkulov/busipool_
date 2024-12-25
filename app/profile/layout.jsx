@@ -65,22 +65,21 @@ const ProfilePageLayout = ({ children }) => {
 
         <ul className="hidden flex-col items-center justify-between gap-4 gap-y-0 md:flex lg:flex-row">
           {role?.toLowerCase() === "business" &&
-            path.includes("/profile/create") && (
-              <li className="font-bold leading-[120%] text-gray-light">
-                Созданные проекты
-              </li>
-            )}
+            (path.includes("/profile/create") ||
+              path.includes("/profile/statistics")) && (
+              <>
+                <li className="font-bold leading-[120%] text-gray-light">
+                  Созданные проекты
+                </li>
+                <li className="font-bold leading-[120%] text-gray-light">
+                  Поддержанные проекты
+                </li>
 
-          {path.includes("/profile/create") && (
-            <li className="font-bold leading-[120%] text-gray-light">
-              Поддержанные проекты
-            </li>
-          )}
-          {path.includes("/profile/create") && (
-            <li className="font-bold leading-[120%] text-gray-light">
-              Вознаграждения и дивиденды
-            </li>
-          )}
+                <li className="font-bold leading-[120%] text-gray-light">
+                  Вознаграждения и дивиденды
+                </li>
+              </>
+            )}
         </ul>
 
         <div>

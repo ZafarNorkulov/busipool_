@@ -42,7 +42,7 @@ const Verify = () => {
         />
         <link rel="icon" href="/Fav.png" />
       </Head>
-      <main className="flex flex-col-reverse overflow-hidden md:flex-row">
+      <main className="flex flex-col overflow-hidden md:flex-row gap-y-[60px]">
         <section className="flex w-full flex-1 flex-col items-center justify-center pt-3 lg:w-[560px] extraWide:w-[760px]">
           <strong className="mb-4 bg-[#b5ebab] px-1 text-[#4f4f4f]">
             Код был отправлен по вашей электронной почте

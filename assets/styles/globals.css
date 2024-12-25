@@ -78,7 +78,7 @@ html {
   @apply block w-full rounded-[5px] border border-gray-dark p-3 text-[14px] leading-[24px] xl:p-3 xl:text-lg extraWide:p-[23px_20px] extraWide:text-xl;
 }
 .label-text {
-  @apply mb-[10px] text-[10px] font-light leading-[24px] text-gray-light lg:text-[14px];
+  @apply mb-[10px] text-sm font-light leading-[24px] text-gray-light lg:text-[14px];
 }
 
 /* profile menu */

@@ -34,7 +34,7 @@ const BlogCard = ({ img, title, text, large, id }) => {
         <Link
           href={`/about-us/blog/${id}`}
           onClick={scrollToTop}
-          className={`mt-auto flex w-fit items-center self-end font-helvetica text-[8px] font-light leading-[110%] text-gray-dark hover:text-primary md:bottom-[30px] md:right-[30px] md:text-base`}
+          className={`mt-auto  flex w-fit items-center self-end font-helvetica text-xs font-light leading-[110%] text-gray-dark hover:text-primary md:bottom-[30px] md:right-[30px] md:text-base`}
         >
           Подробнее
           <BsArrowDownRight className="ml-[5px] text-[8px] md:ml-[10px] md:text-base" />

@@ -1,6 +1,8 @@
+"use client";
 import diagram from "@/assets/images/diagram.jpg";
 import Image from "next/image";
 import Head from "next/head";
+import useWindowSize from "@/hooks/useWindowSize";
 
 const DatePoint = ({ date }) => {
   return (
@@ -14,6 +16,7 @@ const DatePoint = ({ date }) => {
 };
 
 const AboutUsPage = () => {
+  const { width } = useWindowSize();
   return (
     <>
       <Head>
@@ -74,19 +77,21 @@ const AboutUsPage = () => {
             </h3>
 
             <div className="flex justify-between gap-2 sm:w-[70%] sm:gap-[20px] md:gap-[40px] lg:gap-[70px]">
-              <p className="text-[12px] font-light leading-[120%] text-gray-light md:text-[20px] lg:break-all lg:text-[24px] xl:break-normal 2xl:text-[32px]">
+              <p className="text-xs font-light leading-[120%] text-gray-light md:text-[20px] lg:break-all lg:text-[24px] xl:break-normal 2xl:text-[32px]">
                 Тестирование платформы BUSIPOOL
               </p>
-              <p className="text-[12px] font-light leading-[120%] text-gray-light md:text-[20px] lg:break-all lg:text-[24px] xl:break-normal 2xl:text-[32px]">
+              <p className="text-xs font-light leading-[120%] text-gray-light md:text-[20px] lg:break-all lg:text-[24px] xl:break-normal 2xl:text-[32px]">
                 Доработка бизнес-процессов
               </p>
-              <p className="text-[12px] font-light leading-[120%] text-gray-light md:text-[20px] lg:break-all lg:text-[24px] xl:break-normal 2xl:text-[32px]">
+              <p
+                className={`text-xs ${width < 640 && "max-w-[80px]"} break-words font-light leading-[120%] text-gray-light md:text-[20px] lg:break-all lg:text-[24px] xl:break-normal 2xl:text-[32px]`}
+              >
                 Масштабирование числа кейсов, отработка массового числа сделок
               </p>
             </div>
           </div>
 
-          <div className="relative ml-auto mr-[2%] flex w-[calc(100%-10px)] justify-between border-t-2 border-gray-dark pt-[20px] sm:w-[68%] sm:pt-[50px] md:!w-[63%]">
+          <div className="relative ml-auto flex w-[calc(100%-10px)] justify-between border-t-2 border-gray-dark pt-[20px] sm:w-[68%] sm:pt-[50px] md:mr-[2%] md:!w-[63%]">
             <DatePoint date="май, 2024" />
             <DatePoint date="июль, 2024" />
             <DatePoint date="июль, 2024" />

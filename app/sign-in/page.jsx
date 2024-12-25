@@ -52,49 +52,62 @@ const SignInPage = () => {
         />
         <link rel="icon" href="/Fav.png" />
       </Head>
-      <main className="relative flex flex-col-reverse overflow-hidden md:flex-row">
-      <Link href={"/"} className="absolute right-2 top-4">
-          <IoMdClose  size={30}  />
+      <main className="relative flex flex-col gap-y-[60px] overflow-hidden pt-[30px] md:flex-row md:pt-0">
+        <Link href={"/"} className="absolute right-2 top-4">
+          <IoMdClose size={30} />
         </Link>
-        <section className="relative mb-[30px] flex w-full flex-1 items-center justify-center pt-3 lg:w-[560px] extraWide:w-[760px]">
-          <form
-            // action="POST"
-            onSubmit={login}
-            className="w-[calc(100%-20px)] sm:w-[calc(100%-150px)] md:w-[calc(100%-30px)] 2xl:md:w-[calc(100%-100px)]"
-          >
-            <div className="mb-2 lg:mb-[30px]">
-              <label
-                htmlFor="email-phone"
-                className="mb-[10px] text-[10px] font-light leading-[24px] lg:text-[14px]"
-              >
-                E-mail или телефон
-              </label>
-              <input
-                onChange={(e) => setUser({ ...user, username: e.target.value })}
-                type="text"
-                id="email-phone"
-                className="login-input"
-              />
-            </div>
-            <div className="mb-4 lg:mb-[30px]">
-              <label
-                htmlFor="password"
-                className="mb-[10px] text-[10px] font-light leading-[24px] lg:text-[14px]"
-              >
-                Пароль
-              </label>
-              <input
-                onChange={(e) => setUser({ ...user, password: e.target.value })}
-                type="password"
-                id="password"
-                className="login-input"
-              />
-            </div>
+        <section
+          className={`relative flex flex-1 flex-col justify-center pt-3 lg:w-[560px] extraWide:w-[760px]`}
+        >
+          <div className="max-container">
+            <h1 className="mb-[20px] text-center text-[32px] font-bold leading-[120%] text-gray-dark lg:mb-[60px] lg:text-[48px] extraWide:text-[64px]">
+              Войти
+            </h1>
+            <form
+              onSubmit={login}
+            >
+              <div className="mb-2 lg:mb-[30px]">
+                <label
+                  htmlFor="email-phone"
+                  className="mb-[10px] text-[10px] font-light leading-[24px] lg:text-[14px]"
+                >
+                  E-mail или телефон
+                </label>
+                <input
+                  onChange={(e) =>
+                    setUser({ ...user, username: e.target.value })
+                  }
+                  type="text"
+                  id="email-phone"
+                  className="login-input"
+                />
+              </div>
+              <div className="mb-4 lg:mb-[30px]">
+                <label
+                  htmlFor="password"
+                  className="mb-[10px] text-[10px] font-light leading-[24px] lg:text-[14px]"
+                >
+                  Пароль
+                </label>
+                <input
+                  onChange={(e) =>
+                    setUser({ ...user, password: e.target.value })
+                  }
+                  type="password"
+                  id="password"
+                  className="login-input"
+                />
+              </div>
 
-            <div className="mb-4 lg:mb-[30px]">
-              <Button text="Войти" fullWidth primary style={"!py-5 text-sm"} />
-              <p className="mb-[10px] mt-4 text-center text-[10px] font-light leading-[120%] lg:mt-[30px] xl:text-[14px]"></p>
-              {/* {Object.values(providers).map((provider, index) => (
+              <div className="mb-4 lg:mb-[30px]">
+                <Button
+                  text="Войти"
+                  fullWidth
+                  primary
+                  style={"!py-5 text-sm"}
+                />
+                <p className="mb-[10px] mt-4 text-center text-[10px] font-light leading-[120%] lg:mt-[30px] xl:text-[14px]"></p>
+                {/* {Object.values(providers).map((provider, index) => (
                 <button
                   onClick={() => signIn(provider.id)}
                   key={index}
@@ -103,21 +116,22 @@ const SignInPage = () => {
                   Google
                 </button>
               ))} */}
-            </div>
+              </div>
 
-            <div className="flex items-center justify-between">
-              <p className="text-[10px] font-light leading-[120%] xl:text-[14px]">
-                У вас еще нет аккаунта?
-              </p>
+              <div className="flex items-center justify-between">
+                <p className="text-[10px] font-light leading-[120%] xl:text-[14px]">
+                  У вас еще нет аккаунта?
+                </p>
 
-              <Link
-                href="/sign-up"
-                className="text-[12px] font-bold leading-[120%] text-primary lg:text-[14px]"
-              >
-                Зарегистрироваться
-              </Link>
-            </div>
-          </form>
+                <Link
+                  href="/sign-up"
+                  className="text-[12px] font-bold leading-[120%] text-primary lg:text-[14px]"
+                >
+                  Зарегистрироваться
+                </Link>
+              </div>
+            </form>
+          </div>
         </section>
 
         <section className="flex h-[100vh] w-auto flex-[2] flex-col gap-[20px] bg-secondary p-[24px] md:gap-[20px] lg:w-[calc(-560px+100vw)] extraWide:w-[calc(-560px+100vw)] extraWide:gap-[60px] extraWide:p-[60px]">
