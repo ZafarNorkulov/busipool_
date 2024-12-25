@@ -47,7 +47,7 @@ const BecomePartnerPage = () => {
         <link rel="icon" href="/Fav.png" />
       </Head>
       <section className="mt-[100px] sm:mt-[140px] lg:mt-[200px]">
-        <div className="max-container">
+        <div className="max-w-[1430px] px-5 md:mx-[9%]">
           <Stats />
         </div>
         <div className="max-container mb-[30px] mt-[60px] md:mt-[100px]">
@@ -98,7 +98,7 @@ const BecomePartnerPage = () => {
           <div>
             <div className="max-container mb-[100px] flex flex-col flex-wrap justify-between md:mb-[150px] lg:flex-row lg:gap-x-[30px]">
               <div className="w-full flex-1 lg:max-w-[850px]">
-                <h2 className="mb-[30px] font-bold xl:leading-[130%] !text-left text-2xl leading-[120%] text-primary md:text-4xl lg:text-[42px] xl:text-[64px]">
+                <h2 className="mb-[30px] !text-left text-2xl font-bold leading-[120%] text-primary md:text-4xl lg:text-[42px] xl:text-[64px] xl:leading-[130%]">
                   Что такое BUSIPOOL и как проходят сделки на платформе?
                 </h2>
                 <p className="text-base font-light leading-[120%] text-gray-light md:text-[22px]">

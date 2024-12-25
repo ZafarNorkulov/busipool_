@@ -18,7 +18,7 @@ const AboutUsPageLayout = ({ children }) => {
 
       {!isBlogPage && (
         <>
-          <div className="max-container pt-[30px] md:pt-[100px]">
+          <div className="max-w-[1430px] px-5 pt-[30px] md:mx-[9%] md:pt-[100px]">
             <Stats />
           </div>
           <div className="md:max-container mx-auto mb-[30px] mt-[60px] w-full px-[12px] md:mt-[100px]">

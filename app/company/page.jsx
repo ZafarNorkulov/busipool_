@@ -22,7 +22,7 @@ const suitables = [
     text: "Открыли бизнес, проработали год, бизнес работает в плюс, но хочется вернуть займы на которые открывали бизнес.",
   },
   {
-    text: "Подтвердил первые продажи, нужны деньги на масштабирование бизнеса вложиться в новые станки и продажи",
+    text: "Подтвердил первые продажи, нужны деньги на масштабирование бизнеса, чтобы вложиться в новое оборудование и увелечить продажи",
   },
   {
     text: "Уже 5 лет на рынке, работаем в плюс, но нужны деньги, чтобы выйти из малого бизнеса в средний.",
@@ -71,7 +71,7 @@ const CompanyPage = () => {
         <link rel="icon" href="/Fav.png" />
       </Head>
       <section className="mt-[70px] sm:mt-[85px] md:mt-[100px] lg:mt-[130px]">
-        <div className="max-container pt-[30px] md:pt-[100px]">
+        <div className="mx-[9%] max-w-[1430px] px-5 pt-[30px] md:pt-[100px]">
           <Stats />
         </div>
         <div className="mx-auto mb-[30px] mt-[60px] w-fit px-[10px] md:mb-[100px] md:mt-[50px] md:px-[20px]">
@@ -130,14 +130,14 @@ const CompanyPage = () => {
           </div>
         </div>
 
-        <div className="max-container">
+        <div className="max-w-[1430px] px-5 md:mx-[9%]">
           <div>
             <h2 className="section-title mb-[30px] text-balance md:mb-[100px]">
               Кто может разместиться на BUSIPOOL?
             </h2>
 
-            <div className="mb-[60px] flex flex-wrap justify-evenly gap-y-[60px]">
-              <div className="w-[633px]">
+            <div className="mb-[60px] flex flex-col justify-between gap-y-[60px] lg:flex-row">
+              <div className="w-[633px] lg:!w-[calc(50%-30px)]">
                 <h3 className="mb-[30px] border-b border-gray-dark px-[60px] pb-[20px] text-center text-[20px] font-bold leading-[120%] text-gray-dark md:mb-[60px] md:border-b-2 md:px-[95px] md:pb-[10px] md:text-left md:text-[32px]">
                   Эшелон A / до 1 млрд.₽
                 </h3>
@@ -160,7 +160,7 @@ const CompanyPage = () => {
                 </p>
               </div>
 
-              <div className="w-[633px]">
+              <div className="w-[633px] lg:!w-[calc(50%-30px)]">
                 <h3 className="mb-[30px] border-b border-gray-dark px-[60px] pb-[20px] text-center text-[20px] font-bold leading-[120%] text-gray-dark md:mb-[60px] md:border-b-2 md:px-[95px] md:pb-[10px] md:text-left md:text-[32px]">
                   Эшелон С / до 60 млн.₽
                 </h3>
@@ -187,8 +187,8 @@ const CompanyPage = () => {
           </div>
         </div>
 
-        <div className="max-container mb-[100px] flex flex-col items-center">
-          <p className="mb-[30px] max-w-[1000px] text-center text-base font-light leading-[140%] text-gray-light md:mb-[60px] md:text-[24px]">
+        <div className="max-container mb-[100px] flex flex-col items-center lg:!w-[80%] 2xl:!w-[52%]">
+          <p className="mb-[30px] text-center text-base font-light leading-[140%] text-gray-light md:mb-[60px] md:text-[24px]">
             <span className="font-bold text-gray-dark md:text-[24px]">
               Размеcтиться на BUSIPOOL может любая компания,
             </span>{" "}
@@ -212,7 +212,7 @@ const CompanyPage = () => {
 
         <div className="bg-secondary pb-[150px] pt-[60px] md:pt-[100px]">
           <h2 className="mb-[30px] text-center text-2xl font-bold leading-normal text-gray-dark md:mb-[100px] md:text-[64px]">
-            Как проходят сделки?
+            Как это работает?
           </h2>
 
           <div className="max-container">
@@ -226,24 +226,26 @@ const CompanyPage = () => {
                 <div
                   key={index}
                   className={`${
-                    index == arr.length - 1 ? "pb-0" : "pb-[60px] md:pb-[100px]"
+                    index == arr.length - 1
+                      ? "pb-0"
+                      : "pb-[60px] md:pb-[80px] lg:pb-[100px]"
                   } ${
                     index == arr.length - 1
                       ? "border-0"
                       : "border-l md:border-l-2"
-                  } relative border-primary pl-[55px] md:pl-[275px] xl:pl-[372px]`}
+                  } relative border-primary pl-[55px] md:pl-[140px] lg:pl-[275px] xl:pl-[372px]`}
                 >
-                  <h3 className="mb-[20px] text-[18px] font-bold leading-normal text-gray-dark md:mb-[30px] md:text-[32px]">
+                  <h3 className="mb-[20px] text-lg font-bold leading-[110%] text-gray-dark md:mb-[30px] md:text-[26px] lg:text-[32px]">
                     {step.title}
                   </h3>
-                  <p className="text-base font-light leading-[140%] text-gray-light md:text-[24px]">
+                  <p className="text-base font-light leading-[140%] text-gray-light md:text-xl lg:text-[24px]">
                     {step.text}
                   </p>
                   <span className="block text-base font-bold leading-[140%] text-gray-dark md:text-[24px]">
                     {step.deadline}
                   </span>
 
-                  <span className="absolute left-0 top-0 flex h-[50px] w-[50px] -translate-x-[50%] items-center justify-center rounded-full border-2 border-primary bg-secondary text-[24px] font-light leading-[110%] text-primary md:h-[125px] md:w-[125px] md:text-[48px]">
+                  <span className="absolute left-0 top-0 flex size-[50px] -translate-x-[50%] items-center justify-center rounded-full border-2 border-primary bg-secondary text-[24px] font-light leading-[110%] text-primary md:h-[80px] md:w-[80px] md:text-[32px] lg:h-[125px] lg:w-[125px] lg:text-[48px]">
                     {index + 1}
                   </span>
                 </div>
@@ -286,7 +288,7 @@ const CompanyPage = () => {
             Финансовые инструменты
           </h2>
 
-          <div className="mx-auto max-w-[1140px]">
+          <div className="mx-auto max-w-[1140px] md:!mx-[20%]">
             {faqs?.map((faq) => (
               <Accordion
                 key={faq.id}
@@ -297,7 +299,7 @@ const CompanyPage = () => {
           </div>
         </div>
 
-        <div className="max-container">
+        <div className="mx-auto max-w-[1140px] px-5 md:!mx-[20%]">
           <div className="mx-auto mb-[150px] max-w-[1140px]">
             <h2 className="section-title mb-[30px] md:mb-[100px]">
               Сколько это стоит?
@@ -330,56 +332,60 @@ const CompanyPage = () => {
           </div>
         </div>
 
-        <div className="max-container mb-[100px] md:mb-[150px]">
+        <div className="mx-auto mb-[100px] max-w-[1430px] md:mx-[9%] md:mb-[150px]">
           <h2 className="section-title mb-[30px] md:mb-[100px]">
             Почему BUSIPOOL?
           </h2>
 
           <div className="flex flex-col items-center">
-            <div className="mx-auto mb-[60px] flex max-w-[1430px] flex-wrap justify-center gap-y-[60px] md:mb-[80px] xl:justify-between">
-              <div className="max-w-[560px]">
-                <h3 className="mb-[20px] text-center text-[20px] font-bold leading-[110%] text-gray-dark md:mb-[30px] md:text-left md:text-[32px]">
-                  Любое число участников сделки онлайн
-                </h3>
-                <p className="text-base font-light leading-[140%] text-gray-light md:text-[24px]">
-                  Число участников сделки может достигать 500 и более человек. В
-                  виду того, что сделки на инвестиционной платформе BUSIPOOL
-                  проходят в онлайн-форме, акции вашей компании могут купить
-                  инвесторы со всей России.
-                </p>
+            <div className="mx-auto mb-[60px] flex max-w-[1430px] flex-wrap justify-center gap-y-[30px] px-5 md:mx-[9%] md:mb-[80px] xl:justify-between">
+              <div className="flex flex-col justify-between gap-y-[30px] lg:flex-row xl:gap-x-[70px] 2xl:gap-x-[100px]">
+                <div className="max-w-[560px]">
+                  <h3 className="mb-[20px] text-center text-[20px] font-bold leading-[110%] text-gray-dark md:mb-[30px] md:text-left md:text-[32px]">
+                    Любое число участников сделки онлайн
+                  </h3>
+                  <p className="text-base font-light leading-[140%] text-gray-light md:text-[24px]">
+                    Число участников сделки может достигать 500 и более человек.
+                    В виду того, что сделки на инвестиционной платформе BUSIPOOL
+                    проходят в онлайн-форме, акции вашей компании могут купить
+                    инвесторы со всей России.
+                  </p>
+                </div>
+                <div className="max-w-[560px]">
+                  <h3 className="mb-[20px] text-center text-[20px] font-bold leading-[110%] text-gray-dark md:mb-[30px] md:text-left md:text-[32px]">
+                    Экономия времени компании
+                  </h3>
+                  <p className="text-base font-light leading-[140%] text-gray-light md:text-[24px]">
+                    Вам не придётся долгие месяцы нагружать своих сотрудников
+                    подписанием договоров с инвесторами, а потом готовить списки
+                    для выпуска акций. Все это сделает BUSIPOOL.
+                  </p>
+                </div>
               </div>
-              <div className="max-w-[560px]">
-                <h3 className="mb-[20px] text-center text-[20px] font-bold leading-[110%] text-gray-dark md:mb-[30px] md:text-left md:text-[32px]">
-                  Экономия времени компании
-                </h3>
-                <p className="text-base font-light leading-[140%] text-gray-light md:text-[24px]">
-                  Вам не придётся долгие месяцы нагружать своих сотрудников
-                  подписанием договоров с инвесторами, а потом готовить списки
-                  для выпуска акций. Все это сделает BUSIPOOL.
-                </p>
-              </div>
-              <div className="max-w-[560px]">
-                <h3 className="mb-[20px] text-center text-[20px] font-bold leading-[110%] text-gray-dark md:mb-[30px] md:text-left md:text-[32px]">
-                  Законность и безопасность
-                </h3>
-                <p className="text-base font-light leading-[140%] text-gray-light md:text-[24px]">
-                  Все сделки на BUSIPOOL соответствуют 259-ФЗ «О привлечении
-                  инвестиций с использованием инвестиционных платформ», 208-ФЗ
-                  «Об акционерных обществах», 39-ФЗ «О рынке ценных бумаг».
-                </p>
-              </div>
-              <div className="max-w-[560px]">
-                <h3 className="mb-[20px] text-center text-[20px] font-bold leading-[110%] text-gray-dark md:mb-[30px] md:text-left md:text-[32px]">
-                  Проверка инвесторов
-                </h3>
-                <p className="text-base font-light leading-[140%] text-gray-light md:text-[24px]">
-                  Вы также можете быть уверены в юридической чистоте своих
-                  будущих инвесторов. BUSIPOOL проверяет всех инвесторов в
-                  рамках 115-ФЗ «О противодействии легализации (отмыванию)
-                  доходов, полученных преступным путем, и финансированию
-                  терроризма» и присваивает им статус «Квалифицированный
-                  инвестор», если это необходимо.
-                </p>
+              <div className="flex flex-col justify-between gap-y-[30px] lg:flex-row xl:gap-x-[70px] 2xl:gap-x-[100px]">
+                <div className="max-w-[560px]">
+                  <h3 className="mb-[20px] text-center text-[20px] font-bold leading-[110%] text-gray-dark md:mb-[30px] md:text-left md:text-[32px]">
+                    Законность и безопасность
+                  </h3>
+                  <p className="text-base font-light leading-[140%] text-gray-light md:text-[24px]">
+                    Все сделки на BUSIPOOL соответствуют 259-ФЗ «О привлечении
+                    инвестиций с использованием инвестиционных платформ», 208-ФЗ
+                    «Об акционерных обществах», 39-ФЗ «О рынке ценных бумаг».
+                  </p>
+                </div>
+                <div className="max-w-[560px]">
+                  <h3 className="mb-[20px] text-center text-[20px] font-bold leading-[110%] text-gray-dark md:mb-[30px] md:text-left md:text-[32px]">
+                    Проверка инвесторов
+                  </h3>
+                  <p className="text-base font-light leading-[140%] text-gray-light md:text-[24px]">
+                    Вы также можете быть уверены в юридической чистоте своих
+                    будущих инвесторов. BUSIPOOL проверяет всех инвесторов в
+                    рамках 115-ФЗ «О противодействии легализации (отмыванию)
+                    доходов, полученных преступным путем, и финансированию
+                    терроризма» и присваивает им статус «Квалифицированный
+                    инвестор», если это необходимо.
+                  </p>
+                </div>
               </div>
             </div>
 

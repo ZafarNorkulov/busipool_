@@ -30,7 +30,7 @@ const Footer = () => {
 
   return (
     <footer className="bg-secondary text-primary">
-      <div className="flex flex-wrap items-center justify-center gap-x-[60px] bg-primary py-[30px] text-white md:pb-[86px] md:pt-[60px]">
+      <div className="flex flex-wrap items-center justify-center gap-x-[60px] bg-primary py-[30px] text-white md:pb-[60px] md:pt-[60px]">
         <div className="mx-5 mb-[30px] w-max sm:mx-0 sm:w-min">
           <h3 className="mb-[12px] w-max text-base font-bold leading-[120%] md:mb-[12px] md:text-[36px]">
             Подпишитесь на нашу рассылку

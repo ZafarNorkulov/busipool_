@@ -24,13 +24,11 @@ html {
 
 @layer components {
   .max-container {
-    max-width: 1920px;
-    width: calc(100% - 40px);
-    margin: 0 auto;
+    @apply mx-auto w-[calc(100%-40px)] max-w-[1920px] md:w-[calc(100%-80px)];
   }
+
   .blog-container {
-    max-width: 1140px;
-    width: calc(100% - 40px);
+    @apply w-[calc(100%-40px)] max-w-[1140px] md:w-[calc(100%-80px)];
     margin-inline: auto;
   }
 }

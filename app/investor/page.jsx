@@ -51,9 +51,8 @@ const InvestorPage = () => {
       </Head>
       <section className="mt-[80px] md:mt-[120px] lg:mt-[130px]">
         <div className="max-container pt-[30px] md:pt-[100px]">
-          <div className="max-w-1430px md:mx-[9.5%]">
-
-          <Stats />
+          <div className="max-w-[1430px] px-5 md:mx-[9%]">
+            <Stats />
           </div>
 
           <div className="mb-[30px] mt-[60px] w-fit px-[10px] md:mt-[100px] md:px-[20px]">
@@ -67,7 +66,9 @@ const InvestorPage = () => {
               >
                 Цель нашей краудфандинговой платформы - предоставить вам
                 возможность{" "}
-                <span className="text-gold text-xl md:text-lg xl:text-left 2xl:text-[24px]">увеличить свои инвестиции</span>{" "}
+                <span className="text-xl text-gold md:text-lg xl:text-left 2xl:text-[24px]">
+                  увеличить свои инвестиции
+                </span>{" "}
                 через вложения в проекты, с которых можно заработать.
               </p>
 
@@ -88,37 +89,37 @@ const InvestorPage = () => {
             </div>
           </div>
 
-          <div className="mt-[100px] md:mt-[150px]">
+          <div className="mt-[100px] max-w-[1430px] px-5 md:mx-[9%] md:mt-[150px]">
             <h2 className="section-title mb-[30px] md:mb-[100px]">
               Кратко о сделках
             </h2>
 
-            <div className="mb-[100px] flex flex-wrap justify-center gap-x-[160px] gap-y-[60px] text-center md:mb-[140px] xl:flex-nowrap">
+            <div className="mb-[100px] flex flex-wrap justify-center gap-y-[60px] text-center md:mb-[140px] lg:gap-x-[100px] xl:flex-nowrap 2xl:gap-x-[160px]">
               <div className="flex min-w-min flex-col items-center">
-                <h3 className="mb-[20px] w-max text-[20px] font-bold text-primary md:mb-[30px] md:text-[32px]">
+                <h3 className="mb-[20px] w-max text-[20px] font-bold text-primary md:mb-[30px] md:text-2xl lg:text-[28px] 2xl:text-[32px]">
                   Онлайн-сделки
                 </h3>
-                <p className="text-balance text-base leading-[120%] text-gray-dark md:text-[24px] md:leading-[140%]">
+                <p className="text-balance text-base leading-[120%] text-gray-dark md:text-xl md:leading-[140%] lg:text-[22px] 2xl:text-[24px]">
                   Благодаря BUSIPOOL вы можете приобретать доли в интересных вам
                   компаниях без посещения нотариуса. Документы подписываются в
                   онлайн-формате.
                 </p>
               </div>
               <div className="flex min-w-min flex-col items-center">
-                <h3 className="mb-[20px] w-max text-[20px] font-[900] text-primary md:mb-[30px] md:text-[32px]">
+                <h3 className="mb-[20px] w-max text-[20px] font-[900] text-primary md:mb-[30px] md:text-2xl lg:text-[28px] 2xl:text-[32px]">
                   Аудит отчетности
                 </h3>
-                <p className="text-balance text-base leading-[120%] text-gray-dark md:text-[24px] md:leading-[140%]">
+                <p className="text-balance text-base leading-[120%] text-gray-dark md:text-xl md:leading-[140%] lg:text-[22px] 2xl:text-[24px]">
                   Для размещения на платформе компания должна предоставить
                   аудиторское заключение на предмет корректности своей
                   финансовой отчетности.
                 </p>
               </div>
               <div className="flex min-w-min flex-col items-center">
-                <h3 className="mb-[20px] w-max text-[20px] font-[900] text-primary md:mb-[30px] md:text-[32px]">
+                <h3 className="mb-[20px] w-max text-[20px] font-[900] text-primary md:mb-[30px] md:text-2xl lg:text-[28px] 2xl:text-[32px]">
                   Законность
                 </h3>
-                <p className="text-balance text-base leading-[120%] text-gray-dark md:text-[24px] md:leading-[140%]">
+                <p className="text-balance text-base leading-[120%] text-gray-dark md:text-xl md:leading-[140%] lg:text-[22px] 2xl:text-[24px]">
                   Сделки соответствуют 259-ФЗ «О привлечении инвестиций с
                   использованием инвестиционных платформ», 208-ФЗ «Об
                   акционерных обществах», 39-ФЗ «О рынке ценных бумаг».
@@ -133,30 +134,34 @@ const InvestorPage = () => {
           </h2>
 
           <div className="max-container">
-            <div className="mx-auto max-w-[1385px] pl-[25px] md:pl-[60px]">
-              {dealsSteps.map((step, index, arr) => (
-                <div
-                  key={index}
-                  className={`${
-                    index == arr.length - 1 ? "pb-0" : "pb-[60px] md:pb-[100px]"
-                  } ${
-                    index == arr.length - 1
-                      ? "border-0"
-                      : "border-l md:border-l-2"
-                  } relative border-primary pl-[55px] md:pl-[275px] xl:pl-[372px]`}
-                >
-                  <h3 className="mb-[20px] text-[18px] font-bold leading-[110%] text-gray-dark md:mb-[30px] md:text-[32px]">
-                    {step.title}
-                  </h3>
-                  <p className="text-base font-light leading-[140%] text-gray-light md:text-[24px]">
-                    {step.text}
-                  </p>
+            <div className="max-w-[1430px] px-5 md:mx-[9%]">
+              <div className="mx-auto w-full pl-[25px] md:pl-[40px] lg:pl-[60px]">
+                {dealsSteps.map((step, index, arr) => (
+                  <div
+                    key={index}
+                    className={`${
+                      index == arr.length - 1
+                        ? "pb-0"
+                        : "pb-[60px] md:pb-[80px] lg:pb-[100px]"
+                    } ${
+                      index == arr.length - 1
+                        ? "border-0"
+                        : "border-l md:border-l-2"
+                    } relative border-primary pl-[55px] md:pl-[140px] lg:pl-[275px] xl:pl-[372px]`}
+                  >
+                    <h3 className="mb-[20px] text-lg font-bold leading-[110%] text-gray-dark md:mb-[30px] md:text-[26px] lg:text-[32px]">
+                      {step.title}
+                    </h3>
+                    <p className="text-base font-light leading-[140%] text-gray-light md:text-xl lg:text-[24px]">
+                      {step.text}
+                    </p>
 
-                  <span className="absolute left-0 top-0 flex size-[50px] -translate-x-[50%] items-center justify-center rounded-full border-2 border-primary bg-secondary text-[24px] font-light leading-[110%] text-primary md:h-[125px] md:w-[125px] md:text-[48px]">
-                    {index + 1}
-                  </span>
-                </div>
-              ))}
+                    <span className="absolute left-0 top-0 flex size-[50px] -translate-x-[50%] items-center justify-center rounded-full border-2 border-primary bg-secondary text-[24px] font-light leading-[110%] text-primary md:h-[80px] md:w-[80px] md:text-[32px] lg:h-[125px] lg:w-[125px] lg:text-[48px]">
+                      {index + 1}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -169,20 +174,20 @@ const InvestorPage = () => {
             </div>
           )}
 
-          <div className="flex flex-col-reverse gap-[100px] md:flex-col">
+          <div className="flex max-w-[1400px] flex-col-reverse gap-[100px] px-5 md:mx-[9%] md:flex-col">
             <div>
-              <h3 className="section-title mb-[30px] md:mb-[100px] md:mt-[150px]">
+              <h3 className="section-title mb-[30px] md:mb-[100px] md:mt-[150px] md:text-[64px]">
                 База стартапов
               </h3>
 
               <div className="flex flex-wrap justify-center gap-[30px] md:gap-[20px]">
                 {/*  */}
-                <div className="flex w-[230px] flex-col items-end justify-between rounded-[10px] p-[20px] shadow md:w-[560px] md:p-[30px]">
+                <div className="flex w-[230px] flex-col items-end justify-between rounded-[10px] p-[20px] shadow md:w-[calc(50%-10px)] md:p-[30px]">
                   <div>
-                    <h2 className="mb-[10px] text-[18px] font-light leading-[110%] text-gray-dark md:mb-[20px] md:text-[48px]">
+                    <h2 className="mb-[10px] text-lg font-light leading-[110%] text-gray-dark md:mb-[20px] md:text-[32px] lg:text-[48px]">
                       {businessType[0]?.name}
                     </h2>
-                    <p className="md:wrap-balance mb-[20px] text-[15px] font-light leading-[120%] tracking-[0px] text-gray-light opacity-70 md:mb-[30px] md:max-w-[85%] md:text-[24px]">
+                    <p className="md:wrap-balance mb-[20px] text-[15px] font-light leading-[120%] text-gray-light opacity-70 md:mb-[30px] md:max-w-[85%] md:text-xl xl:text-[22px] 2xl:text-2xl">
                       Посмотрите нашу базу интересных проектов для
                       инвестирования
                     </p>
@@ -197,12 +202,12 @@ const InvestorPage = () => {
                     <BsArrowDownRight className="ml-[5px] text-[10px] md:ml-[10px] md:text-[24px]" />
                   </Link>
                 </div>
-                <div className="flex w-[230px] flex-col items-end justify-between rounded-[10px] p-[20px] shadow md:w-[560px] md:p-[30px]">
+                <div className="flex w-[230px] flex-col items-end justify-between rounded-[10px] p-[20px] shadow md:w-[calc(50%-10px)] md:p-[30px]">
                   <div>
-                    <h2 className="mb-[10px] text-[18px] font-light leading-[110%] text-gray-dark md:mb-[20px] md:text-[48px]">
+                    <h2 className="mb-[10px] text-lg font-light leading-[110%] text-gray-dark md:mb-[20px] md:text-[32px] lg:text-[48px]">
                       {businessType[1]?.name}
                     </h2>
-                    <p className="md:wrap-balance mb-[20px] text-[15px] font-light leading-[120%] text-gray-light opacity-70 md:mb-[30px] md:max-w-[85%] md:text-[24px]">
+                    <p className="md:wrap-balance mb-[20px] text-[15px] font-light leading-[120%] text-gray-light opacity-70 md:mb-[30px] md:max-w-[85%] md:text-xl xl:text-[22px] 2xl:text-2xl">
                       Посмотрите нашу базу интересных малых бизнесов для
                       инвестирования
                     </p>

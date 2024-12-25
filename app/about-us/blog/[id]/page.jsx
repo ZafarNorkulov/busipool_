@@ -74,7 +74,7 @@ const BlogPage = () => {
           </Link>
         </div>
 
-        <div className="max-container mx-auto md:max-w-[1430px]">
+        <div className="max-container mx-auto md:max-w-[1430px] px-5">
           <Image
             src={blog?.image || blog1}
             width={500}
@@ -88,7 +88,7 @@ const BlogPage = () => {
             {blog?.title}
           </h2>
 
-          <div className="mx-auto mb-[30px] max-w-[1430px] md:mb-[100px]">
+          <div className="mx-auto mb-[30px] max-w-[1430px] px-5 md:mb-[100px]">
             <p className="mx-5 mb-5 text-left text-base font-light leading-[140%] text-gray-light md:mb-[50px] md:text-[36px] lg:mx-[100px]">
               {blog?.title}
               Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minima
