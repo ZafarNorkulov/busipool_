@@ -274,15 +274,15 @@ const CompanyPage = () => {
             </h2>
 
             <div className="grid grid-cols-12 gap-[30px] md:gap-[20px]">
-                {investors.map((investor, index) => (
-                  <div className="col-span-6 sm:col-span-4 md:col-span-4">
+              {investors.map((investor, index) => (
+                <div className="col-span-6 sm:col-span-4 md:col-span-4">
                   <InvestorCardLink
                     key={index}
                     name={investor.name}
                     id={investor.id}
                   />
-              </div>
-                ))}
+                </div>
+              ))}
             </div>
           </div>
 
@@ -340,54 +340,51 @@ const CompanyPage = () => {
           </h2>
 
           <div className="flex flex-col items-center">
-            <div className="mx-auto mb-[60px] flex max-w-[1430px] flex-wrap justify-center gap-y-[30px] px-5 md:mx-[9%] md:mb-[80px] xl:justify-between">
-              <div className="flex flex-col justify-between gap-y-[30px] lg:flex-row xl:gap-x-[70px] 2xl:gap-x-[100px]">
-                <div className="max-w-[560px]">
-                  <h3 className="mb-[20px] text-center text-[20px] font-bold leading-[110%] text-gray-dark md:mb-[30px] md:text-left md:text-[32px]">
-                    Любое число участников сделки онлайн
-                  </h3>
-                  <p className="text-base font-light leading-[140%] text-gray-light md:text-[24px]">
-                    Число участников сделки может достигать 500 и более человек.
-                    В виду того, что сделки на инвестиционной платформе BUSIPOOL
-                    проходят в онлайн-форме, акции вашей компании могут купить
-                    инвесторы со всей России.
-                  </p>
-                </div>
-                <div className="max-w-[560px]">
-                  <h3 className="mb-[20px] text-center text-[20px] font-bold leading-[110%] text-gray-dark md:mb-[30px] md:text-left md:text-[32px]">
-                    Экономия времени компании
-                  </h3>
-                  <p className="text-base font-light leading-[140%] text-gray-light md:text-[24px]">
-                    Вам не придётся долгие месяцы нагружать своих сотрудников
-                    подписанием договоров с инвесторами, а потом готовить списки
-                    для выпуска акций. Все это сделает BUSIPOOL.
-                  </p>
-                </div>
+            <div className="mx-auto mb-[60px] grid w-[calc(100%-20px)] max-w-[1430px] grid-cols-12 gap-x-[10%] gap-y-[30px] px-5 md:mx-[9%] md:mb-[80px] md:w-[calc(100%-80px)]">
+              <div className="col-span-12 lg:col-span-6">
+                <h3 className="mb-[20px] text-center text-[20px] font-bold leading-[110%] text-gray-dark md:mb-[30px] md:text-left md:text-[32px]">
+                  Любое число участников сделки онлайн
+                </h3>
+                <p className="text-base font-light leading-[140%] text-gray-light md:text-[24px]">
+                  Число участников сделки может достигать 500 и более человек. В
+                  виду того, что сделки на инвестиционной платформе BUSIPOOL
+                  проходят в онлайн-форме, акции вашей компании могут купить
+                  инвесторы со всей России.
+                </p>
               </div>
-              <div className="flex flex-col justify-between gap-y-[30px] lg:flex-row xl:gap-x-[70px] 2xl:gap-x-[100px]">
-                <div className="max-w-[560px]">
-                  <h3 className="mb-[20px] text-center text-[20px] font-bold leading-[110%] text-gray-dark md:mb-[30px] md:text-left md:text-[32px]">
-                    Законность и безопасность
-                  </h3>
-                  <p className="text-base font-light leading-[140%] text-gray-light md:text-[24px]">
-                    Все сделки на BUSIPOOL соответствуют 259-ФЗ «О привлечении
-                    инвестиций с использованием инвестиционных платформ», 208-ФЗ
-                    «Об акционерных обществах», 39-ФЗ «О рынке ценных бумаг».
-                  </p>
-                </div>
-                <div className="max-w-[560px]">
-                  <h3 className="mb-[20px] text-center text-[20px] font-bold leading-[110%] text-gray-dark md:mb-[30px] md:text-left md:text-[32px]">
-                    Проверка инвесторов
-                  </h3>
-                  <p className="text-base font-light leading-[140%] text-gray-light md:text-[24px]">
-                    Вы также можете быть уверены в юридической чистоте своих
-                    будущих инвесторов. BUSIPOOL проверяет всех инвесторов в
-                    рамках 115-ФЗ «О противодействии легализации (отмыванию)
-                    доходов, полученных преступным путем, и финансированию
-                    терроризма» и присваивает им статус «Квалифицированный
-                    инвестор», если это необходимо.
-                  </p>
-                </div>
+              <div className="col-span-12 lg:col-span-6">
+                <h3 className="mb-[20px] text-center text-[20px] font-bold leading-[110%] text-gray-dark md:mb-[30px] md:text-left md:text-[32px]">
+                  Экономия времени компании
+                </h3>
+                <p className="text-base font-light leading-[140%] text-gray-light md:text-[24px]">
+                  Вам не придётся долгие месяцы нагружать своих сотрудников
+                  подписанием договоров с инвесторами, а потом готовить списки
+                  для выпуска акций. Все это сделает BUSIPOOL.
+                </p>
+              </div>
+
+              <div className="col-span-12 lg:col-span-6">
+                <h3 className="mb-[20px] text-center text-[20px] font-bold leading-[110%] text-gray-dark md:mb-[30px] md:text-left md:text-[32px]">
+                  Законность и безопасность
+                </h3>
+                <p className="text-base font-light leading-[140%] text-gray-light md:text-[24px]">
+                  Все сделки на BUSIPOOL соответствуют 259-ФЗ «О привлечении
+                  инвестиций с использованием инвестиционных платформ», 208-ФЗ
+                  «Об акционерных обществах», 39-ФЗ «О рынке ценных бумаг».
+                </p>
+              </div>
+              <div className="col-span-12 lg:col-span-6">
+                <h3 className="mb-[20px] text-center text-[20px] font-bold leading-[110%] text-gray-dark md:mb-[30px] md:text-left md:text-[32px]">
+                  Проверка инвесторов
+                </h3>
+                <p className="text-base font-light leading-[140%] text-gray-light md:text-[24px]">
+                  Вы также можете быть уверены в юридической чистоте своих
+                  будущих инвесторов. BUSIPOOL проверяет всех инвесторов в
+                  рамках 115-ФЗ «О противодействии легализации (отмыванию)
+                  доходов, полученных преступным путем, и финансированию
+                  терроризма» и присваивает им статус «Квалифицированный
+                  инвестор», если это необходимо.
+                </p>
               </div>
             </div>
 

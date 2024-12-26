@@ -71,16 +71,20 @@ const AboutUsPage = () => {
               </div>
             </div>
           </div>
-          <div className="mb-5 flex justify-between gap-5 text-[14px] font-bold leading-[120%] sm:mb-[100px] md:mx-[50px] md:text-[32px] lg:mx-[100px]">
+          <div className="mb-[27px] flex justify-between gap-5 text-[14px] font-bold leading-[120%] sm:mb-[100px] md:mx-[50px] md:text-[32px] lg:mx-[100px]">
             <h3 className="text-[14px] font-bold leading-[120%] text-gray-dark md:text-[24px] 2xl:text-[32px]">
               Событие
             </h3>
 
-            <div className="flex justify-between gap-2 sm:w-[70%] sm:gap-[20px] md:gap-[40px] lg:gap-[70px]">
-              <p className="text-xs font-light leading-[120%] text-gray-light md:text-[20px] lg:break-all lg:text-[24px] xl:break-normal 2xl:text-[32px]">
+            <div className="flex justify-between gap-5 sm:w-[70%] sm:gap-[20px] md:gap-[40px] lg:gap-[70px]">
+              <p
+                className={`text-xs font-light leading-[120%] text-gray-light md:text-[20px] lg:break-all lg:text-[24px] xl:break-normal 2xl:text-[32px] ${width < 640 && "max-w-[80px]"}`}
+              >
                 Тестирование платформы BUSIPOOL
               </p>
-              <p className="text-xs font-light leading-[120%] text-gray-light md:text-[20px] lg:break-all lg:text-[24px] xl:break-normal 2xl:text-[32px]">
+              <p
+                className={`text-xs font-light leading-[120%] text-gray-light md:text-[20px] lg:break-all lg:text-[24px] xl:break-normal 2xl:text-[32px] ${width < 640 && "max-w-[80px]"}`}
+              >
                 Доработка бизнес-процессов
               </p>
               <p
