@@ -10,7 +10,7 @@ import HomeBlogs from "@/components/sections/HomeBlogs";
 const AboutUsPageLayout = ({ children }) => {
   const pathName = usePathname();
 
-  const isBlogPage = !isNaN(Number(pathName.split("/").pop()));
+  const isBlogPage = pathName.includes("/about-us/blog");
 
   return (
     <section className="mt-[70px] sm:mt-[90px] lg:mt-[100px]">

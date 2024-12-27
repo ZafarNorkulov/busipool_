@@ -108,7 +108,7 @@ const InvestorPage = () => {
       <section className="mt-[130px] sm:mt-[150px] md:mt-[170px] lg:mt-[185px]">
         <div className="max-container mb-[70px] sm:mb-[100px]">
           <h2 className="section-title mb-[30px] !text-left">
-            {selectedSub?.name || "Подкатегории"}
+            {selectedSub?.name}
           </h2>
           <p className="mb-[30px] font-light leading-[120%] text-gray-light md:mb-[60px] md:text-[32px]">
             Если вы хотите начать инвестировать в стартапы и малые бизнесы, то
@@ -184,9 +184,7 @@ const InvestorPage = () => {
               ))}
             </div>
           ) : (
-            <p className="text-center text-gray-light">
-              Проекты не найдены.
-            </p>
+            <p className="text-center text-gray-light">Проекты не найдены.</p>
           )}
 
           {projects?.results?.length > 0 && token && (
