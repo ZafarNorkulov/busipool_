@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://busipool.ru
+
+# Sitemaps
+Sitemap: https://busipool.ru/sitemap.xml
