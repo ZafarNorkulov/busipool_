@@ -13,11 +13,9 @@ import SignInLink from "@/components/SignInLink";
 import Filters from "../../../../components/Filters";
 import { getCities } from "@/utils/request";
 import Head from "next/head";
-import {
-  getCompanySubCategoryByType,
-  getCompanySubCategoryProjects,
-} from "@/app/api/company/company";
+import { getCompanySubCategoryByType } from "@/app/api/company/company";
 import { getProjects } from "@/app/api/projects/project";
+import IsLoginModal from "@/components/IsLoginModal";
 
 const InvestorPage = () => {
   const [token, setToken] = useState(null);
@@ -29,6 +27,7 @@ const InvestorPage = () => {
   const [search, setSearch] = useState("");
   const [subCategories, setSubCategories] = useState([]);
   const [selectedSub, setSelectedSub] = useState(null);
+  const [isActiveModal, setIsActiveModal] = useState(false);
   const [filters, setFilters] = useState({
     is_popular: { value: false, title: "По популярности" },
     price_max: { value: false, title: "Подороже" },
@@ -44,11 +43,11 @@ const InvestorPage = () => {
     }
 
     fetchCitiesWithFromAPI();
-    fetchProjectsWithFromAPI();
+      fetchProjectsWithFromAPI();
   }, []);
 
   useEffect(() => {
-    fetchProjectsWithFromAPI();
+      fetchProjectsWithFromAPI();
   }, [selectedCity, search, filters, selectedSub]);
 
   function fetchProjectsWithFromAPI() {
@@ -190,14 +189,22 @@ const InvestorPage = () => {
           {loading && <Spinner loading={loading} />}
           {!loading && projects && (
             <div className="mb-[60px] grid grid-cols-2 gap-[8px] md:mb-[30px] md:grid-cols-3 md:gap-[20px] wide:grid-cols-4">
+              <IsLoginModal
+                isActive={isActiveModal}
+                setIsActive={setIsActiveModal}
+              />
               {projects?.results?.map((card, index) => (
                 <div className="">
-                  <ProjectCard key={index} card={card} />
+                  <ProjectCard
+                    key={index}
+                    card={card}
+                    setIsActive={setIsActiveModal}
+                  />
                 </div>
               ))}
             </div>
           )}
-          {projects?.results?.length ? (
+          {projects?.results?.length && auth.isAuthenticated ? (
             <div className="mb-[100px] flex items-center justify-center md:mb-[150px]">
               <Button text="Загрузить еще" primary />
             </div>

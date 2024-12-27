@@ -13,6 +13,7 @@ import Link from "next/link";
 import Head from "next/head";
 import Filters from "@/components/Filters";
 import { useAppSelector } from "@/store";
+import IsLoginModal from "@/components/IsLoginModal";
 
 const BusinessType = () => {
   const [projects, setProjects] = useState([]);
@@ -23,6 +24,7 @@ const BusinessType = () => {
   const { id } = useParams();
   const [businessType, setBusinessType] = useState("");
   const [selectedType, setSelectedType] = useState("");
+  const [isActiveModal, setIsActiveModal] = useState(false);
   const [filters, setFilters] = useState({
     is_popular: { value: false, title: "По популярности" },
     price_max: { value: false, title: "Подороже" },
@@ -58,12 +60,12 @@ const BusinessType = () => {
   };
 
   useEffect(() => {
-    fetchProjectsFromDB();
+      fetchProjectsFromDB();
   }, [selectedCity, search, filters]);
   useEffect(() => {
     fetchCitiesFromDB();
     getProjectTypes().then((res) => setBusinessType(res));
-    fetchProjectsFromDB();
+      fetchProjectsFromDB();
   }, []);
   const fetchCitiesFromDB = async () => {
     try {
@@ -136,28 +138,36 @@ const BusinessType = () => {
           </div>
         )}
         <div className="max-container">
-
-        <Filters
-          search={search}
-          setSearch={setSearch}
-          activeSearch
-          filters={filters}
-          setFilters={setFilters}
-          cityName={selectedCity?.name || "Регион"}
-          cities={cityRel}
-          setSelectedCity={setSelectedCity}
-        />
+          <Filters
+            search={search}
+            setSearch={setSearch}
+            activeSearch
+            filters={filters}
+            setFilters={setFilters}
+            cityName={selectedCity?.name || "Регион"}
+            cities={cityRel}
+            setSelectedCity={setSelectedCity}
+          />
         </div>
         <div className="max-container">
           {loading && <Spinner loading={loading} />}
           {!loading && projects && (
             <div className="mb-[60px] mt-[30px] grid grid-cols-12 gap-[8px] md:mb-[30px] md:mt-[100px] md:gap-[20px]">
+              <IsLoginModal
+                isActive={isActiveModal}
+                setIsActive={setIsActiveModal}
+              />
               {projects?.map((card, index) => (
                 <div
                   className="col-span-6 sm:col-span-4 lg:col-span-3"
                   key={index}
                 >
-                  <ProjectCard key={index} card={card} isGrid={false} />
+                  <ProjectCard
+                    key={index}
+                    card={card}
+                    isGrid={false}
+                    setIsActive={setIsActiveModal}
+                  />
                 </div>
               ))}
             </div>

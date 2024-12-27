@@ -13,10 +13,12 @@ import "swiper/css/pagination";
 import ProjectCard from "../components/ProjectCard";
 import Spinner from "./Spinner";
 import useWindowSize from "@/hooks/useWindowSize";
+import IsLoginModal from "@/components/IsLoginModal";
 
 export default function SwiperSection() {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [isActiveModal, setIsActiveModal] = useState(false);
 
   const { width } = useWindowSize();
 
@@ -34,11 +36,12 @@ export default function SwiperSection() {
   }
 
   useEffect(() => {
-    fetchProjectsFromAPI();
+      fetchProjectsFromAPI();
   }, [loading]);
   return (
     <>
       {loading && <Spinner loading={loading} />}
+      <IsLoginModal isActive={isActiveModal} setIsActive={setIsActiveModal} />
       <Swiper
         slidesPerView={1.2}
         spaceBetween={20}
@@ -73,7 +76,11 @@ export default function SwiperSection() {
           projects &&
           projects?.results?.slice(0, 4)?.map((card, index) => (
             <SwiperSlide key={index} className="max-w-[415px]">
-              <ProjectCard card={card} isGrid={true} />
+              <ProjectCard
+                card={card}
+                isGrid={true}
+                setIsActive={setIsActiveModal}
+              />
             </SwiperSlide>
           ))}
       </Swiper>

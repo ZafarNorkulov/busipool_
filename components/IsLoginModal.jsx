@@ -5,10 +5,9 @@ import SignUpLink from "./SignUpLink";
 import SignInLink from "./SignInLink";
 
 const LoginToastify = ({ isActive, setIsActive }) => {
-  // console.log(isActive)
   return (
     <div
-      className={`fixed right-0 top-0 z-50 h-screen max-w-full bg-white px-5 py-[100px] text-gray-dark 2xl:h-auto 2xl:max-w-[1300px] ${isActive ? "" : "hidden"}`}
+      className={`fixed right-0 top-0 z-50 h-screen max-w-full overflow-hidden bg-white px-5 py-[100px] text-gray-dark 2xl:h-auto 2xl:max-w-[1300px] ${isActive ? "" : "hidden"}`}
     >
       <Image
         src={X}

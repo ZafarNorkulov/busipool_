@@ -14,6 +14,7 @@ import { getCities } from "../../utils/request";
 import Filters from "../../components/Filters";
 import Link from "next/link";
 import Head from "next/head";
+import IsLoginModal from "@/components/IsLoginModal";
 
 const ProjectsPage = () => {
   const [projects, setProjects] = useState([]);
@@ -23,6 +24,7 @@ const ProjectsPage = () => {
   const [selectedCatalog, setSelectedCatalog] = useState(null); // null for "Все проекты"
   const [catalogTheme, setCatalogTheme] = useState([]);
   const [is_active, setIsActive] = useState(true);
+  const [isActiveModal, setIsActiveModal] = useState(false);
   const [filters, setFilters] = useState({
     is_popular: { value: false, title: "По популярности" },
     price_max: { value: false, title: "Подороже" },
@@ -41,7 +43,7 @@ const ProjectsPage = () => {
   }, []);
 
   useEffect(() => {
-    fetchProjects();
+      fetchProjects();
   }, [selectedCity, selectedCatalog, is_active, filters]);
 
   const fetchInitialData = async () => {
@@ -169,8 +171,17 @@ const ProjectsPage = () => {
         {loading && <Spinner loading={loading} />}
         {!loading && projects && (
           <div className="max-container mb-[60px] grid grid-cols-2 gap-[8px] md:mb-[30px] md:grid-cols-3 md:gap-[20px] wide:grid-cols-4">
+            <IsLoginModal
+              isActive={isActiveModal}
+              setIsActive={setIsActiveModal}
+            />
             {projects?.results?.map((card, index) => (
-              <ProjectCard key={index} card={card} isGrid={true} />
+              <ProjectCard
+                key={index}
+                card={card}
+                isGrid={true}
+                setIsActive={setIsActiveModal}
+              />
             ))}
           </div>
         )}
