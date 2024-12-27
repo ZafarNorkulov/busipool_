@@ -36,7 +36,7 @@ export default function SwiperSection() {
   }
 
   useEffect(() => {
-      fetchProjectsFromAPI();
+    fetchProjectsFromAPI();
   }, [loading]);
   return (
     <>

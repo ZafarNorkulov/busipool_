@@ -27,7 +27,7 @@ const ProjectCard = ({ card, isGrid, setIsActive }) => {
 
   return isGrid ? (
     <div
-      className={`h-full max-h-[574px] rounded-[5px] shadow md:rounded-[10px] `}
+      className={`h-full max-h-[574px] rounded-[5px] shadow md:rounded-[10px]`}
     >
       <Image
         src={card?.img || card?.image}
@@ -89,8 +89,9 @@ const ProjectCard = ({ card, isGrid, setIsActive }) => {
             onClick={() => {
               if (auth.isAuthenticated) {
                 router.push(`/projects/${card.id}`);
+              } else {
+                setIsActive(true);
               }
-              setIsActive(true);
             }}
             className={`wrap-balance w-full rounded-[5px] border-2 border-gray-dark border-primary bg-primary px-3 py-[10px] text-[12px] font-bold leading-[24px] text-gray-dark text-white transition active:scale-95 xs:py-[10px] sm:text-xs md:py-[10px] md:text-sm md:font-normal`}
           >
@@ -101,7 +102,7 @@ const ProjectCard = ({ card, isGrid, setIsActive }) => {
     </div>
   ) : (
     <div
-      className={`h-full max-h-[305px] rounded-[5px] shadow md:max-h-[486px] md:rounded-[10px] `}
+      className={`h-full max-h-[305px] rounded-[5px] shadow md:max-h-[486px] md:rounded-[10px]`}
     >
       <Image
         src={card?.img || card?.image}
@@ -130,8 +131,9 @@ const ProjectCard = ({ card, isGrid, setIsActive }) => {
             onClick={() => {
               if (auth.isAuthenticated) {
                 router.push(`/projects/${card.id}`);
+              } else {
+                setIsActive(true);
               }
-              setIsActive(true);
             }}
             className={`wrap-balance w-full rounded-[5px] border-2 border-gray-dark border-primary bg-primary px-3 py-[10px] text-[12px] font-bold leading-[24px] text-gray-dark text-white transition active:scale-95 xs:py-[10px] sm:text-xs md:py-[10px] md:text-sm md:font-normal lg:text-[12px]`}
           >
