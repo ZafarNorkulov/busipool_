@@ -7,10 +7,10 @@ const InvestorCardLink = ({ name, id }) => {
   return (
     <div
       key={id}
-      className="flex flex-col items-end justify-between rounded-[10px] p-[20px] shadow md:p-6 lg:p-[30px] xl:h-auto"
+      className="flex flex-col justify-between rounded-[10px] p-[20px] shadow md:p-6 lg:p-[30px] xl:h-auto"
     >
-      <h2 className="mb-[10px] h-[60px] text-base sm:text-[18px] font-light leading-[110%] text-gray-dark md:mb-[55px] md:h-[96px] md:text-2xl lg:text-[32px] xl:h-auto 2xl:text-[48px]">
-        {name}
+      <h2 className="mb-[10px] h-[60px] text-base sm:text-[18px] font-light leading-[110%] text-gray-dark md:mb-[55px] md:h-[96px] md:text-2xl lg:text-[32px] xl:h-[64px] 2xl:text-[48px]">
+        {name.trim()}
       </h2>
 
       <Link

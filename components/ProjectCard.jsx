@@ -2,11 +2,16 @@
 import useWindowSize from "@/hooks/useWindowSize";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import LoginToastify from "./loginToastify";
+import { useAppSelector } from "@/store";
 
 const ProjectCard = ({ card, isGrid }) => {
   const router = useRouter();
   const { width } = useWindowSize();
+  const auth = useAppSelector((state) => state.auth);
 
+  const [isActive, setIsActive] = useState(false);
   const percentage = Math.round(
     (card?.total_investor_price * 100) / card?.financial_goal,
   );
@@ -22,6 +27,7 @@ const ProjectCard = ({ card, isGrid }) => {
     // Raqqa stringga aylantiramiz, keyin bo'sh joy bilan ajratamiz
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " "); // Har 3 raqamdan keyin bo'sh joy qo'yadi
   };
+  console.log(isActive);
 
   return isGrid ? (
     <div className="h-full max-h-[574px] rounded-[5px] shadow md:rounded-[10px]">
@@ -82,13 +88,13 @@ const ProjectCard = ({ card, isGrid }) => {
             </div>
           </div>
           <button
-            onClick={() => router.push(`/projects/${card.id}`)}
             className={`wrap-balance w-full rounded-[5px] border-2 border-gray-dark border-primary bg-primary px-3 py-[10px] text-[12px] font-bold leading-[24px] text-gray-dark text-white transition active:scale-95 xs:py-[10px] sm:text-xs md:py-[10px] md:text-sm md:font-normal`}
           >
             УЗНАТЬ БОЛЬШЕ
           </button>
         </div>
       </div>
+      <LoginToastify isActive={isActive} setIsActive={setIsActive}/>
     </div>
   ) : (
     <div className="h-full max-h-[305px] rounded-[5px] shadow md:max-h-[486px] md:rounded-[10px]">
@@ -116,13 +122,19 @@ const ProjectCard = ({ card, isGrid }) => {
         </div>
         <div>
           <button
-            onClick={() => router.push(`/projects/${card.id}`)}
+            onClick={() => {
+              if (auth.isAuthenticated) {
+                router.push(`/projects/${card.id}`);
+              }
+              setIsActive(true);
+            }}
             className={`wrap-balance w-full rounded-[5px] border-2 border-gray-dark border-primary bg-primary px-3 py-[10px] text-[12px] font-bold leading-[24px] text-gray-dark text-white transition active:scale-95 xs:py-[10px] sm:text-xs md:py-[10px] md:text-sm md:font-normal lg:text-[12px]`}
           >
             УЗНАТЬ БОЛЬШЕ
           </button>
         </div>
       </div>
+      <LoginToastify isActive={isActive} setIsActive={setIsActive} />
     </div>
   );
 };

@@ -106,6 +106,18 @@ export const getProjectCategory = async () => {
     return [];
   }
 };
+// get project/ыгиcategory api
+export const getProjectSubCategory = async () => {
+  try {
+    if (!BASE_URL) return console.log("BASE_URL is not defined");
+    const response = await fetch(`${BASE_URL}/project/subcategory/list/`);
+    if (!response.ok) throw new Error("Failed to fetch data");
+    return response.json();
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+};
 
 // get category by bussines type
 

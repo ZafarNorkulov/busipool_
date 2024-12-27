@@ -12,7 +12,7 @@ import SignInLink from "../../components/SignInLink";
 import SignUpLink from "../../components/SignUpLink";
 import { getFaqs } from "../api/blogs/blogs";
 import { useEffect, useState } from "react";
-import { getProjectCategory } from "../api/projects/project";
+import { getProjectCategory, getProjectSubCategory } from "../api/projects/project";
 import Link from "next/link";
 import Feedback from "../../components/Feedback";
 import Head from "next/head";
@@ -40,7 +40,7 @@ const CompanyPage = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const getInverstors = () => {
-    getProjectCategory().then((response) => {
+    getProjectSubCategory().then((response) => {
       setInvestors(response);
     });
   };
@@ -340,7 +340,7 @@ const CompanyPage = () => {
           </h2>
 
           <div className="flex flex-col items-center">
-            <div className="mx-auto mb-[60px] grid w-[calc(100%-20px)] max-w-[1430px] grid-cols-12 gap-x-[10%] gap-y-[30px] px-5 md:mx-[9%] md:mb-[80px] md:w-[calc(100%-80px)]">
+            <div className="mx-auto mb-[60px] flex flex-col md:grid w-[calc(100%-20px)] max-w-[1430px] grid-cols-12 gap-x-[10%] gap-y-[30px] px-5 md:mx-[9%] md:mb-[80px] md:w-[calc(100%-80px)]">
               <div className="col-span-12 lg:col-span-6">
                 <h3 className="mb-[20px] text-center text-[20px] font-bold leading-[110%] text-gray-dark md:mb-[30px] md:text-left md:text-[32px]">
                   Любое число участников сделки онлайн
