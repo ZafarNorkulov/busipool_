@@ -18,6 +18,7 @@ import Head from "next/head";
 import sendProjectImage from "@/assets/images/sendImage.png";
 import Button from "@/components/Button";
 import HomeBlogs from "@/components/sections/HomeBlogs";
+import { toast, ToastContainer } from "react-toastify";
 
 const CreateProjectPage = () => {
   const [activeForm, setActiveForm] = useState(1);
@@ -92,10 +93,12 @@ const CreateProjectPage = () => {
       })
       .catch((error) => {
         console.log(error);
+        toast.error("Ошибка при заполнении формы");
       })
       .finally(() => {
         setLoading(false);
         setIsSendForm(true);
+        toast.success("Проект успешно создан!");
       });
   };
 
@@ -1011,6 +1014,7 @@ const CreateProjectPage = () => {
         />
         <link rel="icon" href="/Fav.png" />
       </Head>
+      <ToastContainer />
       <section>
         {!isSendForm ? (
           <div className="max-container mb-[100px] mt-[30px] md:mb-[150px] md:mt-[100px]">

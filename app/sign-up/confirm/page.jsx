@@ -7,7 +7,8 @@ import Image from "next/image";
 import Head from "next/head";
 import { sendSMS } from "@/utils/request";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
 
 const Verify = () => {
   const [data, setData] = useState();
@@ -29,6 +30,9 @@ const Verify = () => {
         console.log(error);
       });
   };
+  useEffect(() => {
+    toast.warning("Код был отправлен по вашей электронной почтеw");
+  }, []);
 
   return (
     <>
@@ -42,11 +46,9 @@ const Verify = () => {
         />
         <link rel="icon" href="/Fav.png" />
       </Head>
-      <main className="flex flex-col overflow-hidden md:flex-row gap-y-[60px]">
+      <main className="flex flex-col gap-y-[60px] overflow-hidden md:flex-row">
+        <ToastContainer />
         <section className="flex w-full flex-1 flex-col items-center justify-center pt-3 lg:w-[560px] extraWide:w-[760px]">
-          <strong className="mb-4 bg-[#b5ebab] px-1 text-[#4f4f4f]">
-            Код был отправлен по вашей электронной почте
-          </strong>
           <form className="w-[calc(100%-20px)] sm:w-[calc(100%-150px)] md:w-[calc(100%-30px)] 2xl:md:w-[calc(100%-100px)]">
             <div className="mb-2 lg:mb-[30px]">
               <label htmlFor="email-phone" className="label-text">
