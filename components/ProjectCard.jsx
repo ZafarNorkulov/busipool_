@@ -3,7 +3,7 @@ import useWindowSize from "@/hooks/useWindowSize";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import LoginToastify from "./loginToastify";
+import LoginModal from "./IsLoginModal";
 import { useAppSelector } from "@/store";
 
 const ProjectCard = ({ card, isGrid }) => {
@@ -94,7 +94,7 @@ const ProjectCard = ({ card, isGrid }) => {
           </button>
         </div>
       </div>
-      <LoginToastify isActive={isActive} setIsActive={setIsActive}/>
+      <LoginModal isActive={isActive} setIsActive={setIsActive}/>
     </div>
   ) : (
     <div className="h-full max-h-[305px] rounded-[5px] shadow md:max-h-[486px] md:rounded-[10px]">
@@ -134,7 +134,7 @@ const ProjectCard = ({ card, isGrid }) => {
           </button>
         </div>
       </div>
-      <LoginToastify isActive={isActive} setIsActive={setIsActive} />
+      <LoginModal isActive={isActive} setIsActive={setIsActive} />
     </div>
   );
 };

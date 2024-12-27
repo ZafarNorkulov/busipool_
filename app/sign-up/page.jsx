@@ -12,7 +12,7 @@ import Link from "next/link";
 import logo from "@/assets/images/logo.png";
 import img1 from "@/assets/images/login-images/img1.png";
 import Image from "next/image";
-import useWindowSize from "@/hooks/useWindowSize";
+import { toast, ToastContainer } from "react-toastify";
 
 const SignUpPage = () => {
   const router = useRouter();
@@ -27,19 +27,17 @@ const SignUpPage = () => {
     groups: "",
   });
 
-  const { width } = useWindowSize();
-
   const register = (e) => {
     e.preventDefault();
     registerUser(user)
       .then((response) => {
-        router.push("/sign-up/confirm");
         localStorage.setItem("access_token", response?.token?.access);
         localStorage.setItem("refresh_token", response?.token?.refresh);
-        console.log(response);
+        router.push("/sign-up/confirm");
       })
       .catch((error) => {
         console.log(error);
+        toast.error("Заполните форму");
       });
   };
   useEffect(() => {
@@ -58,14 +56,15 @@ const SignUpPage = () => {
         />
         <link rel="icon" href="/Fav.png" />
       </Head>
-      <main className={`relative flex flex-col gap-y-[30px] pt-[60px]`}>
+      <main className={`relative`}>
         <Link href={"/"} className="absolute right-2 top-4">
           <IoMdClose size={30} />
         </Link>
+        <ToastContainer />
         <div className="max-container hidden py-[27px] md:block">
           <BusipoolLogoSmall />
-        </div>
-        <section className="max-container relative mx-auto  sm:w-[calc(100%-20vw)] md:w-[calc(100%-50vw)] lg:w-[560px]">
+        </div>  
+        <section className="max-container relative mx-auto mt-[30px] sm:w-[calc(100%-20vw)] md:w-[calc(100%-50vw)] lg:w-[560px]">
           <h1 className="mb-[20px] text-center text-[32px] font-bold leading-[120%] text-gray-dark lg:mb-[60px] lg:text-[48px] extraWide:text-[64px]">
             Регистрация
           </h1>
@@ -171,7 +170,7 @@ const SignUpPage = () => {
             />
           </form>
         </section>
-        <section className="flex h-[100vh] w-auto flex-[2] flex-col gap-[20px] bg-secondary p-[24px] md:hidden md:gap-[20px] lg:w-[calc(-560px+100vw)] extraWide:w-[calc(-560px+100vw)] extraWide:gap-[60px] extraWide:p-[60px]">
+        <section className="mt-[30px] flex h-[100vh] w-auto flex-[2] flex-col gap-[20px] bg-secondary p-[24px] md:hidden md:gap-[20px] lg:w-[calc(-560px+100vw)] extraWide:w-[calc(-560px+100vw)] extraWide:gap-[60px] extraWide:p-[60px]">
           <Link href="/" className="shrink-0">
             <Image
               src={logo}

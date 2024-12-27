@@ -10,6 +10,7 @@ import { useAppDispatch, useAppSelector } from "@/store";
 import SignIn from "@/store/auth/service";
 import Head from "next/head";
 import { IoMdClose } from "react-icons/io";
+import { toast, ToastContainer } from "react-toastify";
 
 const SignInPage = () => {
   const router = useRouter();
@@ -31,8 +32,10 @@ const SignInPage = () => {
     values.preventDefault();
     try {
       await dispatch(SignIn({ data: user }));
+      toast.success("Добро пожаловать на платформу");
       router.push("/profile");
     } catch (err) {
+      toast.error("Неправильный логин или пароль");
       console.error("Login failed", err);
     }
   };
@@ -56,6 +59,7 @@ const SignInPage = () => {
         <Link href={"/"} className="absolute right-2 top-4">
           <IoMdClose size={30} />
         </Link>
+        <ToastContainer />
         <section
           className={`relative flex flex-1 flex-col justify-center pt-3 lg:w-[560px] extraWide:w-[760px]`}
         >
@@ -63,9 +67,7 @@ const SignInPage = () => {
             <h1 className="mb-[20px] text-center text-[32px] font-bold leading-[120%] text-gray-dark lg:mb-[60px] lg:text-[48px] extraWide:text-[64px]">
               Войти
             </h1>
-            <form
-              onSubmit={login}
-            >
+            <form onSubmit={login}>
               <div className="mb-2 lg:mb-[30px]">
                 <label
                   htmlFor="email-phone"
