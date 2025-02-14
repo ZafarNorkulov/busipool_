@@ -49,13 +49,13 @@ const InvestorPage = () => {
         />
         <link rel="icon" href="/Fav.png" />
       </Head>
-      <section className="mt-[80px] md:mt-[120px] lg:mt-[130px]">
+      <section className="mt-[60px] md:mt-[100px] lg:mt-[130px]">
         <div className="max-container pt-[30px] md:pt-[100px]">
           <div className="max-w-[1430px] px-5 md:mx-[9%]">
             <Stats />
           </div>
 
-          <div className="mb-[30px] mt-[60px] w-fit px-[10px] md:mt-[100px] md:px-[20px]">
+          <div className="mb-[30px] mt-[50px] w-fit px-[10px] md:mt-[100px] md:px-[20px]">
             <BusipoolLogoLarge />
           </div>
 
@@ -89,7 +89,7 @@ const InvestorPage = () => {
             </div>
           </div>
 
-          <div className="mt-[100px] max-w-[1430px] px-5 md:mx-[9%] md:mt-[150px]">
+          <div className="mt-[80px] max-w-[1430px] px-5 md:mx-[9%] 2xl:mt-[150px]">
             <h2 className="section-title mb-[30px] md:mb-[100px]">
               Кратко о сделках
             </h2>

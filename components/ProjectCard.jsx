@@ -36,41 +36,41 @@ const ProjectCard = ({ card, isGrid, setIsActive }) => {
         sizes="100%"
         priority={true}
         alt="project card"
-        className="h-[154px] w-full rounded-[5px] object-cover md:h-[250px] md:rounded-[10px]"
+        className="h-[154px] w-full rounded-[5px] object-cover md:h-[220px] md:rounded-[10px] 2xl:h-[250px]"
       />
-      <div className="flex h-[65%] flex-col p-[10px] md:p-[30px]">
-        <div className="mb-[11px] flex flex-col gap-y-[10px] md:mb-[30px] md:gap-y-5">
-          <h3 className="h-[30px] text-sm font-bold leading-[110%] text-gray-dark md:h-[20px] md:text-[18px]">
+      <div className="flex h-[65%] flex-col p-[10px] md:p-5 2xl:p-[30px]">
+        <div className="mb-[10px] flex flex-col gap-y-[10px] md:mb-3 2xl:mb-[30px] md:gap-y-3">
+          <h3 className="h-[30px] text-sm font-bold  text-gray-dark md:h-[20px] md:text-base 2xl:text-lg">
             {card?.name.slice(0, 40)}
           </h3>
-          <p className="h-[64px] text-xs font-light leading-[130%] text-gray-light md:text-base">
+          <p className="h-[64px] text-xs font-light leading-[130%] text-gray-light md:text-sm 2xl:text-base ">
             {card?.description.slice(0, 115)}
           </p>
         </div>
         <div>
-          <div className="mb-5 h-[55px] md:mb-[28px] md:h-[58px]">
-            <div className="flex justify-between leading-[110%]">
-              <span className="text-sm font-bold text-primary md:text-base">
+          <div className="mb-5 h-[55px] md:mb-[28px] md:h-[45px] 2xl:h-[58px]">
+            <div className="flex justify-between 2xl:leading-[110%]">
+              <span className="text-xs font-bold text-primary md:text-sm 2xl:text-base">
                 {percentage}%
               </span>
-              <span className="text-sm text-gray-light md:text-base">
+              <span className="text-xs text-gray-light md:text-sm 2xl:text-base">
                 до {formattedDate}
               </span>
             </div>
-            <div className="my-[10px] h-[2px] rounded-[4.5px] bg-gray-300 md:h-[5px] md:rounded-[10px]">
+            <div className="my-[10px] md:my-[7px] h-[2px] rounded-[4.5px] bg-gray-300 md:h-[5px] md:rounded-[10px]">
               <div
                 className={`h-[2px] rounded-[4.5px] bg-primary md:h-[5px] md:rounded-[10px]`}
                 style={{ width: `${percentage}%` }}
               ></div>
             </div>
-            <div className="mb-[4.5px] flex justify-between text-sm leading-[110%] text-gray-dark">
-              <span className="font-bold">
+            <div className="mb-[4.5px] flex justify-between 2xl:leading-[110%] text-gray-dark">
+              <span className="text-sm font-bold">
                 {splitEvery3(card?.total_investor_price)} ₽
               </span>
               <span className="text-xs font-light lowercase opacity-70 md:text-sm">
                 СОБРАНО ИЗ
               </span>
-              <span className="font-bold">
+              <span className="text-sm font-bold">
                 {splitEvery3(card?.financial_goal)} ₽
               </span>
             </div>

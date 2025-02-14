@@ -42,8 +42,8 @@ const Navbar = () => {
   }, []);
 
   return (
-    <header className="fixed left-0 right-0 top-0 z-50 w-full bg-headerColor">
-      <nav className="max-container relative flex items-center justify-between pt-5 sm:py-[20px]">
+    <header className="fixed left-0 right-0 top-0 z-40 w-full bg-headerColor">
+      <nav className="max-container relative h-20 flex items-center justify-between pt-5 sm:py-[20px]">
         {/* Logo */}
         <Link href="/">
           {" "}
@@ -51,14 +51,14 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop Links */}
-        <div className="relative py-3">
+        <div className="relative">
           <ul className="hidden flex-wrap items-center gap-x-5 text-gray-dark lg:flex wide:gap-x-[60px]">
             <NavLink href="/">Главная</NavLink>
             <NavLink href="/investor">Инвестору</NavLink>
             <NavLink href="/company">Компаниям</NavLink>
             <NavLink href="/become-partner">Стать партнером</NavLink>
             <li
-              className={`relative flex cursor-pointer items-center text-sm font-bold uppercase leading-normal hover:text-primary xl:text-base ${path.includes("/about-us") && "text-primary"}`}
+              className={`relative flex cursor-pointer items-center text-sm font-bold uppercase !leading-5 hover:text-primary xl:text-base ${path.includes("/about-us") && "text-primary"}`}
               onClick={() => setExtraLinksMenu((prev) => !prev)}
             >
               О нас
@@ -129,9 +129,10 @@ const Navbar = () => {
             />
           </div>
         )}
+        {/* Profile Menu */}
         {width > 1024 && (
           <div
-            className={`${isProfileMenuOpen ? "block" : "hidden"} fixed -right-5 top-[90px] z-50 transition lg:absolute`}
+            className={`${isProfileMenuOpen ? "block" : "hidden"} fixed -right-5 top-[90px] z-40 transition lg:absolute`}
           >
             <ProfileMenu
               closeProfileMenu={() => {

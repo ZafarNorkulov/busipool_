@@ -70,7 +70,7 @@ export default function SwiperSection() {
           },
         }}
         modules={[width < 768 ? Scrollbar : Autoplay]}
-        className="mySwiper mb-[60px] !p-1 min-[750px]:h-[450px] md:h-[650px]"
+        className="mySwiper mb-[30px] !p-1"
       >
         {!loading &&
           projects &&

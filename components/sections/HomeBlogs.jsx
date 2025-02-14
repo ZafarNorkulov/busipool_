@@ -22,7 +22,7 @@ const HomeBlogs = () => {
     fetchBlogsApi();
   }, []);
   return (
-    <section className="mb-[100px] max-w-[1430px] px-5 md:mx-[9.5%] md:mb-[150px]">
+    <section className="mb-[100px] max-w-[1430px] px-5 md:mx-[9.5%] md:mb-[150px] 2xl:mx-auto">
       <h2 className="section-title mb-[30px] md:mb-[100px]">
         <Link href="/about-us/blog" className="hover:underline">
           Блог

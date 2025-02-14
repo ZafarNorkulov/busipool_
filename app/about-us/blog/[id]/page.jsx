@@ -59,41 +59,38 @@ const BlogPage = () => {
         <link rel="icon" href="/Fav.png" />
       </Head>
       <section className="mt-[90px] sm:mt-[120px] lg:mt-[130px]">
-        <div className="max-container mb-[30px] mt-[30px] flex justify-between md:mb-[100px] md:mt-[100px]">
+        <div className="max-container mb-[30px] mt-[30px] flex justify-between md:mb-[70px] md:mt-[100px] 2xl:mb-[100px]">
           <Link href={`/about-us/blog/${nextId ? nextId : "#"}`}>
             <Button
-              text="Следующая статья"
+              text="Слева"
               style={"!py-3 text-xs md:!py-4 md:!text-base"}
             />
           </Link>
           <Link href={`/about-us/blog/${prevId ? prevId : "#"}`}>
             <Button
-              text="Назад"
+              text="Справа"
               style={"!py-3 text-xs md:!py-4 md:!text-base"}
             />
           </Link>
         </div>
 
-        <div className="max-container mx-auto md:max-w-[1430px] px-5">
+        <div className="max-container mx-auto px-5 md:max-w-[1430px]">
           <Image
             src={blog?.image || blog1}
             width={500}
             height={500}
             priority
             alt="blog image"
-            className="mb-[30px] h-full max-h-[600px] w-full max-w-[1720px] rounded-xl md:mb-[100px]"
+            className="mb-[30px] h-full max-h-[600px] w-full max-w-[1720px] rounded-xl md:mb-[50px] md:h-[450px] 2xl:mb-[100px] 2xl:h-[500px] 2xl:w-[500px]"
           />
 
-          <h2 className="mx-auto mb-[20px] w-max text-center text-2xl font-bold leading-[110%] text-gray-dark md:mb-[60px] md:text-[64px] md:leading-[120%]">
+          <h2 className="mx-auto mb-[20px] w-max text-center text-2xl font-bold leading-[110%] text-gray-dark md:text-4xl md:leading-[120%] 2xl:mb-[60px] 2xl:text-[64px]">
             {blog?.title}
           </h2>
 
           <div className="mx-auto mb-[30px] max-w-[1430px] px-5 md:mb-[100px]">
-            <p className="mx-5 mb-5 text-left text-base font-light leading-[140%] text-gray-light md:mb-[50px] md:text-[36px] lg:mx-[100px]">
-              {blog?.title}
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minima
-              ipsam non libero doloribus quasi officiis quibusdam iure, esse
-              unde. Sint?
+            <p className="mx-5 mb-5 text-left text-base font-light leading-[140%] text-gray-light md:mb-[50px] md:text-3xl lg:mx-[100px] 2xl:text-[36px]">
+              {blog?.description}
             </p>
           </div>
         </div>

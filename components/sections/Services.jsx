@@ -5,14 +5,14 @@ const Services = () => {
   return (
     <section className="max-container mb-[100px] md:mb-[150px]">
       <h2 className="section-title mb-[30px] sm:mb-[100px]">
-        Выберите нужный вам раздел
+        Выберите нужный раздел
       </h2>
 
       <div className="grid grid-cols-12 justify-center gap-[30px]">
         <div className="col-span-12 flex items-center justify-center lg:col-span-6 ">
           <ServiceCard
             title="Инвестировать"
-            description="Информация для новых инвесторов о том, как устроен процесс сделок"
+            description="Если вы хотите помочь в проведении инвестиционных сделок"
           />
         </div>
         <div className="col-span-12 flex items-center justify-center lg:col-span-6">

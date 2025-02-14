@@ -36,7 +36,7 @@ const HomePage = () => {
           </div>
         </div>
         <Services />
-        <HomeBlogs />
+          <HomeBlogs />
       </div>
     </>
   );
