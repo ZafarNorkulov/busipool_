@@ -1,7 +1,11 @@
+"use client";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { FaExclamationTriangle } from "react-icons/fa";
 
 const NotFoundPage = () => {
+  const router = useRouter();
+
   return (
     <section className="flex-grow">
       <div className="container m-auto max-w-2xl py-24">
@@ -12,7 +16,9 @@ const NotFoundPage = () => {
           <div className="text-center">
             <h1 className="mb-2 mt-4 text-3xl font-bold">Page Not Found</h1>
             <p className="mb-10 text-xl text-gray-500">
-              The page you are looking for does not exist.
+              {router.asPath.includes("/profile")
+                ? "The page is not available in your role."
+                : "The page you are looking for does not exist."}
             </p>
             <Link
               href="/"

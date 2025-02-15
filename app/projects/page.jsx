@@ -25,6 +25,7 @@ const ProjectsPage = () => {
   const [catalogTheme, setCatalogTheme] = useState([]);
   const [is_active, setIsActive] = useState(true);
   const [isActiveModal, setIsActiveModal] = useState(false);
+  const [nextUrl, setNextUrl] = useState(null);
   const [filters, setFilters] = useState({
     is_popular: { value: false, title: "По популярности" },
     price_max: { value: false, title: "Подороже" },
@@ -43,8 +44,8 @@ const ProjectsPage = () => {
   }, []);
 
   useEffect(() => {
-      fetchProjects();
-  }, [selectedCity, selectedCatalog, is_active, filters]);
+    fetchProjects();
+  }, [selectedCity, selectedCatalog, is_active, filters, nextUrl]);
 
   const fetchInitialData = async () => {
     try {
@@ -78,6 +79,7 @@ const ProjectsPage = () => {
         city_realization: selectedCity?.id,
         business_category_type: selectedCatalog || undefined,
         is_active,
+        next: nextUrl,
       });
       setProjects(response);
     } catch (error) {
@@ -86,7 +88,6 @@ const ProjectsPage = () => {
       setLoading(false);
     }
   };
-
   const chooseCatalog = (index) => {
     const updatedCatalog = catalogTheme.map((item, i) => ({
       ...item,
@@ -185,10 +186,11 @@ const ProjectsPage = () => {
             ))}
           </div>
         )}
-        {projects?.results?.length ? (
+        {projects?.results?.length > 0 ? (
           <div className="max-container mb-[100px] flex items-center justify-center md:mb-[150px]">
             <Button
               text="Загрузить еще"
+              onclick={() => setNextUrl(projects.next)}
               primary
               style={"!py-5 text-sm w-[230px] font-light leading-[24px]"}
             />

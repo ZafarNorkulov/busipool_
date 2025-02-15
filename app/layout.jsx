@@ -3,7 +3,6 @@ import "@/assets/styles/globals.css";
 import MainLayoutBody from "@/components/MainLayoutBody";
 import store from "@/store";
 import Head from "next/head";
-import Script from "next/script";
 import { Provider } from "react-redux";
 
 const MainLayout = ({ children }) => {

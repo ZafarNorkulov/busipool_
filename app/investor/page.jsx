@@ -182,7 +182,9 @@ const InvestorPage = () => {
 
               <div className="flex flex-wrap justify-center gap-[30px] md:gap-[20px]">
                 {/*  */}
-                <div className="flex w-[230px] flex-col items-end justify-between rounded-[10px] p-[20px] shadow md:w-[calc(50%-10px)] md:p-[30px]">
+                <Link
+                    href={`/investor/${businessType[0]?.id}`}
+                    onClick={scrollToTop} className="flex w-[230px] flex-col items-end justify-between rounded-[10px] p-[20px] shadow md:w-[calc(50%-10px)] md:p-[30px]">
                   <div>
                     <h2 className="mb-[10px] text-lg font-light leading-[110%] text-gray-dark md:mb-[20px] md:text-[32px] lg:text-[48px]">
                       {businessType[0]?.name}
@@ -193,16 +195,16 @@ const InvestorPage = () => {
                     </p>
                   </div>
 
-                  <Link
-                    href={`/investor/${businessType[0]?.id}`}
-                    onClick={scrollToTop}
+                  <div
                     className={`ml-auto flex w-fit items-center text-[10px] font-light leading-[110%] text-gray-dark hover:text-primary md:text-[24px]`}
                   >
                     Подробнее
                     <BsArrowDownRight className="ml-[5px] text-[10px] md:ml-[10px] md:text-[24px]" />
-                  </Link>
-                </div>
-                <div className="flex w-[230px] flex-col items-end justify-between rounded-[10px] p-[20px] shadow md:w-[calc(50%-10px)] md:p-[30px]">
+                  </div>
+                </Link>
+                <Link
+                    href={`/investor/${businessType[1]?.id}`}
+                    onClick={scrollToTop} className="flex w-[230px] flex-col items-end justify-between rounded-[10px] p-[20px] shadow md:w-[calc(50%-10px)] md:p-[30px]">
                   <div>
                     <h2 className="mb-[10px] text-lg font-light leading-[110%] text-gray-dark md:mb-[20px] md:text-[32px] lg:text-[48px]">
                       {businessType[1]?.name}
@@ -213,15 +215,13 @@ const InvestorPage = () => {
                     </p>
                   </div>
 
-                  <Link
-                    href={`/investor/${businessType[1]?.id}`}
-                    onClick={scrollToTop}
+                  <div
                     className={`ml-auto flex w-fit items-center text-[10px] font-light leading-[110%] text-gray-dark hover:text-primary md:text-[24px]`}
                   >
                     Подробнее
                     <BsArrowDownRight className="ml-[5px] text-[10px] md:ml-[10px] md:text-[24px]" />
-                  </Link>
-                </div>
+                  </div>
+                </Link>
               </div>
             </div>
 
@@ -244,7 +244,7 @@ const InvestorPage = () => {
         </div>
 
         <div className="max-container">
-          <h2 className="section-title mb-[30px] md:mb-[100px]">
+          <h2 className="section-title mb-[30px] 2xl:mb-[100px]">
             Актуальные проекты
           </h2>
 

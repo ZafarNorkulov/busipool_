@@ -7,7 +7,8 @@ export const getProjects = async (options) => {
       console.log("BASE_URL is not defined");
       return [];
     }
-    options.is_active = true;
+
+    // options.is_active = true;
     const params = new URLSearchParams();
 
     // Parametrlarni dinamik ravishda qo'shish
@@ -18,9 +19,27 @@ export const getProjects = async (options) => {
     });
 
     // Only append the query string if there are parameters
-    const url = params.toString()
-      ? `${BASE_URL}/project/?${params.toString()}`
-      : `${BASE_URL}/project/`;
+    let url = "";
+
+    if (options?.next) {
+      if (params.toString()) {
+        // Create a new URLSearchParams object from the existing params
+        const cleanedParams = new URLSearchParams(params.toString());
+        // Remove 'next' from the parameters
+        cleanedParams.delete("next");
+        cleanedParams.delete("is_active");
+        // Construct the final URL with cleaned params
+        url = `${options.next}${cleanedParams.toString()}`;
+      } else {
+        url = options.next;
+      }
+    } else {
+      if (params.toString()) {
+        url = `${BASE_URL}/project/?${params.toString()}`;
+      } else {
+        url = `${BASE_URL}/project/`;
+      }
+    }
 
     const response = await fetch(url);
 

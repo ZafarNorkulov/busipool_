@@ -23,7 +23,7 @@ const MyProjectLayout = ({ children }) => {
       }
       setLoading(false);
     }
-  }, []); // Empty dependency array ensures this runs only once
+  }, []);
 
   if (loading) {
     return <Spinner loading={true} />;

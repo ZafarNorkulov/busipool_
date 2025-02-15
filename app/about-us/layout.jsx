@@ -18,18 +18,18 @@ const AboutUsPageLayout = ({ children }) => {
 
       {!isBlogPage && (
         <>
-          <div className="max-w-[1430px] px-5 pt-[30px] md:mx-[9%] md:pt-[100px]">
+          <div className="max-w-[1430px] px-5 pt-[30px] md:mx-[9%] md:mt-[70px] 2xl:pt-[100px]">
             <Stats />
           </div>
-          <div className="md:max-container mx-auto mb-[30px] mt-[60px] w-full px-[12px] md:mt-[100px]">
+          <div className="md:max-container mx-auto mb-[30px] mt-[30px] w-full px-[12px] md:mt-[50px] 2xl:mt-[100px]">
             <BusipoolLogoLarge />
           </div>
           <div className="max-container">
-            <div className="mb-[100px] mt-[30px] flex w-full flex-wrap justify-center gap-x-[20px] gap-y-[60px] md:mb-[60px] md:mt-[60px] lg:flex-none xl:mb-[100px] xl:mt-[100px] wide:flex-nowrap">
-              <p className="flex w-max flex-wrap justify-center gap-[3px] text-center text-xl font-light tracking-[0.01em] text-primary md:text-lg lg:text-[15px] xl:text-left xl:text-lg wide:flex-1 2xl:text-[24px]">
+            <div className="mb-[100px] mt-[30px] flex w-full flex-wrap justify-center gap-x-[20px] gap-y-[60px] md:mb-[60px] md:mt-[50px] lg:flex-none 2xl:mb-[100px] 2xl:mt-[100px] wide:flex-nowrap">
+              <p className="flex w-max flex-wrap sm:justify-center gap-[3px] sm:text-center text-base font-light tracking-[0.01em] text-primary md:text-lg lg:text-[15px] xl:text-left xl:text-lg wide:flex-1 2xl:text-[24px]">
                 Цель нашей краудфандинговой платформы - предоставить вам
                 возможность{" "}
-                <span className="text-xl text-gold md:text-lg lg:text-[15px] xl:text-[18px] 2xl:text-[24px]">
+                <span className="text-base text-gold md:text-lg lg:text-[15px] xl:text-[18px] 2xl:text-[24px]">
                   увеличить свои инвестиции
                 </span>{" "}
                 через вложения в проекты.
@@ -44,12 +44,12 @@ const AboutUsPageLayout = ({ children }) => {
           <h2 className="section-title mb-[30px] md:mb-[100px]">О нас</h2>
 
           <div className="flex flex-col justify-center gap-x-[20px] gap-y-[30px] md:flex-row">
-            <div className="flex flex-1 flex-col gap-y-[30px] xl:gap-y-[76px] wide:max-w-[850px]">
-              <p className="text-xl font-light leading-[120%] tracking-normal text-gray-dark md:!text-[22px] lg:!text-[36px] xl:!text-[40px] 2xl:!text-[55px]">
+            <div className="flex flex-1 flex-col gap-y-5 2xl:gap-y-[30px] xl:gap-y-[76px] wide:max-w-[850px]">
+              <p className="text-xl font-light leading-[120%] tracking-normal text-gray-dark md:!text-[22px] lg:!text-[36px] xl:!text-3xl 2xl:!text-[55px]">
                 BUSIPOOL - онлайн-платформа, где инвестор может купить акции и
                 стать совладельцем компаний малого и среднего бизнеса.
               </p>
-              <p className="text-base font-light leading-[140%] text-black md:text-xl md:leading-[120%] md:text-gray-light xl:text-[32px]">
+              <p className="text-base font-light leading-[140%] text-black 2xl:text-xl md:leading-[120%] md:text-gray-light xl:text-[32px]">
                 Инвестиции начинаются от 15 тыс.₽, а перечень компаний
                 неограничен - от финтех проектов, до производств и
                 сельскохозяйственных компаний. Деньги, полученные от продажи

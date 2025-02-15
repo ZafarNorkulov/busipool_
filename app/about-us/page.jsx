@@ -35,7 +35,7 @@ const AboutUsPage = () => {
             Развитие проекта в 2024-2025 годах
           </h2>
 
-          <div className="about-us-table mb-[30px] flex h-[98px] justify-between text-[14px] font-bold leading-[120%] text-gray-dark md:mx-[50px] md:mb-[100px] md:h-[334px] md:text-[24px] lg:mx-[100px] 2xl:text-[32px]">
+          <div className="about-us-table mb-[30px] flex h-[98px] justify-between text-[14px] font-bold leading-[120%] text-gray-dark md:mx-[50px] md:mb-[77px] md:h-[270px] md:text-[24px] lg:mx-[100px] 2xl:mb-[100px] 2xl:h-[334px] 2xl:text-[32px]">
             <div className="flex flex-col justify-between">
               <h3 className="wrap-balance">Заявок на размещение</h3>
               <h3 className="wrap-balance">Размещений</h3>
@@ -71,7 +71,7 @@ const AboutUsPage = () => {
               </div>
             </div>
           </div>
-          <div className="mb-[27px] flex justify-between gap-5 text-[14px] font-bold leading-[120%] sm:mb-[100px] md:mx-[50px] md:text-[32px] lg:mx-[100px]">
+          <div className="mb-[27px] flex justify-between gap-5 text-[14px] font-bold leading-[120%] sm:mb-[77px] 2xl:mb-[100px] md:mx-[50px] md:text-[32px] lg:mx-[100px]">
             <h3 className="text-[14px] font-bold leading-[120%] text-gray-dark md:text-[24px] 2xl:text-[32px]">
               Событие
             </h3>
@@ -94,7 +94,7 @@ const AboutUsPage = () => {
               </p>
             </div>
           </div>
-
+          {/* DatePoints */}
           <div className="relative ml-auto flex w-[calc(100%-10px)] justify-between border-t-2 border-gray-dark pt-[20px] sm:w-[68%] sm:pt-[50px] md:mr-[2%] md:!w-[63%]">
             <DatePoint date="май, 2024" />
             <DatePoint date="июль, 2024" />
@@ -104,23 +104,23 @@ const AboutUsPage = () => {
         </div>
 
         <div className="max-container mb-[100px] md:mb-[150px]">
-          <h2 className="section-title mb-[30px] md:mb-[100px]">
+          <h2 className="section-title mb-[30px] md:mb-[70px] 2xl:mb-[100px]">
             Наша цель - 70 млн.₽+ инвестиций
           </h2>
 
-          <div className="flex flex-col items-center justify-center gap-x-[20px] gap-y-[30px] min-[768px]:flex-row">
+          <div className="flex flex-col items-center justify-center gap-x-5 gap-y- md:gap-y-[30px] min-[768px]:flex-row">
             <div className="max-w-[560px] flex-1">
-              <h2 className="mb-[20px] text-base font-bold leading-[120%] text-gray-dark xl:mb-[50px] xl:text-[36px]">
+              <h2 className="mb-[20px] text-base font-bold leading-[120%] text-gray-dark 2xl:mb-[50px] md:text-3xl 2xl:text-[36px]">
                 Для этого за 2 года требуется:
               </h2>
-              <p className="mb-[20px] text-base font-bold leading-[120%] text-gray-dark xl:mb-[50px] xl:text-[36px]">
+              <p className="mb-[20px] text-base font-bold leading-[120%] text-gray-dark 2xl:mb-[50px] md:text-3xl 2xl:text-[36px]">
                 1. Акционировать всего 450 компаний за 2 года;
               </p>
-              <p className="mb-[20px] text-base font-bold leading-[120%] text-gray-dark xl:mb-[50px] xl:text-[36px]">
+              <p className="mb-[20px] text-base font-bold leading-[120%] text-gray-dark 2xl:mb-[50px] md:text-3xl 2xl:text-[36px]">
                 2. На 2-ой год запустить вторичный рынок акций внебиржевых
                 компаний;
               </p>
-              <p className="mb-[20px] text-base font-bold leading-[120%] text-gray-dark xl:mb-[50px] xl:text-[36px]">
+              <p className="mb-[20px] text-base font-bold leading-[120%] text-gray-dark 2xl:mb-[50px] md:text-3xl 2xl:text-[36px]">
                 3. Реализовать планируемую матрицу продуктов.
               </p>
             </div>

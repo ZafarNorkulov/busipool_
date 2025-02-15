@@ -96,13 +96,13 @@ const ProfilePage = () => {
           </UserPageCard>
         </div>
 
-        <div className="bg-secondary py-[30px] md:py-[100px]">
-          <div className="max-container flex flex-col justify-between gap-[30px] lg:flex-row">
+        <div className="flex h-screen flex-col justify-center bg-secondary sm:h-auto py-5 sm:py-[30px] lg:py-0 lg:h-[calc(100vh-80px)]">
+          <div className="max-container flex flex-col justify-between gap-5 md:gap-[30px] lg:flex-row">
             <div className="flex flex-col lg:items-start lg:text-left">
-              <h2 className="mb-[10px] text-[28px] font-bold leading-[120%] text-gray-dark md:mb-[30px] md:text-[36px] lg:text-[42px] xl:text-[64px]">
+              <h2 className="mb-[10px] text-[26px] font-bold leading-[120%] text-gray-dark md:mb-[30px] md:text-[36px] lg:text-[42px] xl:text-[64px]">
                 Создай собственный проект
               </h2>
-              <p className="wrap-balance mb-[30px] max-w-[550px] text-base font-light leading-[110%] text-gray-light md:mb-[60px] md:!text-[26px] lg:text-[32px]">
+              <p className="wrap-balance mb-6 max-w-[550px] text-base font-light leading-[110%] text-gray-light md:mb-[60px] md:!text-[26px] lg:text-[32px]">
                 Создание собственного проекта на такой платформе - это шаг,
                 который может привести вас к успеху.
               </p>
@@ -121,7 +121,7 @@ const ProfilePage = () => {
               priority={true}
               width={0}
               height={0}
-              className="md:h-80max-w-full object-contain lg:h-auto lg:!max-w-[500px] 2xl:max-w-[700px]"
+              className="md:h-80 max-w-full object-contain lg:h-auto lg:!max-w-[500px] 2xl:max-w-[700px]"
             />
           </div>
         </div>

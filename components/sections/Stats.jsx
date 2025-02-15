@@ -12,7 +12,7 @@ const Stats = ({ large }) => {
   const { width } = useWindowSize();
   return (
     <section className={`${large ? "text-white" : "text-primary"} w-full`}>
-      <div className="flex flex-col gap-y-[30px] text-center">
+      <div className="flex flex-col gap-y-5 2xl:gap-y-[30px] text-center">
         {width < 500 ? (
           <>
             {/* Toq indexdagi elementlar */}

@@ -61,17 +61,17 @@ const ContactsPage = () => {
                     <h3 className="font-bold leading-[110%] text-gray-dark md:text-2xl 2xl:text-[32px]">
                       Телефон
                     </h3>
-                    <p className="max-w-[300px] font-light leading-[140%] text-gray-light md:text-base 2xl:text-[24px]">
+                    <a href="tel:+7(954)342-43-43" className="max-w-[300px] cursor-pointer font-light leading-[140%] text-gray-light md:text-base 2xl:text-[24px]">
                       +7 (954) 342-43-43
-                    </p>
+                    </a>
                   </div>
                   <div className="flex h-[72px] flex-col items-start gap-y-[10px] sm:items-center md:h-[120px] md:items-start md:gap-y-[30px]">
                     <h3 className="font-bold leading-[110%] text-gray-dark md:text-2xl 2xl:text-[32px]">
                       E-mail
                     </h3>
-                    <p className="max-w-[300px] font-light leading-[140%] text-gray-light md:text-base 2xl:text-[24px]">
+                    <a href="mailto:kraudfand@gmail.com" className="max-w-[300px] cursor-pointer font-light leading-[140%] text-gray-light md:text-base 2xl:text-[24px]">
                       kraudfand@gmail.com
-                    </p>
+                    </a>
                   </div>
                 </div>
               </div>

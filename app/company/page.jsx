@@ -12,7 +12,10 @@ import SignInLink from "../../components/SignInLink";
 import SignUpLink from "../../components/SignUpLink";
 import { getFaqs } from "../api/blogs/blogs";
 import { useEffect, useState } from "react";
-import { getProjectCategory, getProjectSubCategory } from "../api/projects/project";
+import {
+  getProjectCategory,
+  getProjectSubCategory,
+} from "../api/projects/project";
 import Link from "next/link";
 import Feedback from "../../components/Feedback";
 import Head from "next/head";
@@ -112,12 +115,12 @@ const CompanyPage = () => {
         </div>
         {/* Who is Busipool suitable for? */}
         <div className="max-container">
-          <div className="">
+          <div className="flex h-screen flex-col justify-center">
             <h2 className="section-title mb-[30px] md:mb-[100px]">
               Кому подойдет BUSIPOOL?
             </h2>
 
-            <div className="mb-[100px] flex flex-wrap justify-center gap-x-[60px] gap-y-[30px] text-center md:mb-[150px]">
+            <div className="flex flex-wrap justify-center gap-x-[60px] gap-y-[30px] text-center">
               {suitables.map((item, index) => (
                 <p
                   key={index}
@@ -143,7 +146,7 @@ const CompanyPage = () => {
                 </h3>
 
                 <p className="mb-[30px] text-base font-light leading-[140%] text-gray-light md:mb-[60px] md:text-[24px] md:leading-[31px]">
-                  Набор документов аналогично Эшелону C. Также:
+                  Набор документов аналогично Эшелону C.
                   <br />
                   1) Отчёт аудитора;
                   <br />
@@ -155,7 +158,7 @@ const CompanyPage = () => {
                 </h4>
                 <p className="mb-[30px] text-base font-light leading-[140%] text-gray-light md:mb-[60px] md:text-[24px] md:leading-[31px]">
                   Завершена регистрация дополнительного выпуска эмиссионных
-                  ценных бумаг и данные бумаги размещаются на Инвестиционной
+                  ценных бумаг и данные бумаги размещаются на инвестиционной
                   платформе BUSIPOOL.
                 </p>
               </div>
@@ -171,7 +174,7 @@ const CompanyPage = () => {
                   - Финансовая модель;
                   <br />
                   - Инвестиционная презентация;
-                  <br />- Устав, Акционерное соглашение.
+                  <br />- Устав, акционерное соглашение.
                 </p>
 
                 <h4 className="mb-[10px] text-[20px] font-bold leading-[140%] text-gray-dark md:mb-[30px] md:text-[24px] md:leading-[31px]">
@@ -179,7 +182,7 @@ const CompanyPage = () => {
                 </h4>
                 <p className="mb-[30px] text-base font-light leading-[140%] text-gray-light md:mb-[60px] md:text-[24px] md:leading-[31px]">
                   Завершена регистрация дополнительного выпуска эмиссионных
-                  ценных бумаг и данные бумаги размещаются на Инвестиционной
+                  ценных бумаг и данные бумаги размещаются на инвестиционной
                   платформе BUSIPOOL.
                 </p>
               </div>
@@ -286,23 +289,25 @@ const CompanyPage = () => {
             </div>
           </div>
 
-          <h2 className="section-title mt-[100px] md:mb-[100px]">
-            Финансовые инструменты
-          </h2>
+          <div className="relative">
+            <h2 className="section-title  mb-[30px] mt-[100px] 2xl:mb-[100px]">
+              Финансовые инструменты
+            </h2>
 
-          <div className="mx-auto max-w-[1140px] md:!mx-[20%]">
-            {faqs?.map((faq) => (
-              <Accordion
-                key={faq.id}
-                title={faq.title}
-                description={faq.description}
-              />
-            ))}
+            <div className="mx-auto max-w-[1140px] md:mx-[8%] gap-3">
+              {faqs?.map((faq) => (
+                <Accordion
+                  key={faq.id}
+                  title={faq.title}
+                  description={faq.description}
+                />
+              ))}
+            </div>
           </div>
         </div>
 
         <div className="mx-auto max-w-[1140px] px-5 md:!mx-[20%]">
-          <div className="mx-auto mb-[150px] max-w-[1140px]">
+          <div className="mx-auto mb-[150px] flex h-screen max-w-[1140px] flex-col justify-center">
             <h2 className="section-title mb-[30px] md:mb-[100px]">
               Сколько это стоит?
             </h2>
@@ -335,17 +340,17 @@ const CompanyPage = () => {
         </div>
 
         <div className="mx-auto mb-[100px] max-w-[1430px] md:mx-[9%] md:mb-[150px]">
-          <h2 className="section-title mb-[30px] md:mb-[100px]">
+          <h2 className="section-title mb-[30px] md:mb-10 2xl:mb-[100px]">
             Почему BUSIPOOL?
           </h2>
 
           <div className="flex flex-col items-center">
-            <div className="mx-auto mb-[60px] flex flex-col md:grid w-[calc(100%-20px)] max-w-[1430px] grid-cols-12 gap-x-[10%] gap-y-[30px] px-5 md:mx-[9%] md:mb-[80px] md:w-[calc(100%-80px)]">
+            <div className="mb-[60px] flex w-[calc(100%-20px)] max-w-[1430px] flex-col gap-x-[10%] gap-y-[20px] px-5 md:mb-[80px] md:grid md:w-[calc(100%-80px)] md:grid-cols-12">
               <div className="col-span-12 lg:col-span-6">
-                <h3 className="mb-[20px] text-center text-[20px] font-bold leading-[110%] text-gray-dark md:mb-[30px] md:text-left md:text-[32px]">
+                <h3 className="mb-3 text-center text-[20px] font-bold leading-[110%] text-gray-dark md:text-left md:text-2xl 2xl:mb-[30px] 2xl:text-[32px]">
                   Любое число участников сделки онлайн
                 </h3>
-                <p className="text-base font-light leading-[140%] text-gray-light md:text-[24px]">
+                <p className="text-base font-light leading-[140%] text-gray-light md:text-xl 2xl:text-[24px]">
                   Число участников сделки может достигать 500 и более человек. В
                   виду того, что сделки на инвестиционной платформе BUSIPOOL
                   проходят в онлайн-форме, акции вашей компании могут купить
@@ -353,10 +358,10 @@ const CompanyPage = () => {
                 </p>
               </div>
               <div className="col-span-12 lg:col-span-6">
-                <h3 className="mb-[20px] text-center text-[20px] font-bold leading-[110%] text-gray-dark md:mb-[30px] md:text-left md:text-[32px]">
+                <h3 className="mb-3 text-center text-[20px] font-bold leading-[110%] text-gray-dark md:text-left md:text-2xl 2xl:mb-[30px] 2xl:text-[32px]">
                   Экономия времени компании
                 </h3>
-                <p className="text-base font-light leading-[140%] text-gray-light md:text-[24px]">
+                <p className="text-base font-light leading-[140%] text-gray-light md:text-xl 2xl:text-[24px]">
                   Вам не придётся долгие месяцы нагружать своих сотрудников
                   подписанием договоров с инвесторами, а потом готовить списки
                   для выпуска акций. Все это сделает BUSIPOOL.
@@ -364,35 +369,40 @@ const CompanyPage = () => {
               </div>
 
               <div className="col-span-12 lg:col-span-6">
-                <h3 className="mb-[20px] text-center text-[20px] font-bold leading-[110%] text-gray-dark md:mb-[30px] md:text-left md:text-[32px]">
+                <h3 className="mb-3 text-center text-[20px] font-bold leading-[110%] text-gray-dark md:text-left md:text-2xl 2xl:mb-[30px] 2xl:text-[32px]">
                   Законность и безопасность
                 </h3>
-                <p className="text-base font-light leading-[140%] text-gray-light md:text-[24px]">
-                  Все сделки на BUSIPOOL соответствуют 259-ФЗ «О привлечении
-                  инвестиций с использованием инвестиционных платформ», 208-ФЗ
-                  «Об акционерных обществах», 39-ФЗ «О рынке ценных бумаг».
+                <p className="text-base font-light leading-[140%] text-gray-light md:text-xl 2xl:text-[24px]">
+                  Все сделки на BUSIPOOL соответствуют <br />
+                  259-ФЗ: «О привлечении инвестиций с использованием
+                  инвестиционных платформ»,
+                  <br /> 208-ФЗ: «Об акционерных обществах», <br />
+                  39-ФЗ: «О рынке ценных бумаг».
                 </p>
               </div>
               <div className="col-span-12 lg:col-span-6">
-                <h3 className="mb-[20px] text-center text-[20px] font-bold leading-[110%] text-gray-dark md:mb-[30px] md:text-left md:text-[32px]">
+                <h3 className="mb-3 text-center text-[20px] font-bold leading-[110%] text-gray-dark md:text-left md:text-2xl 2xl:mb-[30px] 2xl:text-[32px]">
                   Проверка инвесторов
                 </h3>
-                <p className="text-base font-light leading-[140%] text-gray-light md:text-[24px]">
+                <p className="text-base font-light leading-[140%] text-gray-light md:text-xl 2xl:text-[24px]">
                   Вы также можете быть уверены в юридической чистоте своих
                   будущих инвесторов. BUSIPOOL проверяет всех инвесторов в
-                  рамках 115-ФЗ «О противодействии легализации (отмыванию)
-                  доходов, полученных преступным путем, и финансированию
-                  терроризма» и присваивает им статус «Квалифицированный
-                  инвестор», если это необходимо.
+                  рамках <br />
+                  115-ФЗ: «О противодействии легализации (отмыванию) доходов,
+                  полученных преступным путем, и финансированию терроризма» и
+                  присваивает им статус «Квалифицированный инвестор», если это
+                  необходимо.
                 </p>
               </div>
             </div>
 
-            <Button
-              text="Оставить заявку, чтобы получить информацию об акционировании"
-              onclick={() => setIsOpen(true)}
-              style={"!py-5 md:text-xl leading-[24px] text-base"}
-            />
+            <div className="max-container">
+              <Button
+                text="Оставить заявку, чтобы получить информацию об акционировании"
+                onclick={() => setIsOpen(true)}
+                style={"!py-5 md:text-xl leading-[24px] text-base"}
+              />
+            </div>
           </div>
         </div>
 

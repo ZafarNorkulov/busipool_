@@ -38,17 +38,14 @@ const FAQPage = () => {
         <h2 className="section-title mb-[30px]">Вопрос-ответ</h2>
 
         <div className="mx-auto max-w-[1260px] md:mx-[8%] lg:mx-[15%]">
-          <div className="flex items-center gap-4">
-            <Image src={Question} width={30} height={30} alt="img" />
-            <div className="flex flex-col">
-              {faqs?.map((faq) => (
-                <Accordion
-                  key={faq.id}
-                  title={faq.title}
-                  description={faq.description}
-                />
-              ))}
-            </div>
+          <div className="flex flex-col">
+            {faqs?.map((faq) => (
+              <Accordion
+                key={faq.id}
+                title={faq.title}
+                description={faq.description}
+              />
+            ))}
           </div>
         </div>
       </div>
