@@ -32,6 +32,7 @@ const BusinessType = () => {
     start_date: { value: false, title: "Новейший" },
     end_date: { value: false, title: "Самый первый" },
   });
+  const [nextUrl, setNextUrl] = useState(null);
 
   const auth = useAppSelector((state) => state.auth);
 
@@ -46,12 +47,13 @@ const BusinessType = () => {
         ...activeFilters,
         search,
         city_realization: selectedCity?.id,
+        next: nextUrl,
       };
       const response = await getProjectBusinessType({
         options,
         id,
       });
-      setProjects(response?.results);
+      setProjects(response);
     } catch (error) {
       console.error("Error fetching projects:", error);
     } finally {
@@ -60,12 +62,12 @@ const BusinessType = () => {
   };
 
   useEffect(() => {
-      fetchProjectsFromDB();
-  }, [selectedCity, search, filters]);
+    fetchProjectsFromDB();
+  }, [selectedCity, search, filters, nextUrl]);
   useEffect(() => {
     fetchCitiesFromDB();
     getProjectTypes().then((res) => setBusinessType(res));
-      fetchProjectsFromDB();
+    fetchProjectsFromDB();
   }, []);
   const fetchCitiesFromDB = async () => {
     try {
@@ -87,7 +89,6 @@ const BusinessType = () => {
       }
     }
   }, [businessType, id]);
-
   return (
     <>
       <Head>
@@ -151,13 +152,13 @@ const BusinessType = () => {
         </div>
         <div className="max-container">
           {loading && <Spinner loading={loading} />}
-          {!loading && projects && (
+          {!loading && projects?.results?.length > 0 && (
             <div className="mb-[60px] mt-[30px] grid grid-cols-12 gap-[8px] md:mb-[30px] md:mt-[100px] md:gap-[20px]">
               <IsLoginModal
                 isActive={isActiveModal}
                 setIsActive={setIsActiveModal}
               />
-              {projects?.map((card, index) => (
+              {projects.results.map((card, index) => (
                 <div
                   className="col-span-6 sm:col-span-4 lg:col-span-3"
                   key={index}
@@ -172,9 +173,13 @@ const BusinessType = () => {
               ))}
             </div>
           )}
-          {projects?.results?.length ? (
+          {projects?.results?.length > 9 ? (
             <div className="max-container mb-[100px] flex items-center justify-center md:mb-[150px]">
-              <Button text="Загрузить еще" primary />
+              <Button
+                text="Загрузить еще"
+                primary
+                onclick={() => setNextUrl(projects.next)}
+              />
             </div>
           ) : (
             ""

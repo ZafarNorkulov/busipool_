@@ -56,16 +56,38 @@ export const getProjects = async (options) => {
 // get project by type
 export const getProjectBusinessType = async ({ options, id }) => {
   try {
-    if (!BASE_URL) return console.log("BASE_URL is not defined");
+    if (!BASE_URL) {
+      console.log("BASE_URL is not defined");
+    }
+
+    // options.is_active = true;
     const params = new URLSearchParams();
+
+    // Parametrlarni dinamik ravishda qo'shish
     Object.entries(options).forEach(([key, value]) => {
       if (value !== undefined && value !== null) {
         params.append(key, value);
       }
     });
-    const response = await fetch(
-      `${BASE_URL}/project/type/business/${id}/?${params.toString()}`,
-    );
+
+    // Only append the query string if there are parameters
+    let url = "";
+
+    if (options?.next) {
+      if (params.toString()) {
+        // Create a new URLSearchParams object from the existing params
+        const cleanedParams = new URLSearchParams(params.toString());
+        // Remove 'next' from the parameters
+        cleanedParams.delete("next");
+        // Construct the final URL with cleaned params
+        url = `${options.next}${cleanedParams.toString()}`;
+      } else {
+        url = options.next;
+      }
+    } else {
+      url = `${BASE_URL}/project/type/business/${id}/?${params.toString()}`;
+    }
+    const response = await fetch(url);
 
     if (!response.ok) throw new Error("Failed to fetch data");
 
@@ -125,7 +147,7 @@ export const getProjectCategory = async () => {
     return [];
   }
 };
-// get project/ыгиcategory api
+// get project/category api
 export const getProjectSubCategory = async () => {
   try {
     if (!BASE_URL) return console.log("BASE_URL is not defined");

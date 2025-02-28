@@ -84,7 +84,7 @@ const ProjectPage = () => {
     if (typeof window !== "undefined") {
       const storedToken = localStorage.getItem("access_token");
       const storedUser = localStorage.getItem("user");
-      setUser(JSON.parse(storedUser));
+      setUser(JSON.parse(storedUser ? storedUser : {}));
       setToken(storedToken);
     }
   }, []);
@@ -139,6 +139,7 @@ const ProjectPage = () => {
       .then((res) => {})
       .finally(setCommentData(""));
   };
+
   if (loading) {
     return <Spinner loading={loading} />;
   }
@@ -250,7 +251,7 @@ const ProjectPage = () => {
               </div>
 
               <div className="mt-[30px] flex items-center gap-[30px]">
-                <Button text="Поддержать" primary />
+                <Button text="Поддержать" onClick={handleSendMessage} primary />
 
                 <div>
                   {toggleHeart ? (

@@ -21,7 +21,7 @@ export default function useWebSocket(serverUrl: string) {
 
     socket.onmessage = (event: MessageEvent) => {
       const data: WebSocketMessage = JSON.parse(event.data);
- 
+
       setMessages((prev) => [...prev, data]);
     };
 
