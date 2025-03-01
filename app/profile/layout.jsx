@@ -17,11 +17,6 @@ const ProfilePageLayout = ({ children }) => {
   const path = usePathname();
 
   useEffect(() => {
-    if (!auth.isAuthenticated) {
-      router.push("/sign-in");
-    }
-  }, [auth.isAuthenticated]);
-  useEffect(() => {
     const storedToken = localStorage.getItem("access_token");
     getProfile(storedToken).then((res) => {
       setUser(res);
@@ -37,6 +32,11 @@ const ProfilePageLayout = ({ children }) => {
     }
   }, []);
 
+  useEffect(() => {
+    if (!auth.isAuthenticated) {
+      router.push("/");
+    }
+  }, [auth.isAuthenticated]);
   return (
     <section className="mb-[150px]">
       <div className="max-container sflex-row mb-[100px] mt-[130px] flex items-center justify-between gap-5 md:mt-[200px]">
