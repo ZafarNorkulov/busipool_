@@ -7,6 +7,7 @@ const Accordion = ({ title, description }) => {
 
   return (
     // <div
+    
     //   onClick={() => setToggle((prev) => !prev)}
     //   className={`cursor-pointer border-b border-gray-dark pr-[16px] pt-[20px] transition sm:pb-[30px] md:border-b-2 md:pr-[46px] md:pt-[60px] ${toggle ? "h-auto" : "h-[85px] overflow-hidden sm:h-[60px] md:h-[125px]"}`}
     // >
