@@ -71,7 +71,7 @@ export const footerLinks = [
         label: "Блог",
       },
       {
-        href: "/help",
+        href: "#",
         label: "Помощь",
       },
     ],
@@ -95,10 +95,10 @@ export const footerLinks = [
   },
 ];
 export const socialMedia = [
-  { src: Whatsapp, alt: "whatsapp logo", href: "" },
-  { src: VK, alt: "vk logo", href: "" },
-  { src: Telegram, alt: "telegram logo", href: "" },
-  { src: Instagram, alt: "instagram logo", href: "" },
+  { src: Whatsapp, alt: "whatsapp logo", href: "https://wa.me/79265828518" },
+  { src: VK, alt: "vk logo", href: "https://vk.com/busipool" },
+  { src: Telegram, alt: "telegram logo", href: "https://t.me/busipool" },
+  // { src: Instagram, alt: "instagram logo", href: "" },
 ];
 export const dealsSteps = [
   {
@@ -129,7 +129,7 @@ export const dealsSteps = [
 export const workProcess = [
   {
     title: "Вы подали заявку, Busipool",
-    text: "После того как вы подали заявку BUSIPOOL высылает вам информацию о процессе прохождения акционирования вашей компании.",
+    text: "После того как вы подали заявку, BUSIPOOL высылает вам информацию о процессе прохождения акционирования вашей компании.",
     deadline: "Срок: 1 день",
   },
   {
@@ -144,7 +144,7 @@ export const workProcess = [
   },
   {
     title: "Подготовка документов",
-    text: "Разработка документации для размещения бизнеса на площадке BUSIPOOL. Минимально будет необходимо подготовить: Инвестиционное предложение, Инвестиционную презентацию и Финансовую модель проекта. Параллельно, нужно будет получить аудиторское заключение о корректности предоставленной финансовой информации.",
+    text: `Разработка документации для размещения бизнеса на площадке BUSIPOOL. \n Минимально будет необходимо подготовить:\n Инвестиционное предложение, Инвестиционную презентацию и Финансовую модель проекта. Параллельно, нужно будет получить аудиторское заключение о корректности предоставленной финансовой информации.`,
     deadline: "Срок: 7 дней",
   },
   {

@@ -10,28 +10,33 @@ import { IoChatboxEllipsesOutline } from "react-icons/io5";
 const ProfileMenu = ({ closeProfileMenu, large }) => {
   const dispatch = useAppDispatch();
   const [role, setRole] = useState("");
+  const [isBusiness, setIsBusiness] = useState(false);
   useEffect(() => {
     if (typeof window != "undefined") {
       setRole(localStorage.getItem("role"));
     }
+    setIsBusiness(role.toLowerCase() === "business");
   }, []);
+
   return (
     <div
       id="profile-menu"
-      className={`${large ? "h-full w-full" : "w-[370px]"} select-none rounded-b-md bg-headerColor px-[20px] py-[30px]`}
+      className={`${large ? "h-full w-full" : "w-[300px]"} profile-menu-desktop select-none rounded-md border-2 border-[#78a371] bg-headerColor py-[30px]`}
     >
-      <Link href="/profile/create">
-        <button
-          onClick={closeProfileMenu}
-          className={
-            "mb-[30px] flex w-full justify-center rounded-[5px] border-2 border-primary bg-primary px-[20px] py-[10px] text-center text-[14px] font-bold leading-6 text-white transition active:scale-95"
-          }
-        >
-          Создать проект +
-        </button>
-      </Link>
+      {isBusiness && (
+        <Link href="/profile/create">
+          <button
+            onClick={closeProfileMenu}
+            className={
+              "mb-[30px] flex w-full justify-center rounded-[5px] border-2 border-primary bg-primary px-5 py-[10px] text-center text-[14px] font-bold leading-6 text-white transition active:scale-95"
+            }
+          >
+            Создать проект +
+          </button>
+        </Link>
+      )}
       <ul>
-        <li className="mb-[10px] flex items-center gap-[10px]">
+        <li className="mx-4 flex cursor-pointer items-center gap-2.5 rounded-lg px-1 py-[5px] hover:bg-lime-200">
           <Image
             width={0}
             height={0}
@@ -48,24 +53,28 @@ const ProfileMenu = ({ closeProfileMenu, large }) => {
             Созданные проекты
           </Link>
         </li>
-        <li className="mb-[10px] flex items-center gap-[10px]">
-          <Image
-            width={0}
-            height={0}
-            sizes="100%"
-            src={profileIcons.check}
-            alt="icon"
-            className="block h-[30px] w-[30px]"
-          />
-          <Link
-            href="/profile/statistics"
-            className="menu-link"
-            onClick={closeProfileMenu}
-          >
-            Поддержанные проекты
-          </Link>
-        </li>
-        <li className="mb-[10px] flex items-center gap-[10px]">
+
+        {isBusiness && (
+          <li className="mx-4 flex cursor-pointer items-center gap-2.5 rounded-lg px-1 py-[5px] hover:bg-lime-200">
+            <Image
+              width={0}
+              height={0}
+              sizes="100%"
+              src={profileIcons.check}
+              alt="icon"
+              className="block h-[30px] w-[30px]"
+            />
+
+            <Link
+              href="/profile/statistics"
+              className="menu-link"
+              onClick={closeProfileMenu}
+            >
+              Поддержанные проекты
+            </Link>
+          </li>
+        )}
+        <li className="mx-4 flex cursor-pointer items-center gap-2.5 rounded-lg px-1 py-[5px] hover:bg-lime-200">
           <Image
             width={0}
             height={0}
@@ -82,7 +91,7 @@ const ProfileMenu = ({ closeProfileMenu, large }) => {
             Мои заказы
           </Link>
         </li>
-        <li className="mb-[10px] flex items-center gap-[10px]">
+        <li className="mx-4 flex cursor-pointer items-center gap-2.5 rounded-lg px-1 py-[5px] hover:bg-lime-200">
           <Image
             width={0}
             height={0}
@@ -99,7 +108,7 @@ const ProfileMenu = ({ closeProfileMenu, large }) => {
             Баланс
           </Link>
         </li>
-        <li className="mb-[10px] ml-[3px] flex items-center gap-[10px]">
+        <li className="mx-4 ml-[19px] flex cursor-pointer items-center gap-2.5 rounded-lg px-1 py-[5px] hover:bg-lime-200">
           <IoChatboxEllipsesOutline size={28} color="#79A471" />
           <Link
             href="/profile/chat"
@@ -109,7 +118,7 @@ const ProfileMenu = ({ closeProfileMenu, large }) => {
             Чат
           </Link>
         </li>
-        <li className="my-[30px] flex items-center gap-[10px]">
+        <li className="mx-4 mb-5 flex cursor-pointer items-center gap-2.5 rounded-lg px-1 py-[5px] hover:bg-lime-200">
           <Image
             width={0}
             height={0}
@@ -126,7 +135,7 @@ const ProfileMenu = ({ closeProfileMenu, large }) => {
             Мой профиль
           </Link>
         </li>
-        <li className="mb-[10px] flex items-center gap-[10px]">
+        <li className="mx-4 flex cursor-pointer items-center gap-2.5 rounded-lg px-1 py-[5px] hover:bg-lime-200">
           <Image
             width={0}
             height={0}
@@ -143,7 +152,7 @@ const ProfileMenu = ({ closeProfileMenu, large }) => {
             Настройки
           </Link>
         </li>
-        <li className="mb-[10px] flex items-center gap-[10px]">
+        <li className="mx-4 flex cursor-pointer items-center gap-2.5 rounded-lg px-1 py-[5px] hover:bg-lime-200">
           <Image
             width={0}
             height={0}

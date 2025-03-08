@@ -89,14 +89,14 @@ const InvestorPage = () => {
             </div>
           </div>
 
-          <div className="mt-[80px] max-w-[1430px] px-5 md:mx-[9%] 2xl:mt-[150px]">
-            <h2 className="section-title mb-[30px] md:mb-[100px]">
+          <div className="mt-[80px] flex h-screen max-w-[1430px] flex-col items-center justify-center px-5 md:mx-[9%] 2xl:mt-[150px]">
+            <h2 className="section-title mb-[30px] md:mb-[100px] lg:text-[64px]">
               Кратко о сделках
             </h2>
 
             <div className="mb-[100px] flex flex-wrap justify-center gap-y-[60px] text-center md:mb-[140px] lg:gap-x-[100px] xl:flex-nowrap 2xl:gap-x-[160px]">
-              <div className="flex min-w-min flex-col items-center">
-                <h3 className="mb-[20px] w-max text-[20px] font-bold text-primary md:mb-[30px] md:text-2xl lg:text-[28px] 2xl:text-[32px]">
+              <div className="flex min-w-min flex-col items-center gap-5 md:gap-6 2xl:gap-[30px]">
+                <h3 className="w-max text-[20px] font-[900] text-primary md:text-2xl lg:text-[28px] 2xl:text-[32px]">
                   Онлайн-сделки
                 </h3>
                 <p className="text-balance text-base leading-[120%] text-gray-dark md:text-xl md:leading-[140%] lg:text-[22px] 2xl:text-[24px]">
@@ -105,8 +105,8 @@ const InvestorPage = () => {
                   онлайн-формате.
                 </p>
               </div>
-              <div className="flex min-w-min flex-col items-center">
-                <h3 className="mb-[20px] w-max text-[20px] font-[900] text-primary md:mb-[30px] md:text-2xl lg:text-[28px] 2xl:text-[32px]">
+              <div className="flex min-w-min flex-col items-center gap-5 md:gap-6 2xl:gap-[30px]">
+                <h3 className="w-max text-[20px] font-[900] text-primary md:text-2xl lg:text-[28px] 2xl:text-[32px]">
                   Аудит отчетности
                 </h3>
                 <p className="text-balance text-base leading-[120%] text-gray-dark md:text-xl md:leading-[140%] lg:text-[22px] 2xl:text-[24px]">
@@ -115,8 +115,8 @@ const InvestorPage = () => {
                   финансовой отчетности.
                 </p>
               </div>
-              <div className="flex min-w-min flex-col items-center">
-                <h3 className="mb-[20px] w-max text-[20px] font-[900] text-primary md:mb-[30px] md:text-2xl lg:text-[28px] 2xl:text-[32px]">
+              <div className="flex min-w-min flex-col items-center gap-5 md:gap-6 2xl:gap-[30px]">
+                <h3 className="w-max text-[20px] font-[900] text-primary md:text-2xl lg:text-[28px] 2xl:text-[32px]">
                   Законность
                 </h3>
                 <p className="text-balance text-base leading-[120%] text-gray-dark md:text-xl md:leading-[140%] lg:text-[22px] 2xl:text-[24px]">
@@ -149,7 +149,7 @@ const InvestorPage = () => {
                         : "border-l md:border-l-2"
                     } relative border-primary pl-[55px] md:pl-[140px] lg:pl-[275px] xl:pl-[372px]`}
                   >
-                    <h3 className="mb-[20px] text-lg font-bold leading-[110%] text-gray-dark md:mb-[30px] md:text-[26px] lg:text-[32px]">
+                    <h3 className="text-lg font-bold leading-[110%] text-grad:mb-[30px] md:text-[26px] ">
                       {step.title}
                     </h3>
                     <p className="text-base font-light leading-[140%] text-gray-light md:text-xl lg:text-[24px]">
@@ -183,8 +183,10 @@ const InvestorPage = () => {
               <div className="flex flex-wrap justify-center gap-[30px] md:gap-[20px]">
                 {/*  */}
                 <Link
-                    href={`/investor/${businessType[0]?.id}`}
-                    onClick={scrollToTop} className="flex w-[230px] flex-col items-end justify-between rounded-[10px] p-[20px] shadow md:w-[calc(50%-10px)] md:p-[30px]">
+                  href={`/investor/${businessType[0]?.id}`}
+                  onClick={scrollToTop}
+                  className="flex w-[230px] flex-col items-end justify-between rounded-[10px] p-[20px] shadow md:w-[calc(50%-10px)] md:p-[30px]"
+                >
                   <div>
                     <h2 className="mb-[10px] text-lg font-light leading-[110%] text-gray-dark md:mb-[20px] md:text-[32px] lg:text-[48px]">
                       {businessType[0]?.name}
@@ -203,8 +205,10 @@ const InvestorPage = () => {
                   </div>
                 </Link>
                 <Link
-                    href={`/investor/${businessType[1]?.id}`}
-                    onClick={scrollToTop} className="flex w-[230px] flex-col items-end justify-between rounded-[10px] p-[20px] shadow md:w-[calc(50%-10px)] md:p-[30px]">
+                  href={`/investor/${businessType[1]?.id}`}
+                  onClick={scrollToTop}
+                  className="flex w-[230px] flex-col items-end justify-between rounded-[10px] p-[20px] shadow md:w-[calc(50%-10px)] md:p-[30px]"
+                >
                   <div>
                     <h2 className="mb-[10px] text-lg font-light leading-[110%] text-gray-dark md:mb-[20px] md:text-[32px] lg:text-[48px]">
                       {businessType[1]?.name}

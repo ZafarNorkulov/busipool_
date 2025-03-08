@@ -96,7 +96,7 @@ const ProfilePage = () => {
           </UserPageCard>
         </div>
 
-        <div className="flex h-screen flex-col justify-center bg-secondary sm:h-auto py-5 sm:py-[30px] lg:py-0 lg:h-[calc(100vh-80px)]">
+        <div className="flex h-screen flex-col justify-center bg-secondary py-5 sm:h-auto sm:py-[30px] lg:h-[calc(100vh-80px)] lg:py-0">
           <div className="max-container flex flex-col justify-between gap-5 md:gap-[30px] lg:flex-row">
             <div className="flex flex-col lg:items-start lg:text-left">
               <h2 className="mb-[10px] text-[26px] font-bold leading-[120%] text-gray-dark md:mb-[30px] md:text-[36px] lg:text-[42px] xl:text-[64px]">
@@ -106,14 +106,16 @@ const ProfilePage = () => {
                 Создание собственного проекта на такой платформе - это шаг,
                 который может привести вас к успеху.
               </p>
-              <Link href={"/profile/create"}>
-                <Button
-                  text="Создать проект"
-                  style={"font-light text-sm !py-5 w-[230px]"}
-                  primary
-                  extraSmall
-                />
-              </Link>
+              {role.toLowerCase() === "business" && (
+                <Link href={"/profile/create"}>
+                  <Button
+                    text="Создать проект"
+                    style={"font-light text-sm !py-5 w-[230px]"}
+                    primary
+                    extraSmall
+                  />
+                </Link>
+              )}
             </div>
             <Image
               src={buildProjectImage}
@@ -121,7 +123,7 @@ const ProfilePage = () => {
               priority={true}
               width={0}
               height={0}
-              className="md:h-80 max-w-full object-contain lg:h-auto lg:!max-w-[500px] 2xl:max-w-[700px]"
+              className="max-w-full object-contain md:h-80 lg:h-auto lg:!max-w-[500px] 2xl:max-w-[700px]"
             />
           </div>
         </div>

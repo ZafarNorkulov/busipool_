@@ -39,11 +39,11 @@ const ProjectCard = ({ card, isGrid, setIsActive }) => {
         className="h-[154px] w-full rounded-[5px] object-cover md:h-[220px] md:rounded-[10px] 2xl:h-[250px]"
       />
       <div className="flex h-[65%] flex-col p-[10px] md:p-5 2xl:p-[30px]">
-        <div className="mb-[10px] flex flex-col gap-y-[10px] md:mb-3 2xl:mb-[30px] md:gap-y-3">
-          <h3 className="h-[30px] text-sm font-bold  text-gray-dark md:h-[20px] md:text-base 2xl:text-lg">
+        <div className="mb-[10px] flex flex-col gap-y-[10px] md:mb-3 md:gap-y-3 2xl:mb-[30px]">
+          <h3 className="h-[30px] text-sm font-bold text-gray-dark md:h-[20px] md:text-base 2xl:text-lg">
             {card?.name.slice(0, 40)}
           </h3>
-          <p className="h-[64px] text-xs font-light leading-[130%] text-gray-light md:text-sm 2xl:text-base ">
+          <p className="h-[64px] text-xs font-light leading-[130%] text-gray-light md:text-sm 2xl:text-base">
             {card?.description.slice(0, 115)}
           </p>
         </div>
@@ -57,13 +57,13 @@ const ProjectCard = ({ card, isGrid, setIsActive }) => {
                 до {formattedDate}
               </span>
             </div>
-            <div className="my-[10px] md:my-[7px] h-[2px] rounded-[4.5px] bg-gray-300 md:h-[5px] md:rounded-[10px]">
+            <div className="my-[10px] h-[2px] rounded-[4.5px] bg-gray-300 md:my-[7px] md:h-[5px] md:rounded-[10px]">
               <div
                 className={`h-[2px] rounded-[4.5px] bg-primary md:h-[5px] md:rounded-[10px]`}
                 style={{ width: `${percentage}%` }}
               ></div>
             </div>
-            <div className="mb-[4.5px] flex justify-between 2xl:leading-[110%] text-gray-dark">
+            <div className="mb-[4.5px] flex justify-between text-gray-dark 2xl:leading-[110%]">
               <span className="text-sm font-bold">
                 {splitEvery3(card?.total_investor_price)} ₽
               </span>

@@ -11,9 +11,8 @@ import InvestorCardLink from "../../components/company/InvestorCardLink";
 import SignInLink from "../../components/SignInLink";
 import SignUpLink from "../../components/SignUpLink";
 import { getFaqs } from "../api/blogs/blogs";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
-  getProjectCategory,
   getProjectSubCategory,
 } from "../api/projects/project";
 import Link from "next/link";
@@ -61,6 +60,16 @@ const CompanyPage = () => {
     fetchFaqsApi();
     getInverstors();
   }, []);
+  const formattedText = (text) => {
+    return text
+      .split(/([.:])/g) // Nuqta yoki ikki nuqtadan bo'laklarga ajratish
+      .map((part, index) => (
+        <React.Fragment key={index}>
+          {part}
+          {part.match(/[.]/) ? <br /> : ""}
+        </React.Fragment>
+      ));
+  };
   return (
     <>
       <Head>
@@ -242,7 +251,7 @@ const CompanyPage = () => {
                     {step.title}
                   </h3>
                   <p className="text-base font-light leading-[140%] text-gray-light md:text-xl lg:text-[24px]">
-                    {step.text}
+                    {formattedText(step.text)}
                   </p>
                   <span className="block text-base font-bold leading-[140%] text-gray-dark md:text-[24px]">
                     {step.deadline}

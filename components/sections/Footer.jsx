@@ -27,6 +27,15 @@ const Footer = () => {
         console.log(error);
       });
   };
+  const downloadFile = () => {
+    const fileUrl = "/privacy-and-policy.docx"; // Faylni public papkada joylashtiring
+    const link = document.createElement("a");
+    link.href = fileUrl;
+    link.download = "конфиденциальности.docx"; // Yuklab olish nomi
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   return (
     <footer className="bg-secondary text-primary">
@@ -106,15 +115,16 @@ const Footer = () => {
           </p>
 
           <div className="flex flex-wrap justify-center gap-[20px] md:gap-[30px]">
-            <Link
-              href="/privacy-policy"
+            <button
+              href="#"
+              onClick={downloadFile}
               rel="noopener noreferrer"
               className="text-base text-gray-dark"
             >
               Политика конфиденциальности
-            </Link>
+            </button>
             <Link
-              href="/terms-&-conditions"
+              href="#"
               rel="noopener noreferrer"
               className="text-base text-gray-dark"
             >

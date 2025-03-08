@@ -30,7 +30,7 @@ const CreateLayout = ({ children }) => {
   if (role?.toLowerCase() === "business") {
     return <div>{children}</div>;
   } else {
-    router.push("/sign-in"); // Redirect if the role isn't "business"
+    router.push("/profile"); // Redirect if the role isn't "business"
     return null; // Return nothing during the redirect
   }
 };

@@ -25,6 +25,7 @@ const BusinessType = () => {
   const [businessType, setBusinessType] = useState("");
   const [selectedType, setSelectedType] = useState("");
   const [isActiveModal, setIsActiveModal] = useState(false);
+  const [role, setRole] = useState("");
   const [filters, setFilters] = useState({
     is_popular: { value: false, title: "По популярности" },
     price_max: { value: false, title: "Подороже" },
@@ -68,6 +69,11 @@ const BusinessType = () => {
     fetchCitiesFromDB();
     getProjectTypes().then((res) => setBusinessType(res));
     fetchProjectsFromDB();
+
+    if (typeof window !== "undefined") {
+      setRole(localStorage.getItem("role") ?? "");
+      localStorage.getItem("role");
+    }
   }, []);
   const fetchCitiesFromDB = async () => {
     try {
@@ -122,9 +128,11 @@ const BusinessType = () => {
                 <p className="mb-[30px] text-base font-light leading-[110%] text-gray-light md:mb-[60px] md:text-[32px]">
                   Заполните форму и создайте проект на нашем сайте
                 </p>
-                <Link href={"/profile/create"}>
-                  <Button text="Создать проект" primary />
-                </Link>
+                {role.toLowerCase() === "business" && (
+                  <Link href={"/profile/create"}>
+                    <Button text="Создать проект" primary />
+                  </Link>
+                )}
               </div>
               <Image
                 src={buildProjectImage}

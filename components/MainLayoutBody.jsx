@@ -3,9 +3,10 @@ import Footer from "@/components/sections/Footer";
 import { usePathname } from "next/navigation";
 import Scroll from "@/components/Scroll";
 import dynamic from "next/dynamic";
-const Navbar = dynamic(()=>import("@/components/Navbar"),{
-  ssr:false
-})
+import FloatMenuButton from "@/components/FloatButton";
+const Navbar = dynamic(() => import("@/components/Navbar"), {
+  ssr: false,
+});
 
 const MainLayoutBody = ({ children }) => {
   const path = usePathname();
@@ -18,7 +19,7 @@ const MainLayoutBody = ({ children }) => {
       {!authPathnames.includes(path) && <Navbar />}
 
       {children}
-
+      <FloatMenuButton />
       {!authPathnames.includes(path) && <Footer />}
     </body>
   );

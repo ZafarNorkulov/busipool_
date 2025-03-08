@@ -62,13 +62,13 @@ const BlogPage = () => {
         <div className="max-container mb-[30px] mt-[30px] flex justify-between md:mb-[70px] md:mt-[100px] 2xl:mb-[100px]">
           <Link href={`/about-us/blog/${nextId ? nextId : "#"}`}>
             <Button
-              text="Слева"
+              text="Назад"
               style={"!py-3 text-xs md:!py-4 md:!text-base"}
             />
           </Link>
           <Link href={`/about-us/blog/${prevId ? prevId : "#"}`}>
             <Button
-              text="Справа"
+              text="Следующая статья"
               style={"!py-3 text-xs md:!py-4 md:!text-base"}
             />
           </Link>

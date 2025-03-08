@@ -43,7 +43,7 @@ const Navbar = () => {
 
   return (
     <header className="fixed left-0 right-0 top-0 z-40 w-full bg-headerColor">
-      <nav className="max-container relative h-20 flex items-center justify-between sm:py-[20px]">
+      <nav className="max-container relative flex h-20 items-center justify-between sm:py-[20px]">
         {/* Logo */}
         <Link href="/">
           {" "}
@@ -130,9 +130,9 @@ const Navbar = () => {
           </div>
         )}
         {/* Profile Menu */}
-        {width > 1024 && (
+        {width > 1023 && (
           <div
-            className={`${isProfileMenuOpen ? "block" : "hidden"} fixed -right-5 top-[90px] z-40 transition lg:absolute`}
+            className={`${isProfileMenuOpen ? "block" : "hidden"} fixed -right-5 top-[80px] z-40 transition lg:absolute`}
           >
             <ProfileMenu
               closeProfileMenu={() => {
@@ -165,7 +165,7 @@ const Navbar = () => {
       <div
         className={`${
           mobileNavbarMenu ? "block" : "hidden"
-        } fixed bottom-0 left-0 right-0 top-[70px] z-10 w-screen overflow-hidden overflow-y-scroll bg-headerColor px-[20px] pb-[30px] sm:top-[90px]`}
+        } fixed bottom-0 left-0 right-0 top-[70px] z-10 w-screen overflow-hidden overflow-y-scroll bg-headerColor px-[20px] pb-[30px] sm:top-[80px]`}
       >
         {/* Right Side Menu Mobile (Logged Out) */}
         {!auth.isAuthenticated && (

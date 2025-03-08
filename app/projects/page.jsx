@@ -20,6 +20,7 @@ const ProjectsPage = () => {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [cityRel, setCityRel] = useState([]);
+  const [role, setRole] = useState("");
   const [selectedCity, setSelectedCity] = useState(null);
   const [selectedCatalog, setSelectedCatalog] = useState(null); // null for "Все проекты"
   const [catalogTheme, setCatalogTheme] = useState([]);
@@ -41,6 +42,13 @@ const ProjectsPage = () => {
 
   useEffect(() => {
     fetchInitialData();
+  }, []);
+  
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedRole = localStorage.getItem("role");
+      setRole(storedRole || ""); // Set the role or an empty string if not found
+    }
   }, []);
 
   useEffect(() => {
@@ -209,14 +217,16 @@ const ProjectsPage = () => {
                 Создание собственного проекта на такой платформе - это шаг,
                 который может привести вас к успеху.
               </p>
-              <Link href={"/profile/create"}>
-                <Button
-                  text="Создать проект"
-                  style={"font-light text-sm !py-5 w-[230px]"}
-                  primary
-                  extraSmall
-                />
-              </Link>
+              {role.toLowerCase() === "business" && (
+                <Link href={"/profile/create"}>
+                  <Button
+                    text="Создать проект"
+                    style={"font-light text-sm !py-5 w-[230px]"}
+                    primary
+                    extraSmall
+                  />
+                </Link>
+              )}
             </div>
             <Image
               src={buildProjectImage}

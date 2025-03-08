@@ -3,9 +3,7 @@ import BusipoolLogoLarge from "@/components/BusipoolLogoLarge";
 import Button from "@/components/Button";
 import SwiperSection from "../../components/SwiperSection";
 import HomeBlogs from "@/components/sections/HomeBlogs";
-// import Stats from "@/components/sections/Stats";
 import Stats from "../../components/sections/Stats";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Head from "next/head";
 import { useState } from "react";
@@ -32,7 +30,6 @@ const roles = [
 
 const BecomePartnerPage = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const router = useRouter();
 
   return (
     <>
@@ -88,8 +85,8 @@ const BecomePartnerPage = () => {
           </div>
         </div>
 
-        <div className="max-container mb-[100px] md:mb-[150px]">
-          <h2 className="section-title mb-[30px] md:mb-[100px]">
+        <div className="max-container mb-[100px] lg:mb-[150px]">
+          <h2 className="section-title mb-[30px] lg:mb-[100px]">
             Какие возможности для вас?
           </h2>
         </div>
@@ -105,7 +102,7 @@ const BecomePartnerPage = () => {
                   Несколько слов о ключевых ролях
                 </p>
               </div>
-              <div className="w-full flex-1 lg:max-w-[700px]">
+              <div className="w-full flex-1 lg:max-w-[750px]">
                 <p className="mb-[30px] text-base font-light leading-[120%] text-gray-light md:text-[24px]">
                   BUSIPOOL - это онлайн-платформа для совершения сделок с{" "}
                   <span className="text-base font-bold text-gray-dark md:text-[24px]">

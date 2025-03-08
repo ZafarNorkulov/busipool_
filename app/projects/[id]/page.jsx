@@ -42,11 +42,11 @@ const ProjectPage = () => {
   const router = useRouter();
   const { width } = useWindowSize();
   const socials = [
-    { src: Code, alt: "Code" },
-    { src: Telegram, alt: "Telegram" },
-    { src: VK, alt: "VK" },
-    { src: Facebook, alt: "Facebook" },
-    { src: Whatsapp, alt: "Whatsapp" },
+    { src: Code, href: "#", alt: "Code" },
+    { src: Telegram, href: "https://t.me/busipool", alt: "Telegram" },
+    { src: VK, href: "https://vk.com/busipool", alt: "VK" },
+    { src: Facebook, href: "#", alt: "Facebook" },
+    { src: Whatsapp, href: "https://wa.me/79265828518", alt: "Whatsapp" },
   ];
 
   const fetchProjectsWithIdFromAPI = () => {
@@ -270,7 +270,7 @@ const ProjectPage = () => {
               <div className="mb-[60px] mt-[30px] flex items-center gap-[30px] sm:mb-[30px] md:justify-end md:gap-[20px]">
                 {socials?.map((item, idx) => (
                   <Link
-                    href={"#"}
+                    href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
                     key={idx}
