@@ -10,7 +10,6 @@ const Action = dynamic(
     ssr: false,
   },
 );
-
 import "react-tiny-fab/dist/styles.css";
 import Image from "next/image";
 import Whatsapp from "@/assets/images/social/whatsapp-colored.svg";

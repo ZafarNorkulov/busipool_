@@ -197,4 +197,7 @@ html {
     transform: rotate(180deg);
   }
 }
+.rtf{
+  @apply lg:!right-6 !-right-2
+}
 
