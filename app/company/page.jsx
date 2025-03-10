@@ -12,9 +12,7 @@ import SignInLink from "../../components/SignInLink";
 import SignUpLink from "../../components/SignUpLink";
 import { getFaqs } from "../api/blogs/blogs";
 import React, { useEffect, useState } from "react";
-import {
-  getProjectSubCategory,
-} from "../api/projects/project";
+import { getProjectSubCategory } from "../api/projects/project";
 import Link from "next/link";
 import Feedback from "../../components/Feedback";
 import Head from "next/head";
@@ -150,7 +148,7 @@ const CompanyPage = () => {
 
             <div className="mb-[60px] flex flex-col justify-between gap-y-[60px] lg:flex-row">
               <div className="w-full md:w-[633px] lg:!w-[calc(50%-30px)]">
-                <h3 className="mb-[30px] border-b border-gray-dark px-[60px] pb-[20px] text-center text-[20px] font-bold leading-[120%] text-gray-dark md:mb-[60px] md:border-b-2 md:px-[95px] md:pb-[10px] md:text-left md:text-[32px]">
+                <h3 className="mb-[30px] whitespace-nowrap border-b border-gray-dark px-[60px] pb-[20px] text-center text-[20px] font-bold leading-[120%] text-gray-dark md:mb-[60px] md:border-b-2 md:px-[95px] md:pb-[10px] md:text-left md:text-[32px] lg:px-0 xl:px-[95px]">
                   Эшелон A / до 1 млрд.₽
                 </h3>
 
@@ -173,7 +171,7 @@ const CompanyPage = () => {
               </div>
 
               <div className="w-full md:w-[633px] lg:!w-[calc(50%-30px)]">
-                <h3 className="mb-[30px] border-b border-gray-dark px-[60px] pb-[20px] text-center text-[20px] font-bold leading-[120%] text-gray-dark md:mb-[60px] md:border-b-2 md:px-[95px] md:pb-[10px] md:text-left md:text-[32px]">
+                <h3 className="mb-[30px] whitespace-nowrap border-b border-gray-dark px-[60px] pb-[20px] text-center text-[20px] font-bold leading-[120%] text-gray-dark md:mb-[60px] md:border-b-2 md:px-[95px] md:pb-[10px] md:text-left md:text-[32px] lg:px-0 xl:px-[95px]">
                   Эшелон С / до 60 млн.₽
                 </h3>
 
@@ -275,10 +273,6 @@ const CompanyPage = () => {
             </div>
           )}
 
-          {/* <div className="hidden flex-1 flex-wrap justify-center gap-[30px] md:mb-[150px] md:flex md:flex-nowrap">
-          <SignUpLink />
-          <SignInLink />
-        </div> */}
 
           <div>
             <h2 className="section-title mb-[60px] md:mb-[100px]">
@@ -299,11 +293,11 @@ const CompanyPage = () => {
           </div>
 
           <div className="relative">
-            <h2 className="section-title  mb-[30px] mt-[100px] 2xl:mb-[100px]">
+            <h2 className="section-title mb-[30px] mt-[100px] 2xl:mb-[100px]">
               Финансовые инструменты
             </h2>
 
-            <div className="mx-auto max-w-[1140px] md:mx-[8%] gap-3">
+            <div className="mx-auto max-w-[1140px] gap-3 md:mx-[8%]">
               {faqs?.map((faq) => (
                 <Accordion
                   key={faq.id}

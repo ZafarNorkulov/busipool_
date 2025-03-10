@@ -21,7 +21,7 @@ const ProfilePageLayout = ({ children }) => {
     getProfile(storedToken).then((res) => {
       setUser(res);
       localStorage.setItem("user", JSON.stringify(res));
-      const roleName = res?.groups?.[0]?.name || "bussines"; // Default to "bussines" if undefined
+      const roleName = res?.groups[0]?.name || "bussines"; // Default to "bussines" if undefined
       localStorage.setItem("role", roleName);
       setRole(roleName);
     });
