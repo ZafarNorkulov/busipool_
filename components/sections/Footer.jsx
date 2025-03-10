@@ -8,6 +8,7 @@ import { useState } from "react";
 import { postSubscription } from "@/app/api/blogs/blogs";
 import Image from "next/image";
 import Busipool from "@/assets/images/busipool.png";
+import { toast, ToastContainer } from "react-toastify";
 
 const Footer = () => {
   const pathName = usePathname();
@@ -21,7 +22,8 @@ const Footer = () => {
 
     postSubscription(inputValue)
       .then((response) => {
-        console.log(response);
+        setInputValue({ email: "" });
+        toast.success(response.message);
       })
       .catch((error) => {
         console.log(error);
@@ -39,8 +41,9 @@ const Footer = () => {
 
   return (
     <footer className="bg-secondary text-primary">
-      <div className="flex flex-wrap items-center justify-center gap-x-[60px] bg-primary py-[30px] text-white md:pb-[60px] md:pt-[60px]">
-        <div className="mx-5 mb-[30px] w-max sm:mx-0 sm:w-min">
+      <ToastContainer />
+      <div className="flex flex-wrap items-center justify-center gap-x-[60px] bg-primary px-5 py-[30px] text-white md:pb-[60px] md:pt-[60px] lg:px-0">
+        <div className="lg::w-min mb-[30px] w-max">
           <h3 className="mb-[12px] w-max text-base font-bold leading-[120%] md:mb-[12px] md:text-[36px]">
             Подпишитесь на нашу рассылку
           </h3>
@@ -50,13 +53,14 @@ const Footer = () => {
             в чужие руки, и мы не будем отправлять на него рекламу.
           </p>
         </div>
-        <div className="flex items-center gap-x-[30px] md:gap-x-[60px]">
-          <div className="max-w-[137px] border-b border-white pb-2">
+        <div className="flex w-full items-center gap-x-[30px] sm:w-max md:gap-x-[60px]">
+          <div className="w-full border-b border-white pb-2 xs:w-max lg:w-[137px]">
             <input
+              value={inputValue.email}
               onChange={(e) => setInputValue({ email: e.target.value })}
               type="email"
               placeholder="Введите e-mail"
-              className="w-full bg-transparent text-[24px] outline-none placeholder:text-[10px] placeholder:leading-[24px] placeholder:text-white placeholder:opacity-70 md:placeholder:text-base"
+              className="w-full bg-transparent text-sm outline-none placeholder:text-[10px] placeholder:leading-[24px] placeholder:text-white placeholder:opacity-70 md:text-[24px] md:placeholder:text-base"
             />
           </div>
           <Button onclick={subscribe} text="Подписаться" light />
