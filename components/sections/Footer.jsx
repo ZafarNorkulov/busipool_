@@ -18,7 +18,6 @@ const Footer = () => {
   });
 
   const subscribe = () => {
-    console.log(inputValue);
 
     postSubscription(inputValue)
       .then((response) => {
