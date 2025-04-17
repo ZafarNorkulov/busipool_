@@ -23,7 +23,7 @@ import Code from "@/assets/images/social/code.png";
 import Telegram from "@/assets/images/social/telegramgray.png";
 import VK from "@/assets/images/social/vkgray.png";
 import Facebook from "@/assets/images/social/facebookgray.png";
-import Whatsapp from "@/assets/images/social/whatsappgray.png";
+import Whatsapp from "@/assets/images/social/Whatsapp.png";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Scrollbar } from "swiper/modules";
 import "swiper/css";
