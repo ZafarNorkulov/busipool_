@@ -77,6 +77,7 @@ export const sendFeedback = async ({ data }) => {
       body: JSON.stringify(data),
     });
     if (!response.ok) throw new Error("Failed to fetch data");
+    return response;
   } catch (error) {
     return error;
   }

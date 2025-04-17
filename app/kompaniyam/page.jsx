@@ -81,78 +81,82 @@ const CompanyPage = () => {
         <link rel="icon" href="/Fav.png" />
       </Head>
       <section className="mt-[70px] sm:mt-[85px] md:mt-[100px] lg:mt-[130px]">
-        <div className="mx-[9%] max-w-[1430px] px-5 pt-[30px] md:pt-[100px]">
-          <Stats />
-        </div>
-        <div className="mx-auto mb-[30px] mt-[60px] w-fit px-[10px] md:mb-[100px] md:mt-[50px] md:px-[20px]">
-          <BusipoolLogoLarge />
-        </div>
-        <div className="max-container">
-          <div className="mb-[100px] mt-[30px] flex flex-wrap items-center justify-center gap-x-[20px] gap-y-[60px] md:mb-[60px] md:mt-[60px] lg:flex-nowrap xl:mb-[100px] xl:mt-[100px] wide:flex-nowrap">
-            <p className="text-center text-xl font-light tracking-[0.01em] text-primary md:text-lg xl:w-[55%] xl:text-left wide:flex-1 2xl:text-[24px]">
-              Цель нашей краудфандинговой платформы - предоставить вам
-              возможность{" "}
-              <span className="text-xl text-gold md:text-lg 2xl:text-[24px]">
-                увеличить свои инвестиции
-              </span>{" "}
-              через вложения в проекты.
-            </p>
-            <div className="w-full flex-col items-stretch gap-[30px] sm:flex sm:flex-row sm:items-center md:flex-nowrap xl:w-[45%]">
-              <Link href={"/profil/sozdat"} className="w-full lg:w-[50%]">
-                <Button
-                  text="Как это работает"
-                  fullWidth={true}
-                  style={
-                    "sm:mb-0 mb-2 text-sm !px-0 md:border-2 !py-5 xl:text-xl  leading-[24px]"
-                  }
-                />
-              </Link>
-              <Link href={"/profil/sozdat"} className="w-full lg:w-[50%]">
-                <Button
-                  text="Разместить компанию"
-                  style={
-                    "text-sm !py-5 xl:text-xl md:border-2 !px-0  leading-[24px]"
-                  }
-                  primary
-                  fullWidth={true}
-                />
-              </Link>
+        <div className="h-[calc(100vh-40px)] xs:h-[calc(100vh-70px)]">
+          <div className="mx-[9%] max-w-[1430px] px-5 pt-[30px] md:pt-[100px]">
+            <Stats />
+          </div>
+          <div className="mx-auto mb-[30px] mt-[100px] w-fit px-[10px] md:mb-[100px] md:mt-[50px] md:px-[20px]">
+            <BusipoolLogoLarge />
+          </div>
+          <div className="max-container">
+            <div className="mb-[100px] mt-[30px] flex flex-wrap items-center justify-center gap-x-[20px] gap-y-[60px] md:mb-[60px] md:mt-[60px] lg:flex-nowrap xl:mb-[100px] xl:mt-[100px] wide:flex-nowrap">
+              <p className="text-center text-xl font-light tracking-[0.01em] text-primary md:text-lg xl:w-[55%] xl:text-left wide:flex-1 2xl:text-[24px]">
+                Цель нашей краудфандинговой платформы - предоставить вам
+                возможность{" "}
+                <span className="text-xl text-gold md:text-lg 2xl:text-[24px]">
+                  увеличить свои инвестиции
+                </span>{" "}
+                через вложения в проекты.
+              </p>
+              <div className="w-full flex-col items-stretch gap-[30px] sm:flex sm:flex-row sm:items-center md:flex-nowrap xl:w-[45%]">
+                <Link href={"/profil/sozdat"} className="w-full lg:w-[50%]">
+                  <Button
+                    text="Как это работает"
+                    fullWidth={true}
+                    style={
+                      "sm:mb-0 mb-2 text-sm !px-0 md:border-2 !py-5 xl:text-xl  leading-[24px]"
+                    }
+                  />
+                </Link>
+                <Link href={"/profil/sozdat"} className="w-full lg:w-[50%]">
+                  <Button
+                    text="Разместить компанию"
+                    style={
+                      "text-sm !py-5 xl:text-xl md:border-2 !px-0  leading-[24px]"
+                    }
+                    primary
+                    fullWidth={true}
+                  />
+                </Link>
+              </div>
             </div>
           </div>
         </div>
         {/* Who is Busipool suitable for? */}
-        <div className="max-container">
-          <div className="flex h-screen flex-col justify-center">
-            <h2 className="section-title mb-[30px] md:mb-[100px]">
-              Кому подойдет BUSIPOOL?
-            </h2>
+        <div className="mb-[100px] md:mb-[150px]">
+          <div className="max-container">
+            <div className="flex flex-col justify-center">
+              <h2 className="section-title mb-[30px] md:mb-[100px]">
+                Кому подойдет BUSIPOOL?
+              </h2>
 
-            <div className="flex flex-wrap justify-center gap-x-[60px] gap-y-[30px] text-center">
-              {suitables.map((item, index) => (
-                <p
-                  key={index}
-                  className="min-w-[300px] flex-1 text-balance font-light leading-[140%] text-gray-light md:text-[22px] md:leading-[140%]"
-                >
-                  {item.text}
-                </p>
-              ))}
+              <div className="flex flex-wrap justify-center gap-x-[30px] gap-y-[30px] text-center 2xl:gap-x-[60px]">
+                {suitables.map((item, index) => (
+                  <p
+                    key={index}
+                    className={` ${index % 2 === 0 ? "w-4/5 sm:w-1/2 lg:w-[45%] xl:w-[24%]" : "w-4/5 sm:w-1/2 lg:w-[45%] xl:w-[26%]"} text-balance font-light leading-[140%] text-gray-light md:text-[22px] md:leading-[140%] xl:flex-1`}
+                  >
+                    {item.text}
+                  </p>
+                ))}
+              </div>
             </div>
           </div>
         </div>
-
+        <div className="max-container">
+          <h2 className="section-title mb-[30px] text-balance md:mb-[100px]">
+            Кто может разместиться на BUSIPOOL?
+          </h2>
+        </div>
         <div className="max-w-[1430px] px-5 md:mx-[9%]">
           <div>
-            <h2 className="section-title mb-[30px] text-balance md:mb-[100px]">
-              Кто может разместиться на BUSIPOOL?
-            </h2>
-
             <div className="mb-[60px] flex flex-col justify-between gap-y-[60px] lg:flex-row">
               <div className="w-full md:w-[633px] lg:!w-[calc(50%-30px)]">
                 <h3 className="mb-[30px] whitespace-nowrap border-b border-gray-dark px-[60px] pb-[20px] text-center text-[20px] font-bold leading-[120%] text-gray-dark md:mb-[60px] md:border-b-2 md:px-[95px] md:pb-[10px] md:text-left md:text-[32px] lg:px-0 xl:px-[95px]">
                   Эшелон A / до 1 млрд.₽
                 </h3>
 
-                <p className="mb-[30px] text-base font-light leading-[140%] text-gray-light md:mb-[60px] md:text-[24px] md:leading-[31px]">
+                <p className="mb-[30px] text-base font-light leading-[140%] text-gray-light md:mb-[60px] md:text-[24px] md:leading-[31px] lg:h-[190px] xl:h-auto">
                   Набор документов аналогично Эшелону C.
                   <br />
                   1) Отчёт аудитора;
@@ -175,7 +179,7 @@ const CompanyPage = () => {
                   Эшелон С / до 60 млн.₽
                 </h3>
 
-                <p className="mb-[30px] text-base font-light leading-[140%] text-gray-light md:mb-[60px] md:text-[24px] md:leading-[31px]">
+                <p className="mb-[30px] text-base font-light leading-[140%] text-gray-light md:mb-[60px] md:text-[24px] md:leading-[31px] lg:h-[190px] xl:h-auto">
                   Документы, согласно требованиям:
                   <br />
                   - Финансовая модель;
@@ -265,7 +269,7 @@ const CompanyPage = () => {
         </div>
 
         {/* Base startups */}
-        <div className="max-container pb-[150px] pt-[60px] md:pt-[100px]">
+        <div className="max-container pt-[60px] md:pt-[100px]">
           {!token && (
             <div className="hidden flex-1 flex-wrap justify-center gap-[30px] md:mb-[150px] md:flex md:flex-nowrap">
               <SignUpLink />
@@ -309,12 +313,12 @@ const CompanyPage = () => {
         </div>
 
         <div className="mx-auto max-w-[1140px] px-5 md:!mx-[20%]">
-          <div className="mx-auto mb-[150px] flex h-screen max-w-[1140px] flex-col justify-center">
+          <div className="mx-auto flex h-screen max-w-[1140px] flex-col justify-center">
             <h2 className="section-title mb-[30px] md:mb-[100px]">
               Сколько это стоит?
             </h2>
 
-            <div className="flex flex-col items-center border-b-2 border-gray-dark pb-[100px]">
+            <div className="flex flex-col items-center border-b-2 border-gray-dark pb-7 lg:pb-[100px]">
               <div className="mb-[30px] flex w-full justify-between">
                 <p className="text-base leading-[120%] text-gray-light md:text-[24px]">
                   Фиксированные затраты на подготовку к сделке
@@ -341,7 +345,7 @@ const CompanyPage = () => {
           </div>
         </div>
 
-        <div className="mx-auto mb-[100px] max-w-[1430px] md:mx-[9%] md:mb-[150px]">
+        <div className="mb-[100px] max-container md:mb-[150px]">
           <h2 className="section-title mb-[30px] md:mb-10 2xl:mb-[100px]">
             Почему BUSIPOOL?
           </h2>
@@ -399,11 +403,13 @@ const CompanyPage = () => {
             </div>
 
             <div className="max-container">
-              <Button
-                text="Оставить заявку, чтобы получить информацию об акционировании"
-                onclick={() => setIsOpen(true)}
-                style={"!py-5 md:text-xl leading-[24px] text-base"}
-              />
+              <div className="flex justify-center">
+                <Button
+                  text="Оставить заявку, чтобы получить информацию об акционировании"
+                  onclick={() => setIsOpen(true)}
+                  style={"!py-5 md:text-xl leading-[24px] text-base"}
+                />
+              </div>
             </div>
           </div>
         </div>

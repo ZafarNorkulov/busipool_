@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState,useRef } from "react";
 import { sendFeedback } from "../utils/request";
+import { toast, ToastContainer } from "react-toastify";
 
 export default function Feedback({ isOpen, setIsOpen }) {
   const [data, setData] = useState({
@@ -10,6 +11,8 @@ export default function Feedback({ isOpen, setIsOpen }) {
     email: "",
     comment: "",
   });
+  const modalRef = useRef(null);
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,12 +22,15 @@ export default function Feedback({ isOpen, setIsOpen }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Отправка данных на сервер
+    console.log(data);
     sendFeedback({ data })
       .then((response) => {
-        console.log(response);
+        if (response.ok) {
+          toast.success("Ваша заявка успешно отправлена!");
+        }
       })
       .catch((error) => {
-        console.log(error);
+        toast.error(error);
       })
       .finally(() => {
         setData({
@@ -39,9 +45,14 @@ export default function Feedback({ isOpen, setIsOpen }) {
 
   return (
     <div>
+      <ToastContainer />
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
-          <div className="relative w-full max-w-xs rounded-lg bg-white p-6 shadow-lg sm:max-w-md md:max-w-lg">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4"  onClick={(e) => {
+          if (modalRef.current && !modalRef.current.contains(e.target)) {
+            setIsOpen(false);
+          }
+        }}>
+          <div  ref={modalRef} className="relative w-full max-w-xs rounded-lg bg-white p-6 shadow-lg sm:max-w-md md:max-w-lg">
             <button
               onClick={() => setIsOpen(false)}
               className="absolute right-4 top-4 text-gray-500 hover:text-gray-700"
