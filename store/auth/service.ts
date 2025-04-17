@@ -58,7 +58,7 @@ export const _signOut = async () => {
   localStorage.removeItem("receiver");
   localStorage.removeItem("refresh_token");
   localStorage.removeItem("role");
-  window.location.pathname = "/sign-in";
+  window.location.pathname = "/voyti";
 };
 
 export const refreshToken = async () => {
@@ -78,7 +78,7 @@ export const refreshToken = async () => {
       }
     }
   } catch (error) {
-    window.location.href = "/sign-in";
+    window.location.href = "/voyti";
   }
 };
 

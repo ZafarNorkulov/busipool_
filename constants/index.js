@@ -14,14 +14,14 @@ import shutdown from "@/assets/images/svg/profile-menu/shutdown.svg";
 
 export const navLinks = [
   { href: "/", label: "Главная" },
-  { href: "/investor", label: "Инвестору" },
-  { href: "/company", label: "Компаниям" },
-  { href: "/become-partner", label: "Стать партнером" },
-  { href: "/about-us", label: "Видение" },
-  { href: "/about-us/partners", label: "Партнеры" },
-  { href: "/about-us/contacts", label: "Контакты" },
-  { href: "/about-us/faq", label: "Q&A" },
-  { href: "/about-us/blog", label: "Блог" },
+  { href: "/investoru", label: "Инвестору" },
+  { href: "/kompaniyam", label: "Компаниям" },
+  { href: "/stat-partnerom", label: "Стать партнером" },
+  { href: "/o-nas", label: "Видение" },
+  { href: "/o-nas/partneri", label: "Партнеры" },
+  { href: "/o-nas/kontakty", label: "Контакты" },
+  { href: "/o-nas/faq", label: "Q&A" },
+  { href: "/o-nas/blog", label: "Блог" },
 ];
 
 export const footerLinks = [
@@ -29,15 +29,15 @@ export const footerLinks = [
     title: "О платформе",
     links: [
       {
-        href: "/investor",
+        href: "/investoru",
         label: "Инвестору",
       },
       {
-        href: "/company",
+        href: "/kompaniyam",
         label: "Компаниям",
       },
       {
-        href: "/become-partner",
+        href: "/stat-partnerom",
         label: "Стать партнером",
       },
     ],
@@ -63,11 +63,11 @@ export const footerLinks = [
     title: "Контакты",
     links: [
       {
-        href: "/about-us",
+        href: "/o-nas",
         label: "О нас",
       },
       {
-        href: "/about-us/blog",
+        href: "/o-nas/blog",
         label: "Блог",
       },
       {
@@ -80,15 +80,15 @@ export const footerLinks = [
     title: "остались Вопросы?",
     links: [
       {
-        href: "/about-us/faq",
+        href: "/o-nas/faq",
         label: "Как это работает",
       },
       {
-        href: "/about-us/faq",
+        href: "/o-nas/faq",
         label: "Что такое краудфандинг?",
       },
       {
-        href: "/about-us/faq",
+        href: "/o-nas/faq",
         label: "Безопасность",
       },
     ],

@@ -25,7 +25,7 @@ const CommentQuestion = ({ questions, received }) => {
             прибыль, спасибо что делаете этот мир лучше.
           </p>
           <Link
-            href="/profile/comments"
+            href="/profil/kommentarii"
             className="ml-auto w-[150px] rounded-[5px] bg-primary py-[21px] text-center text-xs font-light leading-[110%] text-white sm:w-[125px] sm:py-[8px]"
           >
             Ответить

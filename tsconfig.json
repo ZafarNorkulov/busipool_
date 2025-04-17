@@ -27,7 +27,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx",
-    "app/api/projects/project.js"
-, "app/sign-in/page.jsx", "hooks/useWindowSize.js", "app/profile/comments/page.jsx"  ],
+    "app/api/proyekti/project.js"
+, "app/voyti/page.jsx", "hooks/useWindowSize.js", "app/profil/comments/page.jsx"  ],
   "exclude": ["node_modules"]
 }

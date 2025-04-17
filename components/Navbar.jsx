@@ -53,12 +53,12 @@ const Navbar = () => {
         {/* Desktop Links */}
         <div className="relative">
           <ul className="hidden flex-wrap items-center gap-x-5 text-gray-dark lg:flex wide:gap-x-[60px]">
-            <NavLink href="/">Главная</NavLink>
-            <NavLink href="/investor">Инвестору</NavLink>
-            <NavLink href="/company">Компаниям</NavLink>
-            <NavLink href="/become-partner">Стать партнером</NavLink>
+            <NavLink href="">Главная</NavLink>
+            <NavLink href="investoru">Инвестору</NavLink>
+            <NavLink href="kompaniyam">Компаниям</NavLink>
+            <NavLink href="stat-partnerom">Стать партнером</NavLink>
             <li
-              className={`relative flex cursor-pointer items-center text-sm font-bold uppercase !leading-5 hover:text-primary xl:text-base ${path.includes("/about-us") && "text-primary"}`}
+              className={`relative flex cursor-pointer items-center text-sm font-bold uppercase !leading-5 hover:text-primary xl:text-base ${path.includes("/o-nas") && "text-primary"}`}
               onClick={() => setExtraLinksMenu((prev) => !prev)}
             >
               О нас
@@ -68,19 +68,19 @@ const Navbar = () => {
           <div
             className={`${extraLinksMenu ? "scale-100" : "scale-y-0"} absolute right-0 top-full z-10 flex origin-top flex-col border bg-headerColor px-[30px] py-[10px] transition`}
           >
-            <Link className="drop-menu-link" href="/about-us/">
+            <Link className="drop-menu-link" href="/o-nas/">
               Видение
             </Link>
-            <Link className="drop-menu-link" href="/about-us/partners">
+            <Link className="drop-menu-link" href="/o-nas/partneri">
               Партнеры
             </Link>
-            <Link className="drop-menu-link" href="/about-us/contacts">
+            <Link className="drop-menu-link" href="/o-nas/kontakty">
               Контакты
             </Link>
-            <Link className="drop-menu-link" href="/about-us/faq">
+            <Link className="drop-menu-link" href="/o-nas/faq">
               Q&A
             </Link>
-            <Link className="drop-menu-link" href="/about-us/blog">
+            <Link className="drop-menu-link" href="/o-nas/blog">
               Блог
             </Link>
           </div>
@@ -119,13 +119,13 @@ const Navbar = () => {
           <div className="hidden gap-x-[30px] xl:flex">
             <Button
               text="Создать проект"
-              onclick={() => router.push(`/sign-in`)}
+              onclick={() => router.push(`/voyti`)}
             />
 
             <Button
               text="Войти"
               primary
-              onclick={() => router.push(`/sign-in`)}
+              onclick={() => router.push(`/voyti`)}
             />
           </div>
         )}
@@ -175,12 +175,12 @@ const Navbar = () => {
             <Button
               text="Войти"
               primary
-              onclick={() => router.push(`/sign-in`)}
+              onclick={() => router.push(`/voyti`)}
               style="!py-5 text-sm"
             />
             <Button
               text="Зарегистрироваться"
-              onclick={() => router.push(`/sign-in`)}
+              onclick={() => router.push(`/voyti`)}
               style="!py-5 text-sm"
             />
           </div>
@@ -189,7 +189,7 @@ const Navbar = () => {
         {auth.isAuthenticated && (
           <>
             <div
-              className={`mt-[40px] flex items-center gap-[30px] lg:hidden ${path.includes("/profile") && "px-[20px]"}`}
+              className={`mt-[40px] flex items-center gap-[30px] lg:hidden ${path.includes("/profil") && "px-[20px]"}`}
             >
               <Image
                 src={user?.avatar || profileImageDefault}
@@ -206,13 +206,13 @@ const Navbar = () => {
                 </h3>
                 <div className="flex items-center gap-x-4 sm:gap-[30px]">
                   <Link
-                    href="/profile/settings"
+                    href="/profil/nastroyki"
                     className="border-b border-primary py-[2px] text-base font-light leading-[120%] text-primary"
                   >
                     Настройки
                   </Link>
                   <Link
-                    href="/profile"
+                    href="/profil"
                     className="border-b border-gray-dark py-[2px] text-base font-light leading-[120%] text-gray-dark"
                   >
                     Профиль
@@ -221,14 +221,14 @@ const Navbar = () => {
               </div>
             </div>
             {role?.toLowerCase() === "business" &&
-              !path.includes("/profile") && (
-                <Link href={"/profile/create"} className="mt-7 block">
+              !path.includes("/profil") && (
+                <Link href={"/profil/sozdat"} className="mt-7 block">
                   <Button text="Создать проект" fullWidth primary />
                 </Link>
               )}
           </>
         )}
-        {auth.isAuthenticated && path.includes("/profile") && (
+        {auth.isAuthenticated && path.includes("/profil") && (
           <div className="block">
             <ProfileMenu
               large={true}
@@ -239,7 +239,7 @@ const Navbar = () => {
           </div>
         )}
 
-        {width < 1024 && !path.includes("/profile") && (
+        {width < 1024 && !path.includes("/profil") && (
           <ul className="mb-[60px] mt-[30px] text-gray-dark">
             {navLinks.map((item, index) => (
               <li

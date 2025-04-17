@@ -6,7 +6,7 @@ import scrollToTop from "../utils/scrollToTop";
 
 const BlogCard = ({ img, title, text, large, id }) => {
   return (
-    <Link href={`/about-us/blog/${id}`} onClick={scrollToTop}>
+    <Link href={`/o-nas/blog/${id}`} onClick={scrollToTop}>
       <div
         className={`relative flex w-full shrink-0 gap-5 rounded-[3px] p-[15px] shadow md:gap-5 md:rounded-[5px] md:p-5 2xl:gap-10 2xl:p-[30px]`}
       >

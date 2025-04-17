@@ -28,7 +28,7 @@ const ProfileMenu = ({ closeProfileMenu, large }) => {
       className={`${large ? "h-full w-full" : `${isBusiness ? "w-[350px]" : "w-[250px]"} `} profile-menu-desktop select-none border-[#78a371] bg-headerColor py-[30px] lg:rounded-md lg:border-2`}
     >
       {isBusiness && (
-        <Link href="/profile/create">
+        <Link href="/profil/sozdat">
           <button
             onClick={closeProfileMenu}
             className="mx-5 mb-[30px] flex w-[calc(100%-40px)] justify-center rounded-[5px] border-2 border-primary bg-primary px-5 py-[10px] text-center text-[14px] font-bold leading-6 text-white transition active:scale-95"
@@ -48,7 +48,7 @@ const ProfileMenu = ({ closeProfileMenu, large }) => {
             className="block h-[30px] w-[30px]"
           />
           <Link
-            href="/profile"
+            href="/profil"
             className="menu-link"
             onClick={closeProfileMenu}
           >
@@ -68,7 +68,7 @@ const ProfileMenu = ({ closeProfileMenu, large }) => {
             />
 
             <Link
-              href="/profile/statistics"
+              href="/profil/statistiki"
               className="menu-link"
               onClick={closeProfileMenu}
             >
@@ -86,7 +86,7 @@ const ProfileMenu = ({ closeProfileMenu, large }) => {
             className="block h-[30px] w-[30px]"
           />
           <Link
-            href="/profile"
+            href=""
             className="menu-link"
             onClick={closeProfileMenu}
           >
@@ -103,7 +103,7 @@ const ProfileMenu = ({ closeProfileMenu, large }) => {
             className="block h-[30px] w-[30px]"
           />
           <Link
-            href="/profile"
+            href=""
             className="menu-link"
             onClick={closeProfileMenu}
           >
@@ -113,7 +113,7 @@ const ProfileMenu = ({ closeProfileMenu, large }) => {
         <li className="mx-4 ml-[19px] flex cursor-pointer items-center gap-2.5 rounded-lg px-1 py-[5px] hover:bg-lime-200">
           <IoChatboxEllipsesOutline size={28} color="#79A471" />
           <Link
-            href="/profile/chat"
+            href="/profil/chat"
             className="menu-link"
             onClick={closeProfileMenu}
           >
@@ -132,7 +132,7 @@ const ProfileMenu = ({ closeProfileMenu, large }) => {
             className="block h-[30px] w-[30px]"
           />
           <Link
-            href="/profile"
+            href="/profil"
             className="menu-link"
             onClick={closeProfileMenu}
           >
@@ -149,7 +149,7 @@ const ProfileMenu = ({ closeProfileMenu, large }) => {
             className="block h-[30px] w-[30px]"
           />
           <Link
-            href="/profile/settings"
+            href="/profil/nastroyki"
             className="menu-link"
             onClick={closeProfileMenu}
           >

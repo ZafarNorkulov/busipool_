@@ -6,7 +6,7 @@ const InvestorCardLink = ({ name, id }) => {
   return (
     <Link
       key={id}
-      href={`/company/type`}
+      href={`/kompaniyam/tip`}
       onClick={scrollToTop}
       className="flex flex-col justify-between rounded-[10px] p-[20px] shadow md:p-6 lg:p-[30px] xl:h-auto"
     >
