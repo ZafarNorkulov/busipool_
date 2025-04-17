@@ -43,7 +43,12 @@ const FloatMenuButton = () => {
       alt: "Whatsapp",
       background: "#40c251",
     },
-    { src: phone, href: "tel", alt: "Телефон", background: "#fff" },
+    {
+      src: phone,
+      href: "tel:+79265828518",
+      alt: "Телефон",
+      background: "#fff",
+    },
   ];
 
   if (!isClient) return null; // Serverda hech narsa qaytarmaydi

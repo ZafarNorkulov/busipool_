@@ -49,8 +49,8 @@ const InvestorPage = () => {
         />
         <link rel="icon" href="/Fav.png" />
       </Head>
-      <section className="mt-[60px] md:mt-[100px] lg:mt-[130px]">
-        <div className="max-container pt-[30px] md:pt-[100px]">
+      <section className="mt-[60px] md:mt-[100px]">
+        <div className="max-container pt-[30px] md:pt-[80px]">
           <div className="max-w-[1430px] px-5 md:mx-[9%]">
             <Stats />
           </div>
@@ -149,7 +149,7 @@ const InvestorPage = () => {
                         : "border-l md:border-l-2"
                     } relative border-primary pl-[55px] md:pl-[140px] lg:pl-[275px] xl:pl-[372px]`}
                   >
-                    <h3 className="text-lg font-bold leading-[110%] text-grad:mb-[30px] md:text-[26px] ">
+                    <h3 className="text-grad:mb-[30px] text-lg font-bold leading-[110%] md:text-[26px]">
                       {step.title}
                     </h3>
                     <p className="text-base font-light leading-[140%] text-gray-light md:text-xl lg:text-[24px]">

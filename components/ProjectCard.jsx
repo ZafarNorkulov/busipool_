@@ -40,7 +40,7 @@ const ProjectCard = ({ card, isGrid, setIsActive }) => {
       />
       <div className="flex h-[65%] flex-col p-[10px] md:p-5 2xl:p-[30px]">
         <div className="mb-[10px] flex flex-col gap-y-[10px] md:mb-3 md:gap-y-3 2xl:mb-[30px]">
-          <h3 className="h-[30px] text-sm font-bold text-gray-dark md:h-[20px] md:text-base 2xl:text-lg">
+          <h3 className="h-[30px] text-sm font-bold text-gray-dark md:h-[20px] md:text-base lg:h-[40px] 2xl:text-lg">
             {card?.name.slice(0, 40)}
           </h3>
           <p className="h-[64px] text-xs font-light leading-[130%] text-gray-light md:text-sm 2xl:text-base">

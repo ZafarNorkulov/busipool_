@@ -13,19 +13,25 @@ import { toast, ToastContainer } from "react-toastify";
 const Footer = () => {
   const pathName = usePathname();
   const currentYear = new Date().getFullYear();
-  const [inputValue, setInputValue] = useState({
-    email: "",
-  });
 
-  const subscribe = () => {
+  const subscribe = (e) => {
+    e.preventDefault();
 
-    postSubscription(inputValue)
-      .then((response) => {
-        setInputValue({ email: "" });
-        toast.success(response.message);
+    const formData = new FormData(e.target);
+    const email = formData.get("email")?.trim();
+
+    postSubscription({ email })
+      .then(() => {
+        if (email === "") {
+          toast.error("Пожалуйста, введите ваш email");
+        } else {
+          toast.success("Вы успешно подписались на рассылку");
+          e.target.reset();
+        }
       })
       .catch((error) => {
         console.log(error);
+        toast.error("Произошла ошибка при подписке");
       });
   };
   const downloadFile = () => {
@@ -41,8 +47,8 @@ const Footer = () => {
   return (
     <footer className="bg-secondary text-primary">
       <ToastContainer />
-      <div className="flex flex-wrap items-center justify-center gap-x-[60px] bg-primary px-5 py-[30px] text-white md:pb-[60px] md:pt-[60px] lg:px-0">
-        <div className="lg::w-min mb-[30px] w-max">
+      <div className="flex flex-wrap items-center justify-center gap-x-[60px] bg-primary px-5 py-[30px] text-white md:pb-[60px] md:pt-[60px]">
+        <div className="lg:w-min mb-[30px] w-max">
           <h3 className="mb-[12px] w-max text-base font-bold leading-[120%] md:mb-[12px] md:text-[36px]">
             Подпишитесь на нашу рассылку
           </h3>
@@ -52,18 +58,20 @@ const Footer = () => {
             в чужие руки, и мы не будем отправлять на него рекламу.
           </p>
         </div>
-        <div className="flex w-full items-center gap-x-[30px] sm:w-max md:gap-x-[60px]">
+        <form
+          className="flex w-full items-center gap-x-[30px] sm:w-max md:gap-x-[60px]"
+          onSubmit={subscribe}
+        >
           <div className="w-full border-b border-white pb-2 xs:w-max lg:w-[137px]">
             <input
-              value={inputValue.email}
-              onChange={(e) => setInputValue({ email: e.target.value })}
+              name="email"
               type="email"
               placeholder="Введите e-mail"
               className="w-full bg-transparent text-sm outline-none placeholder:text-[10px] placeholder:leading-[24px] placeholder:text-white placeholder:opacity-70 md:text-[24px] md:placeholder:text-base"
             />
           </div>
-          <Button onclick={subscribe} text="Подписаться" light />
-        </div>
+          <Button text="Подписаться" light />
+        </form>
       </div>
       <div className="max-container py-[60px]">
         {/* footer links */}

@@ -1,12 +1,10 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 // import { projects } from "@/constants";
 import { Autoplay, Scrollbar } from "swiper/modules";
 import "@/assets/styles/globals.css";
-
-import { getProjects } from "../app/api/projects/project";
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -15,29 +13,11 @@ import Spinner from "./Spinner";
 import useWindowSize from "@/hooks/useWindowSize";
 import IsLoginModal from "@/components/IsLoginModal";
 
-export default function SwiperSection() {
-  const [projects, setProjects] = useState([]);
-  const [loading, setLoading] = useState(true);
+export default function SwiperSection({ projects, loading }) {
   const [isActiveModal, setIsActiveModal] = useState(false);
 
   const { width } = useWindowSize();
 
-  function fetchProjectsFromAPI() {
-    getProjects({ is_popular: true }) //
-      .then((response) => {
-        setProjects(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }
-
-  useEffect(() => {
-    fetchProjectsFromAPI();
-  }, [loading]);
   return (
     <>
       {loading && <Spinner loading={loading} />}
@@ -56,9 +36,10 @@ export default function SwiperSection() {
           disableOnInteraction: false,
         }}
         breakpoints={{
-          768: {
+          500: {
             slidesPerView: 2,
           },
+
           890: {
             slidesPerView: 2,
           },

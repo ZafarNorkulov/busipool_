@@ -3,12 +3,12 @@ import ServiceCard from "@/components/ServiceCard";
 
 const Services = () => {
   return (
-    <section className="max-container mb-[100px] md:mb-[150px]">
-      <h2 className="section-title mb-[30px] sm:mb-[100px]">
+    <section className="max-container mb-[100px] md:mb-[150px] lg:h-screen">
+      <h2 className="section-title mb-[30px] md:mb-[60px] lg:mb-[100px]">
         Выберите нужный раздел
       </h2>
 
-      <div className="grid grid-cols-12 justify-center gap-[30px]">
+      <div className="grid grid-cols-12 justify-center gap-3 lg:gap-[30px]">
         <div className="col-span-12 flex items-center justify-center lg:col-span-6">
           <ServiceCard
             title="Инвестировать"
