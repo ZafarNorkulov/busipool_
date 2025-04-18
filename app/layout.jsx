@@ -3,14 +3,7 @@ import Head from "next/head";
 import "@/assets/styles/globals.css";
 import ReduxProvider from "@/providers/reduxProvider";
 
-export const metadata = {
-  title: "Busipool",
-  description:
-    "Сбор денег для бизнеса, технологических, творческих и социальных проектов",
-  icons: {
-    icon: "/rocket.svg",
-  },
-};
+
 
 const MainLayout = ({ children }) => {
   return (

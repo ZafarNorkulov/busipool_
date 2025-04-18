@@ -7,24 +7,26 @@ import Services from "@/components/sections/Services";
 import Stats from "../components/sections/Stats";
 import Head from "next/head";
 
+export const metadata = {
+  title: "BUSIPOOL | Инвестиции в будущее",
+  description:
+    "Сбор денег для бизнеса, технологических, творческих и социальных проектов",
+  icons: {
+    icon: "/rocket.svg",
+  },
+};
+
 const HomePage = () => {
-  <Head>
-    <title>{"BUSIPOOL | Инвестиции в будущее"}</title>
-    <meta
-      name="description"
-      content={
-        "Сбор денег для бизнеса, технологических, творческих и социальных проектов"
-      }
-    />
-    <link rel="icon" href="/Fav.png" />
-  </Head>;
   return (
     <>
       <Head>
         <meta
           name="description"
-          content={"Topskill online training platform"}
+          content={
+            "Сбор денег для бизнеса, технологических, творческих и социальных проектов"
+          }
         />
+        <title>BUSIPOOL | Инвестиции в будущее</title>
         <link rel="icon" href="/Fav.png" />
       </Head>
       <div className="mt-[70px] sm:mt-[89px] md:mt-[80px] lg:mt-[85px]">
@@ -36,7 +38,7 @@ const HomePage = () => {
           </div>
         </div>
         <Services />
-          <HomeBlogs />
+        <HomeBlogs />
       </div>
     </>
   );

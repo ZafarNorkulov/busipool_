@@ -40,14 +40,14 @@ const InvestorPage = () => {
   return (
     <>
       <Head>
-        <title>{"BUSIPOOL | Инвестор"}</title>
+        <title>BUSIPOOL | Инвестор</title>
         <meta
           name="description"
           content={
             "Сбор денег для бизнеса, технологических, творческих и социальных проектов"
           }
         />
-        <link rel="icon" href="/Fav.png" />
+        <link rel="icon" href="/rocket.svg" />
       </Head>
       <section className="mt-[60px] md:mt-[100px]">
         <div className="max-container pt-[30px] md:pt-[80px]">
@@ -149,10 +149,10 @@ const InvestorPage = () => {
                         : "border-l md:border-l-2"
                     } relative border-primary pl-[55px] md:pl-[140px] lg:pl-[275px] xl:pl-[372px]`}
                   >
-                    <h3 className="text-gray-dark mb-5 md:mb-[30px] text-lg font-bold leading-[110%] md:text-[26px] lg:text-[32px]">
+                    <h3 className="mb-5 text-lg font-bold leading-[110%] text-gray-dark md:mb-[30px] md:text-[26px] lg:text-[32px]">
                       {step.title}
                     </h3>
-                    <p className="text-base  leading-[140%] text-gray-light md:text-xl lg:text-2xl">
+                    <p className="text-base leading-[140%] text-gray-light md:text-xl lg:text-2xl">
                       {step.text}
                     </p>
 
