@@ -17,6 +17,8 @@ import { toast, ToastContainer } from "react-toastify";
 const SignUpPage = () => {
   const router = useRouter();
   const [roles, setRoles] = useState([]);
+  const [passwordMessage, setPasswordMessage] = useState("");
+  const [confirmPasswordMessage, setConfirmPasswordMessage] = useState("");
   const [user, setUser] = useState({
     first_name: "",
     last_name: "",
@@ -27,8 +29,29 @@ const SignUpPage = () => {
     groups: "",
   });
 
+  const isStrongPassword = (password) => {
+    const hasUpperCase = /[A-Z]/.test(password);
+    const hasLowerCase = /[a-z]/.test(password);
+    const hasNumber = /[0-9]/.test(password);
+    const hasMinLength = password.length >= 8;
+
+    return hasUpperCase && hasLowerCase && hasNumber && hasMinLength;
+  };
+
   const register = (e) => {
     e.preventDefault();
+
+    if (!isStrongPassword(user.password)) {
+      toast.error(
+        "Пароль должен содержать минимум 8 символов, включая заглавные, строчные буквы, цифры и спец. символы",
+      );
+      return;
+    }
+    if (user.password !== user.confirm_password) {
+      toast.error("Пароли не совпадают");
+      return;
+    }
+
     registerUser(user)
       .then((response) => {
         localStorage.setItem("access_token", response?.token?.access);
@@ -43,6 +66,7 @@ const SignUpPage = () => {
   useEffect(() => {
     GetRole().then((response) => setRoles(response));
   }, []);
+  console.log(passwordMessage);
 
   return (
     <>
@@ -63,7 +87,7 @@ const SignUpPage = () => {
         <ToastContainer />
         <div className="max-container hidden py-[27px] md:block">
           <BusipoolLogoSmall />
-        </div>  
+        </div>
         <section className="max-container relative mx-auto mt-[30px] sm:w-[calc(100%-20vw)] md:w-[calc(100%-50vw)] lg:w-[560px]">
           <h1 className="mb-[20px] text-center text-[32px] font-bold leading-[120%] text-gray-dark lg:mb-[60px] lg:text-[48px] extraWide:text-[64px]">
             Регистрация
@@ -108,7 +132,10 @@ const SignUpPage = () => {
               />
             </div>
             <div className="mb-2 lg:mb-[10px]">
-              <label htmlFor="email" className="label-text">
+              <label
+                htmlFor="email"
+                className="label-text focus-visible:border-none focus-visible:outline-none"
+              >
                 E-mail
               </label>
               <input
@@ -140,11 +167,22 @@ const SignUpPage = () => {
                 Пароль
               </label>
               <input
-                onChange={(e) => setUser({ ...user, password: e.target.value })}
+                onChange={(e) => {
+                  const val = e.target.value;
+                  setUser({ ...user, password: val });
+                  if (!isStrongPassword(val)) {
+                    setPasswordMessage("Пароль слабый");
+                  } else {
+                    setPasswordMessage("");
+                  }
+                }}
                 type="password"
                 id="email"
                 className="login-input"
               />
+              {passwordMessage === "Пароль слабый" && (
+                <p className="mt-1 text-sm text-red-600">{passwordMessage}</p>
+              )}
             </div>
 
             <div className="mb-2 lg:mb-[10px]">
@@ -152,13 +190,24 @@ const SignUpPage = () => {
                 Подтверждения пароля
               </label>
               <input
-                onChange={(e) =>
-                  setUser({ ...user, confirm_password: e.target.value })
-                }
+                onChange={(e) => {
+                  const val = e.target.value;
+                  setUser({ ...user, confirm_password: val });
+                  if (user.password !== val) {
+                    setConfirmPasswordMessage("Пароли не совпадают");
+                  } else {
+                    setConfirmPasswordMessage("");
+                  }
+                }}
                 type="password"
                 id="email"
                 className="login-input"
               />
+              {confirmPasswordMessage === "Пароли не совпадают" && (
+                <p className="mt-1 text-sm text-red-600">
+                  {confirmPasswordMessage}
+                </p>
+              )}
             </div>
 
             <Button

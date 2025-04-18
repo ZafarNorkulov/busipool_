@@ -7,6 +7,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useAppSelector } from "@/store";
 import { getProfile } from "../api/profile/profile";
+import Spinner from "@/components/Spinner";
 
 const ProfilePageLayout = ({ children }) => {
   const router = useRouter();
@@ -39,7 +40,7 @@ const ProfilePageLayout = ({ children }) => {
   }, [auth.isAuthenticated]);
 
   if (!auth.isAuthenticated) {
-    return null;
+    return <Spinner/>;
   }
   return (
     <section className="mb-[150px]">
