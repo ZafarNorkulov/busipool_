@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import SignUpLink from "../SignUpLink";
-import SignInLink from "../SignInLink";
+import SignUpLink from "./SignUpLink";
+import SignInLink from "./SignInLink";
 
 const Buttons = () => {
   const [token, setToken] = useState(null);

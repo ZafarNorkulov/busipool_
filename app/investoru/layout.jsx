@@ -1,7 +1,7 @@
-import CompanyType from "@/components/company/type";
+import React from "react";
 
 export const metadata = {
-  title: "BUSIPOOL | Тип Инветоров",
+  title: "BUSIPOOL | Инвестиции в будущее",
   description:
     "Сбор денег для бизнеса, технологических, творческих и социальных проектов",
   icons: {
@@ -9,8 +9,8 @@ export const metadata = {
   },
 };
 
-const CompanyTypePage = () => {
-  return <CompanyType />;
+const Layout = ({ children }) => {
+  return <>{children}</>;
 };
 
-export default CompanyTypePage;
+export default Layout;

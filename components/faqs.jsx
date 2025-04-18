@@ -1,14 +1,12 @@
 "use client";
 import { getFaqs } from "@/app/api/blogs/blogs";
 import React, { useEffect, useState } from "react";
-import Accordion from "../Accordion";
+import Accordion from "./Accordion";
 
 const Faqs = () => {
   const [faqs, setFaqs] = useState([]);
 
-
   useEffect(() => {
-   
     fetchFaqsApi();
   }, []);
 
@@ -19,12 +17,12 @@ const Faqs = () => {
   }
 
   return (
-    <div>
-      <h2 className="section-title mt-[100px] md:mb-[100px]">
+    <div className="relative">
+      <h2 className="section-title mb-[30px] mt-[100px] 2xl:mb-[100px]">
         Финансовые инструменты
       </h2>
 
-      <div className="mx-auto max-w-[1140px]">
+      <div className="mx-auto max-w-[1140px] gap-3 md:mx-[8%]">
         {faqs?.map((faq) => (
           <Accordion
             key={faq.id}

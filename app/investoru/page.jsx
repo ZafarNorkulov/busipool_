@@ -4,18 +4,11 @@ import PopularProjects from "@/components/investors/PopularProjects";
 import InvestorsHero from "@/components/investors/hero";
 import Summary from "@/components/investors/summary";
 import SummarySteps from "@/components/investors/summarySteps";
-import Buttons from "@/components/investors/buttons";
+import AuthButtons from "@/components/authButtons";
 import Investors from "@/components/investors";
-import Faqs from "@/components/investors/faqs";
+import Faqs from "@/components/faqs";
 
-export const metadata = {
-  title: "BUSIPOOL | Инвестиции в будущее",
-  description:
-    "Сбор денег для бизнеса, технологических, творческих и социальных проектов",
-  icons: {
-    icon: "/rocket.svg",
-  },
-};
+
 const InvestorPage = () => {
   return (
     <>
@@ -28,7 +21,7 @@ const InvestorPage = () => {
         <SummarySteps />
 
         <div className="max-container pb-[150px] md:pt-[100px]">
-          <Buttons />
+          <AuthButtons />
           <div className="flex max-w-[1400px] flex-col-reverse gap-[100px] px-5 md:mx-[9%] md:flex-col">
             <Investors />
             <Faqs />
