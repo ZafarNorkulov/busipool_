@@ -1,13 +1,13 @@
 import Image from "next/image";
 import React from "react";
-import X from "@/assets/images/x.png";
+import X from "@/assets/images/svg/x.svg";
 import SignUpLink from "./SignUpLink";
 import SignInLink from "./SignInLink";
 
 const LoginToastify = ({ isActive, setIsActive }) => {
   return (
     <div
-      className={`fixed right-0 top-0 z-50 h-screen max-w-full overflow-hidden bg-white px-5 py-[100px] text-gray-dark 2xl:h-auto 2xl:max-w-[1300px] ${isActive ? "" : "hidden"}`}
+      className={`fixed inset-0 z-50 h-screen max-w-full overflow-hidden bg-white px-5 py-[100px] text-gray-dark 2xl:h-auto ${isActive ? "" : "hidden"}`}
     >
       <Image
         src={X}
@@ -21,7 +21,7 @@ const LoginToastify = ({ isActive, setIsActive }) => {
           <h3 className="text-[22px] font-bold leading-[120%] md:text-[32px] lg:text-[48px] 2xl:text-[64px]">
             Информация о проекте
           </h3>
-          <p className="flex text-lg font-light leading-[120%] md:text-2xl lg:text-[28px] 2xl:text-[32px]">
+          <p className="flex text-center text-lg font-light leading-[120%] md:text-2xl lg:text-[28px] 2xl:text-[32px]">
             Информация о проекте доступна только после регистрации.
             Зарегистрируйтесь на нашей платформе и получите полную информацию о
             проектах.

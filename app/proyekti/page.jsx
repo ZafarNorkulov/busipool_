@@ -217,7 +217,7 @@ const ProjectsPage = () => {
                 Создание собственного проекта на такой платформе - это шаг,
                 который может привести вас к успеху.
               </p>
-              {role.toLowerCase() === "business" && (
+              {role.toLowerCase() === "Компания" && (
                 <Link href={"/profil/sozdat"}>
                   <Button
                     text="Создать проект"

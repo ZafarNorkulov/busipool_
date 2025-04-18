@@ -29,7 +29,7 @@ const MyProjectLayout = ({ children }) => {
     return <Spinner loading={true} />;
   }
 
-  if (role?.toLowerCase() === "business") {
+  if (role?.toLowerCase() === "Компания") {
     return <div>{children}</div>;
   } else {
     router.push("/not-found"); // Redirect if the role isn't "business"

@@ -32,7 +32,7 @@ const ProfilePage = () => {
       </Head>
       <section>
         <div className="max-container mb-[60px] mt-[100px] grid grid-cols-1 gap-[30px] md:mb-[150px] md:grid-cols-2 xl:grid-cols-3">
-          {role?.toLowerCase() === "business" ? (
+          {role?.toLowerCase() === "Компания" ? (
             <UserPageCard
               cardStyles="rounded-[3px] md:rounded-[5px] p-[20px] md:p-[30px]"
               title="Созданные проекты"
@@ -106,7 +106,7 @@ const ProfilePage = () => {
                 Создание собственного проекта на такой платформе - это шаг,
                 который может привести вас к успеху.
               </p>
-              {role.toLowerCase() === "business" && (
+              {role.toLowerCase() === "Компания" && (
                 <Link href={"/profil/sozdat"}>
                   <Button
                     text="Создать проект"
@@ -127,7 +127,7 @@ const ProfilePage = () => {
             />
           </div>
         </div>
-        {role?.toLowerCase() === "business" && (
+        {role?.toLowerCase() === "Компания" && (
           <div className="mt-[100px]">
             <SwiperSection />
           </div>

@@ -180,7 +180,7 @@ const Navbar = () => {
             />
             <Button
               text="Зарегистрироваться"
-              onclick={() => router.push(`/voyti`)}
+              onclick={() => router.push(`/registratsiya`)}
               style="!py-5 text-sm"
             />
           </div>
@@ -220,7 +220,7 @@ const Navbar = () => {
                 </div>
               </div>
             </div>
-            {role?.toLowerCase() === "business" &&
+            {role?.toLowerCase() === "Компания" &&
               !path.includes("/profil") && (
                 <Link href={"/profil/sozdat"} className="mt-7 block">
                   <Button text="Создать проект" fullWidth primary />

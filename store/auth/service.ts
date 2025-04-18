@@ -1,5 +1,5 @@
 import { AxiosRequestConfig } from "axios";
-import { createAsyncThunk, SerializedError } from "@reduxjs/toolkit";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import store from "..";
 import { AUTH_ACTIONS } from ".";
 import instance from "@/config/axios.config";

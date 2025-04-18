@@ -99,7 +99,7 @@ const CompanyPage = () => {
                 через вложения в проекты.
               </p>
               <div className="w-full flex-col items-stretch gap-[30px] sm:flex sm:flex-row sm:items-center md:flex-nowrap xl:w-[45%]">
-                <Link href={"/profil/sozdat"} className="w-full lg:w-[50%]">
+                <a href="#kak-eto-rabotaet" className="w-full lg:w-[50%]">
                   <Button
                     text="Как это работает"
                     fullWidth={true}
@@ -107,7 +107,7 @@ const CompanyPage = () => {
                       "sm:mb-0 mb-2 text-sm !px-0 md:border-2 !py-5 xl:text-xl  leading-[24px]"
                     }
                   />
-                </Link>
+                </a>
                 <Link href={"/profil/sozdat"} className="w-full lg:w-[50%]">
                   <Button
                     text="Разместить компанию"
@@ -201,7 +201,7 @@ const CompanyPage = () => {
           </div>
         </div>
 
-        <div className="max-container mb-[100px] flex flex-col items-center lg:!w-[80%] 2xl:!w-[52%]">
+        <div className="max-container mb-20 flex flex-col items-center lg:!w-[80%] 2xl:!w-[52%]">
           <p className="mb-[30px] text-center text-base font-light leading-[140%] text-gray-light md:mb-[60px] md:text-[24px]">
             <span className="font-bold text-gray-dark md:text-[24px]">
               Размеcтиться на BUSIPOOL может любая компания,
@@ -223,14 +223,17 @@ const CompanyPage = () => {
             <Feedback isOpen={isOpen} setIsOpen={setIsOpen} />
           </div>
         </div>
-
-        <div className="bg-secondary pb-[150px] pt-[60px] md:pt-[100px]">
+        <div className="h-[80px]"   id="kak-eto-rabotaet" />
+        <div
+          className="bg-secondary pb-[150px] pt-[60px] md:pt-[100px]"
+        
+        >
           <h2 className="mb-[30px] text-center text-2xl font-bold leading-normal text-gray-dark md:mb-[100px] md:text-[64px]">
             Как это работает?
           </h2>
 
           <div className="max-container">
-            <p className="mx-auto mb-[15px] max-w-[1440px] text-center text-[15px] font-light text-gray-dark md:mb-[100px] md:text-left md:text-2xl lg:text-[32px]">
+            <p className="mx-auto mb-[15px] max-w-[1440px] text-center text-[15px] font-light !leading-[140%] text-gray-dark md:mb-[100px] md:text-left md:text-2xl lg:text-[32px]">
               Обращаем ваше внимание, что проектный менеджер BUSIPOOL или
               партнёр будет сопровождать вас на всем процессе размещения вашей
               компании и поможет вам его пройти максимально быстро.
@@ -345,7 +348,7 @@ const CompanyPage = () => {
           </div>
         </div>
 
-        <div className="mb-[100px] max-container md:mb-[150px]">
+        <div className="max-container mb-[100px] md:mb-[150px]">
           <h2 className="section-title mb-[30px] md:mb-10 2xl:mb-[100px]">
             Почему BUSIPOOL?
           </h2>

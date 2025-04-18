@@ -22,13 +22,13 @@ const ProfilePageLayout = ({ children }) => {
     getProfile(storedToken).then((res) => {
       setUser(res);
       localStorage.setItem("user", JSON.stringify(res));
-      const roleName = res?.groups[0]?.name || "bussines"; // Default to "bussines" if undefined
+      const roleName = res?.groups[0]?.name || "Компания"; // Default to "bussines" if undefined
       localStorage.setItem("role", roleName);
       setRole(roleName);
     });
 
     if (typeof window !== "undefined") {
-      const storedRole = localStorage.getItem("role") || "bussines"; // Default to "bussines" if not set
+      const storedRole = localStorage.getItem("role") || "Компания"; // Default to "bussines" if not set
       setRole(storedRole);
     }
   }, []);
@@ -69,7 +69,7 @@ const ProfilePageLayout = ({ children }) => {
         </div>
 
         <ul className="hidden flex-col items-center justify-between gap-4 gap-y-0 md:flex lg:flex-row">
-          {role?.toLowerCase() === "business" &&
+          {role?.toLowerCase() === "Компания" &&
             (path.includes("/profil/sozdat") ||
               path.includes("/profil/statistiki")) && (
               <>

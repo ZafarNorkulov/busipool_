@@ -18,7 +18,7 @@ const ProfileMenu = ({ closeProfileMenu, large }) => {
   }, []);
   useEffect(() => {
     if (role) {
-      setIsBusiness(role.toLowerCase() === "business");
+      setIsBusiness(role.toLowerCase() === "Компания");
     }
   }, [role]);
 

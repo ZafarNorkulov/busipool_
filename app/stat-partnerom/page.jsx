@@ -103,7 +103,7 @@ const BecomePartnerPage = () => {
                 </p>
               </div>
               <div className="w-full flex-1 lg:max-w-[750px]">
-                <p className="mb-[30px] text-base font-light leading-[120%] text-gray-light md:text-[24px]">
+                <p className="mb-[30px] text-base font-light leading-[120%] text-gray-light md:text-2xl">
                   BUSIPOOL - это онлайн-платформа для совершения сделок с{" "}
                   <span className="text-base font-bold text-gray-dark md:text-[24px]">
                     внебиржевыми ценными бумагами (акциями и облигациями)
@@ -144,16 +144,16 @@ const BecomePartnerPage = () => {
                 Основные роли в сделках
               </h2>
 
-              <div className="mb-[100px] flex flex-wrap justify-center gap-[20px]">
+              <div className="mb-[100px] grid grid-cols-12 justify-center gap-[20px]">
                 {roles.map((role, index) => (
                   <div
                     key={index}
-                    className="flex flex-1 flex-col items-center"
+                    className="col-span-12 flex flex-1 flex-col items-center xs:col-span-6 lg:col-span-6 xl:col-span-3"
                   >
-                    <h2 className="mb-[30px] w-[230px] border-b-2 border-gray-dark pb-[10px] text-center text-[20px] font-bold leading-[120%] text-gray-dark md:mb-[60px] md:w-full md:pb-[20px] md:text-[32px]">
+                    <h2 className="mb-[30px] w-[230px] border-b-2 border-gray-dark pb-[10px] text-center text-[20px] font-bold leading-[120%] text-gray-dark md:mb-10 md:w-full md:pb-[20px] md:text-[32px] xl:mb-[60px]">
                       {role.title}
                     </h2>
-                    <p className="wrap-balance text-base font-light leading-[140%] text-gray-light md:text-[24px] md:leading-[31px]">
+                    <p className="wrap-balance text-base font-light leading-[140%] text-[#4f4f4f] md:text-lg 2xl:leading-[31px]  2xl:text-2xl">
                       {role.text}
                     </p>
                   </div>

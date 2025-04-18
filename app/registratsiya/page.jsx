@@ -41,14 +41,27 @@ const SignUpPage = () => {
   const register = (e) => {
     e.preventDefault();
 
+    const requiredFields = [
+      user.first_name,
+      user.last_name,
+      user.username,
+      user.email,
+      user.password,
+      user.confirm_password,
+      user.groups
+    ];
+    console.log(requiredFields)
+
+    if (requiredFields.some(field => !field)) {
+      toast.error("Заполните форму");
+      return;
+    }
+
+
     if (!isStrongPassword(user.password)) {
       toast.error(
         "Пароль должен содержать минимум 8 символов, включая заглавные, строчные буквы, цифры и спец. символы",
       );
-      return;
-    }
-    if (user.password !== user.confirm_password) {
-      toast.error("Пароли не совпадают");
       return;
     }
 
@@ -60,7 +73,7 @@ const SignUpPage = () => {
       })
       .catch((error) => {
         console.log(error);
-        toast.error("Заполните форму");
+        toast.error("Никнейм и E-mail должен быть уникальным");
       });
   };
   useEffect(() => {
@@ -145,23 +158,6 @@ const SignUpPage = () => {
                 className="login-input"
               />
             </div>
-            <div className="mb-2 lg:mb-[70px]">
-              <Select
-                className="h-full active:h-full"
-                classNamePrefix="select"
-                name="role"
-                options={roles?.map((role) => ({
-                  value: role?.id,
-                  label: role?.name,
-                }))}
-                onChange={(e) => setUser({ ...user, groups: [e?.value] })}
-                placeholder="Выберите роль"
-              />
-            </div>
-            <p className="text-[14px] font-light leading-[24px] text-gray-light opacity-75 lg:mb-[10px]">
-              На эту почту придет код для подтверждения
-            </p>
-
             <div className="mb-2 lg:mb-[10px]">
               <label htmlFor="password" className="label-text">
                 Пароль
@@ -209,6 +205,24 @@ const SignUpPage = () => {
                 </p>
               )}
             </div>
+            <div className="mb-2 lg:mb-[70px]">
+              <Select
+                className="h-full active:h-full"
+                classNamePrefix="select"
+                name="role"
+                options={roles?.map((role) => ({
+                  value: role?.id,
+                  label: role?.name,
+                }))}
+                onChange={(e) => setUser({ ...user, groups: [e?.value] })}
+                placeholder="Выберите роль"
+              />
+            </div>
+            <p className="text-[14px] font-light leading-[24px] text-gray-light opacity-75 lg:mb-[10px]">
+              На эту почту придет код для подтверждения
+            </p>
+
+           
 
             <Button
               type="submit"

@@ -76,23 +76,23 @@ export const footerLinks = [
       },
     ],
   },
-  {
-    title: "остались Вопросы?",
-    links: [
-      {
-        href: "/o-nas/faq",
-        label: "Как это работает",
-      },
-      {
-        href: "/o-nas/faq",
-        label: "Что такое краудфандинг?",
-      },
-      {
-        href: "/o-nas/faq",
-        label: "Безопасность",
-      },
-    ],
-  },
+  // {
+  //   title: "остались Вопросы?",
+  //   links: [
+  //     {
+  //       href: "/o-nas/faq",
+  //       label: "Как это работает",
+  //     },
+  //     {
+  //       href: "/o-nas/faq",
+  //       label: "Что такое краудфандинг?",
+  //     },
+  //     {
+  //       href: "/o-nas/faq",
+  //       label: "Безопасность",
+  //     },
+  //   ],
+  // },
 ];
 export const socialMedia = [
   { src: Whatsapp, alt: "whatsapp logo", href: "https://wa.me/79265828518" },

@@ -31,11 +31,15 @@ const SignInPage = () => {
   const login = async (values) => {
     values.preventDefault();
     try {
-      await dispatch(SignIn({ data: user }));
-      toast.success("Добро пожаловать на платформу");
-      router.push("/profil");
+      const response = await dispatch(SignIn({ data: user }));
+      console.log(response);
+      if (response.meta.requestStatus === "fulfilled") {
+        toast.success("Добро пожаловать на платформу");
+      } else if (response.meta.requestStatus === "rejected") {
+        toast.error("Неправильный логин или пароль");
+      }
+      // router.push("/profil");
     } catch (err) {
-      toast.error("Неправильный логин или пароль");
       console.error("Login failed", err);
     }
   };

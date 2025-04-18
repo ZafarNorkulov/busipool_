@@ -25,8 +25,8 @@ const AboutUsPageLayout = ({ children }) => {
             <BusipoolLogoLarge />
           </div>
           <div className="max-container">
-            <div className="mb-[100px] mt-[30px] flex w-full flex-wrap justify-center gap-x-[20px] gap-y-[60px] md:mb-[60px] md:mt-[50px] lg:flex-none 2xl:mb-[100px] 2xl:mt-[100px] wide:flex-nowrap">
-              <p className="flex w-max flex-wrap sm:justify-center gap-[3px] sm:text-center text-base font-light tracking-[0.01em] text-primary md:text-lg lg:text-[15px] xl:text-left xl:text-lg wide:flex-1 2xl:text-[24px]">
+            <div className="mb-[100px] mt-[30px] flex w-full flex-wrap justify-center gap-x-[20px] gap-y-[60px] md:mb-[60px] md:mt-[50px] lg:flex-none wide:flex-nowrap 2xl:mb-[100px] 2xl:mt-[100px]">
+              <p className="flex w-max flex-wrap gap-[3px] text-base font-light tracking-[0.01em] text-primary sm:justify-center sm:text-center md:text-lg lg:text-[15px] xl:text-left xl:text-lg wide:flex-1 2xl:text-[24px]">
                 Цель нашей краудфандинговой платформы - предоставить вам
                 возможность{" "}
                 <span className="text-base text-gold md:text-lg lg:text-[15px] xl:text-[18px] 2xl:text-[24px]">
@@ -44,12 +44,12 @@ const AboutUsPageLayout = ({ children }) => {
           <h2 className="section-title mb-[30px] md:mb-[100px]">О нас</h2>
 
           <div className="flex flex-col justify-center gap-x-[20px] gap-y-[30px] md:flex-row">
-            <div className="flex flex-1 flex-col gap-y-5 2xl:gap-y-[30px] xl:gap-y-[76px] wide:max-w-[850px]">
-              <p className="text-xl font-light leading-[120%] tracking-normal text-gray-dark md:!text-[22px] lg:!text-[36px] xl:!text-3xl 2xl:!text-[55px]">
+            <div className="flex flex-1 flex-col gap-y-5 xl:gap-y-[76px] wide:max-w-[850px] 2xl:gap-y-[30px]">
+              <p className="text-xl font-light !leading-[120%] tracking-normal text-[#4f4f4f] md:!text-[22px] lg:!text-[36px] xl:!text-[36px] 2xl:!text-[55px]">
                 BUSIPOOL - онлайн-платформа, где инвестор может купить акции и
                 стать совладельцем компаний малого и среднего бизнеса.
               </p>
-              <p className="text-base font-light leading-[140%] text-black 2xl:text-xl md:leading-[120%] md:text-gray-light xl:text-[32px]">
+              <p className="text-base font-light leading-[140%] text-black md:text-xl md:leading-[120%] md:text-gray-light xl:text-[32px]">
                 Инвестиции начинаются от 15 тыс.₽, а перечень компаний
                 неограничен - от финтех проектов, до производств и
                 сельскохозяйственных компаний. Деньги, полученные от продажи

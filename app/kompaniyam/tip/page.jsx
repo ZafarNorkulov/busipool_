@@ -7,6 +7,7 @@ import Type2 from "@/assets/images/svg/type2.svg";
 import Link from "next/link";
 import { BsArrowDownRight } from "react-icons/bs";
 import { getCompanyTypeCategoryByID } from "@/app/api/company/company";
+import Spinner from "@/components/Spinner";
 
 const CompanyTypePage = () => {
   const [categoryType, setCategoryType] = useState([]);
@@ -76,7 +77,7 @@ const CompanyTypePage = () => {
             </div>
           </div>
         ) : (
-          <div />
+         <Spinner/>
         )}
       </div>
     </>
