@@ -80,8 +80,8 @@ const CompanyPage = () => {
         />
         <link rel="icon" href="/Fav.png" />
       </Head>
-      <section className="mt-[70px] sm:mt-[85px] md:mt-[100px] lg:mt-[130px]">
-        <div className="h-[calc(100vh-40px)] xs:h-[calc(100vh-70px)]">
+      <section className="mt-[70px] sm:mt-[85px] md:mt-[100px] lg:mt-[130px] xl:mt-[100px]">
+        <div className="">
           <div className="mx-[9%] max-w-[1430px] px-5 pt-[30px] md:pt-[100px]">
             <Stats />
           </div>

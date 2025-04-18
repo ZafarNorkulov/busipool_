@@ -59,8 +59,8 @@ const SignInPage = () => {
         />
         <link rel="icon" href="/Fav.png" />
       </Head>
-      <main className="relative flex flex-col gap-y-[60px] overflow-hidden pt-[30px] md:flex-row md:pt-0">
-        <Link href={"/"} className="absolute right-2 top-4">
+      <main className="relative h-screen flex flex-col gap-y-10 overflow-hidden md:flex-row md:pt-0">
+        <Link href={"/"} className="absolute right-2 md:top-4 top-0">
           <IoMdClose size={30} />
         </Link>
         <ToastContainer />
@@ -125,7 +125,7 @@ const SignInPage = () => {
               </div>
 
               <div className="flex items-center justify-between">
-                <p className="text-[10px] font-light leading-[120%] xl:text-[14px]">
+                <p className="text-[10px] font-light leading-[120%] xl:text-sm">
                   У вас еще нет аккаунта?
                 </p>
 

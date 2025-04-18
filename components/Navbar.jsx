@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import x from "@/assets/images/svg/x.svg";
 import burger from "@/assets/images/svg/burger.svg";
-import { navLinks, socialMedia } from "@/constants";
+import { navLinks } from "@/constants";
 import Button from "@/components/Button";
 import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
@@ -16,6 +16,9 @@ import { useAppDispatch, useAppSelector } from "@/store";
 import { getProfile } from "@/app/api/profile/profile";
 import { AUTH_ACTIONS } from "@/store/auth";
 import useWindowSize from "@/hooks/useWindowSize";
+import Whatsapp from "@/assets/images/social/Whatsapp-white.png";
+import VK from "@/assets/images/social/VK.png";
+import Telegram from "@/assets/images/social/Telegram.png";
 
 const Navbar = () => {
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
@@ -40,6 +43,12 @@ const Navbar = () => {
       setRole(localStorage.getItem("role"));
     }
   }, []);
+  const socials = [
+    { src: Whatsapp, alt: "whatsapp logo", href: "https://wa.me/79265828518" },
+    { src: VK, alt: "vk logo", href: "https://vk.com/busipool" },
+    { src: Telegram, alt: "telegram logo", href: "https://t.me/busipool" },
+    // { src: Instagram, alt: "instagram logo", href: "" },
+  ];
 
   return (
     <header className="fixed left-0 right-0 top-0 z-40 w-full bg-headerColor">
@@ -259,7 +268,7 @@ const Navbar = () => {
         {/* Social media icons */}
         {width < 1024 && (
           <ul className="mx-auto flex w-[238px] items-center justify-between">
-            {socialMedia.map((item, index) => (
+            {socials.map((item, index) => (
               <li key={index}>
                 <Link
                   href={item.href}

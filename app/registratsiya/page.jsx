@@ -48,15 +48,14 @@ const SignUpPage = () => {
       user.email,
       user.password,
       user.confirm_password,
-      user.groups
+      user.groups,
     ];
-    console.log(requiredFields)
+    console.log(requiredFields);
 
-    if (requiredFields.some(field => !field)) {
+    if (requiredFields.some((field) => !field)) {
       toast.error("Заполните форму");
       return;
     }
-
 
     if (!isStrongPassword(user.password)) {
       toast.error(
@@ -94,7 +93,7 @@ const SignUpPage = () => {
         <link rel="icon" href="/Fav.png" />
       </Head>
       <main className={`relative`}>
-        <Link href={"/"} className="absolute right-2 top-4">
+        <Link href={"/"} className="absolute right-2 top-0 md:top-4">
           <IoMdClose size={30} />
         </Link>
         <ToastContainer />
@@ -222,8 +221,6 @@ const SignUpPage = () => {
               На эту почту придет код для подтверждения
             </p>
 
-           
-
             <Button
               type="submit"
               text="Продолжить"
@@ -233,7 +230,7 @@ const SignUpPage = () => {
             />
           </form>
         </section>
-        <section className="mt-[30px] flex h-[100vh] w-auto flex-[2] flex-col gap-[20px] bg-secondary p-[24px] md:hidden md:gap-[20px] lg:w-[calc(-560px+100vw)] extraWide:w-[calc(-560px+100vw)] extraWide:gap-[60px] extraWide:p-[60px]">
+        <section className="mt-[30px] flex w-auto flex-[2] flex-col gap-[20px] bg-secondary p-[24px] md:hidden md:gap-[20px] lg:w-[calc(-560px+100vw)] extraWide:w-[calc(-560px+100vw)] extraWide:gap-[60px] extraWide:p-[60px]">
           <Link href="/" className="shrink-0">
             <Image
               src={logo}
@@ -255,7 +252,7 @@ const SignUpPage = () => {
             width={0}
             height={0}
             priority={true}
-            className="h-full w-[250px] object-contain sm:mx-auto md:mx-0 md:w-[600px] lg:h-[75%] xl:w-max extraWide:w-[1140px]"
+            className="h-[220px] w-[250px] object-contain sm:mx-auto md:mx-0 md:w-[600px] lg:h-[75%] xl:w-max extraWide:w-[1140px]"
           />
         </section>
       </main>

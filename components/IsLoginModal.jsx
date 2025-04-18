@@ -7,12 +7,12 @@ import SignInLink from "./SignInLink";
 const LoginToastify = ({ isActive, setIsActive }) => {
   return (
     <div
-      className={`fixed inset-0 z-50 h-screen max-w-full overflow-hidden bg-white px-5 py-[100px] text-gray-dark 2xl:h-auto ${isActive ? "" : "hidden"}`}
+      className={`fixed inset-0 z-50 h-screen flex items-center justify-center max-w-full overflow-hidden bg-white px-5 py-[100px] text-gray-dark 2xl:h-auto ${isActive ? "" : "hidden"}`}
     >
       <Image
         src={X}
         alt="Close"
-        className="absolute right-[7%] top-[5%] h-[30px] w-[30px] cursor-pointer md:h-[45px] md:w-[45px] lg:h-[62px] lg:w-[62px]"
+        className="absolute right-4 top-4 md:right-[7%] md:top-[5%] h-[30px] w-[30px] cursor-pointer md:h-[45px] md:w-[45px] lg:h-[62px] lg:w-[62px]"
         onClick={() => setIsActive(false)}
       />
 

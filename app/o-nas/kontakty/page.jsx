@@ -21,7 +21,7 @@ const ContactsPage = () => {
         <link rel="icon" href="/Fav.png" />
       </Head>
       <div className="mb-[100px] bg-secondary py-[100px] 2xl:mb-[150px]">
-        <h2 className="section-title !text-gray mb-[30px] md:mb-[70px] 2xl:mb-[100px]">
+        <h2 className="section-title !text-gray-light mb-[30px] md:mb-[70px] 2xl:mb-[100px]">
           Контакты
         </h2>
 
@@ -39,18 +39,18 @@ const ContactsPage = () => {
               <div className="mb-5 flex flex-col justify-between gap-x-[70px] gap-y-[20px] sm:flex-row md:mb-10 md:justify-normal md:gap-y-[30px] xl:gap-x-[100px] 2xl:mb-[60px]">
                 <div className="flex flex-col items-start sm:items-center md:items-start ">
                   <div className="flex h-[72px] flex-col items-start gap-y-[10px] sm:items-center md:h-20 md:items-start 2xl:h-[100px] 2xl:gap-y-[30px]">
-                    <h3 className="text-gray font-bold leading-[110%] md:text-2xl 2xl:text-[32px]">
+                    <h3 className="text-gray-light font-bold leading-[110%] md:text-2xl 2xl:text-[32px]">
                       Наш адрес
                     </h3>
-                    <p className="text-gray max-w-[300px] font-light leading-[140%] md:text-base 2xl:text-[24px]">
+                    <p className="text-gray-light max-w-[300px] font-light leading-[140%] md:text-base 2xl:text-[24px]">
                       г. Москва Долгопрудненское ш., д. 3
                     </p>
                   </div>
                   <div className="flex h-[72px] flex-col items-start gap-y-[10px] sm:items-center md:h-[120px] lg:h-[100px] 2xl:h-[130px] md:items-start 2xl:gap-y-[30px]">
-                    <h3 className="text-gray font-bold leading-[110%] md:text-2xl 2xl:text-[32px]">
+                    <h3 className="text-gray-light font-bold leading-[110%] md:text-2xl 2xl:text-[32px]">
                       Время работы
                     </h3>
-                    <p className="text-gray max-w-[300px] font-light leading-[140%] md:text-base 2xl:text-[24px]">
+                    <p className="text-gray-light max-w-[300px] font-light leading-[140%] md:text-base 2xl:text-[24px]">
                       Пн-Чт 9:00 - 20:00 / Пт 9:00 - 17:00
                       <br />
                       Сб-Вс, праздничные дни – Выходные
@@ -60,23 +60,23 @@ const ContactsPage = () => {
 
                 <div className="flex flex-col items-start sm:items-center md:items-start ">
                   <div className="flex h-[72px] flex-col items-start gap-y-[10px] sm:items-center md:h-20 md:items-start 2xl:h-[100px] 2xl:gap-y-[30px]">
-                    <h3 className="text-gray font-bold leading-[110%] md:text-2xl 2xl:text-[32px]">
+                    <h3 className="text-gray-light font-bold leading-[110%] md:text-2xl 2xl:text-[32px]">
                       Телефон
                     </h3>
                     <a
                       href="tel:+7(954)342-43-43"
-                      className="text-gray max-w-[300px] cursor-pointer font-light leading-[140%] md:text-base 2xl:text-[24px]"
+                      className="text-gray-light max-w-[300px] cursor-pointer font-light leading-[140%] md:text-base 2xl:text-[24px]"
                     >
                       +7 (954) 342-43-43
                     </a>
                   </div>
                   <div className="flex h-[72px] flex-col items-start gap-y-[10px] sm:items-center md:h-[120px] lg:h-[100px] md:items-start 2xl:h-[130px] 2xl:gap-y-[30px]">
-                    <h3 className="text-gray font-bold leading-[110%] md:text-2xl 2xl:text-[32px]">
+                    <h3 className="text-gray-light font-bold leading-[110%] md:text-2xl 2xl:text-[32px]">
                       E-mail
                     </h3>
                     <a
                       href="mailto:kraudfand@gmail.com"
-                      className="text-gray max-w-[300px] cursor-pointer font-light leading-[140%] md:text-base 2xl:text-[24px]"
+                      className="text-gray-light max-w-[300px] cursor-pointer font-light leading-[140%] md:text-base 2xl:text-[24px]"
                     >
                       kraudfand@gmail.com
                     </a>
