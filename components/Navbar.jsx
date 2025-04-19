@@ -229,7 +229,7 @@ const Navbar = () => {
                 </div>
               </div>
             </div>
-            {role?.toLowerCase() === "Компания" &&
+            {role === "Компания" &&
               !path.includes("/profil") && (
                 <Link href={"/profil/sozdat"} className="mt-7 block">
                   <Button text="Создать проект" fullWidth primary />

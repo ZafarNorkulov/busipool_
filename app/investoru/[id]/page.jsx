@@ -127,7 +127,7 @@ const BusinessType = () => {
                 <p className="mb-[30px] text-base font-light leading-[110%] text-gray-light md:mb-[60px] md:text-[32px]">
                   Заполните форму и создайте проект на нашем сайте
                 </p>
-                {role.toLowerCase() === "Компания" && (
+                {role === "Компания" && (
                   <Link href={"/profil/sozdat"}>
                     <Button text="Создать проект" primary />
                   </Link>

@@ -69,7 +69,7 @@ const ProfilePageLayout = ({ children }) => {
         </div>
 
         <ul className="hidden flex-col items-center justify-between gap-4 gap-y-0 md:flex lg:flex-row">
-          {role?.toLowerCase() === "Компания" &&
+          {role === "Компания" &&
             (path.includes("/profil/sozdat") ||
               path.includes("/profil/statistiki")) && (
               <>

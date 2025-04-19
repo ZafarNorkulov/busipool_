@@ -1,75 +1,16 @@
-"use client";
-import Button from "@/components/Button";
-import CommentQuestion from "@/components/CommentQuestions";
-import Head from "next/head";
-import React, { useState } from "react";
-import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
+import ProfileComments from "@/components/profile/comments";
 
+export const metadata = {
+  title: "BUSIPOOL | Комментарии и вопросы",
+  description:
+    "Сбор денег для бизнеса, технологических, творческих и социальных проектов",
+  icons: {
+    icon: "/rocket.svg",
+  },
+};
 const CommentQuestionsPage = () => {
-  const [investors, setInvestors] = useState([
-    {
-      full_name: "Абрамов Филипп",
-      phone: "+7(932)432-54-32",
-      paid: "15 000 ₽",
-    },
-    {
-      full_name: "Абрамов Филипп",
-      phone: "+7(932)432-54-32",
-      paid: "15 000 ₽",
-    },
-    {
-      full_name: "Абрамов Филипп",
-      phone: "+7(932)432-54-32",
-      paid: "15 000 ₽",
-    },
-    {
-      full_name: "Абрамов Филипп",
-      phone: "+7(932)432-54-32",
-      paid: "15 000 ₽",
-    },
-    {
-      full_name: "Абрамов Филипп",
-      phone: "+7(932)432-54-32",
-      paid: "15 000 ₽",
-    },
-    {
-      full_name: "Абрамов Филипп",
-      phone: "+7(932)432-54-32",
-      paid: "15 000 ₽",
-    },
-    {
-      full_name: "Абрамов Филипп",
-      phone: "+7(932)432-54-32",
-      paid: "15 000 ₽",
-    },
-    {
-      full_name: "Абрамов Филипп",
-      phone: "+7(932)432-54-32",
-      paid: "15 000 ₽",
-    },
-    {
-      full_name: "Абрамов Филипп",
-      phone: "+7(932)432-54-32",
-      paid: "15 000 ₽",
-    },
-    {
-      full_name: "Абрамов Филипп",
-      phone: "+7(932)432-54-32",
-      paid: "15 000 ₽",
-    },
-  ]);
   return (
     <>
-      <Head>
-        <title>{"BUSIPOOL | Комментарии и вопросы"}</title>
-        <meta
-          name="description"
-          content={
-            "Сбор денег для бизнеса, технологических, творческих и социальных проектов"
-          }
-        />
-        <link rel="icon" href="/Fav.png" />
-      </Head>
       <div>
         <div className="max-container">
           <div className="flex flex-col items-center gap-y-[10px]">
@@ -85,38 +26,7 @@ const CommentQuestionsPage = () => {
               Здесь хранятся вопросы
             </p>
           </div>
-          <Tabs className={"mt-[100px]"}>
-            <TabList
-              className={
-                "mx-auto flex w-max gap-x-[30px] text-lg font-bold text-gray-dark"
-              }
-            >
-              <Tab className={"cursor-pointer opacity-60"}>Требуется ответ</Tab>
-              <Tab className={"cursor-pointer opacity-60"}>Ответ получен</Tab>
-            </TabList>
-            <div className="my-[60px] md:mx-[20px] lg:mx-[144px]">
-              <TabPanel>
-                <CommentQuestion questions={investors} />
-                <div className="mt-[30px] flex w-full justify-center md:mt-[60px]">
-                  <Button
-                    text={"Показать еще"}
-                    primary
-                    style={"sm:w-[415px] w-[300px] text-sm !py-5"}
-                  />
-                </div>
-              </TabPanel>
-              <TabPanel>
-                <CommentQuestion questions={investors} received={true} />
-                <div className="mt-[30px] flex w-full justify-center md:mt-[60px]">
-                  <Button
-                    text={"Показать еще"}
-                    primary
-                    style={"sm:w-[415px] w-[300px] text-sm !py-5"}
-                  />
-                </div>
-              </TabPanel>
-            </div>
-          </Tabs>
+          <ProfileComments />
         </div>
       </div>
     </>

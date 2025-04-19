@@ -3,7 +3,6 @@ import Head from "next/head";
 import React, { useEffect, useState } from "react";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import HalfCircleProgressBar from "@/components/HalfCircleProgressBar";
-import CommentQuestions from "@/components/CommentQuestions";
 import CommentQuestion from "@/components/CommentQuestions";
 import { getStatistics } from "@/app/api/profile/profile";
 
@@ -241,7 +240,7 @@ const MyProjects = () => {
                           +1
                         </span>
                       </div>
-                      <CommentQuestion questions={investors} />
+                      <CommentQuestion />
                     </div>
                   </div>
                 </div>

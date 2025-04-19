@@ -8,6 +8,7 @@ import Link from "next/link";
 import Head from "next/head";
 import { useState } from "react";
 import Feedback from "@/components/Feedback";
+import PopularProjects from "@/components/popularProjects";
 
 const roles = [
   {
@@ -153,7 +154,7 @@ const BecomePartnerPage = () => {
                     <h2 className="mb-[30px] w-[230px] border-b-2 border-gray-dark pb-[10px] text-center text-[20px] font-bold leading-[120%] text-gray-dark md:mb-10 md:w-full md:pb-[20px] md:text-[32px] xl:mb-[60px]">
                       {role.title}
                     </h2>
-                    <p className="wrap-balance text-base font-light leading-[140%] text-[#4f4f4f] md:text-lg 2xl:leading-[31px]  2xl:text-2xl">
+                    <p className="wrap-balance text-base font-light leading-[140%] text-[#4f4f4f] md:text-lg 2xl:text-2xl 2xl:leading-[31px]">
                       {role.text}
                     </p>
                   </div>
@@ -171,7 +172,7 @@ const BecomePartnerPage = () => {
             </div>
           </div>
           <div className="max-container">
-            <SwiperSection />
+            <PopularProjects />
             <div className="mb-[100px] flex flex-nowrap justify-center gap-[10px] md:gap-[30px]">
               <Link href={"/proyekti"} className="w-[calc(50%-5px)] sm:w-max">
                 <Button

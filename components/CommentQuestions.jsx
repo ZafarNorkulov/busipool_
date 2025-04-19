@@ -1,17 +1,68 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React from "react";
+import React, { useState } from "react";
 
 const CommentQuestion = ({ questions, received }) => {
   const pathName = usePathname();
-
+  const [investors] = useState([
+    {
+      full_name: "Абрамов Филипп",
+      phone: "+7(932)432-54-32",
+      paid: "15 000 ₽",
+    },
+    {
+      full_name: "Абрамов Филипп",
+      phone: "+7(932)432-54-32",
+      paid: "15 000 ₽",
+    },
+    {
+      full_name: "Абрамов Филипп",
+      phone: "+7(932)432-54-32",
+      paid: "15 000 ₽",
+    },
+    {
+      full_name: "Абрамов Филипп",
+      phone: "+7(932)432-54-32",
+      paid: "15 000 ₽",
+    },
+    {
+      full_name: "Абрамов Филипп",
+      phone: "+7(932)432-54-32",
+      paid: "15 000 ₽",
+    },
+    {
+      full_name: "Абрамов Филипп",
+      phone: "+7(932)432-54-32",
+      paid: "15 000 ₽",
+    },
+    {
+      full_name: "Абрамов Филипп",
+      phone: "+7(932)432-54-32",
+      paid: "15 000 ₽",
+    },
+    {
+      full_name: "Абрамов Филипп",
+      phone: "+7(932)432-54-32",
+      paid: "15 000 ₽",
+    },
+    {
+      full_name: "Абрамов Филипп",
+      phone: "+7(932)432-54-32",
+      paid: "15 000 ₽",
+    },
+    {
+      full_name: "Абрамов Филипп",
+      phone: "+7(932)432-54-32",
+      paid: "15 000 ₽",
+    },
+  ]);
   const isCommentPage = pathName.includes("comments");
 
-  if (!questions) return "";
+  // if (!questions) return "";
   return !isCommentPage ? (
-    <div className="flex flex-col gap-y-[30px]">
-      {questions?.slice(0, 2)?.map((item, index) => (
+    <div className="flex flex-col gap-y-[30px] w-max">
+      {investors?.slice(0, 2)?.map((item, index) => (
         <div
           className="flex max-w-[415px] flex-col text-base font-bold leading-[120%] text-gray-dark"
           key={index}
@@ -35,7 +86,7 @@ const CommentQuestion = ({ questions, received }) => {
     </div>
   ) : (
     <div className="flex flex-col gap-y-[30px]">
-      {questions?.slice(0, 4)?.map((item, index) => (
+      {investors?.slice(0, 4)?.map((item, index) => (
         <div
           className="flex-col text-base font-bold leading-[120%] text-gray-dark"
           key={index}

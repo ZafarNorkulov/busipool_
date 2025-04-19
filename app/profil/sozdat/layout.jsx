@@ -27,7 +27,7 @@ const CreateLayout = ({ children }) => {
   if (loading) {
     return <Spinner loading={true} />;
   }
-  if (role?.toLowerCase() === "Компания") {
+  if (role === "Компания") {
     return <div>{children}</div>;
   } else {
     router.push("/profil"); // Redirect if the role isn't "business"
