@@ -29,7 +29,10 @@ const CompanyPage = () => {
       <div className="max-container pt-[60px] md:pt-[100px]">
         <AuthButtons />
         <CompanyInvestors />
-        <Faqs />
+
+      
+            <Faqs title/>
+      
       </div>
       <PricingInfo />
       <WhyBusipool />

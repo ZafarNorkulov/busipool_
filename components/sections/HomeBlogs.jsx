@@ -24,7 +24,7 @@ const HomeBlogs = () => {
   return (
     <section className="mb-[100px] max-w-[1430px] px-5 md:mx-[9.5%] md:mb-[150px] 2xl:mx-auto">
       <h2 className="section-title mb-[30px] md:mb-[100px]">
-        <Link href="/o-nas/blog" className="hover:underline">
+        <Link href="/videniy/blog" className="hover:underline">
           Блог
         </Link>
       </h2>

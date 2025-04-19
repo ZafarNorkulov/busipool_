@@ -1,8 +1,16 @@
-"use client";
 import diagram from "@/assets/images/diagram.jpg";
 import Image from "next/image";
-import Head from "next/head";
-import useWindowSize from "@/hooks/useWindowSize";
+
+
+
+export const metadata = {
+  title: "BUSIPOOL | О нас",
+  description:
+    "Сбор денег для бизнеса, технологических, творческих и социальных проектов",
+  icons: {
+    icon: "/rocket.svg",
+  },
+};
 
 const DatePoint = ({ date }) => {
   return (
@@ -16,19 +24,9 @@ const DatePoint = ({ date }) => {
 };
 
 const AboutUsPage = () => {
-  const { width } = useWindowSize();
   return (
     <>
-      <Head>
-        <title>{"BUSIPOOL | О нас"}</title>
-        <meta
-          name="description"
-          content={
-            "Сбор денег для бизнеса, технологических, творческих и социальных проектов"
-          }
-        />
-        <link rel="icon" href="/Fav.png" />
-      </Head>
+      
       <section>
         <div className="max-container mb-[100px] mt-[100px] md:mb-[150px] md:mt-[150px]">
           <h2 className="section-title mb-[30px] md:mb-[100px]">
@@ -78,17 +76,17 @@ const AboutUsPage = () => {
 
             <div className="flex justify-between gap-5 sm:w-[70%] sm:gap-[20px] md:gap-[40px] lg:gap-[70px]">
               <p
-                className={`text-xs font-light leading-[120%] text-gray-light md:text-[20px] lg:break-all lg:text-[24px] xl:break-normal 2xl:text-[32px] ${width < 640 && "max-w-[80px]"}`}
+                className={`text-xs font-light leading-[120%] text-gray-light md:text-[20px] lg:break-all lg:text-[24px] xl:break-normal 2xl:text-[32px] max-w-[80px] sm:max-w-full`}
               >
                 Тестирование платформы BUSIPOOL
               </p>
               <p
-                className={`text-xs font-light leading-[120%] text-gray-light md:text-[20px] lg:break-all lg:text-[24px] xl:break-normal 2xl:text-[32px] ${width < 640 && "max-w-[80px]"}`}
+                className={`text-xs font-light leading-[120%] text-gray-light md:text-[20px] lg:break-all lg:text-[24px] xl:break-normal 2xl:text-[32px] max-w-[80px] sm:max-w-full`}
               >
                 Доработка бизнес-процессов
               </p>
               <p
-                className={`text-xs ${width < 640 && "max-w-[80px]"} break-words font-light leading-[120%] text-gray-light md:text-[20px] lg:break-all lg:text-[24px] xl:break-normal 2xl:text-[32px]`}
+                className={`text-xs max-w-[80px] sm:max-w-full break-words font-light leading-[120%] text-gray-light md:text-[20px] lg:break-all lg:text-[24px] xl:break-normal 2xl:text-[32px]`}
               >
                 Масштабирование числа кейсов, отработка массового числа сделок
               </p>

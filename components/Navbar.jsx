@@ -67,7 +67,7 @@ const Navbar = () => {
             <NavLink href="kompaniyam">Компаниям</NavLink>
             <NavLink href="stat-partnerom">Стать партнером</NavLink>
             <li
-              className={`relative flex cursor-pointer items-center text-sm font-bold uppercase !leading-5 hover:text-primary xl:text-base ${path.includes("/o-nas") && "text-primary"}`}
+              className={`relative flex cursor-pointer items-center text-sm font-bold uppercase !leading-5 hover:text-primary xl:text-base ${path.includes("/videniy") && "text-primary"}`}
               onClick={() => setExtraLinksMenu((prev) => !prev)}
             >
               О нас
@@ -77,19 +77,19 @@ const Navbar = () => {
           <div
             className={`${extraLinksMenu ? "scale-100" : "scale-y-0"} absolute right-0 top-full z-10 flex origin-top flex-col border bg-headerColor px-[30px] py-[10px] transition`}
           >
-            <Link className="drop-menu-link" href="/o-nas/">
+            <Link className="drop-menu-link" href="/videniy/">
               Видение
             </Link>
-            <Link className="drop-menu-link" href="/o-nas/partneri">
+            <Link className="drop-menu-link" href="/videniy/partneri">
               Партнеры
             </Link>
-            <Link className="drop-menu-link" href="/o-nas/kontakty">
+            <Link className="drop-menu-link" href="/videniy/kontakty">
               Контакты
             </Link>
-            <Link className="drop-menu-link" href="/o-nas/faq">
+            <Link className="drop-menu-link" href="/videniy/faq">
               Q&A
             </Link>
-            <Link className="drop-menu-link" href="/o-nas/blog">
+            <Link className="drop-menu-link" href="/videniy/blog">
               Блог
             </Link>
           </div>

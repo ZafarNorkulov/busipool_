@@ -17,11 +17,11 @@ export const navLinks = [
   { href: "/investoru", label: "Инвестору" },
   { href: "/kompaniyam", label: "Компаниям" },
   { href: "/stat-partnerom", label: "Стать партнером" },
-  { href: "/o-nas", label: "Видение" },
-  { href: "/o-nas/partneri", label: "Партнеры" },
-  { href: "/o-nas/kontakty", label: "Контакты" },
-  { href: "/o-nas/faq", label: "Q&A" },
-  { href: "/o-nas/blog", label: "Блог" },
+  { href: "/videniy", label: "Видение" },
+  { href: "/videniy/partneri", label: "Партнеры" },
+  { href: "/videniy/kontakty", label: "Контакты" },
+  { href: "/videniy/faq", label: "Q&A" },
+  { href: "/videniy/blog", label: "Блог" },
 ];
 
 export const footerLinks = [
@@ -63,11 +63,11 @@ export const footerLinks = [
     title: "Контакты",
     links: [
       {
-        href: "/o-nas",
+        href: "/videniy",
         label: "О нас",
       },
       {
-        href: "/o-nas/blog",
+        href: "/videniy/blog",
         label: "Блог",
       },
       {
@@ -80,15 +80,15 @@ export const footerLinks = [
   //   title: "остались Вопросы?",
   //   links: [
   //     {
-  //       href: "/o-nas/faq",
+  //       href: "/videniy/faq",
   //       label: "Как это работает",
   //     },
   //     {
-  //       href: "/o-nas/faq",
+  //       href: "/videniy/faq",
   //       label: "Что такое краудфандинг?",
   //     },
   //     {
-  //       href: "/o-nas/faq",
+  //       href: "/videniy/faq",
   //       label: "Безопасность",
   //     },
   //   ],

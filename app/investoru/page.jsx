@@ -1,13 +1,11 @@
 import HomeBlogs from "@/components/sections/HomeBlogs";
-import Head from "next/head";
-import PopularProjects from "@/components/investors/PopularProjects";
 import InvestorsHero from "@/components/investors/hero";
 import Summary from "@/components/investors/summary";
 import SummarySteps from "@/components/investors/summarySteps";
 import AuthButtons from "@/components/authButtons";
 import Investors from "@/components/investors";
 import Faqs from "@/components/faqs";
-
+import PopularProjects from "@/components/popularProjects";
 
 const InvestorPage = () => {
   return (
@@ -24,11 +22,11 @@ const InvestorPage = () => {
           <AuthButtons />
           <div className="flex max-w-[1400px] flex-col-reverse gap-[100px] px-5 md:mx-[9%] md:flex-col">
             <Investors />
-            <Faqs />
+
+            <Faqs title />
           </div>
         </div>
-
-        <PopularProjects />
+          <PopularProjects />
 
         <HomeBlogs />
       </section>

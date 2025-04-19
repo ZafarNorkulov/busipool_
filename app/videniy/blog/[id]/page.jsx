@@ -1,8 +1,7 @@
-import CompanyById from "@/components/company/companyById";
-
+import BlogDetail from "@/components/blog/blogDetail";
 
 export const metadata = {
-  title: "BUSIPOOL | Тип Инветоров",
+  title: "BUSIPOOL | Блог Подробности",
   description:
     "Сбор денег для бизнеса, технологических, творческих и социальных проектов",
   icons: {
@@ -10,12 +9,8 @@ export const metadata = {
   },
 };
 
-const Page = () => {
- 
-
-  return (
-<CompanyById/>
-  );
+const BlogPage = () => {
+  return <BlogDetail />;
 };
 
-export default Page;
+export default BlogPage;

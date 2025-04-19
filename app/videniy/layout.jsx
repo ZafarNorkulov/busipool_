@@ -10,7 +10,7 @@ import HomeBlogs from "@/components/sections/HomeBlogs";
 const AboutUsPageLayout = ({ children }) => {
   const pathName = usePathname();
 
-  const isBlogPage = pathName.includes("/o-nas/blog");
+  const isBlogPage = pathName.includes("/videniy/blog");
 
   return (
     <section className="mt-[70px] sm:mt-[90px] lg:mt-[100px]">
@@ -39,7 +39,7 @@ const AboutUsPageLayout = ({ children }) => {
         </>
       )}
 
-      {pathName == "/o-nas" && (
+      {pathName == "/videniy" && (
         <div className="max-container mb-[100px] md:mb-[150px]">
           <h2 className="section-title mb-[30px] md:mb-[100px]">О нас</h2>
 
@@ -80,7 +80,11 @@ const AboutUsPageLayout = ({ children }) => {
         </div>
       )}
       {children}
-      {!isBlogPage && <HomeBlogs />}
+      {!isBlogPage && (
+        <div className="mt-[100px] md:mt-[150px]">
+          <HomeBlogs />
+        </div>
+      )}
     </section>
   );
 };
