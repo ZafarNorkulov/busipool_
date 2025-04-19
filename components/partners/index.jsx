@@ -1,5 +1,5 @@
 "use client";
-import { getPartnersLogo } from "../../api/partners/partner";
+import { getPartnersLogo } from "@/app/api/partners/partner";
 import { useEffect, useState } from "react";
 
 const PartnersList = () => {
