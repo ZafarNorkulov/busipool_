@@ -1,10 +1,9 @@
 "use client";
-import { useEffect, useState } from "react";
 
 import BusipoolLogoSmall from "@/components/BusipoolLogoSmall";
 import Button from "@/components/Button";
 import { useRouter } from "next/navigation";
-import { GetRole, registerUser } from "../api/auth/auth";
+import { GetRole, registerUser } from "@/app/api/auth";
 import Select from "react-select";
 import { IoMdClose } from "react-icons/io";
 import Link from "next/link";
@@ -12,70 +11,71 @@ import logo from "@/assets/images/logo.png";
 import img1 from "@/assets/images/login-images/img1.png";
 import Image from "next/image";
 import { toast, ToastContainer } from "react-toastify";
+import { useEffect, useState } from "react";
 
 const Register = () => {
-    const router = useRouter();
-    const [roles, setRoles] = useState([]);
-    const [passwordMessage, setPasswordMessage] = useState("");
-    const [confirmPasswordMessage, setConfirmPasswordMessage] = useState("");
-    const [user, setUser] = useState({
-      first_name: "",
-      last_name: "",
-      username: "",
-      email: "",
-      password: "",
-      confirm_password: "",
-      groups: "",
-    });
-  
-    const isStrongPassword = (password) => {
-      const hasUpperCase = /[A-Z]/.test(password);
-      const hasLowerCase = /[a-z]/.test(password);
-      const hasNumber = /[0-9]/.test(password);
-      const hasMinLength = password.length >= 8;
-  
-      return hasUpperCase && hasLowerCase && hasNumber && hasMinLength;
-    };
-  
-    const register = (e) => {
-      e.preventDefault();
-  
-      const requiredFields = [
-        user.first_name,
-        user.last_name,
-        user.username,
-        user.email,
-        user.password,
-        user.confirm_password,
-        user.groups,
-      ];
-  
-      if (requiredFields.some((field) => !field)) {
-        toast.error("Заполните форму");
-        return;
-      }
-  
-      if (!isStrongPassword(user.password)) {
-        toast.error(
-          "Пароль должен содержать минимум 8 символов, включая заглавные, строчные буквы, цифры и спец. символы",
-        );
-        return;
-      }
-  
-      registerUser(user)
-        .then((response) => {
-          localStorage.setItem("access_token", response?.token?.access);
-          localStorage.setItem("refresh_token", response?.token?.refresh);
-          router.push("/registratsiya/podtverdit");
-        })
-        .catch((error) => {
-          console.log(error);
-          toast.error("Никнейм и E-mail должен быть уникальным");
-        });
-    };
-    useEffect(() => {
-      GetRole().then((response) => setRoles(response));
-    }, []);
+  const router = useRouter();
+  const [roles, setRoles] = useState([]);
+  const [passwordMessage, setPasswordMessage] = useState("");
+  const [confirmPasswordMessage, setConfirmPasswordMessage] = useState("");
+  const [user, setUser] = useState({
+    first_name: "",
+    last_name: "",
+    username: "",
+    email: "",
+    password: "",
+    confirm_password: "",
+    groups: "",
+  });
+
+  const isStrongPassword = (password) => {
+    const hasUpperCase = /[A-Z]/.test(password);
+    const hasLowerCase = /[a-z]/.test(password);
+    const hasNumber = /[0-9]/.test(password);
+    const hasMinLength = password.length >= 8;
+
+    return hasUpperCase && hasLowerCase && hasNumber && hasMinLength;
+  };
+
+  const register = (e) => {
+    e.preventDefault();
+
+    const requiredFields = [
+      user.first_name,
+      user.last_name,
+      user.username,
+      user.email,
+      user.password,
+      user.confirm_password,
+      user.groups,
+    ];
+
+    if (requiredFields.some((field) => !field)) {
+      toast.error("Заполните форму");
+      return;
+    }
+
+    if (!isStrongPassword(user.password)) {
+      toast.error(
+        "Пароль должен содержать минимум 8 символов, включая заглавные, строчные буквы, цифры и спец. символы",
+      );
+      return;
+    }
+
+    registerUser(user)
+      .then((response) => {
+        localStorage.setItem("access_token", response?.token?.access);
+        localStorage.setItem("refresh_token", response?.token?.refresh);
+        router.push("/registratsiya/podtverdit");
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error("Никнейм и E-mail должен быть уникальным");
+      });
+  };
+  useEffect(() => {
+    GetRole().then((response) => setRoles(response));
+  }, []);
 
   return (
     <main className={`relative`}>
