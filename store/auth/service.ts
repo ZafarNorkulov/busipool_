@@ -50,17 +50,6 @@ const SignIn = createAsyncThunk<
 
 export default SignIn;
 
-export const _signOut = async () => {
-  store.dispatch(AUTH_ACTIONS.signOut());
-  localStorage.removeItem("access_token");
-  localStorage.removeItem("convo_id");
-  localStorage.removeItem("user");
-  localStorage.removeItem("receiver");
-  localStorage.removeItem("refresh_token");
-  localStorage.removeItem("role");
-  window.location.pathname = "/voyti";
-};
-
 export const refreshToken = async () => {
   try {
     const refresh_token = localStorage.getItem("refresh_token");

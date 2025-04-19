@@ -28,6 +28,6 @@
     "**/*.ts",
     "**/*.tsx",
     "app/api/proyekti/project.js"
-, "app/voyti/page.jsx", "hooks/useWindowSize.js", "app/profil/comments/page.jsx", "app/investoru/layout.jsx"  ],
+, "app/voyti/page.jsx", "hooks/useWindowSize.js", "app/profil/comments/page.jsx", "app/investoru/layout.jsx", "components/profile/settings/mainSettings.jsx"  ],
   "exclude": ["node_modules"]
 }

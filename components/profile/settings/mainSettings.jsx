@@ -1,13 +1,9 @@
 "use client";
-import { useEffect, useState } from "react";
-
+import React, { useEffect, useState } from "react";
 import { getProfile, updateProfile } from "@/app/api/profile/profile";
-
 import profileImageDefault from "@/assets/images/profileImageDefault.png";
-import Head from "next/head";
 
-const ProfileSettingsPage = () => {
-  const [user, setUser] = useState("");
+const MainSettings = () => {
   const [avatar, setAvatar] = useState("");
   const [profile, setProfile] = useState({
     about_me: "",
@@ -22,21 +18,6 @@ const ProfileSettingsPage = () => {
     url_profile: "",
     username: "",
   });
-  const token =
-    typeof window !== "undefined" ? localStorage.getItem("access_token") : null;
-
-  useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem("user"));
-    if (storedUser) {
-      setUser(storedUser);
-    }
-
-    if (token) {
-      getProfile(token)
-        .then((res) => setProfile(res))
-        .catch(console.error);
-    }
-  }, [token]);
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -50,7 +31,6 @@ const ProfileSettingsPage = () => {
 
   const editProfile = async (event) => {
     event.preventDefault();
-    console.log(profile);
     const formData = new FormData();
     for (const key in profile) {
       formData.append(key, profile[key]);
@@ -63,6 +43,17 @@ const ProfileSettingsPage = () => {
       console.log(error);
     }
   };
+
+  const token =
+    typeof window !== "undefined" ? localStorage.getItem("access_token") : null;
+
+  useEffect(() => {
+    if (token) {
+      getProfile(token)
+        .then((res) => setProfile(res))
+        .catch(console.error);
+    }
+  }, [token]);
 
   useEffect(() => {
     const avatarUrl =
@@ -77,7 +68,7 @@ const ProfileSettingsPage = () => {
     };
   }, [profile?.avatar]);
 
-  const mainSettings = (
+  return (
     <form onSubmit={(e) => editProfile(e)} className="mx-auto max-w-[1140px]">
       <div className="mb-[30px] flex flex-wrap gap-x-[20px] gap-y-[30px] md:mb-[60px]">
         <div className="flex flex-[1_1_560px] flex-col">
@@ -224,98 +215,6 @@ const ProfileSettingsPage = () => {
       </div>
     </form>
   );
-  const contactSettings = (
-    <form className="mx-auto max-w-[560px]">
-      <div className="mb-[60px] flex flex-wrap gap-x-[20px] gap-y-[30px]">
-        <div className="flex flex-[1_1_560px] flex-col">
-          <label htmlFor="userSite" className="settings-label">
-            Сайт
-          </label>
-          <input
-            type="text"
-            id="userSite"
-            className="settings-input"
-            placeholder="user123123123"
-          />
-        </div>
-        <div className="flex flex-[1_1_560px] flex-col">
-          <label htmlFor="userVK" className="settings-label">
-            ВКонтакте
-          </label>
-          <input
-            type="text"
-            id="userVK"
-            className="settings-input"
-            placeholder="https://vk.com/"
-          />
-        </div>
-        <div className="flex flex-[1_1_560px] flex-col">
-          <label htmlFor="userTelegram" className="settings-label">
-            Telegram
-          </label>
-          <input
-            type="text"
-            id="userTelegram"
-            className="settings-input"
-            placeholder="https://t.me/"
-          />
-        </div>
-        <button
-          type="submit"
-          className="mt-[10px] flex-[1_1_560px] rounded-[5px] bg-gray-dark py-[20px] text-[14px] font-bold leading-[24px] text-white opacity-40 transition hover:bg-primary hover:text-white hover:opacity-100 md:mt-[30px]"
-        >
-          Сохранить изменения
-        </button>
-      </div>
-    </form>
-  );
-  const profileSettings = {
-    "main-settings": mainSettings,
-    "contact-settings": contactSettings,
-  };
-
-  const [activeSettings, setActiveSettings] = useState("main-settings");
-
-  return (
-    <>
-      <Head>
-        <title>{"BUSIPOOL | Настройки профиля"}</title>
-        <meta
-          name="description"
-          content={
-            "Сбор денег для бизнеса, технологических, творческих и социальных проектов"
-          }
-        />
-        <link rel="icon" href="/Fav.png" />
-      </Head>
-      <section>
-        <div className="max-container mb-[100px] mt-[30px] md:mb-[150px] md:mt-[100px]">
-          <div className="mb-[60px] flex flex-col items-center">
-            <h2 className="mb-[30px] text-[24px] font-bold text-gray-dark md:text-[32px]">
-              Настройки
-            </h2>
-            <ul className="flex gap-[80px]">
-              <li
-                data-form="main-settings"
-                className={`cursor-pointer border-b pb-[5px] text-[14px] font-semibold leading-[24px] ${activeSettings == "main-settings" ? "border-primary text-primary" : "border-transparent text-gray-light"}`}
-                onClick={() => setActiveSettings("main-settings")}
-              >
-                Основное
-              </li>
-              <li
-                className={`cursor-pointer border-b pb-[5px] text-[14px] font-semibold leading-[24px] ${activeSettings == "contact-settings" ? "border-primary text-primary" : "border-transparent text-gray-light"}`}
-                onClick={() => setActiveSettings("contact-settings")}
-              >
-                Контакты
-              </li>
-            </ul>
-          </div>
-
-          {profileSettings[activeSettings]}
-        </div>
-      </section>
-    </>
-  );
 };
 
-export default ProfileSettingsPage;
+export default MainSettings;
