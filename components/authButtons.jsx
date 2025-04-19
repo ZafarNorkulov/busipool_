@@ -16,7 +16,7 @@ const Buttons = () => {
   return token ? (
     ""
   ) : (
-    <div className="my-[30px] hidden flex-1 flex-wrap justify-center gap-[30px] sm:flex md:flex-nowrap">
+    <div className="my-[30px] flex flex-1 flex-wrap justify-center gap-[30px] md:flex-nowrap">
       <SignUpLink />
       <SignInLink />
     </div>
