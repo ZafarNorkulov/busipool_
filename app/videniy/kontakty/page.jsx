@@ -16,7 +16,7 @@ export const metadata = {
 const ContactsPage = () => {
   return (
     <>
-      <div className="mb-[100px] bg-secondary py-[100px] 2xl:mb-[150px]">
+      <div className="mb-[100px] bg-secondary lg:flex flex-col justify-center py-[100px] lg:h-[calc(100vh-50px)] 2xl:mb-[150px]">
         <h2 className="section-title mb-[30px] !text-gray-light md:mb-[70px] 2xl:mb-[100px]">
           Контакты
         </h2>

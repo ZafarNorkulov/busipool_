@@ -2,9 +2,7 @@
 import Link from "next/link";
 import Button from "@/components/Button";
 import { footerLinks, socialMedia } from "@/constants";
-import BusipoolLogoLarge from "@/components/BusipoolLogoLarge";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
 import { postSubscription } from "@/app/api/blogs/blogs";
 import Image from "next/image";
 import Busipool from "@/assets/images/busipool.png";
@@ -48,7 +46,7 @@ const Footer = () => {
     <footer className="bg-secondary text-primary">
       <ToastContainer />
       <div className="flex flex-wrap items-center justify-center gap-x-[60px] bg-primary px-5 py-[30px] text-white md:pb-[60px] md:pt-[60px]">
-        <div className="lg:w-min mb-[30px] w-max">
+        <div className="mb-[30px] w-max lg:w-min">
           <h3 className="mb-[12px] w-max text-base font-bold leading-[120%] md:mb-[12px] md:text-[36px]">
             Подпишитесь на нашу рассылку
           </h3>
@@ -75,10 +73,9 @@ const Footer = () => {
       </div>
       <div className="max-container py-[60px]">
         {/* footer links */}
-        <div className="mb-[60px] grid grid-cols-12 justify-around gap-y-[30px] md:gap-5 lg:gap-[30px]">
-          <div className="sm:block hidden col-span-3"></div>
+        <div className="mb-[60px] grid grid-cols-12 sm:justify-around justify-center gap-y-[30px] md:gap-5 lg:gap-[30px]">
           {footerLinks.map((item, index) => (
-            <div key={index} className="col-span-6 w-max sm:col-span-4">
+            <div key={index} className={`col-span-6 w-max sm:col-span-4`}>
               <h3 className="md:text-md mb-3 max-w-max text-sm font-bold uppercase leading-[20px] text-gray-light md:mb-[40px] lg:text-lg">
                 {item.title}
               </h3>
@@ -114,7 +111,12 @@ const Footer = () => {
         {/* footer social media icons */}
         <div className="mb-[60px] mt-[30px] flex items-center justify-center gap-[20px] sm:mb-[30px] md:justify-end md:gap-[30px]">
           {socialMedia?.map((social, idx) => (
-            <Link href={social.href} key={idx} className="h-[30px] w-[30px]">
+            <Link
+              target="_blank"
+              href={social.href}
+              key={idx}
+              className="h-[30px] w-[30px]"
+            >
               <Image src={social.src} sizes="100%" />
             </Link>
           ))}

@@ -13,8 +13,8 @@ const WhyBusipool = () => {
       </h2>
 
       <div className="flex flex-col items-center">
-        <div className="mb-[60px] flex w-[calc(100%-20px)] max-w-[1430px] flex-col gap-x-[10%] gap-y-[20px] px-5 md:mb-[80px] md:grid md:w-[calc(100%-80px)] md:grid-cols-12">
-          <div className="col-span-12 lg:col-span-6">
+        <div className="mb-[60px] flex w-[calc(100%-20px)] max-w-[1430px] flex-col gap-x-[10%] gap-y-[20px] px-5 md:mb-[80px] md:grid md:w-[calc(100%-80px)] md:grid-cols-10">
+          <div className="col-span-10 lg:col-span-5">
             <h3 className="mb-3 text-center text-[20px] font-bold leading-[110%] text-gray-dark md:text-left md:text-2xl 2xl:mb-[30px] 2xl:text-[32px]">
               Любое число участников сделки онлайн
             </h3>
@@ -25,7 +25,7 @@ const WhyBusipool = () => {
               инвесторы со всей России.
             </p>
           </div>
-          <div className="col-span-12 lg:col-span-6">
+          <div className="col-span-10 lg:col-span-5">
             <h3 className="mb-3 text-center text-[20px] font-bold leading-[110%] text-gray-dark md:text-left md:text-2xl 2xl:mb-[30px] 2xl:text-[32px]">
               Экономия времени компании
             </h3>
@@ -36,7 +36,7 @@ const WhyBusipool = () => {
             </p>
           </div>
 
-          <div className="col-span-12 lg:col-span-6">
+          <div className="col-span-10 lg:col-span-5">
             <h3 className="mb-3 text-center text-[20px] font-bold leading-[110%] text-gray-dark md:text-left md:text-2xl 2xl:mb-[30px] 2xl:text-[32px]">
               Законность и безопасность
             </h3>
@@ -48,7 +48,7 @@ const WhyBusipool = () => {
               39-ФЗ: «О рынке ценных бумаг».
             </p>
           </div>
-          <div className="col-span-12 lg:col-span-6">
+          <div className="col-span-10 lg:col-span-5">
             <h3 className="mb-3 text-center text-[20px] font-bold leading-[110%] text-gray-dark md:text-left md:text-2xl 2xl:mb-[30px] 2xl:text-[32px]">
               Проверка инвесторов
             </h3>

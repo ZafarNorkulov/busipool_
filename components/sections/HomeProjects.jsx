@@ -29,7 +29,7 @@ const HomeProjects = () => {
 
   return (
     <section className="max-container pb-[100px] pt-[100px] md:pb-[150px] md:pt-[150px]">
-      <h2 className="section-title mb-[30px] lg:mb-[60px] 2xl:mb-[100px]">
+      <h2 className="section-title mb-[30px] lg:mb-[40px] 2xl:mb-[100px]">
         Популярные проекты
       </h2>
 

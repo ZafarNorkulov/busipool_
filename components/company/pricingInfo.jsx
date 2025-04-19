@@ -8,7 +8,7 @@ const PricingInfo = () => {
 
   return (
     <div className="mx-auto max-w-[1140px] px-5 md:!mx-[20%]">
-      <div className="mx-auto flex h-screen max-w-[1140px] flex-col justify-center">
+      <div className="mx-auto flex md:h-screen md:my-0 my-[100px] max-w-[1140px] flex-col justify-center">
         <h2 className="section-title mb-[30px] md:mb-[100px]">
           Сколько это стоит?
         </h2>

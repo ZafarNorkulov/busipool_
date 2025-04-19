@@ -86,12 +86,12 @@ const Register = () => {
       <div className="max-container hidden py-[27px] md:block">
         <BusipoolLogoSmall />
       </div>
-      <section className="max-container relative mx-auto mt-[30px] sm:w-[calc(100%-20vw)] md:w-[calc(100%-50vw)] lg:w-[560px]">
-        <h1 className="mb-[20px] text-center text-[32px] font-bold leading-[120%] text-gray-dark lg:mb-[60px] lg:text-[48px] extraWide:text-[64px]">
+      <section className="max-container relative mx-auto lg:h-[calc(100vh-100px] h-[calc(100vh-50px)] sm:w-[calc(100%-20vw)] md:w-[calc(100%-50vw)] lg:w-[560px]">
+        <h1 className="mb-[20px] lg:mt-0 mt-[30px] text-center text-[32px] font-bold leading-[120%] text-gray-dark lg:mb-[60px] lg:text-[48px] extraWide:text-[64px]">
           Регистрация
         </h1>
         <form onSubmit={(e) => register(e)}>
-          <div className="mb-2 lg:mb-[30px]">
+          <div className="mb-5 lg:mb-0 ">
             <label htmlFor="username" className="label-text">
               Имя
             </label>
@@ -103,7 +103,7 @@ const Register = () => {
               required
             />
           </div>
-          <div className="mb-2 lg:mb-[30px]">
+          <div className="mb-5 lg:mb-0 ">
             <label htmlFor="surname" className="label-text">
               Фамилия
             </label>
@@ -114,7 +114,7 @@ const Register = () => {
               className="login-input"
             />
           </div>
-          <div className="mb-2 lg:mb-[30px]">
+          <div className="mb-5 lg:mb-0 ">
             <label htmlFor="username" className="label-text">
               Никнейм
             </label>
@@ -139,6 +139,26 @@ const Register = () => {
               className="login-input"
             />
           </div>
+          <p className="text-[14px] font-light leading-[24px] text-gray-light opacity-75 lg:mb-[10px]">
+            На эту почту придет код для подтверждения
+          </p>
+
+          <div className="mb-5 lg:mb-0 ">
+            <Select
+              className="h-full active:h-full"
+              classNamePrefix="select"
+              name="role"
+              options={roles?.map((role) => ({
+                value: role?.id,
+                label: role?.name,
+              }))}
+              onChange={(e) => setUser({ ...user, groups: [e?.value] })}
+              placeholder="Выберите роль"
+            />
+          </div>
+       
+        
+
           <div className="mb-2 lg:mb-[10px]">
             <label htmlFor="password" className="label-text">
               Пароль
@@ -186,27 +206,11 @@ const Register = () => {
               </p>
             )}
           </div>
-          <div className="mb-2 lg:mb-[70px]">
-            <Select
-              className="h-full active:h-full"
-              classNamePrefix="select"
-              name="role"
-              options={roles?.map((role) => ({
-                value: role?.id,
-                label: role?.name,
-              }))}
-              onChange={(e) => setUser({ ...user, groups: [e?.value] })}
-              placeholder="Выберите роль"
-            />
-          </div>
-          <p className="text-[14px] font-light leading-[24px] text-gray-light opacity-75 lg:mb-[10px]">
-            На эту почту придет код для подтверждения
-          </p>
 
           <Button
             type="submit"
             text="Продолжить"
-            style={"!py-5 my-[30px] text-xs"}
+            style={"!py-5 lg:mt-0 lg:mb-3 my-[30px] text-xs"}
             fullWidth
             primary
           />

@@ -4,8 +4,7 @@ import Button from "../Button";
 import Feedback from "../Feedback";
 
 const WhoCanJoin = () => {
-
- const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div>
@@ -15,37 +14,40 @@ const WhoCanJoin = () => {
         </h2>
       </div>
       <div className="max-w-[1430px] px-5 md:mx-[9%]">
-        <div>
-          <div className="mb-[60px] flex flex-col justify-between gap-y-[60px] lg:flex-row">
-            <div className="w-full md:w-[633px] lg:!w-[calc(50%-30px)]">
+        <div className="mb-[60px] grid grid-cols-8 gap-x-[12%] gap-y-[30px]">
+          <div className="col-span-8 flex flex-col justify-between lg:col-span-4">
+            <div>
               <h3 className="mb-[30px] whitespace-nowrap border-b border-gray-dark px-[60px] pb-[20px] text-center text-[20px] font-bold leading-[120%] text-gray-dark md:mb-[60px] md:border-b-2 md:px-[95px] md:pb-[10px] md:text-left md:text-[32px] lg:px-0 xl:px-[95px]">
                 Эшелон A / до 1 млрд.₽
               </h3>
 
-              <p className="mb-[30px] text-base font-light leading-[140%] text-gray-light md:mb-[60px] md:text-[24px] md:leading-[31px] lg:h-[190px] xl:h-auto">
+              <p className="text-base font-light leading-[140%] text-gray-light md:text-[24px] md:leading-[31px]">
                 Набор документов аналогично Эшелону C.
                 <br />
                 1) Отчёт аудитора;
                 <br />
                 2) Не менее 1 года работы компании.
               </p>
-
-              <h4 className="mb-[10px] text-[20px] font-bold leading-[140%] text-gray-dark md:mb-[30px] md:text-[24px] md:leading-[31px]">
+            </div>
+            <div>
+              <h4 className="mb-[10px] mt-[30px] text-[20px] font-bold leading-[140%] text-gray-dark md:text-[24px] md:leading-[31px] lg:mt-[60px]">
                 Выполнение условия:
               </h4>
-              <p className="mb-[30px] text-base font-light leading-[140%] text-gray-light md:mb-[60px] md:text-[24px] md:leading-[31px]">
+              <p className="mt-[30px] text-base font-light leading-[140%] text-gray-light md:text-[24px] md:leading-[31px]">
                 Завершена регистрация дополнительного выпуска эмиссионных ценных
                 бумаг и данные бумаги размещаются на инвестиционной платформе
                 BUSIPOOL.
               </p>
             </div>
+          </div>
 
-            <div className="w-full md:w-[633px] lg:!w-[calc(50%-30px)]">
+          <div className="col-span-8 flex flex-col justify-between lg:col-span-4">
+            <div>
               <h3 className="mb-[30px] whitespace-nowrap border-b border-gray-dark px-[60px] pb-[20px] text-center text-[20px] font-bold leading-[120%] text-gray-dark md:mb-[60px] md:border-b-2 md:px-[95px] md:pb-[10px] md:text-left md:text-[32px] lg:px-0 xl:px-[95px]">
                 Эшелон С / до 60 млн.₽
               </h3>
 
-              <p className="mb-[30px] text-base font-light leading-[140%] text-gray-light md:mb-[60px] md:text-[24px] md:leading-[31px] lg:h-[190px] xl:h-auto">
+              <p className="text-base font-light leading-[140%] text-gray-light md:text-[24px] md:leading-[31px]">
                 Документы, согласно требованиям:
                 <br />
                 - Финансовая модель;
@@ -53,11 +55,12 @@ const WhoCanJoin = () => {
                 - Инвестиционная презентация;
                 <br />- Устав, акционерное соглашение.
               </p>
-
-              <h4 className="mb-[10px] text-[20px] font-bold leading-[140%] text-gray-dark md:mb-[30px] md:text-[24px] md:leading-[31px]">
+            </div>
+            <div>
+              <h4 className="mb-[10px] mt-[30px] text-[20px] font-bold leading-[140%] text-gray-dark md:text-[24px] md:leading-[31px] lg:mt-[60px]">
                 Выполнение условия:
               </h4>
-              <p className="mb-[30px] text-base font-light leading-[140%] text-gray-light md:mb-[60px] md:text-[24px] md:leading-[31px]">
+              <p className="mt-[30px] text-base font-light leading-[140%] text-gray-light md:text-[24px] md:leading-[31px]">
                 Завершена регистрация дополнительного выпуска эмиссионных ценных
                 бумаг и данные бумаги размещаются на инвестиционной платформе
                 BUSIPOOL.

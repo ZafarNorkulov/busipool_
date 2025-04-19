@@ -28,7 +28,7 @@ const BusipoolAudience = () => {
             {suitables.map((item, index) => (
               <p
                 key={index}
-                className={` ${index % 2 === 0 ? "w-4/5 sm:w-1/2 lg:w-[45%] xl:w-[24%]" : "w-4/5 sm:w-1/2 lg:w-[45%] xl:w-[26%]"} text-balance font-light leading-[140%] text-gray-light md:text-[22px] md:leading-[140%] xl:flex-1`}
+                className={` ${index % 2 === 0 ? "w-4/5 sm:w-1/2 lg:w-[45%] xl:w-[24%]" : "w-4/5 sm:w-1/2 lg:w-[45%] xl:w-[26%]"} text-balance text-base font-light leading-[140%] text-gray-light md:text-xl 2xl:text-[22px] md:leading-[140%] xl:flex-1`}
               >
                 {item.text}
               </p>
