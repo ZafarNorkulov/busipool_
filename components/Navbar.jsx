@@ -141,7 +141,7 @@ const Navbar = () => {
         {/* Profile Menu */}
         {width > 1023 && (
           <div
-            className={`${isProfileMenuOpen ? "block" : "hidden"} fixed -right-5 top-[80px] z-40 transition lg:absolute`}
+            className={`${isProfileMenuOpen ? "lg:block" : "hidden"} fixed -right-5 top-[80px] z-40 transition lg:absolute`}
           >
             <ProfileMenu
               closeProfileMenu={() => {
@@ -173,24 +173,24 @@ const Navbar = () => {
       {/* Mobile navbar menu */}
       <div
         className={`${
-          mobileNavbarMenu ? "block" : "hidden"
-        } fixed bottom-0 left-0 right-0 top-[70px] z-10 w-screen overflow-hidden overflow-y-scroll bg-headerColor px-[20px] pb-[30px] sm:top-[80px]`}
+          mobileNavbarMenu ? "lg:block" : "hidden"
+        } ${width < 1024 && "flex flex-col justify-between"} fixed bottom-0 left-0 right-0 top-[70px] z-10 h-[calc(100vh-70px)] w-screen overflow-hidden overflow-y-scroll bg-headerColor px-[20px] pb-[30px] sm:top-[80px]`}
       >
         {/* Right Side Menu Mobile (Logged Out) */}
         {!auth.isAuthenticated && (
           <div
-            className={`mb-[50px] flex flex-col gap-y-[20px] ${width < 1024 && "mt-9 block"}`}
+            className={`flex flex-col gap-y-[10px] mt-[30px]`}
           >
             <Button
               text="Войти"
               primary
               onclick={() => router.push(`/voyti`)}
-              style="!py-5 text-sm"
+              style="!py-4 text-sm"
             />
             <Button
               text="Зарегистрироваться"
               onclick={() => router.push(`/registratsiya`)}
-              style="!py-5 text-sm"
+              style="!py-4 text-sm"
             />
           </div>
         )}
@@ -229,12 +229,11 @@ const Navbar = () => {
                 </div>
               </div>
             </div>
-            {role === "Компания" &&
-              !path.includes("/profil") && (
-                <Link href={"/profil/sozdat"} className="mt-7 block">
-                  <Button text="Создать проект" fullWidth primary />
-                </Link>
-              )}
+            {role === "Компания" && !path.includes("/profil") && (
+              <Link href={"/profil/sozdat"} className="mt-7 block">
+                <Button text="Создать проект" fullWidth primary />
+              </Link>
+            )}
           </>
         )}
         {auth.isAuthenticated && path.includes("/profil") && (
@@ -252,16 +251,13 @@ const Navbar = () => {
         )}
 
         {width < 1024 && !path.includes("/profil") && (
-          <ul className="flex flex-col gap-y-4 mb-[50px] mt-[30px] text-gray-dark">
+          <ul className="flex flex-col gap-y-3 text-gray-dark">
             {navLinks.map((item, index) => (
               <li
                 key={index}
                 className={`font-bold hover:text-primary focus:text-primary focus-visible:text-primary active:text-primary ${path == item.href && "text-primary"}`}
               >
-                <Link
-                  href={item.href}
-                  className="text-[24px] font-bold "
-                >
+                <Link href={item.href} className="text-[24px] font-bold">
                   {item.label}
                 </Link>
               </li>
