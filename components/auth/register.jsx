@@ -86,7 +86,7 @@ const Register = () => {
       <div className="max-container hidden py-[27px] md:block">
         <BusipoolLogoSmall />
       </div>
-      <section className="max-container relative mx-auto lg:h-[calc(100vh-100px] h-[calc(100vh-50px)] sm:w-[calc(100%-20vw)] md:w-[calc(100%-50vw)] lg:w-[560px]">
+      <section className="max-container relative mx-auto sm:w-[calc(100%-20vw)] md:w-[calc(100%-50vw)] lg:w-[560px]">
         <h1 className="mb-[20px] lg:mt-0 mt-[30px] text-center text-[32px] font-bold leading-[120%] text-gray-dark lg:mb-[60px] lg:text-[48px] extraWide:text-[64px]">
           Регистрация
         </h1>
