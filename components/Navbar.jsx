@@ -231,7 +231,7 @@ const Navbar = () => {
               <Link href={"/profil/sozdat"} className="mt-7 block">
                 <Button
                   text="Создать проект"
-                  className="!py-4"
+                  style="!py-4"
                   fullWidth
                   primary
                 />
