@@ -9,28 +9,28 @@ const Services = () => {
       </h2>
 
       <div className="grid grid-cols-12 justify-center gap-3 lg:gap-[30px]">
-        <div className="col-span-12 flex items-center justify-center lg:col-span-6">
+        <div className="col-span-12 flex items-center justify-center md:col-span-6">
           <ServiceCard
             title="Инвестировать"
             url="/investoru"
             description="Если вы хотите помочь в проведении инвестиционных сделок"
           />
         </div>
-        <div className="col-span-12 flex items-center justify-center lg:col-span-6">
+        <div className="col-span-12 flex items-center justify-center md:col-span-6">
           <ServiceCard
             title="Разместить компанию"
             url="/kompaniyam"
             description="Информация для новых инвесторов о том, как устроен процесс сделок"
           />
         </div>
-        <div className="col-span-12 flex items-center justify-center lg:col-span-6">
+        <div className="col-span-12 flex items-center justify-center md:col-span-6">
           <ServiceCard
             title="Стать партнером"
             url="/stat-partnerom"
             description="Если вы хотели бы помочь в проведении инвестиционных сделок"
           />
         </div>
-        <div className="col-span-12 flex items-center justify-center lg:col-span-6">
+        <div className="col-span-12 flex items-center justify-center md:col-span-6">
           <ServiceCard
             title="Войти в личный кабинет"
             url="/profil"

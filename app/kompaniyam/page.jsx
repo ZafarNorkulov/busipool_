@@ -30,9 +30,7 @@ const CompanyPage = () => {
         <AuthButtons />
         <CompanyInvestors />
 
-      
-            <Faqs title/>
-      
+        <Faqs title />
       </div>
       <PricingInfo />
       <WhyBusipool />

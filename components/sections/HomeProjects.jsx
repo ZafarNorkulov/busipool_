@@ -26,7 +26,6 @@ const HomeProjects = () => {
     fetchProjectsFromAPI();
   }, [loading]);
 
-
   return (
     <section className="max-container pb-[100px] pt-[100px] md:pb-[150px] md:pt-[150px]">
       <h2 className="section-title mb-[30px] lg:mb-[40px] 2xl:mb-[100px]">
@@ -44,7 +43,7 @@ const HomeProjects = () => {
               style={"!py-5 text-sm"}
             />
           </Link>
-          <Link href={"/voyti"} className="w-[calc(50%-5px)] sm:w-max">
+          <Link href={"/registratsiya"} className="w-[calc(50%-5px)] sm:w-max">
             <Button text="Создать свой" fullWidth style={"!py-5 text-sm"} />
           </Link>
         </div>

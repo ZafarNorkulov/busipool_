@@ -10,7 +10,6 @@ import { getCities, getProjectTypes } from "@/utils/request";
 import { getProjectBusinessType } from "@/app/api/projects/project";
 import { useParams } from "next/navigation";
 import Link from "next/link";
-import Head from "next/head";
 import Filters from "@/components/Filters";
 import { useAppSelector } from "@/store";
 import IsLoginModal from "@/components/IsLoginModal";
@@ -94,37 +93,30 @@ const BusinessType = () => {
       }
     }
   }, [businessType, id]);
+
   return (
-    <>
-      <Head>
-        <title>{"BUSIPOOL | Инвестор"}</title>
-        <meta
-          name="description"
-          content={
-            "Сбор денег для бизнеса, технологических, творческих и социальных проектов"
-          }
-        />
-        <link rel="icon" href="/Fav.png" />
-      </Head>
-      <section className="mt-[70px] sm:mt-[90px] md:mt-[95px] lg:mt-[105px]">
-        <div className="max-container pb-[30px] pt-[60px] md:py-[100px]">
+    <section className="mt-[80px] sm:mt-[90px] md:mt-[95px] lg:mt-[80px]">
+      <div
+        className={`flex ${auth?.isAuthenticated && "h-screen lg:h-[calc(100vh-30px)]"} flex-col justify-between`}
+      >
+        <div className="max-container py-[30px] lg:pt-[50px] 2xl:pb-[100px]">
           <h2 className="section-title mb-[20px] !text-left md:mb-[30px]">
             {selectedType}
           </h2>
-          <p className="text-base font-light leading-[130%] text-gray-light md:text-[32px] md:leading-[120%]">
+          <p className="text-base font-light leading-[130%] text-gray-light md:text-xl md:leading-[120%] lg:text-2xl 2xl:text-[32px]">
             Если вы хотите найти инвестиции для масштабирования своего бизнеса,
             разместите информацию о вашем проекте в каталоге, чтобы инвесторы
             могли увидеть его.
           </p>
         </div>
         {auth?.isAuthenticated && (
-          <div className="mb-[60px] bg-secondary px-5 py-[30px] md:py-[60px]">
-            <div className="max-container flex flex-col justify-between xl:flex-row">
+          <div className="mb-[60px] bg-secondary px-5 py-[30px] lg:py-[60px]">
+            <div className="max-container flex flex-col justify-between lg:flex-row">
               <div className="flex-1">
-                <h2 className="mb-[10px] text-[24px] font-bold leading-[120%] text-gray-dark md:mb-[30px] md:text-[64px]">
+                <h2 className="mb-[10px] text-[24px] font-bold leading-[120%] text-gray-dark md:mb-[30px] xl:text-[40px] 2xl:text-[64px]">
                   Хотите попасть в каталог?
                 </h2>
-                <p className="mb-[30px] text-base font-light leading-[110%] text-gray-light md:mb-[60px] md:text-[32px]">
+                <p className="mb-[30px] text-base font-light leading-[110%] text-gray-light lg:mb-[60px] xl:text-[28px] 2xl:text-[32px]">
                   Заполните форму и создайте проект на нашем сайте
                 </p>
                 {role === "Компания" && (
@@ -140,72 +132,70 @@ const BusinessType = () => {
                 width={0}
                 height={0}
                 sizes="100%"
-                className="flex-1 object-contain md:max-w-[650px]"
+                className="flex-1 object-contain py-[60px] sm:py-0 md:max-w-[500px] lg:max-w-[650px]"
               />
             </div>
           </div>
         )}
-        <div className="max-container">
-          <Filters
-            search={search}
-            setSearch={setSearch}
-            activeSearch
-            filters={filters}
-            setFilters={setFilters}
-            cityName={selectedCity?.name || "Регион"}
-            cities={cityRel}
-            setSelectedCity={setSelectedCity}
-          />
-        </div>
-        <div className="max-container">
-          <div className="mb-[100px] md:mb-[150px]">
-            {loading && <Spinner loading={loading} />}
-            {!loading && projects?.results?.length > 0 ? (
-              <div className="mb-[60px] mt-[30px] grid grid-cols-12 gap-[8px] md:mb-[30px] md:mt-[100px] md:gap-[20px]">
-                <IsLoginModal
-                  isActive={isActiveModal}
-                  setIsActive={setIsActiveModal}
-                />
-                {projects.results.map((card, index) => (
-                  <div
-                    className="col-span-6 sm:col-span-4 lg:col-span-3"
+      </div>
+      <div className="max-container">
+        <Filters
+          search={search}
+          setSearch={setSearch}
+          activeSearch
+          filters={filters}
+          setFilters={setFilters}
+          cityName={selectedCity?.name || "Регион"}
+          cities={cityRel}
+          setSelectedCity={setSelectedCity}
+        />
+      </div>
+      <div className="max-container">
+        <div className="mb-[100px] md:mb-[150px]">
+          {loading && <Spinner loading={loading} />}
+          {!loading && projects?.results?.length > 0 ? (
+            <div className="mb-[60px] mt-[30px] grid grid-cols-12 gap-[8px] md:mb-[30px] md:mt-[100px] md:gap-[20px]">
+              <IsLoginModal
+                isActive={isActiveModal}
+                setIsActive={setIsActiveModal}
+              />
+              {projects.results.map((card, index) => (
+                <div
+                  className="col-span-6 sm:col-span-4 lg:col-span-3"
+                  key={index}
+                >
+                  <ProjectCard
                     key={index}
-                  >
-                    <ProjectCard
-                      key={index}
-                      card={card}
-                      isGrid={false}
-                      setIsActive={setIsActiveModal}
-                    />
-                  </div>
-                ))}
-              </div>
-            ) : (
-              !loading && (
-                <div className="flex h-[100px] items-center justify-center">
-                  <p className="text-center text-xl text-gray-dark">
-                    Не найдено
-                  </p>
+                    card={card}
+                    isGrid={false}
+                    setIsActive={setIsActiveModal}
+                  />
                 </div>
-              )
-            )}
-            {projects?.results?.length === 10 && projects.count > 10 ? (
-              <div className="flex items-center justify-center">
-                <Button
-                  text="Загрузить еще"
-                  primary
-                  onclick={() => setNextUrl(projects.next)}
-                />
+              ))}
+            </div>
+          ) : (
+            !loading && (
+              <div className="flex h-[100px] items-center justify-center">
+                <p className="text-center text-xl text-gray-dark">Не найдено</p>
               </div>
-            ) : (
-              ""
-            )}
-          </div>
+            )
+          )}
+          {projects?.results?.length === 10 && projects.count > 10 ? (
+            <div className="flex items-center justify-center">
+              <Button
+                text="Загрузить еще"
+                primary
+                onclick={() => setNextUrl(projects.next)}
+              />
+            </div>
+          ) : (
+            ""
+          )}
         </div>
+      </div>
 
-        <HomeBlogs />
-      </section>
-    </>
+      <HomeBlogs />
+    </section>
   );
 };
 

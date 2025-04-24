@@ -95,7 +95,7 @@ const ProjectCard = ({ card, isGrid, setIsActive }) => {
             }}
             className={`wrap-balance w-full rounded-[5px] border-2 border-gray-dark border-primary bg-primary px-3 py-[10px] text-[12px] font-bold leading-[24px] text-gray-dark text-white transition active:scale-95 xs:py-[10px] sm:text-xs md:py-[10px] md:text-sm md:font-normal`}
           >
-            УЗНАТЬ БОЛЬШЕ
+            Узнать больше
           </button>
         </div>
       </div>
@@ -135,9 +135,9 @@ const ProjectCard = ({ card, isGrid, setIsActive }) => {
                 setIsActive(true);
               }
             }}
-            className={`wrap-balance w-full rounded-[5px] border-2 border-gray-dark border-primary bg-primary px-3 py-[10px] text-[12px] font-bold leading-[24px] text-gray-dark text-white transition active:scale-95 xs:py-[10px] sm:text-xs md:py-[10px] md:text-sm md:font-normal lg:text-[12px]`}
+            className={`wrap-balance w-full rounded-[5px] border-2 border-gray-dark border-primary bg-primary px-3 py-[10px] font-bold text-[12px] leading-[24px] tracking-[1px] text-gray-dark text-white transition active:scale-95 xs:py-[10px] sm:text-xs md:py-[10px] md:font-normal md:text-sm lg:text-[12px]`}
           >
-            УЗНАТЬ БОЛЬШЕ
+            Узнать больше
           </button>
         </div>
       </div>

@@ -82,7 +82,6 @@ const ProjectOverview = ({ data: project }) => {
     }
   };
 
-
   return (
     <div className="max-container mb-[60px] flex flex-col items-baseline gap-[30px] lg:flex-row xl:mb-[150px] xl:gap-[100px]">
       <div className="min-[425px] w-full rounded-xl lg:w-[50%] xl:flex-1">
@@ -90,8 +89,9 @@ const ProjectOverview = ({ data: project }) => {
           <img
             src={project.image}
             alt="card image"
-            priority={true}
-            className="h-[450px] w-full rounded-xl object-cover"
+            width={0}
+            height={0}
+            className="h-[210px] w-full rounded-xl xs:h-auto lg:h-[350px] xl:h-[400px] 2xl:h-[450px] 2xl:object-contain"
           />
         ) : (
           <div className="fallback-image h-full w-full">

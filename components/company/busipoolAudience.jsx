@@ -6,7 +6,7 @@ const BusipoolAudience = () => {
       text: "Открыли бизнес, проработали год, бизнес работает в плюс, но хочется вернуть займы на которые открывали бизнес.",
     },
     {
-      text: "Подтвердил первые продажи, нужны деньги на масштабирование бизнеса, чтобы вложиться в новое оборудование и увелечить продажи",
+      text: "Подтвердил первые продажи, нужны деньги на масштабирование бизнеса вложиться в новые станки и продажи",
     },
     {
       text: "Уже 5 лет на рынке, работаем в плюс, но нужны деньги, чтобы выйти из малого бизнеса в средний.",
@@ -24,11 +24,13 @@ const BusipoolAudience = () => {
             Кому подойдет BUSIPOOL?
           </h2>
 
-          <div className="flex flex-wrap justify-center gap-x-[30px] gap-y-[30px] text-center 2xl:gap-x-[60px]">
+          <div className="flex flex-wrap justify-center gap-x-[30px] gap-y-[30px] 2xl:gap-x-[60px]">
             {suitables.map((item, index) => (
               <p
                 key={index}
-                className={` ${index % 2 === 0 ? "w-4/5 sm:w-1/2 lg:w-[45%] xl:w-[24%]" : "w-4/5 sm:w-1/2 lg:w-[45%] xl:w-[26%]"} text-balance text-base font-light leading-[140%] text-gray-light md:text-xl 2xl:text-[22px] md:leading-[140%] xl:flex-1`}
+                className={
+                  "w-4/5 text-center text-base font-light leading-[140%] text-gray-light sm:w-1/2 md:text-xl lg:w-[45%] xl:w-[22.5%] xl:text-lg 2xl:w-[calc(25%-45px)] 2xl:text-[22px]"
+                }
               >
                 {item.text}
               </p>
