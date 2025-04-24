@@ -173,14 +173,12 @@ const Navbar = () => {
       {/* Mobile navbar menu */}
       <div
         className={`${
-          mobileNavbarMenu ? "lg:block" : "hidden"
-        } ${width < 1024 && !auth.isAuthenticated && "flex flex-col justify-between"} fixed bottom-0 left-0 right-0 top-[70px] z-10 h-[calc(100vh-70px)] w-screen overflow-hidden overflow-y-scroll bg-headerColor px-[20px] pb-[30px] sm:top-[80px]`}
+          mobileNavbarMenu ? "flex" : "hidden"
+        } ${width < 1024 && !auth.isAuthenticated && " justify-between"} fixed flex-col bottom-0 left-0 right-0 top-[70px] z-10 h-[calc(100vh-70px)] w-screen gap-y-5 overflow-hidden overflow-y-scroll bg-headerColor px-[20px] pb-[30px] sm:top-[80px]`}
       >
         {/* Right Side Menu Mobile (Logged Out) */}
         {!auth.isAuthenticated && (
-          <div
-            className={`flex flex-col gap-y-[10px] mt-[30px]`}
-          >
+          <div className={`mt-[30px] flex flex-col gap-y-[10px]`}>
             <Button
               text="Войти"
               primary
