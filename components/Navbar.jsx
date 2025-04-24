@@ -179,7 +179,7 @@ const Navbar = () => {
         {/* Right Side Menu Mobile (Logged Out) */}
         {!auth.isAuthenticated && (
           <div
-            className={`mb-[60px] flex flex-col gap-y-[20px] ${width < 1024 && "mt-9 block"}`}
+            className={`mb-[50px] flex flex-col gap-y-[20px] ${width < 1024 && "mt-9 block"}`}
           >
             <Button
               text="Войти"
@@ -244,20 +244,23 @@ const Navbar = () => {
               closeProfileMenu={() => {
                 setIsProfileMenuOpen(false);
               }}
+              shutdown={() => {
+                dispatch(AUTH_ACTIONS.signOut());
+              }}
             />
           </div>
         )}
 
         {width < 1024 && !path.includes("/profil") && (
-          <ul className="mb-[60px] mt-[30px] text-gray-dark">
+          <ul className="flex flex-col gap-y-4 mb-[50px] mt-[30px] text-gray-dark">
             {navLinks.map((item, index) => (
               <li
                 key={index}
-                className={`mb-[30px] font-bold hover:text-primary focus:text-primary focus-visible:text-primary active:text-primary ${path == item.href && "text-primary"}`}
+                className={`font-bold hover:text-primary focus:text-primary focus-visible:text-primary active:text-primary ${path == item.href && "text-primary"}`}
               >
                 <Link
                   href={item.href}
-                  className="text-[24px] font-bold leading-[110%]"
+                  className="text-[24px] font-bold "
                 >
                   {item.label}
                 </Link>

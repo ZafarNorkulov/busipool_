@@ -11,9 +11,10 @@ import HowItWorks from "@/components/company/howItWorks";
 import CompanyInvestors from "@/components/company/investors";
 
 export const metadata = {
-  title: "BUSIPOOL | Компания",
+  title:
+    "Привлечение инвестиций для вашего бизнеса — от стартапов до среднего бизнеса | BUSIPOOL",
   description:
-    "Сбор денег для бизнеса, технологических, творческих и социальных проектов",
+    "Подготовьте документы, разместите проект и найдите инвесторов для масштабирования. Удобное размещение, аудит, законные сделки и поддержка на каждом этапе. Привлечение инвестиций для бизнеса",
   icons: {
     icon: "/rocket.svg",
   },

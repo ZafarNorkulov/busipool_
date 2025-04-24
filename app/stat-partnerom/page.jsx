@@ -5,7 +5,7 @@ import HomeBlogs from "@/components/sections/HomeBlogs";
 export const metadata = {
   title: "BUSIPOOL | Стать Партнером",
   description:
-    "Сбор денег для бизнеса, технологических, творческих и социальных проектов",
+    "",
   icons: {
     icon: "/rocket.svg",
   },

@@ -1,14 +1,7 @@
 import SwiperSection from "@/components/SwiperSection";
 
 
-export const metadata = {
-  title: "BUSIPOOL | Блог",
-  description:
-    "Сбор денег для бизнеса, технологических, творческих и социальных проектов",
-  icons: {
-    icon: "/rocket.svg",
-  },
-};
+
 
 const BlogPage = () => {
   return (

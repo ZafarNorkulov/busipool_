@@ -3,7 +3,7 @@ import ProfileComments from "@/components/profile/comments";
 export const metadata = {
   title: "BUSIPOOL | Комментарии и вопросы",
   description:
-    "Сбор денег для бизнеса, технологических, творческих и социальных проектов",
+    "",
   icons: {
     icon: "/rocket.svg",
   },

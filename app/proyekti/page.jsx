@@ -5,7 +5,7 @@ import ProjectsComponent from "@/components/projects";
 export const metadata = {
   title: "BUSIPOOL | Проекты",
   description:
-    "Сбор денег для бизнеса, технологических, творческих и социальных проектов",
+    "",
   icons: {
     icon: "/rocket.svg",
   },

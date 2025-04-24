@@ -2,9 +2,9 @@ import Faqs from "@/components/faqs";
 import PopularProjects from "@/components/popularProjects";
 
 export const metadata = {
-  title: "BUSIPOOL | Вопрос-ответ",
+  title: "Вопросы и ответы | BUSIPOOL",
   description:
-    "Сбор денег для бизнеса, технологических, творческих и социальных проектов",
+    "Ответы на основные вопросы для новых пользователей, инвесторов и компаний. Вопросы и ответы ",
   icons: {
     icon: "/rocket.svg",
   },

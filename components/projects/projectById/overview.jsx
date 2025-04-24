@@ -13,9 +13,7 @@ import { checkConversation, startConvo } from "@/app/api/chat/chat";
 import Code from "@/assets/images/social/code.png";
 import Telegram from "@/assets/images/social/telegramgray.png";
 import VK from "@/assets/images/social/vkgray.png";
-import Facebook from "@/assets/images/social/facebookgray.png";
 import Whatsapp from "@/assets/images/social/whatsapp-gray.png";
-import Spinner from "@/components/Spinner";
 
 const ProjectOverview = ({ data: project }) => {
   const [toggleHeart, setToggleHeart] = useState(false);
@@ -27,7 +25,6 @@ const ProjectOverview = ({ data: project }) => {
     { src: Code, href: "#", alt: "Code" },
     { src: Telegram, href: "https://t.me/busipool", alt: "Telegram" },
     { src: VK, href: "https://vk.com/busipool", alt: "VK" },
-    { src: Facebook, href: "#", alt: "Facebook" },
     { src: Whatsapp, href: "https://wa.me/79265828518", alt: "Whatsapp" },
   ];
 

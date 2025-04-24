@@ -5,9 +5,9 @@ import Head from "next/head";
 import Image from "next/image";
 
 export const metadata = {
-  title: "BUSIPOOL | Контакты",
+  title: "Наши контакты | BUSIPOOL",
   description:
-    "Сбор денег для бизнеса, технологических, творческих и социальных проектов",
+    "Мы всегда на связи для предоставлении иформации о нашей платформе и ответов на все ваши вопросы! Контакты",
   icons: {
     icon: "/rocket.svg",
   },
@@ -16,8 +16,8 @@ export const metadata = {
 const ContactsPage = () => {
   return (
     <>
-      <div className="mb-[100px] bg-secondary lg:flex flex-col justify-center py-[100px] lg:h-[calc(100vh-50px)] 2xl:mb-[150px]">
-        <h2 className="section-title mb-[30px] !text-gray-light md:mb-[70px] 2xl:mb-[100px]">
+      <div className="mb-[100px] flex-col justify-center bg-secondary py-[100px] lg:flex lg:h-[calc(100vh-50px)] 2xl:mb-[150px]">
+        <h2 className="section-title mb-[30px] !text-gray-light md:mb-[70px] 2xl:mb-[50px]">
           Контакты
         </h2>
 
@@ -33,20 +33,20 @@ const ContactsPage = () => {
             </div>
             <div className="col-span-12 lg:col-span-6">
               <div className="mb-5 flex flex-col justify-between gap-x-[70px] gap-y-[20px] sm:flex-row md:mb-10 md:justify-normal md:gap-y-[30px] xl:gap-x-[100px] 2xl:mb-[60px]">
-                <div className="flex flex-col items-start sm:items-center md:items-start">
+                <div className="flex flex-col items-start sm:items-center md:items-start 2xl:gap-[30px]">
                   <div className="flex h-[72px] flex-col items-start gap-y-[10px] sm:items-center md:h-20 md:items-start 2xl:h-[100px] 2xl:gap-y-[30px]">
-                    <h3 className="font-bold leading-[110%] text-gray-light md:text-2xl 2xl:text-[32px]">
+                    <h3 className="font-bold !leading-[110%] text-gray-light md:text-2xl 2xl:text-[30px]">
                       Наш адрес
                     </h3>
-                    <p className="max-w-[300px] font-light leading-[140%] text-gray-light md:text-base 2xl:text-[24px]">
+                    <p className="max-w-[300px] font-light leading-[140%] text-nowrap text-gray-light md:text-[16px] 2xl:text-[20px]">
                       г. Москва Долгопрудненское ш., д. 3
                     </p>
                   </div>
                   <div className="flex h-[72px] flex-col items-start gap-y-[10px] sm:items-center md:h-[120px] md:items-start lg:h-[100px] 2xl:h-[130px] 2xl:gap-y-[30px]">
-                    <h3 className="font-bold leading-[110%] text-gray-light md:text-2xl 2xl:text-[32px]">
+                    <h3 className="font-bold !leading-[110%] text-gray-light md:text-2xl 2xl:text-[30px]">
                       Время работы
                     </h3>
-                    <p className="max-w-[300px] font-light leading-[140%] text-gray-light md:text-base 2xl:text-[24px]">
+                    <p className="max-w-[300px] font-light leading-[140%] text-nowrap text-gray-light md:text-[16px] 2xl:text-[20px]">
                       Пн-Чт 9:00 - 20:00 / Пт 9:00 - 17:00
                       <br />
                       Сб-Вс, праздничные дни – Выходные
@@ -54,25 +54,25 @@ const ContactsPage = () => {
                   </div>
                 </div>
 
-                <div className="flex flex-col items-start sm:items-center md:items-start">
+                <div className="flex flex-col items-start sm:items-center md:items-start 2xl:gap-[30px]">
                   <div className="flex h-[72px] flex-col items-start gap-y-[10px] sm:items-center md:h-20 md:items-start 2xl:h-[100px] 2xl:gap-y-[30px]">
-                    <h3 className="font-bold leading-[110%] text-gray-light md:text-2xl 2xl:text-[32px]">
+                    <h3 className="font-bold !leading-[110%] text-gray-light md:text-2xl 2xl:text-[30px]">
                       Телефон
                     </h3>
                     <a
                       href="tel:+7(954)342-43-43"
-                      className="max-w-[300px] cursor-pointer font-light leading-[140%] text-gray-light md:text-base 2xl:text-[24px]"
+                      className="max-w-[300px] cursor-pointer font-light leading-[140%] text-nowrap text-gray-light md:text-[16px] 2xl:text-[20px]"
                     >
                       +7 (954) 342-43-43
                     </a>
                   </div>
                   <div className="flex h-[72px] flex-col items-start gap-y-[10px] sm:items-center md:h-[120px] md:items-start lg:h-[100px] 2xl:h-[130px] 2xl:gap-y-[30px]">
-                    <h3 className="font-bold leading-[110%] text-gray-light md:text-2xl 2xl:text-[32px]">
+                    <h3 className="font-bold !leading-[110%] text-gray-light md:text-2xl 2xl:text-[30px]">
                       E-mail
                     </h3>
                     <a
                       href="mailto:busipool@yandex.ru"
-                      className="max-w-[300px] cursor-pointer font-light leading-[140%] text-gray-light md:text-base 2xl:text-[24px]"
+                      className="max-w-[300px] cursor-pointer font-light leading-[140%] text-nowrap text-gray-light md:text-[16px] 2xl:text-[20px]"
                     >
                       busipool@yandex.ru
                     </a>

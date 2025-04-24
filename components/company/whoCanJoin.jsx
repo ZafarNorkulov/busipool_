@@ -7,7 +7,7 @@ const WhoCanJoin = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div>
+    <div >
       <div className="max-container">
         <h2 className="section-title mb-[30px] text-balance md:mb-[100px]">
           Кто может разместиться на BUSIPOOL?

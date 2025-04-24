@@ -7,6 +7,8 @@ import { usePathname } from "next/navigation";
 import Scroll from "@/components/Scroll";
 import HomeBlogs from "@/components/sections/HomeBlogs";
 
+
+
 const AboutUsPageLayout = ({ children }) => {
   const pathName = usePathname();
 
@@ -18,7 +20,7 @@ const AboutUsPageLayout = ({ children }) => {
 
       {!isBlogPage && (
         <>
-          <div className="max-w-[1430px] px-5 pt-[30px] md:mx-[9%] md:mt-[70px] 2xl:pt-[100px]">
+          <div className="max-w-[1430px] px-5 pt-[30px] md:mx-[9%] md:mt-[70px]">
             <Stats />
           </div>
           <div className="md:max-container mx-auto mb-[30px] mt-[30px] w-full px-[12px] md:mt-[50px] 2xl:mt-[100px]">
@@ -45,11 +47,11 @@ const AboutUsPageLayout = ({ children }) => {
 
           <div className="flex flex-col justify-center gap-x-[20px] gap-y-[30px] md:flex-row">
             <div className="flex flex-1 flex-col gap-y-5 xl:gap-y-[76px] wide:max-w-[850px] 2xl:gap-y-[30px]">
-              <p className="text-xl font-light !leading-[120%] tracking-normal text-[#4f4f4f] md:!text-[22px] lg:!text-[36px] xl:!text-[36px] 2xl:!text-[55px]">
+              <p className="text-gray text-xl font-light !leading-[120%] tracking-normal md:!text-[22px] lg:!text-[30px] xl:!text-[36px] 2xl:!text-[49px]">
                 BUSIPOOL - онлайн-платформа, где инвестор может купить акции и
                 стать совладельцем компаний малого и среднего бизнеса.
               </p>
-              <p className="text-base font-light leading-[140%] text-black md:text-xl md:leading-[120%] md:text-gray-light xl:text-[32px]">
+              <p className="text-base font-light leading-[140%] text-black md:text-lg md:leading-[120%] lg:text-[22px] xl:text-[28.5px]">
                 Инвестиции начинаются от 15 тыс.₽, а перечень компаний
                 неограничен - от финтех проектов, до производств и
                 сельскохозяйственных компаний. Деньги, полученные от продажи

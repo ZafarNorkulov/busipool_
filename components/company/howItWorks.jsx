@@ -14,7 +14,7 @@ const HowItWorks = () => {
   };
 
   return (
-    <div>
+    <div id="howItWorks">
       <div className="h-[80px]" id="kak-eto-rabotaet" />
       <div className="bg-secondary pb-[150px] pt-[60px] md:pt-[100px]">
         <h2 className="mb-[30px] text-center text-2xl font-bold leading-normal text-gray-dark md:mb-[100px] md:text-[64px]">

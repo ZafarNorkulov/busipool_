@@ -1,10 +1,14 @@
+"use client";
 import React from "react";
 import BusipoolLogoLarge from "../BusipoolLogoLarge";
 import Stats from "../sections/Stats";
 import Button from "../Button";
 import Link from "next/link";
+import { useAppSelector } from "@/store";
 
 const CompanyHero = () => {
+  const { auth } = useAppSelector((state) => state.auth);
+
   return (
     <div className="">
       <div className="mx-[9%] max-w-[1430px] px-5 pt-[30px] md:pt-[50px]">
@@ -23,7 +27,7 @@ const CompanyHero = () => {
             через вложения в проекты.
           </p>
           <div className="w-full flex-col items-stretch gap-[30px] sm:flex sm:flex-row sm:items-center md:flex-nowrap xl:w-[45%]">
-            <a href="#kak-eto-rabotaet" className="w-full lg:w-[50%]">
+            <Link href="#howItWorks" className="w-full lg:w-[50%]">
               <Button
                 text="Как это работает"
                 fullWidth={true}
@@ -31,8 +35,11 @@ const CompanyHero = () => {
                   "sm:mb-0 mb-2 text-sm !px-0 md:border-2 !py-5 xl:text-xl  leading-[24px]"
                 }
               />
-            </a>
-            <Link href={"/profil/sozdat"} className="w-full lg:w-[50%]">
+            </Link>
+            <Link
+              href={auth?.isAuthenticated ? "/profil/sozdat" : "/registratsiya"}
+              className="w-full lg:w-[50%]"
+            >
               <Button
                 text="Разместить компанию"
                 style={
