@@ -174,7 +174,7 @@ const Navbar = () => {
       <div
         className={`${
           mobileNavbarMenu ? "flex" : "hidden"
-        } ${width < 1024 && !auth.isAuthenticated && " justify-between"} fixed flex-col bottom-0 left-0 right-0 top-[70px] z-10 h-[calc(100vh-70px)] w-screen gap-y-5 overflow-hidden overflow-y-scroll bg-headerColor px-[20px] pb-[30px] sm:top-[80px]`}
+        } ${width < 1024 && !auth.isAuthenticated && "justify-between"} fixed bottom-0 left-0 right-0 top-[70px] z-10 h-[calc(100vh-70px)] w-screen flex-col gap-y-5 overflow-hidden overflow-y-scroll bg-headerColor px-[20px] pb-[30px] sm:top-[80px]`}
       >
         {/* Right Side Menu Mobile (Logged Out) */}
         {!auth.isAuthenticated && (
@@ -229,23 +229,28 @@ const Navbar = () => {
             </div>
             {role === "Компания" && !path.includes("/profil") && (
               <Link href={"/profil/sozdat"} className="mt-7 block">
-                <Button text="Создать проект" fullWidth primary />
+                <Button
+                  text="Создать проект"
+                  className="!py-4"
+                  fullWidth
+                  primary
+                />
               </Link>
             )}
+            {path.includes("/profil") && (
+              <div className="block">
+                <ProfileMenu
+                  large={true}
+                  closeProfileMenu={() => {
+                    setIsProfileMenuOpen(false);
+                  }}
+                  shutdown={() => {
+                    dispatch(AUTH_ACTIONS.signOut());
+                  }}
+                />
+              </div>
+            )}
           </>
-        )}
-        {auth.isAuthenticated && path.includes("/profil") && (
-          <div className="block">
-            <ProfileMenu
-              large={true}
-              closeProfileMenu={() => {
-                setIsProfileMenuOpen(false);
-              }}
-              shutdown={() => {
-                dispatch(AUTH_ACTIONS.signOut());
-              }}
-            />
-          </div>
         )}
 
         {width < 1024 && !path.includes("/profil") && (

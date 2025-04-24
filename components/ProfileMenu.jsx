@@ -31,7 +31,7 @@ const ProfileMenu = ({ closeProfileMenu, large }) => {
         <Link href="/profil/sozdat">
           <button
             onClick={closeProfileMenu}
-            className="mx-5 mb-[30px] flex w-[calc(100%-40px)] justify-center rounded-[5px] border-2 border-primary bg-primary px-5 py-[10px] text-center text-[14px] font-bold leading-6 text-white transition active:scale-95 !py-4"
+            className="mx-5 mb-[30px] flex w-[calc(100%-40px)] justify-center rounded-[5px] border-2 border-primary bg-primary px-5 py-[10px] text-center text-[14px] font-bold leading-6 text-white transition active:scale-95 "
           >
             Создать проект +
           </button>
