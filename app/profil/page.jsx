@@ -17,7 +17,7 @@ const ProfilePage = () => {
     <section>
       <ProfileCards />
       <Banner />
-      <ProfilePopularProjects />
+        <ProfilePopularProjects />
       <div className="mt-[100px]">
         <HomeBlogs />
       </div>

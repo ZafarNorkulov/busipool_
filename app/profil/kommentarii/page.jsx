@@ -2,8 +2,7 @@ import ProfileComments from "@/components/profile/comments";
 
 export const metadata = {
   title: "BUSIPOOL | Комментарии и вопросы",
-  description:
-    "",
+  description: "",
   icons: {
     icon: "/rocket.svg",
   },

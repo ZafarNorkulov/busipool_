@@ -61,10 +61,10 @@ const CommentQuestion = ({ questions, received }) => {
 
   // if (!questions) return "";
   return !isCommentPage ? (
-    <div className="flex flex-col gap-y-[30px] w-max">
+    <div className="flex flex-col gap-y-[30px]">
       {investors?.slice(0, 2)?.map((item, index) => (
         <div
-          className="flex max-w-[415px] flex-col text-base font-bold leading-[120%] text-gray-dark"
+          className="flex max-w-[320px] sm:max-w-[415px] flex-col text-base font-bold leading-[120%] text-gray-dark"
           key={index}
         >
           <div className="flex flex-col gap-x-[45px] gap-y-[10px] sm:flex-row sm:gap-y-0">
@@ -77,7 +77,7 @@ const CommentQuestion = ({ questions, received }) => {
           </p>
           <Link
             href="/profil/kommentarii"
-            className="ml-auto w-[150px] rounded-[5px] bg-primary py-[21px] text-center text-xs font-light leading-[110%] text-white sm:w-[125px] sm:py-[8px]"
+            className="ml-auto w-[150px] rounded-[5px] bg-primary py-[18px] text-center text-xs font-light leading-[110%] text-white sm:w-[125px] sm:py-[8px]"
           >
             Ответить
           </Link>
