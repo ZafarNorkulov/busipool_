@@ -174,7 +174,7 @@ const Navbar = () => {
       <div
         className={`${
           mobileNavbarMenu ? "lg:block" : "hidden"
-        } ${width < 1024 && "flex flex-col justify-between"} fixed bottom-0 left-0 right-0 top-[70px] z-10 h-[calc(100vh-70px)] w-screen overflow-hidden overflow-y-scroll bg-headerColor px-[20px] pb-[30px] sm:top-[80px]`}
+        } ${width < 1024 && !auth.isAuthenticated && "flex flex-col justify-between"} fixed bottom-0 left-0 right-0 top-[70px] z-10 h-[calc(100vh-70px)] w-screen overflow-hidden overflow-y-scroll bg-headerColor px-[20px] pb-[30px] sm:top-[80px]`}
       >
         {/* Right Side Menu Mobile (Logged Out) */}
         {!auth.isAuthenticated && (
