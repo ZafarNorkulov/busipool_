@@ -33,10 +33,10 @@ const Footer = () => {
       });
   };
   const downloadFile = () => {
-    const fileUrl = "/privacy-and-policy.docx"; // Faylni public papkada joylashtiring
+    const fileUrl = "/privacy-and-policy.docx";
     const link = document.createElement("a");
     link.href = fileUrl;
-    link.download = "конфиденциальности.docx"; // Yuklab olish nomi
+    link.download = "конфиденциальности.docx"; 
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -60,12 +60,12 @@ const Footer = () => {
           className="flex w-full items-center gap-x-[30px] sm:w-max md:gap-x-[60px]"
           onSubmit={subscribe}
         >
-          <div className="w-full border-b border-white pb-2 xs:w-max lg:w-[137px]">
+          <div className="w-full border-b border-white pb-2 xs:w-max lg:w-[200px]">
             <input
               name="email"
               type="email"
               placeholder="Введите e-mail"
-              className="w-full bg-transparent text-sm outline-none placeholder:text-[10px] placeholder:leading-[24px] placeholder:text-white placeholder:opacity-70 md:text-[24px] md:placeholder:text-base"
+              className="w-full bg-transparent text-sm outline-none placeholder:text-[10px] !leading-[24px] placeholder:text-white placeholder:opacity-70 md:text-xl md:placeholder:text-base"
             />
           </div>
           <Button text="Подписаться" light />
@@ -73,10 +73,10 @@ const Footer = () => {
       </div>
       <div className="max-container py-[60px]">
         {/* footer links */}
-        <div className="mb-[60px] grid grid-cols-12 sm:justify-around justify-center gap-y-[30px] md:gap-5 lg:gap-[30px]">
+        <div className="mb-[60px] grid grid-cols-12 justify-center gap-y-[30px] sm:justify-around md:gap-5 lg:gap-[30px]">
           {footerLinks.map((item, index) => (
             <div key={index} className={`col-span-6 w-max sm:col-span-4`}>
-              <h3 className="md:text-md mb-3 max-w-max text-sm font-bold uppercase leading-[20px] text-gray-light md:mb-[40px] lg:text-lg">
+              <h3 className="md:text-md mb-3 max-w-max text-sm font-bold uppercase leading-[20px] text-[#6c7d69] md:mb-[40px] lg:text-lg">
                 {item.title}
               </h3>
               <ul className="flex flex-col gap-y-5 md:gap-y-[30px]">

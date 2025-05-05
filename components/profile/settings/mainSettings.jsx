@@ -38,7 +38,9 @@ const MainSettings = () => {
 
     try {
       const res = await updateProfile(token, formData);
-      console.log(res);
+      if(res.ok){
+        window.location.reload();
+      }
     } catch (error) {
       console.log(error);
     }

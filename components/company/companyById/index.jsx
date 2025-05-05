@@ -104,7 +104,7 @@ const CompanyById = () => {
           информации о проектах.
         </p>
 
-        <div className="company-subs flex gap-[30px] overflow-x-auto pb-[30px] sm:pb-0">
+        <div className="company-subs flex md:gap-x-[30px] gap-[10px] overflow-x-auto pb-[30px] sm:pb-0 md:flex-wrap">
           {subCategories.map((e, index) => (
             <InvestorPageButton
               key={index}

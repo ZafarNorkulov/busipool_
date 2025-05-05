@@ -1,14 +1,7 @@
 import CompanyById from "@/components/company/companyById";
 
-
-
-
 const Page = () => {
- 
-
-  return (
-<CompanyById/>
-  );
+  return <CompanyById />;
 };
 
 export default Page;

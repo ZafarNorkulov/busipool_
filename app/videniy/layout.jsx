@@ -7,8 +7,6 @@ import { usePathname } from "next/navigation";
 import Scroll from "@/components/Scroll";
 import HomeBlogs from "@/components/sections/HomeBlogs";
 
-
-
 const AboutUsPageLayout = ({ children }) => {
   const pathName = usePathname();
 
@@ -52,7 +50,7 @@ const AboutUsPageLayout = ({ children }) => {
                 стать совладельцем компаний малого и среднего бизнеса.
               </p>
               <p className="text-base font-light leading-[140%] text-black md:text-lg md:leading-[120%] lg:text-[22px] xl:text-[28.5px]">
-                Инвестиции начинаются от 15 тыс.₽, а перечень компаний
+                Инвестиции начинаются от 15 тыс.<span className="text-base font-light leading-[140%] text-[#272727cb] md:text-lg md:leading-[120%] lg:text-[22px] xl:text-[28.5px]">₽</span>, а перечень компаний
                 неограничен - от финтех проектов, до производств и
                 сельскохозяйственных компаний. Деньги, полученные от продажи
                 акций компания может использовать для финансирования своего

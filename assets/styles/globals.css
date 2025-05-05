@@ -146,7 +146,7 @@ html {
 }
 
 .company-subs::-webkit-scrollbar {
-  height: 3px;
+  height: 6px;
   width: 10px;
 }
 /* Track */
@@ -157,7 +157,7 @@ html {
 
 /* Handle */
 .company-subs::-webkit-scrollbar-thumb {
-  background: transparent;
+  background: #8b8a8a;
   border-radius: 50px;
 }
 .multigraph:before {
@@ -197,7 +197,6 @@ html {
     transform: rotate(180deg);
   }
 }
-.rtf{
-  @apply lg:!right-6 !-right-2
+.rtf {
+  @apply !-right-2 lg:!right-6;
 }
-

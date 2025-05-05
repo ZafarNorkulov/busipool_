@@ -27,8 +27,8 @@ export const updateProfile = async (token, data) => {
       },
       body: data,
     });
-    const profile = await res.json();
-    return profile;
+
+    return res;
   } catch (error) {
     console.log(error);
   }

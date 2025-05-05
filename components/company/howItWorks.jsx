@@ -3,14 +3,12 @@ import { workProcess } from "../../constants";
 
 const HowItWorks = () => {
   const formattedText = (text) => {
-    return text
-      .split(/([.:])/g) 
-      .map((part, index) => (
-        <React.Fragment key={index}>
-          {part}
-          {part.match(/[.]/) ? <br /> : ""}
-        </React.Fragment>
-      ));
+    return text.split(/([.:])/g).map((part, index) => (
+      <React.Fragment key={index}>
+        {part}
+        {part.match(/[.]/) ? <br /> : ""}
+      </React.Fragment>
+    ));
   };
 
   return (

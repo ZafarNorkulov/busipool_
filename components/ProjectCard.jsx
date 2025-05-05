@@ -13,16 +13,15 @@ const ProjectCard = ({ card, isGrid, setIsActive }) => {
     (card?.total_investor_price * 100) / card?.financial_goal,
   );
   const date = new Date(card?.project_completion_date);
-  const day = String(date.getDate()).padStart(2, "0"); // Kunning 2 raqamli bo'lishini ta'minlash
-  const month = String(date.getMonth() + 1).padStart(2, "0"); // Oyning 2 raqamli bo'lishini ta'minlash
-  const year = date.getFullYear(); // Yilni olish
+  const day = String(date.getDate()).padStart(2, "0");
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const year = date.getFullYear();
 
-  // Yangi formatni yaratish: DD.MM.YYYY
+  // Create new format: DD.MM.YYYY
   const formattedDate = `${day}.${month}.${year}`;
 
   const splitEvery3 = (num) => {
-    // Raqqa stringga aylantiramiz, keyin bo'sh joy bilan ajratamiz
-    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " "); // Har 3 raqamdan keyin bo'sh joy qo'yadi
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
   };
 
   return isGrid ? (
@@ -36,7 +35,7 @@ const ProjectCard = ({ card, isGrid, setIsActive }) => {
         sizes="100%"
         priority={true}
         alt="project card"
-        className="h-[154px] w-full rounded-[5px] object-cover md:h-[220px] md:rounded-[10px] 2xl:h-[250px]"
+        className="h-[154px] w-full rounded-[5px] object-cover object-center md:h-[220px] md:rounded-[10px] 2xl:h-[250px]"
       />
       <div className="flex h-[65%] flex-col p-[10px] md:p-5 2xl:p-[30px]">
         <div className="mb-[10px] flex flex-col gap-y-[10px] md:mb-3 md:gap-y-3 2xl:mb-[30px]">
@@ -135,7 +134,7 @@ const ProjectCard = ({ card, isGrid, setIsActive }) => {
                 setIsActive(true);
               }
             }}
-            className={`wrap-balance w-full rounded-[5px] border-2 border-gray-dark border-primary bg-primary px-3 py-[10px] font-bold text-[12px] leading-[24px] tracking-[1px] text-gray-dark text-white transition active:scale-95 xs:py-[10px] sm:text-xs md:py-[10px] md:font-normal md:text-sm lg:text-[12px]`}
+            className={`wrap-balance w-full rounded-[5px] border-2 border-gray-dark border-primary bg-primary px-3 py-[10px] text-[12px] font-bold leading-[24px] tracking-[1px] text-gray-dark text-white transition active:scale-95 xs:py-[10px] sm:text-xs md:py-[10px] md:text-sm md:font-normal lg:text-[12px]`}
           >
             Узнать больше
           </button>
