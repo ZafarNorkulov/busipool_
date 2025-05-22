@@ -7,10 +7,12 @@ const InvestorCardLink = ({ name, id }) => {
     <Link
       key={id}
       href={`/kompaniyam/tip`}
-      onClick={scrollToTop}
+      onClick={() => {
+        scrollToTop(), localStorage.setItem("investorId", id);
+      }}
       className="flex flex-col justify-between rounded-[10px] p-[20px] shadow md:p-6 lg:p-[30px] xl:h-auto"
     >
-      <h2 className="mb-[10px] h-[60px] text-base font-light !leading-[110%]  text-gray-dark sm:text-[18px] md:mb-[55px] md:h-[96px] md:text-[24px] lg:text-[32px] xl:h-[64px] 2xl:text-[48px]">
+      <h2 className="mb-[10px] h-[60px] text-base font-light !leading-[110%] text-gray-dark sm:text-[18px] md:mb-[55px] md:h-[96px] md:text-[24px] lg:text-[32px] xl:h-[64px] 2xl:text-[48px]">
         {name.trim()}
       </h2>
 

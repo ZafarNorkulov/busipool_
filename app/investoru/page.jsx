@@ -26,7 +26,7 @@ const InvestorPage = () => {
             <Faqs title />
           </div>
         </div>
-          <PopularProjects />
+        <PopularProjects />
 
         <HomeBlogs />
       </section>

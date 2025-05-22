@@ -1,4 +1,6 @@
+import store from "@/store";
 import { BASE_URL } from "../../../utils/url";
+import { AUTH_ACTIONS } from "@/store/auth";
 
 export const loginUser = async (user: any) => {
   const response = await fetch(BASE_URL + "/login/", {
@@ -32,6 +34,9 @@ export const registerUser = async (user: any) => {
     throw new Error(
       JSON.stringify({ error: errorData, status: response.status }),
     );
+  }
+  if (response.status === 401) {
+    store.dispatch(AUTH_ACTIONS.signOut());
   }
   const data = await response.json();
   return data;

@@ -229,12 +229,7 @@ const Navbar = () => {
             </div>
             {role === "Компания" && !path.includes("/profil") && (
               <Link href={"/profil/sozdat"} className="mt-7 block">
-                <Button
-                  text="Создать проект"
-                  style="!py-4"
-                  fullWidth
-                  primary
-                />
+                <Button text="Создать проект" style="!py-4" fullWidth primary />
               </Link>
             )}
             {path.includes("/profil") && (

@@ -22,6 +22,7 @@ const SignInSlice = createSlice({
   reducers: {
     signOut(state) {
       state.isAuthenticated = false;
+      console.log("signOut reducer called");
       state.status = "success";
       localStorage.removeItem("access_token");
       localStorage.removeItem("receiver");

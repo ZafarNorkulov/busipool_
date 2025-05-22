@@ -22,7 +22,7 @@ const Faqs = ({ title }) => {
         Финансовые инструменты
       </h2>
 
-      <div className="mx-auto max-w-[1140px] md:mx-[8%]">
+      <div className="mx-auto max-w-[1140px] ">
         <div className="flex flex-col gap-3">
           {faqs?.map((faq) => (
             <Accordion

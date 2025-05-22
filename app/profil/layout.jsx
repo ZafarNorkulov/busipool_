@@ -40,7 +40,7 @@ const ProfilePageLayout = ({ children }) => {
   }, [auth.isAuthenticated]);
 
   if (!auth.isAuthenticated) {
-    return <Spinner/>;
+    return <Spinner />;
   }
   return (
     <section className="mb-[150px]">
@@ -69,22 +69,25 @@ const ProfilePageLayout = ({ children }) => {
         </div>
 
         <ul className="hidden flex-col items-center justify-between gap-4 gap-y-0 md:flex lg:flex-row">
-          {role === "Компания" &&
-            (path.includes("/profil/sozdat") ||
-              path.includes("/profil/statistiki")) && (
-              <>
+          {(path.includes("/profil/sozdat") ||
+            path.includes("/profil/statistiki") ||
+            path.includes("/profil/nastroyki")) && (
+            <>
+              {role === "Компания" ? (
                 <li className="font-bold leading-[120%] text-gray-light">
                   Созданные проекты
                 </li>
+              ) : (
                 <li className="font-bold leading-[120%] text-gray-light">
                   Поддержанные проекты
                 </li>
+              )}
 
-                <li className="font-bold leading-[120%] text-gray-light">
-                  Вознаграждения и дивиденды
-                </li>
-              </>
-            )}
+              <li className="font-bold leading-[120%] text-gray-light">
+                Вознаграждения и дивиденды
+              </li>
+            </>
+          )}
         </ul>
 
         <div>

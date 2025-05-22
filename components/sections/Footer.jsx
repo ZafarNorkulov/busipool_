@@ -36,7 +36,7 @@ const Footer = () => {
     const fileUrl = "/privacy-and-policy.docx";
     const link = document.createElement("a");
     link.href = fileUrl;
-    link.download = "конфиденциальности.docx"; 
+    link.download = "конфиденциальности.docx";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -45,27 +45,27 @@ const Footer = () => {
   return (
     <footer className="bg-secondary text-primary">
       <ToastContainer />
-      <div className="flex flex-wrap items-center justify-center gap-x-[60px] bg-primary px-5 py-[30px] text-white md:pb-[60px] md:pt-[60px]">
+      <div className="flex flex-wrap items-center md:justify-center xl:justify-evenly gap-x-[60px] bg-primary px-5 py-[30px] text-white md:pb-[60px] md:pt-[60px]">
         <div className="mb-[30px] w-max lg:w-min">
           <h3 className="mb-[12px] w-max text-base font-bold leading-[120%] md:mb-[12px] md:text-[36px]">
             Подпишитесь на нашу рассылку
           </h3>
-          <p className="text-[12px] font-light md:text-base">
+          <p className="text-xs leading-[110%] font-light md:text-base">
             Мы регулярно рассказываем нашим подписчикам о новых проектах,
             достигнутых результатах и историях успеха. Ваш адрес не попадет
             в чужие руки, и мы не будем отправлять на него рекламу.
           </p>
         </div>
         <form
-          className="flex w-full items-center gap-x-[30px] sm:w-max md:gap-x-[60px]"
+          className="flex w-full items-center gap-x-[30px] sm:w-max md:gap-x-[40px]"
           onSubmit={subscribe}
         >
-          <div className="w-full border-b border-white pb-2 xs:w-max lg:w-[200px]">
+          <div className="w-full border-b border-white pb-2 xs:w-max lg:w-[260px]">
             <input
               name="email"
               type="email"
               placeholder="Введите e-mail"
-              className="w-full bg-transparent text-sm outline-none placeholder:text-[10px] !leading-[24px] placeholder:text-white placeholder:opacity-70 md:text-xl md:placeholder:text-base"
+              className="w-full bg-transparent text-sm !leading-[24px] outline-none placeholder:text-[10px] placeholder:text-white placeholder:opacity-70 md:text-xl md:placeholder:text-base"
             />
           </div>
           <Button text="Подписаться" light />

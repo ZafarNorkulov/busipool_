@@ -1,10 +1,12 @@
 "use client";
 import React, { useEffect, useState } from "react";
+
 import { getProfile, updateProfile } from "@/app/api/profile/profile";
 import profileImageDefault from "@/assets/images/profileImageDefault.png";
+import { toast, ToastContainer } from "react-toastify";
 
 const MainSettings = () => {
-  const [avatar, setAvatar] = useState("");
+  const [avatar, setAvatar] = useState(profileImageDefault);
   const [profile, setProfile] = useState({
     about_me: "",
     avatar: avatar,
@@ -21,6 +23,7 @@ const MainSettings = () => {
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
+    console.log(file);
     if (file) {
       setProfile((prevProfile) => ({
         ...prevProfile,
@@ -38,8 +41,9 @@ const MainSettings = () => {
 
     try {
       const res = await updateProfile(token, formData);
-      if(res.ok){
+      if (res.ok) {
         window.location.reload();
+        toast.success("Ваши данные сохранены");
       }
     } catch (error) {
       console.log(error);
@@ -70,8 +74,80 @@ const MainSettings = () => {
     };
   }, [profile?.avatar]);
 
+  const handleDeleteImage = async () => {
+    setAvatar(profileImageDefault);
+    setProfile((prevProfile) => ({
+      ...prevProfile,
+      avatar: null,
+    }));
+  };
+  // Phone formatter
+  const handlePhoneChange = (e) => {
+    let val = e.target.value;
+
+    const hasPlus = val.startsWith("+");
+    if (hasPlus) val = val.slice(1);
+
+    val = val.replace(/\D/g, "");
+
+    val = val.slice(0, 12);
+
+    if (hasPlus) val = "+" + val;
+
+    setProfile({ ...profile, phone: val });
+  };
+  // Birthday formatter
+  const handleBirthdayChange = (e) => {
+    let val = e.target.value;
+
+    val = val.replace(/[^0-9.]/g, "");
+
+    val = val.replace(/\./g, "");
+
+    val = val.slice(0, 8);
+
+    const year = val.slice(0, 4);
+    const month = val.slice(4, 6);
+    const day = val.slice(6, 8);
+
+    const currentYear = new Date().getFullYear();
+
+    let validYear = year;
+    if (year.length === 4) {
+      let yearNum = parseInt(year, 10);
+      if (yearNum > currentYear) {
+        validYear = String(currentYear);
+      }
+    }
+
+    let validMonth = month;
+    if (month.length === 2) {
+      let monthNum = parseInt(month, 10);
+      if (monthNum < 1) validMonth = "01";
+      else if (monthNum > 12) validMonth = "12";
+    }
+
+    let validDay = day;
+    if (day.length === 2) {
+      let dayNum = parseInt(day, 10);
+      if (dayNum < 1) validDay = "01";
+      else if (dayNum > 31) validDay = "31";
+    }
+
+    let formatted = validYear;
+    if (validMonth) {
+      formatted += "." + validMonth;
+    }
+    if (validDay) {
+      formatted += "." + validDay;
+    }
+
+    setProfile({ ...profile, birthday: formatted });
+  };
+
   return (
     <form onSubmit={(e) => editProfile(e)} className="mx-auto max-w-[1140px]">
+      <ToastContainer />
       <div className="mb-[30px] flex flex-wrap gap-x-[20px] gap-y-[30px] md:mb-[60px]">
         <div className="flex flex-[1_1_560px] flex-col">
           <label htmlFor="username" className="settings-label">
@@ -108,14 +184,12 @@ const MainSettings = () => {
             Дата рождения
           </label>
           <input
-            onChange={(e) =>
-              setProfile({ ...profile, birthday: e.target.value })
-            }
-            value={profile.birthday || ""}
             type="text"
             id="userBirthDate"
             className="settings-input"
             placeholder="ГГГГ.ММ.ДД"
+            value={profile.birthday || ""}
+            onChange={handleBirthdayChange}
           />
         </div>
         <div className="flex flex-[1_1_560px] flex-col">
@@ -123,12 +197,12 @@ const MainSettings = () => {
             Телефон
           </label>
           <input
-            onChange={(e) => setProfile({ ...profile, phone: e.target.value })}
-            value={profile?.phone || ""}
             type="text"
             id="userPhoneNumber"
             className="settings-input"
             placeholder="+7"
+            value={profile?.phone !== "null" ? profile.phone : ""}
+            onChange={handlePhoneChange}
           />
         </div>
         <div className="flex flex-[1_1_560px] flex-col">
@@ -177,16 +251,19 @@ const MainSettings = () => {
               id="userImage"
               accept="image/*"
               onChange={handleImageChange}
-              className="hidden" // Скрываем элемент input
+              className="hidden"
             />
             <ul className="mt-[20px] flex gap-[40px]">
               <li
                 className="cursor-pointer border-b border-primary pb-[5px] text-[14px] font-bold leading-[120%] text-primary"
-                onClick={() => document.getElementById("userImage").click()} // Открываем диалог выбора файла
+                onClick={() => document.getElementById("userImage").click()}
               >
                 Изменить
               </li>
-              <li className="cursor-pointer border-b border-primary pb-[5px] text-[14px] font-bold leading-[120%] text-primary">
+              <li
+                className="cursor-pointer border-b border-primary pb-[5px] text-[14px] font-bold leading-[120%] text-primary"
+                onClick={handleDeleteImage}
+              >
                 Удалить
               </li>
             </ul>
@@ -204,7 +281,7 @@ const MainSettings = () => {
             value={profile.about_me || ""}
             name="userDescription"
             id="userDescription"
-            className="settings-input min-h-[195px] resize-none"
+            className="settings-input min-h-[195px] resize-none focus-visible:border-0"
             placeholder="Расскажите о себе в двух предложениях"
           ></textarea>
           <button

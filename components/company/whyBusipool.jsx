@@ -15,7 +15,7 @@ const WhyBusipool = () => {
       <div className="flex flex-col items-center">
         <div className="mb-[60px] flex w-[calc(100%-20px)] max-w-[1430px] flex-col gap-x-[10%] gap-y-[20px] px-5 md:mb-[80px] md:grid md:w-[calc(100%-80px)] md:grid-cols-10">
           <div className="col-span-10 lg:col-span-5">
-            <h3 className="mb-3 text-center text-[20px] font-bold leading-[110%] text-gray-dark md:text-left md:text-2xl 2xl:mb-[30px] 2xl:text-[30px]">
+            <h3 className="mb-3 text-center text-[20px] font-bold leading-[110%] text-gray-dark lg:text-left md:text-2xl 2xl:mb-[30px] 2xl:text-[30px]">
               Любое число участников сделки онлайн
             </h3>
             <p className="text-base font-light leading-[140%] text-gray-light md:text-xl 2xl:text-[22px]">
@@ -26,7 +26,7 @@ const WhyBusipool = () => {
             </p>
           </div>
           <div className="col-span-10 lg:col-span-5">
-            <h3 className="mb-3 text-center text-[20px] font-bold leading-[110%] text-gray-dark md:text-left md:text-2xl 2xl:mb-[30px] 2xl:text-[30px]">
+            <h3 className="mb-3 text-center text-[20px] font-bold leading-[110%] text-gray-dark lg:text-left md:text-2xl 2xl:mb-[30px] 2xl:text-[30px]">
               Экономия времени компании
             </h3>
             <p className="text-base font-light leading-[140%] text-gray-light md:text-xl 2xl:text-[22px]">
@@ -37,7 +37,7 @@ const WhyBusipool = () => {
           </div>
 
           <div className="col-span-10 lg:col-span-5">
-            <h3 className="mb-3 text-center text-[20px] font-bold leading-[110%] text-gray-dark md:text-left md:text-2xl 2xl:mb-[30px] 2xl:text-[30px]">
+            <h3 className="mb-3 text-center text-[20px] font-bold leading-[110%] text-gray-dark lg:text-left md:text-2xl 2xl:mb-[30px] 2xl:text-[30px]">
               Законность и безопасность
             </h3>
             <p className="text-base font-light leading-[140%] text-gray-light md:text-xl 2xl:text-[22px]">
@@ -49,16 +49,15 @@ const WhyBusipool = () => {
             </p>
           </div>
           <div className="col-span-10 lg:col-span-5">
-            <h3 className="mb-3 text-center text-[20px] font-bold leading-[110%] text-gray-dark md:text-left md:text-2xl 2xl:mb-[30px] 2xl:text-[30px]">
+            <h3 className="mb-3 text-center text-[20px] font-bold leading-[110%] text-gray-dark lg:text-left md:text-2xl 2xl:mb-[30px] 2xl:text-[30px]">
               Проверка инвесторов
             </h3>
             <p className="text-base font-light leading-[140%] text-gray-light md:text-xl 2xl:text-[22px]">
               Вы также можете быть уверены в юридической чистоте своих будущих
-              инвесторов. BUSIPOOL проверяет всех инвесторов в рамках 
-              115-ФЗ: «О противодействии легализации (отмыванию) доходов,
-              полученных преступным путем, и финансированию терроризма» и
-              присваивает им статус «Квалифицированный инвестор», если это
-              необходимо.
+              инвесторов. BUSIPOOL проверяет всех инвесторов в рамках 115-ФЗ: «О
+              противодействии легализации (отмыванию) доходов, полученных
+              преступным путем, и финансированию терроризма» и присваивает им
+              статус «Квалифицированный инвестор», если это необходимо.
             </p>
           </div>
         </div>

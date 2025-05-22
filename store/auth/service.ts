@@ -11,7 +11,7 @@ interface SignInData {
 interface SignInResponse {
   access: string;
   refresh: string;
-  // Include other properties from the response if needed
+
 }
 
 const SignIn = createAsyncThunk<
