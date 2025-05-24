@@ -68,11 +68,11 @@ export const footerLinks = [
         label: "Сфера деятельности",
       },
       {
-        href: "#",
+        href: "/vozvrat-sredstva",
         label: "Возврат средств",
       },
       {
-        href: "#",
+        href: "/sposob-oplati",
         label: "Способы оплаты",
       },
     ],

@@ -11,7 +11,11 @@ const Navbar = dynamic(() => import("@/components/Navbar"), {
 const MainLayoutBody = ({ children }) => {
   const path = usePathname();
 
-  const authPathnames = ["/voyti", "/registratsiya", "/registratsiya/podtverdit"];
+  const authPathnames = [
+    "/voyti",
+    "/registratsiya",
+    "/registratsiya/podtverdit",
+  ];
 
   return (
     <body>
