@@ -1,6 +1,6 @@
 "use client";
-import { useState, useEffect } from "react";
-import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import Button from "@/components/Button";
 import Image from "next/image";
 import buildProjectImage from "@/assets/images/build-project.png";
@@ -16,9 +16,13 @@ import InvestorPageButton from "../InvestorPageButton";
 import Filters from "@/components/Filters";
 import ProjectCard from "@/components/ProjectCard";
 
-const CompanyById = () => {
+const CompanyBySlug = () => {
+  const router = useRouter();
+  const params = useParams();
+  const searchParams = useSearchParams();
+
+  const { typeSlug, companySlug } = params;
   const [token, setToken] = useState(null);
-  const { id } = useParams();
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [cityRel, setCityRel] = useState([]);
@@ -27,6 +31,8 @@ const CompanyById = () => {
   const [subCategories, setSubCategories] = useState([]);
   const [selectedSub, setSelectedSub] = useState(null);
   const [isActiveModal, setIsActiveModal] = useState(false);
+  const [append, setAppend] = useState(false);
+
   const [filters, setFilters] = useState({
     is_popular: { value: false, title: "По популярности" },
     price_max: { value: false, title: "Подороже" },
@@ -35,36 +41,38 @@ const CompanyById = () => {
     end_date: { value: false, title: "Самый первый" },
   });
 
-  // Fetch token and initial data
+  const currentPage = parseInt(searchParams.get("page") || "1", 10);
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       const storedToken = localStorage.getItem("access_token");
       setToken(storedToken);
     }
-
     fetchCitiesWithFromAPI();
-    fetchProjectsWithFromAPI();
   }, []);
 
-  // Fetch projects on filter change
+  useEffect(() => {
+    if (typeSlug) {
+      getCompanySubCategoryByType(typeSlug)
+        .then(setSubCategories)
+        .catch(console.error);
+    }
+  }, [companySlug]);
+
+  useEffect(() => {
+    if (subCategories.length > 0 && companySlug) {
+      const matchedSub = subCategories.find((sub) => sub.slug === companySlug);
+      if (matchedSub) setSelectedSub(matchedSub);
+    }
+  }, [subCategories, companySlug]);
+
   useEffect(() => {
     fetchProjectsWithFromAPI();
-  }, [selectedCity, search, filters, selectedSub]);
+  }, [selectedCity, search, filters, companySlug, currentPage]);
 
-  // Fetch subcategories
-  useEffect(() => {
-    if (id) {
-      getCompanySubCategoryByType(id)
-        .then((res) => setSubCategories(res))
-        .catch((error) => console.error(error));
-    }
-  }, [id]);
-
-  useEffect(() => {
-    if (subCategories.length > 0) {
-      setSelectedSub(subCategories[0]);
-    }
-  }, [subCategories]);
+  const fetchCitiesWithFromAPI = () => {
+    getCities().then(setCityRel).catch(console.error);
+  };
 
   const fetchProjectsWithFromAPI = () => {
     setLoading(true);
@@ -76,20 +84,24 @@ const CompanyById = () => {
 
     getProjects({
       ...activeFilters,
-      category: selectedSub?.id,
+      category: companySlug,
       city_realization: cityRealization,
       search,
+      page: currentPage,
     })
-      .then((response) => setProjects(response))
-      .catch((error) => console.error(error))
-      .finally(() => setLoading(false));
+      .then((response) => {
+        setProjects(response);
+      })
+      .catch(console.error)
+      .finally(() => {
+        setLoading(false);
+        setAppend(false);
+      });
   };
 
-  const fetchCitiesWithFromAPI = () => {
-    getCities()
-      .then((response) => setCityRel(response))
-      .catch((error) => console.error(error))
-      .finally(() => setLoading(false));
+  const handleLoadMore = () => {
+    router.push(`?page=${currentPage + 1}`);
+    setAppend(true);
   };
 
   return (
@@ -104,13 +116,15 @@ const CompanyById = () => {
           информации о проектах.
         </p>
 
-        <div className="company-subs flex md:gap-x-[30px] gap-[10px] overflow-x-auto pb-[30px] sm:pb-0 md:flex-wrap">
+        <div className="company-subs flex gap-[10px] overflow-x-auto pb-[30px] sm:pb-0 md:flex-wrap md:gap-x-[30px]">
           {subCategories.map((e, index) => (
             <InvestorPageButton
               key={index}
               selected={selectedSub}
               investor={e}
-              onClick={() => setSelectedSub(e)}
+              onClick={() => {
+                router.push(`/kompaniyam/${typeSlug}/${e.slug}?page=1`);
+              }}
             />
           ))}
         </div>
@@ -177,9 +191,9 @@ const CompanyById = () => {
           </div>
         )}
 
-        {projects?.results?.length > 0 && token && (
+        {projects?.next && token && (
           <div className="mb-[100px] flex items-center justify-center md:mb-[150px]">
-            <Button text="Загрузить еще" primary />
+            <Button text="Загрузить еще" primary onclick={handleLoadMore} />
           </div>
         )}
       </div>
@@ -189,4 +203,4 @@ const CompanyById = () => {
   );
 };
 
-export default CompanyById;
+export default CompanyBySlug;

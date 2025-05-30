@@ -14,6 +14,7 @@ const ChatById = () => {
   const [token, setToken] = useState("");
   const bottomRef = useRef(null);
   const chatWindowRef = useRef(null);
+  const [webSocketUrl, setWebSocketUrl] = useState(null);
 
   useEffect(() => {
     const user = localStorage.getItem("receiver");
@@ -22,9 +23,14 @@ const ChatById = () => {
     if (user) {
       setReceiver(JSON.parse(user));
     }
-  }, []);
-  const webSocketUrl = `${process.env.NEXT_PUBLIC_SOCKET_URL}ws/chat/${`${params?.id || ""}/`}?token=${token}`;
-  const { messages, sendMessage } = useWebSocket(webSocketUrl);
+    if (access_token && params?.id) {
+      const url = `${process.env.NEXT_PUBLIC_SOCKET_URL}ws/chat/${params.id}/?token=${access_token}`;
+      setWebSocketUrl(url);
+    }
+  }, [params.id]);
+
+  const { messages, sendMessage } = useWebSocket(webSocketUrl ?? "");
+
   useEffect(() => {
     if (token) {
       getMessages();
@@ -48,22 +54,25 @@ const ChatById = () => {
       });
       setAllMessages(conversationRes || []);
     } catch (error) {
-      console.log(error);
+      console.log("err->", error);
     }
   };
 
-  const handleSendMessage = async () => {
+  const handleSendMessage = () => {
     if (!message.trim()) return;
 
     try {
-      await sendMessage({ message });
+      sendMessage({ message });
     } catch (error) {
       console.error("Xabar yuborishda xatolik:", error);
     } finally {
+      console.log("xato");
       setMessage("");
       getMessages();
     }
   };
+
+  console.log(messages);
   return (
     <section>
       <div className="max-container">
@@ -91,14 +100,18 @@ const ChatById = () => {
                   key={idx}
                 />
               ))}
-              {messages?.map((item, idx) => (
-                <Bubble
-                  message={item?.text}
-                  isSent={item?.sender_type === "initiator"}
-                  user={item?.sender}
-                  key={idx}
-                />
-              ))}
+              {webSocketUrl && (
+                <>
+                  {messages?.map((item, idx) => (
+                    <Bubble
+                      message={item?.text}
+                      isSent={item?.sender_type === "initiator"}
+                      user={item?.sender}
+                      key={idx}
+                    />
+                  ))}
+                </>
+              )}
               <div ref={bottomRef} />
             </div>
             <div className="absolute bottom-5 left-5 flex w-[calc(100%-40px)] flex-col gap-y-[30px] md:bottom-[60px] md:left-[30px] md:w-[calc(100%-60px)]">
@@ -109,6 +122,12 @@ const ChatById = () => {
                   rows={1}
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" && !e.shiftKey) {
+                      e.preventDefault();
+                      handleSendMessage();
+                    }
+                  }}
                   className="w-full resize-none border border-gray-dark p-[10px] text-sm font-light leading-6 placeholder:text-gray-dark focus-visible:rounded-none focus-visible:outline-primary md:p-5"
                 />
                 <button

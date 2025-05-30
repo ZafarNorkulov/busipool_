@@ -2,12 +2,16 @@
 import React, { useEffect, useState } from "react";
 import { getComments, postComment } from "@/app/api/projects/project";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
+import { useParams, useRouter } from "next/navigation";
+import { checkConversation, startConvo } from "@/app/api/chat/chat";
 
 const ProjectTabs = ({ data }) => {
   const [commentData, setCommentData] = useState("");
   const [comments, setComments] = useState([]);
   const [user, setUser] = useState({});
   const [token, setToken] = useState("");
+  const { id } = useParams();
+  const router = useRouter();
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -17,7 +21,6 @@ const ProjectTabs = ({ data }) => {
       setToken(storedToken);
     }
   }, []);
-
   const fetchComments = async () => {
     getComments(id, token).then((res) => {
       const reversedData = res.reverse();
@@ -26,7 +29,7 @@ const ProjectTabs = ({ data }) => {
   };
   useEffect(() => {
     fetchComments();
-  }, [token]);
+  }, [id, token]);
 
   const sendComment = () => {
     const comment = {
@@ -37,6 +40,37 @@ const ProjectTabs = ({ data }) => {
     postComment(comment, token)
       .then((res) => {})
       .finally(setCommentData(""));
+  };
+
+  const handleSendMessage = async () => {
+    const receiver = data?.owner;
+    localStorage.setItem("receiver", JSON.stringify(receiver));
+
+    try {
+      const res = await checkConversation({
+        owner_id: receiver?.id,
+        token,
+      });
+
+      if (res) {
+        router.push(`/profil/chat/${res?.id}`);
+      } else {
+        console.log("No existing conversation, starting a new one...");
+        const newConversation = await startConvo({
+          username: receiver?.username,
+          token,
+        });
+
+        if (newConversation) {
+          localStorage.setItem("convo_id", String(newConversation?.id));
+          router.push(`/profil/chat/${newConversation.id}`);
+        } else {
+          console.error("Failed to start a new conversation");
+        }
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
   return (
@@ -86,7 +120,10 @@ const ProjectTabs = ({ data }) => {
               className="mt-8 h-[140px] w-full resize-none rounded-[6px] border border-[#4F4F4F] p-4 placeholder:text-base placeholder:text-gray-dark focus:border-primary"
             />
 
-            <button className="mt-8 h-[65px] w-full rounded-[6px] bg-primary text-[22px] font-normal text-white">
+            <button
+              className="mt-8 h-[65px] w-full rounded-[6px] bg-primary text-[22px] font-normal text-white"
+              onClick={handleSendMessage}
+            >
               Отправить
             </button>
           </div>

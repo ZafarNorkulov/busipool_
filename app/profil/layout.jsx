@@ -73,19 +73,25 @@ const ProfilePageLayout = ({ children }) => {
             path.includes("/profil/statistiki") ||
             path.includes("/profil/nastroyki")) && (
             <>
-              {role === "Компания" ? (
-                <li className="font-bold leading-[120%] text-gray-light">
-                  Созданные проекты
-                </li>
-              ) : (
-                <li className="font-bold leading-[120%] text-gray-light">
-                  Поддержанные проекты
-                </li>
-              )}
+              <Link
+                href="/profil/sozdat"
+                className="font-bold leading-[120%] text-gray-light hover:text-primary"
+              >
+                Созданные проекты
+              </Link>
+              <Link
+                href="/proyekti"
+                className="font-bold leading-[120%] text-gray-light hover:text-primary"
+              >
+                Поддержанные проекты
+              </Link>
 
-              <li className="font-bold leading-[120%] text-gray-light">
+              <Link
+                href="/proyekti"
+                className="font-bold leading-[120%] text-gray-light hover:text-primary"
+              >
                 Вознаграждения и дивиденды
-              </li>
+              </Link>
             </>
           )}
         </ul>

@@ -1,12 +1,16 @@
 "use client";
 import React, { useEffect, useState } from "react";
 
-import { getProfile, updateProfile } from "@/app/api/profile/profile";
+import {
+  deleteAvatar,
+  getProfile,
+  updateProfile,
+} from "@/app/api/profile/profile";
 import profileImageDefault from "@/assets/images/profileImageDefault.png";
 import { toast, ToastContainer } from "react-toastify";
 
 const MainSettings = () => {
-  const [avatar, setAvatar] = useState(profileImageDefault);
+  const [avatar, setAvatar] = useState();
   const [profile, setProfile] = useState({
     about_me: "",
     avatar: avatar,
@@ -23,7 +27,6 @@ const MainSettings = () => {
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
-    console.log(file);
     if (file) {
       setProfile((prevProfile) => ({
         ...prevProfile,
@@ -42,11 +45,15 @@ const MainSettings = () => {
     try {
       const res = await updateProfile(token, formData);
       if (res.ok) {
-        window.location.reload();
+        const updateProfile = await getProfile(token);
+        setProfile(updateProfile);
         toast.success("Ваши данные сохранены");
+      } else {
+        toast.error("Ошибка при сохранении данных");
       }
     } catch (error) {
       console.log(error);
+      toast.error("Произошла ошибка");
     }
   };
 
@@ -65,7 +72,7 @@ const MainSettings = () => {
     const avatarUrl =
       profile.avatar instanceof File
         ? URL.createObjectURL(profile.avatar)
-        : profile?.avatar || profileImageDefault;
+        : profile?.avatar;
     setAvatar(avatarUrl);
     return () => {
       if (profile?.avatar instanceof File) {
@@ -73,14 +80,23 @@ const MainSettings = () => {
       }
     };
   }, [profile?.avatar]);
-
+  // Delete Avatar
   const handleDeleteImage = async () => {
-    setAvatar(profileImageDefault);
-    setProfile((prevProfile) => ({
-      ...prevProfile,
-      avatar: null,
-    }));
+    try {
+      const res = await deleteAvatar(token);
+      if (res.status === 204) {
+        const updatedProfile = await getProfile(token);
+        setProfile(updatedProfile);
+        toast.success("Аватар успешно удалён");
+      } else {
+        toast.error("Не удалось удалить аватар");
+      }
+    } catch (error) {
+      console.error("Ошибка при удалении аватара:", error);
+      toast.error("Произошла ошибка при удалении аватара");
+    }
   };
+
   // Phone formatter
   const handlePhoneChange = (e) => {
     let val = e.target.value;
@@ -240,7 +256,7 @@ const MainSettings = () => {
           </label>
           <div className="mt-[30px] flex flex-col items-center">
             <img
-              src={avatar}
+              src={avatar || profileImageDefault.src}
               width={200}
               height={200}
               className="h-[200px] w-[200px] rounded-full object-cover"

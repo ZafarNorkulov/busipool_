@@ -27,7 +27,7 @@ const CompanyInvestors = () => {
 
           return (
             <div key={index} className={`col-span-6 ${colSpanClass}`}>
-              <InvestorCardLink name={investor.name} id={investor.id} />
+              <InvestorCardLink name={investor.name} slug={investor.slug} />
             </div>
           );
         })}

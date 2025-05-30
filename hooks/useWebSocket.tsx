@@ -16,7 +16,7 @@ export default function useWebSocket(serverUrl: string) {
     const socket = new WebSocket(serverUrl);
 
     socket.onopen = () => {
-      console.log("Connected to WebSocket");
+      console.log("Connected to WebSocket ✅");
     };
 
     socket.onmessage = (event: MessageEvent) => {
@@ -36,10 +36,11 @@ export default function useWebSocket(serverUrl: string) {
   }, [serverUrl]);
 
   const sendMessage = (message: WebSocketMessage) => {
+    console.log(message)
     if (webSocketRef.current?.readyState === WebSocket.OPEN) {
       webSocketRef.current.send(JSON.stringify(message));
     } else {
-      console.error("WebSocket is not open");
+      console.error("WebSocket is not open ❌");
     }
   };
 

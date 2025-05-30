@@ -87,7 +87,7 @@ const ProjectCard = ({ card, isGrid, setIsActive }) => {
           <button
             onClick={() => {
               if (auth.isAuthenticated) {
-                router.push(`/proyekti/${card.id}`);
+                router.push(`/proyekti/${card.slug}`);
               } else {
                 setIsActive(true);
               }
@@ -129,7 +129,7 @@ const ProjectCard = ({ card, isGrid, setIsActive }) => {
           <button
             onClick={() => {
               if (auth.isAuthenticated) {
-                router.push(`/proyekti/${card.id}`);
+                router.push(`/proyekti/${card.slug}`);
               } else {
                 setIsActive(true);
               }

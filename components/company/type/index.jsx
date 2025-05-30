@@ -10,11 +10,16 @@ import Spinner from "@/components/Spinner";
 
 const CompanyType = () => {
   const [categoryType, setCategoryType] = useState([]);
+  const [selectedInvestor, setSelectedInvestor] = useState("");
 
   useEffect(() => {
     (async () => {
       await getCompanyTypeCategoryByID().then((res) => setCategoryType(res));
     })();
+    if (typeof window !== "undefined") {
+      const storedInv = localStorage.getItem("selected_slug") ?? "";
+      setSelectedInvestor(storedInv);
+    }
   }, []);
 
   return (
@@ -39,7 +44,7 @@ const CompanyType = () => {
               {categoryType[0]?.name}
             </span>
             <Link
-              href={`/kompaniyam/tip/${categoryType[0]?.id}`}
+              href={`/kompaniyam/${categoryType[0]?.slug}/${selectedInvestor}`}
               className="ml-auto flex w-fit items-center text-base font-light leading-[110%] text-gray-dark hover:text-primary md:text-[24px]"
             >
               Подробнее
@@ -56,7 +61,7 @@ const CompanyType = () => {
               {categoryType[1]?.name}
             </span>
             <Link
-              href={`/kompaniyam/tip/${categoryType[1]?.id}`}
+              href={`/kompaniyam/${categoryType[1]?.slug}/${selectedInvestor}`}
               className="ml-auto flex w-fit items-center text-base font-light leading-[110%] text-gray-dark hover:text-primary md:text-[24px]"
             >
               Подробнее

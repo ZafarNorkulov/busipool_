@@ -1,16 +1,15 @@
-import ProjectByIdComponent from "@/components/projects/projectById";
+import ProjectBySlugComponent from "@/components/projects/projectBySlug";
 
 export const metadata = {
   title: "BUSIPOOL | Подробно о проекте",
-  description:
-    "",
+  description: "",
   icons: {
     icon: "/rocket.svg",
   },
 };
 
 const ProjectPage = () => {
-  return <ProjectByIdComponent />;
+  return <ProjectBySlugComponent />;
 };
 
 export default ProjectPage;

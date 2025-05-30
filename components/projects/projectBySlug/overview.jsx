@@ -2,7 +2,7 @@
 import Image from "next/image";
 import avatar from "@/assets/images/project-page-images/avatar.png";
 import rocket from "@/assets/images/project-page-images/rocket.png";
-import Button from "../../../components/Button";
+import Button from "../../Button";
 import { CiHeart } from "react-icons/ci";
 import { FaHeart } from "react-icons/fa";
 import { useState, useEffect } from "react";
@@ -108,12 +108,12 @@ const ProjectOverview = ({ data: project }) => {
         {/* Contact author */}
         <div className="mb-5 flex items-center lg:mb-[30px]">
           <Image
-            src={project?.avatar || avatar}
+            src={project?.owner?.avatar || avatar}
             alt="avatar"
             width={0}
             height={0}
             sizes="100%"
-            className="mr-[15px] size-5 object-contain md:size-[40px]"
+            className="mr-[15px] size-5 rounded-full object-contain object-center md:size-[40px]"
           />
 
           <div className="mr-5 flex flex-col md:mr-[50px]">

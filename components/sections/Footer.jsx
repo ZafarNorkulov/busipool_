@@ -45,12 +45,12 @@ const Footer = () => {
   return (
     <footer className="bg-secondary text-primary">
       <ToastContainer />
-      <div className="flex flex-wrap items-center md:justify-center xl:justify-evenly gap-x-[60px] bg-primary px-5 py-[30px] text-white md:pb-[60px] md:pt-[60px]">
+      <div className="flex flex-wrap items-center gap-x-[60px] bg-primary px-5 py-[30px] text-white md:justify-center md:pb-[60px] md:pt-[60px] xl:justify-evenly">
         <div className="mb-[30px] w-max lg:w-min">
           <h3 className="mb-[12px] w-max text-base font-bold leading-[120%] md:mb-[12px] md:text-[36px]">
             Подпишитесь на нашу рассылку
           </h3>
-          <p className="text-xs leading-[110%] font-light md:text-base">
+          <p className="text-xs font-light leading-[110%] md:text-base">
             Мы регулярно рассказываем нашим подписчикам о новых проектах,
             достигнутых результатах и историях успеха. Ваш адрес не попадет
             в чужие руки, и мы не будем отправлять на него рекламу.

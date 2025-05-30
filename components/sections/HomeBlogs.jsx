@@ -36,7 +36,7 @@ const HomeBlogs = () => {
               title={blog.title}
               text={blog.description}
               key={blog.id}
-              id={blog.id}
+              slug={blog.slug}
             />
           </div>
         ))}

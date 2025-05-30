@@ -4,8 +4,7 @@ import ProjectsComponent from "@/components/projects";
 
 export const metadata = {
   title: "BUSIPOOL | Проекты",
-  description:
-    "",
+  description: "",
   icons: {
     icon: "/rocket.svg",
   },

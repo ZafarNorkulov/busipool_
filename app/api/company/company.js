@@ -14,12 +14,12 @@ export const getCompanyTypeCategoryByID = async () => {
     return {};
   }
 };
-export const getCompanySubCategoryByType = async (id) => {
+export const getCompanySubCategoryByType = async (slug) => {
   try {
     if (!BASE_URL) return console.log("BASE_URL is not defined");
 
     const response = await fetch(
-      `${BASE_URL}/project/category/subcategory/${id}/`,
+      `${BASE_URL}/project/category/subcategory/${slug}/`,
     );
 
     if (!response.ok) throw new Error("Failed to fetch data");
@@ -30,8 +30,8 @@ export const getCompanySubCategoryByType = async (id) => {
     return {};
   }
 };
-export const getCompanySubCategoryProjects = async ({id}) => {
-  console.log(id)
+export const getCompanySubCategoryProjects = async ({ id }) => {
+  console.log(id);
   try {
     if (!BASE_URL) return console.log("BASE_URL is not defined");
 

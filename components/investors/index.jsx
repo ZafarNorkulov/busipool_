@@ -21,7 +21,7 @@ const Investors = () => {
       <div className="flex flex-wrap justify-center gap-[30px] md:gap-[20px]">
         {/*  */}
         <Link
-          href={`/investoru/${businessType[0]?.id}`}
+          href={`/investoru/${businessType[0]?.slug}`}
           onClick={scrollToTop}
           className="flex w-[230px] flex-col items-end justify-between rounded-[10px] p-[20px] shadow md:w-[calc(50%-10px)] md:p-[30px]"
         >
@@ -42,7 +42,7 @@ const Investors = () => {
           </div>
         </Link>
         <Link
-          href={`/investoru/${businessType[1]?.id}`}
+          href={`/investoru/${businessType[1]?.slug}`}
           onClick={scrollToTop}
           className="flex w-[230px] flex-col items-end justify-between rounded-[10px] p-[20px] shadow md:w-[calc(50%-10px)] md:p-[30px]"
         >

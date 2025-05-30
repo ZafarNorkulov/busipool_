@@ -30,7 +30,7 @@ const CreateLayout = ({ children }) => {
   if (role === "Компания") {
     return <div>{children}</div>;
   } else {
-    router.push("/profil"); // Redirect if the role isn't "business"
+    router.push("/not-found"); // Redirect if the role isn't "business"
     return null; // Return nothing during the redirect
   }
 };

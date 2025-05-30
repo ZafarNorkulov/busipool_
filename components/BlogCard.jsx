@@ -4,9 +4,9 @@ import Link from "next/link";
 import { BsArrowDownRight } from "react-icons/bs";
 import scrollToTop from "../utils/scrollToTop";
 
-const BlogCard = ({ img, title, text, large, id }) => {
+const BlogCard = ({ img, title, text, large, slug }) => {
   return (
-    <Link href={`/videniy/blog/${id}`} onClick={scrollToTop}>
+    <Link href={`/videniy/blog/${slug}`} onClick={scrollToTop}>
       <div
         className={`relative flex w-full shrink-0 gap-5 rounded-[3px] p-[15px] shadow md:gap-5 md:rounded-[5px] md:p-5 2xl:gap-10 2xl:p-[30px]`}
       >

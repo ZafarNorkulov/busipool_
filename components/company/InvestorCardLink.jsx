@@ -2,13 +2,13 @@ import Link from "next/link";
 import scrollToTop from "../../utils/scrollToTop";
 import { BsArrowDownRight } from "react-icons/bs";
 
-const InvestorCardLink = ({ name, id }) => {
+const InvestorCardLink = ({ name, slug }) => {
   return (
     <Link
-      key={id}
+      key={slug}
       href={`/kompaniyam/tip`}
       onClick={() => {
-        scrollToTop(), localStorage.setItem("investorId", id);
+        scrollToTop(), localStorage.setItem("selected_slug", slug);
       }}
       className="flex flex-col justify-between rounded-[10px] p-[20px] shadow md:p-6 lg:p-[30px] xl:h-auto"
     >
