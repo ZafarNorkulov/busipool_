@@ -66,13 +66,20 @@ const ChatById = () => {
     } catch (error) {
       console.error("Xabar yuborishda xatolik:", error);
     } finally {
-      console.log("xato");
+      localStorage.removeItem("sender_text");
       setMessage("");
       getMessages();
     }
   };
 
-  console.log(messages);
+  useEffect(() => {
+    const savedText = localStorage.getItem("sender_text");
+    if (savedText) {
+      setMessage(savedText);
+      localStorage.removeItem("sender_text");
+    }
+  }, [sendMessage]);
+
   return (
     <section>
       <div className="max-container">

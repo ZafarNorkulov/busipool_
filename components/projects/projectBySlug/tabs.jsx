@@ -4,15 +4,16 @@ import { getComments, postComment } from "@/app/api/projects/project";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import { useParams, useRouter } from "next/navigation";
 import { checkConversation, startConvo } from "@/app/api/chat/chat";
+import Image from "next/image";
 
 const ProjectTabs = ({ data }) => {
   const [commentData, setCommentData] = useState("");
   const [comments, setComments] = useState([]);
   const [user, setUser] = useState({});
   const [token, setToken] = useState("");
-  const { id } = useParams();
+  const [faq, setFaq] = useState("");
   const router = useRouter();
-
+  const id = data?.id;
   useEffect(() => {
     if (typeof window !== "undefined") {
       const storedToken = localStorage.getItem("access_token");
@@ -45,7 +46,7 @@ const ProjectTabs = ({ data }) => {
   const handleSendMessage = async () => {
     const receiver = data?.owner;
     localStorage.setItem("receiver", JSON.stringify(receiver));
-
+    localStorage.setItem("sender_text", faq);
     try {
       const res = await checkConversation({
         owner_id: receiver?.id,
@@ -117,6 +118,8 @@ const ProjectTabs = ({ data }) => {
             </label>
             <textarea
               placeholder="Напишите свой вопрос"
+              value={faq}
+              onChange={(e) => setFaq(e.target.value)}
               className="mt-8 h-[140px] w-full resize-none rounded-[6px] border border-[#4F4F4F] p-4 placeholder:text-base placeholder:text-gray-dark focus:border-primary"
             />
 
@@ -147,16 +150,28 @@ const ProjectTabs = ({ data }) => {
           </h3>
           <div className="flex flex-col gap-y-[30px] md:gap-y-[60px]">
             {comments?.slice(0, 5)?.map((item) => (
-              <div
-                className="flex flex-col gap-[15px] text-gray-dark"
-                key={item?.id}
-              >
-                <h4 className="text-base font-bold leading-[120%] sm:text-2xl md:text-[28px] 2xl:text-[32px]">
-                  {item?.owner?.first_name} {item?.owner?.last_name}
-                </h4>
-                <p className="text-sm font-light leading-[120%] sm:text-xl md:text-[20px] 2xl:text-2xl">
-                  {item?.comment}
-                </p>
+              <div className="flex items-center gap-2">
+                {item?.owner?.avatar && (
+                  <div className="h-[40px] w-[40px] overflow-hidden rounded-full">
+                    <Image
+                      width={40}
+                      height={40}
+                      className="h-full w-full"
+                      src={item.owner.avatar}
+                    />
+                  </div>
+                )}
+                <div
+                  className="gap- flex flex-col text-gray-dark"
+                  key={item?.id}
+                >
+                  <h4 className="text-base font-bold leading-[120%] sm:text-2xl md:text-[24px] 2xl:text-[32px]">
+                    {item?.owner?.first_name} {item?.owner?.last_name}
+                  </h4>
+                  <p className="text-sm font-light leading-[120%] sm:text-xl md:text-[20px] 2xl:text-2xl">
+                    {item?.comment}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
