@@ -54,5 +54,4 @@ const SignInSlice = createSlice({
 });
 
 export const AUTH_ACTIONS = SignInSlice.actions;
-
 export default SignInSlice.reducer;
