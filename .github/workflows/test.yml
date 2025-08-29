@@ -1,7 +1,7 @@
 name: Busipool
 
 on:
-  pull_requests:
+  pull_request:
     branches:
       - main
   push:
@@ -11,10 +11,11 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    containers:
+    container:
       images: node:20
     steps:
       - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: 20
       - run: npm ci
