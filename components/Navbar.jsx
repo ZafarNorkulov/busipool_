@@ -52,6 +52,7 @@ const Navbar = () => {
 
   return (
     <header className="fixed left-0 right-0 top-0 z-40 w-full bg-headerColor">
+      aaaaaaaaaaaaaaaaaaaaa
       <nav className="max-container relative flex h-20 items-center justify-between sm:py-[20px]">
         {/* Logo */}
         <Link href="/">
